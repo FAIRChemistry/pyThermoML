@@ -4,7 +4,7 @@ Project: vars
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:08:48 pm
+Last Modified: Tuesday June 29th 2021 2:14:24 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
@@ -12,14 +12,15 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 
 import json
 
+
 class VariableBase(object):
-    
+
     def __init__(
         self,
-        varType: 'Variable Type',
-        varName: 'Variable Name',
-        ID: 'Variable identifier',
-        unit: 'Measured unit'
+        varType,
+        varName,
+        ID,
+        unit
     ) -> None:
 
         self.varType = varType

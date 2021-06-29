@@ -4,7 +4,7 @@ Project: props
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:05:32 pm
+Last Modified: Tuesday June 29th 2021 2:13:19 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
@@ -12,16 +12,17 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 
 import json
 
+
 class PropertyBase(object):
 
     def __init__(
         self,
-        propName:'Property name',
-        propGroup: 'Property group name',
-        ID: 'Property identifier',
-        unit: 'Measured unit'
+        propName,
+        propGroup,
+        ID,
+        unit
     ) -> None:
-        
+
         self.propName = propName
         self.ID = ID
         self.propGroup = propGroup
@@ -64,8 +65,3 @@ class PropertyBase(object):
     @unit.setter
     def unit(self, unit):
         self._unit = unit
-
-if __name__ == '__main__':
-
-    newClass = Property("name", "propertygroup", "ID")
-    print(newClass.propGroup)
