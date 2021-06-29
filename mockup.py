@@ -4,7 +4,7 @@ Project: pyThermoML
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:22:39 pm
+Last Modified: Tuesday June 29th 2021 3:22:37 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
@@ -39,10 +39,6 @@ prop2_ID = experiment1.addProperty()
 var1_ID = experiment1.addVariable()
 
 # Measurement
-
-def generateData():
-    return data
-
 meas = Measurement(
     prop1_ID=10.0,
     prop2_ID=20.0,
