@@ -4,7 +4,7 @@ Project: props
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:13:19 pm
+Last Modified: Tuesday June 29th 2021 3:10:28 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
@@ -27,12 +27,17 @@ class PropertyBase(object):
         self.ID = ID
         self.propGroup = propGroup
         self.unit = unit
+        self.__type = "prop"
 
     def __str__(self):
         return json.dumps(
             self.__dict__,
             indent=4
         )
+
+    @property
+    def dataType(self):
+        return self.__type
 
     @property
     def propName(self):
@@ -46,7 +51,7 @@ class PropertyBase(object):
     def ID(self):
         return self._ID
 
-    @propName.setter
+    @ID.setter
     def ID(self, ID):
         self._ID = ID
 

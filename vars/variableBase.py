@@ -4,7 +4,7 @@ Project: vars
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:14:24 pm
+Last Modified: Tuesday June 29th 2021 3:12:14 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
@@ -27,12 +27,17 @@ class VariableBase(object):
         self.varName = varName
         self.ID = ID
         self.unit = unit
+        self.__type = "var"
 
     def __str__(self):
         return json.dumps(
             self.__dict__,
             indent=4
         )
+
+    @property
+    def dataType(self):
+        return self.__type
 
     @property
     def varType(self):
@@ -52,7 +57,7 @@ class VariableBase(object):
 
     @property
     def ID(self):
-        return self.ID
+        return self._ID
 
     @ID.setter
     def ID(self, ID):
