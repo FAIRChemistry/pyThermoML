@@ -4,11 +4,13 @@ Project: props
 Author: Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 11:22:57 am
+Last Modified: Tuesday June 29th 2021 2:05:32 pm
 Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
+
+import json
 
 class PropertyBase(object):
 
@@ -24,6 +26,12 @@ class PropertyBase(object):
         self.ID = ID
         self.propGroup = propGroup
         self.unit = unit
+
+    def __str__(self):
+        return json.dumps(
+            self.__dict__,
+            indent=4
+        )
 
     @property
     def propName(self):
