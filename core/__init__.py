@@ -13,3 +13,5 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 
 from core.pureOrMixtureData import PureOrMixtureData
 from core.measurement import Measurement
+from core.datareport import DataReport
+from core.compound import Compound

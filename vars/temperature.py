@@ -12,6 +12,7 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 
 from vars.variableBase import VariableBase
 
+
 class Temperature(VariableBase):
 
     def __init__(
@@ -40,6 +41,7 @@ def temperature(
     )
 
     return temperatureVar
+
 
 def upperTemperature(
     ID: "Unique identifier"

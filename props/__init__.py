@@ -11,3 +11,6 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 from props.bioproperties import Bioproperty
+from props.transportproperties import TransportProperty
+from props.volumetricproperties import VolumetricProperty
+
