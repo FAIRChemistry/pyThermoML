@@ -10,6 +10,7 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 
+from core import measurement
 import json
 
 
@@ -20,15 +21,15 @@ class PureOrMixtureData(object):
         ID,
         name
     ):
+        # Initialize metadata
+        self.ID = ID
+        self.name = name
 
         # Initialize dictionaries
         self.properties = dict()
         self.variables = dict()
         self.measurements = dict()
 
-        # Initialize metadata
-        self.ID = ID
-        self.name = name
 
     def __str__(self):
 
@@ -65,6 +66,9 @@ class PureOrMixtureData(object):
             self.variables[variable.ID] = variable
 
             return variable.ID
+
+    def addMeasurements(self, meas):
+        self.measurements[meas.ID] = meas
 
     @property
     def ID(self):

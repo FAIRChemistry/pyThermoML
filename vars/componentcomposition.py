@@ -6,8 +6,9 @@ class ComponentComposition(VariableBase):
         self,
         varName,
         ID,
-        unit
-    ):
+        unit,
+        compoundID,
+    ) -> None:
 
         super().__init__(
             varType="eComponentComposition",
@@ -16,15 +17,30 @@ class ComponentComposition(VariableBase):
             unit=unit
         )
 
+        self.compoundID = compoundID
+
+    @property
+    def compoundID(self):
+        return self._compoundID
+
+    @compoundID.setter
+    def compoundID(self, compoundID):
+        self._compoundID = compoundID
+
 # Initializers
-# TODO: reference to compound ID
+# TODO: reference to compound ID -> Done?
 def moleFraction(
-    ID: "Unique identifier"
+    ID: "Unique identifier",
+    compoundID: "ID of compound"
 ):
     moleFractionVar = ComponentComposition(
         varName="Mole fraction",
         ID=ID,
-        unit=""
+        unit="",
+        compoundID=compoundID
     )
 
     return moleFractionVar
+
+
+

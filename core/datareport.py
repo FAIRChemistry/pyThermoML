@@ -9,12 +9,13 @@ class DataReport(object):
         *authors,
     ) -> None:
 
-        self.compounds = dict()
-        self.authors = []
-
         self.title = title
         self.DOI = DOI
-        
+        self.authors = []
+
+        self.compounds = dict()
+        self.pureOrMixtureData = dict()
+       
         for name in authors:
             self.authors.append(name)
         
@@ -46,6 +47,11 @@ class DataReport(object):
 
             return comp.ID
     
+    def addPureOrMixtureData(self, pureOrMixtureData):
+        self.pureOrMixtureData[pureOrMixtureData.ID] = pureOrMixtureData
+
+        return pureOrMixtureData.ID
+
     @property
     def title(self):
         return self._title

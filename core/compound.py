@@ -1,4 +1,5 @@
 import json
+from props.propertyBase import PropertyBase
 
 class Compound(object):
 
@@ -60,3 +61,11 @@ class Compound(object):
     @commonName.setter
     def commonName(self, commonName):
         self._commonName = commonName
+
+    @property
+    def smiles(self):
+        return self._smiles
+    
+    @smiles.setter
+    def smiles(self, smiles):
+        self._smiles = smiles

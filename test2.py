@@ -3,6 +3,9 @@ from core import PureOrMixtureData, Measurement, DataReport, Compound
 from vars.componentcomposition import moleFraction
 from vars.temperature import temperature
 from props.transportproperties import viscosity
+from dataManagement.writeThermo import jsonToThermoML
+
+import json as j
 
 # TODO: uncertainty, significant digits
 dataReport = DataReport(
@@ -13,9 +16,6 @@ dataReport = DataReport(
 
 comp1 = Compound("1", "inhi1", "inchikey1", "smiles1", "water")
 comp2 = Compound("2", "inchi2", "inchikey2", "smiles2", "ethanol")
-
-dataReport.addCompound(comp1)
-dataReport.addCompound(comp2)
 
 comp1_ID = dataReport.addCompound(comp1)
 comp2_ID = dataReport.addCompound(comp2)
@@ -28,9 +28,9 @@ visc = viscosity('V')
 # Variable definitions
 temp = temperature('T')
 
-# TODO: Reference to Compounds
-frac1 = moleFraction('MF1')
-frac2 = moleFraction('MF2')
+# TODO: Reference to Compounds -> DONE?
+frac1 = moleFraction('MF1', comp1_ID)
+frac2 = moleFraction('MF2', comp2_ID)
 
 viscID = experiment.addProperty(visc)
 
@@ -38,7 +38,7 @@ tempID = experiment.addVariable(temp)
 frac1ID = experiment.addVariable(frac1)
 frac2ID = experiment.addVariable(frac2)
 
-
+dataReport.addPureOrMixtureData(experiment)
 
 values = {
     tempID: 273.15,
@@ -51,8 +51,16 @@ values = {
 
 
 meas = Measurement(
+    "meas1",
     values,
     pureOrMixtureData=experiment
 )
 
-print(meas)
+experiment.addMeasurements(meas)
+
+
+print(dataReport)
+
+jsonToThermoML(dataReport)
+
+
