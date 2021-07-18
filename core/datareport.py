@@ -38,6 +38,18 @@ class DataReport(object):
             default=transformAttributes,
             indent=4
         )
+    
+    def toJSON(self):
+        jsonDict = dict()
+        for key, value in self.__dict__.items():
+
+            try:
+                jsonDict[key] = value
+            except TypeError:
+                jsonDict[key] = str(value)
+
+        return jsonDict
+
 
     def addCompound(self, comp):
         if comp.dataType == "comp":

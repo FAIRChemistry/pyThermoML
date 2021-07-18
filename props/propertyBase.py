@@ -20,13 +20,15 @@ class PropertyBase(object):
         propName,
         propGroup,
         ID,
-        unit
+        unit,
+        method,
     ) -> None:
 
         self.propName = propName
         self.ID = ID
         self.propGroup = propGroup
         self.unit = unit
+        self.method = method
         self.__type = "prop"
 
     def __str__(self):
@@ -70,3 +72,11 @@ class PropertyBase(object):
     @unit.setter
     def unit(self, unit):
         self._unit = unit
+
+    @property
+    def method(self):
+        return self._method
+
+    @method.setter
+    def method(self, method):
+        self._method = method

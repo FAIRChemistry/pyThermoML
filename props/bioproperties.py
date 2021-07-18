@@ -15,23 +15,25 @@ from props.propertyBase import PropertyBase
 
 class Bioproperty(PropertyBase):
 
-    def __init__(self, propName, ID, unit):
+    def __init__(self, propName, ID, unit, method):
 
         super().__init__(
             propName=propName,
             propGroup="BioProperties",
             ID=ID,
-            unit=unit
+            unit=unit,
+            method=method
         )
 
 
 # Initializer functions
-def peakTemperature(ID):
+def peakTemperature(ID, method):
 
     bioProp = Bioproperty(
         propName="Peak temperature",
         ID=ID,
-        unit="K"
+        unit="K",
+        method=method
     )
 
     return bioProp
