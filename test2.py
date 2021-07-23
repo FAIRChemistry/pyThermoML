@@ -35,7 +35,7 @@ visc = viscosity('V', "simulation")
 # Variable definitions
 temp = temperature('T')
 
-# mole fractions, depends on compound 
+# mole fractions, depends on compound
 frac1 = moleFraction('MF1', comp1_ID)
 frac2 = moleFraction('MF2', comp2_ID)
 
@@ -51,10 +51,9 @@ values = {
     tempID: 273.15,
     frac1ID: 0.5,
     frac2ID: 0.5,
-    
+
     viscID: 1.0
 }
-
 
 
 meas = Measurement(
@@ -68,3 +67,15 @@ experiment.addMeasurements(meas)
 
 print(dataReport)
 wrt.toThermoML(dataReport.toJSON(), 'testThermo')
+
+
+obj = {
+
+    "Viscosity": viscosity
+}
+
+for tagName in tags:
+
+    fun = obj[tagName] - -> viscosity
+
+    fun()
