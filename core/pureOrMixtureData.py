@@ -19,16 +19,23 @@ class PureOrMixtureData(object):
     def __init__(
         self,
         ID,
-        name
+        name,
+        *components,
+
     ):
         # Initialize metadata
         self.ID = ID
         self.name = name
 
         # Initialize dictionaries
+        self.comps = []
         self.properties = dict()
         self.variables = dict()
         self.measurements = dict()
+
+
+        for comp in components:
+            self.comps.append(comp)
 
 
     def __str__(self):
@@ -109,3 +116,5 @@ class PureOrMixtureData(object):
     @measurements.setter
     def measurements(self, measurements):
         self._measurements = measurements
+
+    # TODO: getter/setter comps

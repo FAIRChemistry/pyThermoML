@@ -7,7 +7,7 @@ class TransportProperty(PropertyBase):
 
         super().__init__(
             propName=propName,
-            propGroup="TransportProperties",
+            propGroup="TransportProp",
             ID=ID,
             unit=unit,
             method=method

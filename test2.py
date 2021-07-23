@@ -19,13 +19,15 @@ dataReport = DataReport(
 )
 
 # declaration of compound used in measurements
-comp1 = Compound("1", "inhi1", "inchikey1", "smiles1", "water")
-comp2 = Compound("2", "inchi2", "inchikey2", "smiles2", "ethanol")
+# TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
+comp1 = Compound("id1", "inhi1", "inchikey1", "smiles1", "water")
+comp2 = Compound("id2", "inchi2", "inchikey2", "smiles2", "ethanol")
 
 comp1_ID = dataReport.addCompound(comp1)
 comp2_ID = dataReport.addCompound(comp2)
 
-experiment = PureOrMixtureData("ID", "experiment1")
+# components which are used in respective experiment
+experiment = PureOrMixtureData("ID", "experiment1", comp1_ID, comp2_ID)
 
 # Property definitions
 visc = viscosity('V', "simulation")
@@ -65,4 +67,4 @@ experiment.addMeasurements(meas)
 
 
 print(dataReport)
-wrt.toThermoML(dataReport.toJSON(), 'auto')
+wrt.toThermoML(dataReport.toJSON(), 'testThermo')

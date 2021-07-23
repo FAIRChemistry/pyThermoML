@@ -7,7 +7,7 @@ class HeatCapacityProperty(PropertyBase):
 
         super().__init__(
             propName=propName,
-            propGroup="HeatCapacityAndDerivedProperties",
+            propGroup="HeatCapacityAndDerivedProp",
             ID=ID,
             unit=unit,
             method=method

@@ -7,7 +7,7 @@ class VolumetricProperty(PropertyBase):
 
         super().__init__(
             propName=propName,
-            propGroup="VoumeltricProperties",
+            propGroup="VoumeltricProp",
             ID=ID,
             unit=unit,
             method=method
