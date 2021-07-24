@@ -11,3 +11,5 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 from vars.temperature import Temperature
+from vars.componentcomposition import ComponentComposition
+from vars.pressure import Pressure

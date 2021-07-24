@@ -17,10 +17,11 @@ class Measurement(object):
 
     def __init__(
         self,
+        ID,
         values,
-        pureOrMixtureData
+        pureOrMixtureData,
     ):
-
+        self.ID = ID
         self.properties = dict()
         self.variables = dict()
 
@@ -43,3 +44,11 @@ class Measurement(object):
             self.__dict__,
             indent=4
         )
+
+    @property
+    def ID(self):
+        return self._ID
+
+    @ID.setter
+    def ID(self, ID):
+        self._ID = ID
