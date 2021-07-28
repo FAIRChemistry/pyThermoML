@@ -1,3 +1,4 @@
+from core.pureOrMixtureData import PureOrMixtureData
 from core.datareport import DataReport
 from core.compound import Compound
 from props.transportproperties import viscosity
@@ -52,6 +53,11 @@ def readThermo(path):
         comp = Compound(get(regNum, 'nOrgNum'), get(compound, 'sStandardInChi'), get(compound, 'sStandardInChiKey'), get(compound, 'sCommonName'), get(compound, 'sSmiles'))
         dataReport.addCompound(comp)
 
+    for pureOrMixtureData in root.iter('{http://www.iupac.org/namespaces/ThermoML}PureOrMixtureData'):
+        regNum = getChild(pureOrMixtureData, 'RegNum')
+
+        # TODO: POMD name
+        exp = PureOrMixtureData(get(pureOrMixtureData, 'nPureOrMixtureDataNumber'), )
 
     print(dataReport)
 
