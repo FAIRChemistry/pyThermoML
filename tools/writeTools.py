@@ -7,6 +7,14 @@ import json
 # dataRep json
 # DataReport ThermoML
 def toThermoML(dataRep, filename):
+    '''
+    Converts a given object layer to ThermoML
+    
+    Args:
+        JSON dataRep: Object layer element
+        String filename: Filename of ThermoML file which should be created
+    
+    '''
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     nsmap = {None: 'http://www.iupac.org/namespaces/ThermoML', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance'}
     DataReport = etree.Element("DataReport", {attr_qname: "http://www.iupac.org/namespaces/ThermoML ThermoML.xsd"}, nsmap=nsmap)
@@ -15,7 +23,7 @@ def toThermoML(dataRep, filename):
     DataReport = __createCitation(DataReport, dataRep)
     DataReport = __createCompound(DataReport, dataRep)
     DataReport = __createPureOrMixtureData(DataReport, dataRep)
-    ET.dump(DataReport)
+    #ET.dump(DataReport)
     __writeFile(DataReport, filename)
 
 def __createVersion(DataReport, dataRep):
@@ -79,7 +87,7 @@ def __createPureOrMixtureData(DataReport, dataRep):
         #sCompiler = etree.SubElement(PureOrMixtureData, 'sCompiler')
         #sCompiler.text = 'ThermoWriter by Matthias Gueltig'
 
-        print(pureOrMixtureDict)
+        #print(pureOrMixtureDict)
         # Property
         for prop in pureOrMixtureDict['_properties']:
             Property = etree.SubElement(PureOrMixtureData, 'Property')

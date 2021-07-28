@@ -6,6 +6,7 @@ from props.transportproperties import viscosity
 
 # TODO: import writer not intuitiv
 import tools.writeTools as wrt
+import tools.readTools as rd
 import json as j
 
 # TODO: reading input data from excel spreadsheet
@@ -65,10 +66,13 @@ meas = Measurement(
 experiment.addMeasurements(meas)
 
 
-print(dataReport)
+#print(dataReport)
 wrt.toThermoML(dataReport.toJSON(), 'testThermo')
 
+rd.readThermo("testThermo.xml")
 
+
+'''
 obj = {
 
     "Viscosity": viscosity
@@ -79,3 +83,4 @@ for tagName in tags:
     fun = obj[tagName] - -> viscosity
 
     fun()
+'''
