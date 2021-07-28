@@ -66,21 +66,8 @@ meas = Measurement(
 experiment.addMeasurements(meas)
 
 
-#print(dataReport)
+print(dataReport)
 wrt.toThermoML(dataReport.toJSON(), 'testThermo')
 
 rd.readThermo("testThermo.xml")
 
-
-'''
-obj = {
-
-    "Viscosity": viscosity
-}
-
-for tagName in tags:
-
-    fun = obj[tagName] - -> viscosity
-
-    fun()
-'''

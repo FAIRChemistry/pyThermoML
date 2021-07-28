@@ -38,9 +38,9 @@ def __createVersion(DataReport, dataRep):
 
 def __createCitation(DataReport, dataRep):
     Citation = etree.SubElement(DataReport, 'Citation')
-    for i in range(len(dataRep['authors'])):
+    for i in range(len(dataRep['_authors'])):
         sAuthor = etree.SubElement(Citation, 'sAuthor')
-        sAuthor.text = dataRep['authors'][i]
+        sAuthor.text = dataRep['_authors']['_author' + str(i)]
     sDOI = etree.SubElement(Citation, 'sDOI')
     sDOI.text = dataRep['_DOI']
     sTitle = etree.SubElement(Citation, 'sTitle')

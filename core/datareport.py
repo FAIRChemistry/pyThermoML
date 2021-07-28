@@ -11,14 +11,15 @@ class DataReport(object):
 
         self.title = title
         self.DOI = DOI
-        self.authors = []
+        self._authors = dict()
 
         self.compounds = dict()
         self.pureOrMixtureData = dict()
-       
+
+        authorID = 0
         for name in authors:
-            self.authors.append(name)
-        
+            self._authors['_author' + str(authorID)] = name
+            authorID += 1
     def __str__(self):
         
         def transformAttributes(self):
