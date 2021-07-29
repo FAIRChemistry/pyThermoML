@@ -64,6 +64,8 @@ class DataReport(object):
         self.pureOrMixtureData[pureOrMixtureData.ID] = pureOrMixtureData
 
         return pureOrMixtureData.ID
+    
+    
 
     @property
     def title(self):

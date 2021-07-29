@@ -3,10 +3,9 @@ from core import PureOrMixtureData, Measurement, DataReport, Compound, datarepor
 from vars.componentcomposition import moleFraction
 from vars.temperature import temperature
 from props.transportproperties import viscosity
-
+from props.bioproperties import peakTemperature
 # TODO: import writer not intuitiv
-import tools.writeTools as wrt
-import tools.readTools as rd
+from tools.writeTools import writeThermo
 import json as j
 
 # TODO: reading input data from excel spreadsheet
@@ -32,7 +31,6 @@ experiment = PureOrMixtureData("ID", "experiment1", comp1_ID, comp2_ID)
 
 # Property definitions
 visc = viscosity('V', "simulation")
-
 # Variable definitions
 temp = temperature('T')
 
@@ -41,33 +39,31 @@ frac1 = moleFraction('MF1', comp1_ID)
 frac2 = moleFraction('MF2', comp2_ID)
 
 viscID = experiment.addProperty(visc)
-
 tempID = experiment.addVariable(temp)
 frac1ID = experiment.addVariable(frac1)
 frac2ID = experiment.addVariable(frac2)
 
 dataReport.addPureOrMixtureData(experiment)
 
-values = {
-    tempID: 273.15,
-    frac1ID: 0.5,
-    frac2ID: 0.5,
+values = dict()
 
-    viscID: 1.0
-}
+values[viscID] = 1.0
+
+values[tempID] = 274
+values[frac1ID] = 0.5
+values[frac2ID] = 0.5
 
 
-meas = Measurement(
+
+meas1 = Measurement(
     "meas1",
     values,
     pureOrMixtureData=experiment
 )
 
-experiment.addMeasurements(meas)
+experiment.addMeasurements(meas1)
+
+writeThermo(dataReport, 'testThermo')
 
 
-print(dataReport)
-wrt.toThermoML(dataReport.toJSON(), 'testThermo')
-
-rd.readThermo("testThermo.xml")
 

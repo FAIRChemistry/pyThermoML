@@ -6,7 +6,7 @@ import json
 
 # dataRep json
 # DataReport ThermoML
-def toThermoML(dataRep, filename):
+def writeThermo(dataRep, filename):
     '''
     Converts a given object layer to ThermoML
     
@@ -15,6 +15,8 @@ def toThermoML(dataRep, filename):
         String filename: Filename of ThermoML file which should be created
     
     '''
+    dataRep = dataRep.toJSON()
+
     attr_qname = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     nsmap = {None: 'http://www.iupac.org/namespaces/ThermoML', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance'}
     DataReport = etree.Element("DataReport", {attr_qname: "http://www.iupac.org/namespaces/ThermoML ThermoML.xsd"}, nsmap=nsmap)

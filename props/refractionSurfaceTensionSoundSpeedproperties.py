@@ -7,7 +7,7 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
 
         super().__init__(
             propName=propName,
-            propGroup="RefractionSurfacTensionSoundSpeed",
+            propGroup="RefractionSurfaceTensionSoundSpeed",
             ID=ID,
             unit=unit,
             method=method
