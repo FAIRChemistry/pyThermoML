@@ -11,6 +11,7 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 import json
+from core.functionalities import TypeChecker
 
 
 class PropertyBase(object):
@@ -30,7 +31,6 @@ class PropertyBase(object):
         self.unit = unit
         self.method = method
         self.__type = "prop"
-
     def __str__(self):
         return json.dumps(
             self.__dict__,

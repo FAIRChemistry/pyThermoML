@@ -23,7 +23,7 @@ def viscosity(ID, method):
         propName="Viscosity",
         ID=ID,
         unit="Pa*s",
-        method=method
+        method=method,
     )
 
     return viscosityProp
@@ -35,7 +35,7 @@ def kinematicViscosity(ID, method):
         propName="Kinematic Viscosity",
         ID = ID,
         unit="m2/s",
-        method=method
+        method=method,
     )
 
     return viscosityProp
