@@ -1,16 +1,28 @@
+from core.functionalities import TypeChecker
 import json
 
-class DataReport(object):
 
+class DataReport(object):
     def __init__(
         self,
-        title,
-        DOI,
+        title=None,
+        DOI=None,
         *authors,
     ) -> None:
 
-        self.title = title
-        self.DOI = DOI
+        '''
+        Object describing a DataReport.
+
+        Args:
+            String title: Title of referred paper
+            String DOI: DOI of referred
+            *String authors: Authors of referred paper
+        '''
+        if title is not None:
+            self.title = title
+        if DOI is not None:
+            self.DOI = DOI
+        
         self._authors = dict()
 
         self.compounds = dict()
@@ -20,6 +32,7 @@ class DataReport(object):
         for name in authors:
             self._authors['_author' + str(authorID)] = name
             authorID += 1
+
     def __str__(self):
         
         def transformAttributes(self):
@@ -51,7 +64,6 @@ class DataReport(object):
 
         return jsonDict
 
-
     def addCompound(self, comp):
         if comp.dataType == "comp":
 
@@ -73,7 +85,7 @@ class DataReport(object):
     
     @title.setter
     def title(self, title):
-        self._title = title
+        self._title = TypeChecker(title, str)
     
     @property
     def DOI(self):
@@ -81,6 +93,6 @@ class DataReport(object):
     
     @DOI.setter
     def DOI(self, DOI):
-        self._DOI = DOI
+        self._DOI = TypeChecker(DOI, str)
     
     # TODO: getter/setter for authors 

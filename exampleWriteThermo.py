@@ -54,7 +54,6 @@ values[frac1ID] = 0.5
 values[frac2ID] = 0.5
 
 
-
 meas1 = Measurement(
     "meas1",
     values,
@@ -65,5 +64,4 @@ experiment.addMeasurements(meas1)
 
 writeThermo(dataReport, 'testThermo')
 
-
-
+print(dataReport)
