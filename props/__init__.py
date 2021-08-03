@@ -15,4 +15,3 @@ from props.transportproperties import TransportProperty
 from props.volumetricproperties import VolumetricProperty
 from props.heatcapacityproperties import HeatCapacityProperty
 from props.refractionSurfaceTensionSoundSpeedproperties import RefractionSurfaceTensionSoundSpeedproperty
-

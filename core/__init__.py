@@ -15,3 +15,4 @@ from core.pureOrMixtureData import PureOrMixtureData
 from core.measurement import Measurement
 from core.datareport import DataReport
 from core.compound import Compound
+from core.datapoint import DataPoint

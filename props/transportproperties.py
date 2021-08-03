@@ -29,11 +29,13 @@ def viscosity(ID, method):
     return viscosityProp
 
 # kinematic visosity
+
+
 def kinematicViscosity(ID, method):
 
     viscosityProp = TransportProperty(
         propName="Kinematic Viscosity",
-        ID = ID,
+        ID=ID,
         unit="m2/s",
         method=method,
     )
@@ -42,6 +44,8 @@ def kinematicViscosity(ID, method):
 
 # Note: not inncluded in ThermoMl.xsd
 # component specific?
+
+
 def microviscosity(ID, method):
 
     microviscosityProp = TransportProperty(
@@ -54,11 +58,13 @@ def microviscosity(ID, method):
     return microviscosityProp
 
 # TODO: self, tracer, binary?
+
+
 def diffusioncoefficient(ID, method):
-    
+
     diffProp = TransportProperty(
         propName="Self diffusion coefficient",
-        ID = ID,
+        ID=ID,
         unit="m2/s",
         method=method
     )
