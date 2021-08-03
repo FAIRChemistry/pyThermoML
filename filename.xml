@@ -7,7 +7,7 @@
   <Citation>
     <sAuthor>author 1</sAuthor>
     <sAuthor>author 2</sAuthor>
-    <sDOI>DOI of referred paper</sDOI>
+    <sDOI>DOI244</sDOI>
     <sTitle>Title of referred paper</sTitle>
   </Citation>
   <Compound>
@@ -16,8 +16,8 @@
     </RegNum>
     <sStandardInChi>inhi1</sStandardInChi>
     <sStandardInChiKey>inchikey1</sStandardInChiKey>
-    <sCommonName>water</sCommonName>
-    <sSmiles>smiles1</sSmiles>
+    <sCommonName>smiles1</sCommonName>
+    <sSmiles>water</sSmiles>
   </Compound>
   <Compound>
     <RegNum>
@@ -25,8 +25,8 @@
     </RegNum>
     <sStandardInChi>inchi2</sStandardInChi>
     <sStandardInChiKey>inchikey2</sStandardInChiKey>
-    <sCommonName>ethanol</sCommonName>
-    <sSmiles>smiles2</sSmiles>
+    <sCommonName>smiles2</sCommonName>
+    <sSmiles>ethanol</sSmiles>
   </Compound>
   <PureOrMixtureData>
     <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
