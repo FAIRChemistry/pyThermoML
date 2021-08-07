@@ -77,8 +77,8 @@ def readThermo(path) -> DataReport:
         
         experiment[0].addMeasurement(dataPoints=datapoints)
         datareport.addPureOrMixtureData(experiment[0])
-    
-    print(datareport)
+
+    return datareport
 
 
 

@@ -71,7 +71,6 @@ frac2DataPoint = DataPoint(
     uncertainty=0.02
 )
 
-print(viscDataPoint)
 datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
 
 # add Measurement to experiment
@@ -79,7 +78,6 @@ experiment.addMeasurement(dataPoints=datapoints)
 
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
-print(dataReport)
 
 writeThermo(dataReport, 'testThermo')
 

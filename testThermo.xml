@@ -109,7 +109,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>0.2</nVarValue>
+        <nVarValue>0.5</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.01</nExpandUncertValue>
@@ -117,7 +117,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>0.8</nVarValue>
+        <nVarValue>0.5</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.02</nExpandUncertValue>
@@ -125,7 +125,7 @@
       </VariableValue>
       <PropertyValue>
         <nPropNumber>visc1</nPropNumber>
-        <nPropValue>10.0</nPropValue>
+        <nPropValue>0.001</nPropValue>
         <CombinedUncertainty>
           <nCombUncertAssesNum>1</nCombUncertAssesNum>
           <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
