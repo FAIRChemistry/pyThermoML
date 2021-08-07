@@ -1,31 +1,39 @@
 from vars.variableBase import VariableBase
 
 
-class Pressure(VariableBase):
+class PressureBase(VariableBase):
 
     def __init__(
         self,
         varName,
         ID,
-        unit
+        unit,
+        compoundID=None
     ):
 
         super().__init__(
             varType="ePressure",
             varName=varName,
             ID=ID,
-            unit=unit
+            unit=unit,
+            compoundID=compoundID
         )
 
 # Initializers
 
-def pressure(
-    ID: "Unique identifier"
+def Pressure(
+    ID: "Unique identifier",
+    compoundID=None
 ):
-    pressureVar = Pressure(
+    # not component specific!
+    
+    if compoundID is not None:
+        compoundID=None
+    pressureVar = PressureBase(
         varName="Pressure",
         ID=ID,
-        unit="kPa"
+        unit="kPa",
+        compoundID=compoundID
     )
 
     return pressureVar

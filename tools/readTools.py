@@ -1,194 +1,41 @@
-from props.propertyBase import PropertyBase
-from props.bioproperties import peakTemperature
-from props.volumetricproperties import massDensity
-from props.refractionSurfaceTensionSoundSpeedproperties import surfaceTension, speedOfSound
-from props.heatcapacityproperties import molarHCconstPressure, molarHCconstVolume
-from props.transportproperties import TransportProperty, diffusioncoefficient, kinematicViscosity, microviscosity, viscosity
+from props.bioproperties import PeakTemperature
+from props.volumetricproperties import MassDensity
+from props.refractionSurfaceTensionSoundSpeedproperties import SurfaceTension, SpeedOfSound
+from props.heatcapacityproperties import MolarHCconstPressure, MolarHCconstVolume
+from props.transportproperties import Diffusioncoefficient, KinematicViscosity, Microviscosity, Viscosity
 
-from vars.temperature import lowerTemperature, temperature, upperTemperature
-from vars.pressure import pressure
-from vars.componentcomposition import moleFraction
+from vars.temperature import LowerTemperature, Temperature, UpperTemperature
+from vars.pressure import Pressure
+from vars.componentcomposition import MoleFraction
 
-from core.pureOrMixtureData import PureOrMixtureData
-from core.datareport import DataReport
-from core.compound import Compound
-from core.measurement import Measurement
+from core import Compound, DataPoint, DataReport, datareport, functionalities, Measurement, PureOrMixtureData, measurement, pureOrMixtureData
 
 from lxml import etree
-import xmltodict
-import json
 
-namespace = {'ThermoML': 'http://www.iupac.org/namespaces/ThermoML'}
-namespaceString = '{http://www.iupac.org/namespaces/ThermoML}'
+namespace = './/{http://www.iupac.org/namespaces/ThermoML}'
 
+propMapping = {
+    'Viscosity, Pa*s': Viscosity,
+    'Kinematic Viscosity, m2/s': KinematicViscosity,
+    'Self diffusion coefficient, m2/s': Diffusioncoefficient,
+    'Mass density, kg/m3': MassDensity,
+    'Surface tension liquid-gas, N/m': SurfaceTension,
+    'Speed of sound, m/s': SpeedOfSound,
+    'Molar heat capacity at constant pressure, J/K/mol': MolarHCconstPressure,
+    'Molar heat capacity at constant volume, J/K/mol': MolarHCconstVolume,
+    'Peak temperature, K': PeakTemperature,
 
-def get(parent, tag) -> str:
-    '''
-    Returns value of tag in ThermoML. Only first element of THermoML!
-    controlled vocabulary!!
+    # not in ThermoML
+    'Microviscosity, Pa*s': Microviscosity
+}
 
-    Args:
-        parent
-        String tag: Name of element
-    '''
-    return parent.find('{http://www.iupac.org/namespaces/ThermoML}' + tag).text
-
-
-def getChild(parent, childName):
-    '''
-    Returns subelement of parent
-    '''
-    return parent.find('.//{http://www.iupac.org/namespaces/ThermoML}' + childName)
-
-# specific functions... not smart!
-
-
-def __getAuthors__(Citation) -> list:
-    '''
-    Returns all authors of ThermoML in array representation
-    '''
-    authors = []
-    for author in Citation.iter('{http://www.iupac.org/namespaces/ThermoML}sAuthor'):
-        authors.append(author.text)
-    return authors
-
-
-def __addComponents__(dataReport, root) -> list:
-    '''
-    adds components in ThermoML to object layer
-    returns compID array
-    '''
-    compIDs = []
-    for compound in root.iter('{http://www.iupac.org/namespaces/ThermoML}Compound'):
-        #compound = getChild(root, 'Compound')
-        regNum = getChild(compound, 'RegNum')
-        comp = Compound(get(regNum, 'nOrgNum'), get(compound, 'sStandardInChi'), get(
-            compound, 'sStandardInChiKey'), get(compound, 'sCommonName'), get(compound, 'sSmiles'))
-        compID = dataReport.addCompound(comp)
-        compIDs.append(compID)
-    return compIDs
-
-
-def __addProperties__(pureOrMixtureData, exp) -> list:
-    '''
-    adds propeties used in thermoML - file to objectlayer
-    returns array of property IDs
-    '''
-    propIDs = []
-    for prop in list(pureOrMixtureData):
-        elem = prop.findall(
-            ".//{http://www.iupac.org/namespaces/ThermoML}ePropName")
-        for ePropName in elem:
-            propIDs.append(exp.addProperty(
-                __propertyTypeChecker__(ePropName.text, prop)))
-    return propIDs
-
-
-def __propertyTypeChecker__(ePropName, prop) -> PropertyBase:
-    '''
-    str ePropName
-    Element prop
-    '''
-    if 'Viscosity, Pa*s' == ePropName:
-        return viscosity(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'TransportProp'), 'eMethodName'))
-
-    if 'Kinematic Viscosity, m2/s' == ePropName:
-        return kinematicViscosity(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'TransportProp'), 'eMethodName'))
-
-    if 'Microviscosity, Pa*s' == ePropName:
-        return microviscosity(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'TransportProp'), 'eMethodName'))
-
-    if 'Self diffusion coefficient, m2/s' == ePropName:
-        return diffusioncoefficient(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'TransportProp'), 'eMethodName'))
-
-    if 'Mass density, kg/m3' == ePropName:
-        return massDensity(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'VolumetricProp'), 'eMethodName'))
-
-    if 'Surface tension liquid-gas, N/m' == ePropName:
-        return surfaceTension(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'RefractionSurfaceTensionSoundSpeed'), 'eMethodName'))
-
-    if 'Speed of sound, m/s' == ePropName:
-        return speedOfSound(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'RefractionSurfaceTensionSoundSpeed'), 'eMethodName'))
-
-    if 'Molar heat capacity at constant pressure, J/K/mol' == ePropName:
-        return molarHCconstPressure(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'HeatCapacityAndDerivedProp'), 'eMethodName'))
-
-    if 'Molar heat capacity at constant volume, J/K/mol' == ePropName:
-        return molarHCconstVolume(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'HeatCapacityAndDerivedProp'), 'eMethodName'))
-
-    if 'Peak temperature, K' == ePropName:
-        return peakTemperature(get(prop, 'nPropNumber'), get(getChild(getChild(getChild(prop, 'PropertyMethod-ID'), 'PropertyGroup'), 'BioProperties'), 'eMethodName'))
-
-
-def __addVariables__(pureOrMixtureData, exp) -> list:
-    '''
-    adds variables used in thermoML - file to objectlayer
-    returns array of variable IDs
-    '''
-    varIDs = []
-    for var in list(pureOrMixtureData):
-        varType = var.findall(
-            ".//{http://www.iupac.org/namespaces/ThermoML}VariableType")
-        for varEnum in list(varType):
-            for varName in list(varEnum):
-                varIDs.append(exp.addVariable(
-                    __variableTypeChecker__(varName.text, var)))
-
-    return varIDs
-
-
-def __variableTypeChecker__(varName, var):
-    if varName == 'Temperature, K':
-        return temperature(get(var, 'nVarNumber'))
-
-    if varName == 'Upper temperature, K':
-        return upperTemperature(get(var, 'nVarNumber'))
-
-    if varName == 'Lower temperature, K':
-        return lowerTemperature(get(var, 'nVarNumber'))
-
-    if varName == 'Mole fraction':
-        return moleFraction(get(var, 'nVarNumber'), get(getChild(getChild(var, 'VariableID'), 'RegNum'), 'nOrgNum'))
-
-    if varName == 'Pressure, kPa':
-        return pressure(get(var, 'nVarNumber'))
-
-
-def __addMeasurements__(pureOrMixtureData, exp, propIDs, varIDs):
-    # TODO: meas name?
-    # in this case just number (measnumb)
-    measnumb = 1
-    for point in pureOrMixtureData.findall(".//{http://www.iupac.org/namespaces/ThermoML}NumValues"):
-
-        values = dict()
-        varIndex = 0
-        propIndex = 0
-
-        for var in point.findall(".//{http://www.iupac.org/namespaces/ThermoML}VariableValue"):
-            values[varIDs[varIndex]] = get(var, 'nVarValue')
-            varIndex += 1
-
-        for prop in point.findall(".//{http://www.iupac.org/namespaces/ThermoML}PropertyValue"):
-            values[propIDs[propIndex]] = get(prop, 'nPropValue')
-            propIndex += 1
-
-        exp.addMeasurements(Measurement(
-            str(measnumb), values, pureOrMixtureData=exp))
-        measnumb += 1
-
-
-def __addPureOrMixtureData__(dataReport, root, compIDs):
-    for pureOrMixtureData in root.iter('{http://www.iupac.org/namespaces/ThermoML}PureOrMixtureData'):
-        # TODO: POMD name
-        # Warning!!! all compounds declared in comp are used in PureOrMixtureData
-        exp = PureOrMixtureData(
-            get(pureOrMixtureData, 'nPureOrMixtureDataNumber'), "", *compIDs)
-
-        propIDs = __addProperties__(pureOrMixtureData, exp)
-        varIDs = __addVariables__(pureOrMixtureData, exp)
-        __addMeasurements__(pureOrMixtureData, exp, propIDs, varIDs)
-        dataReport.addPureOrMixtureData(exp)
-
+varMapping = {
+    'Temperature, K': Temperature,
+    'Lower temperature, K': LowerTemperature,
+    'Upper temperature, K': UpperTemperature,
+    'Mole fraction': MoleFraction,
+    'Pressure, kPa': Pressure
+}
 
 def readThermo(path) -> DataReport:
     '''
@@ -197,14 +44,163 @@ def readThermo(path) -> DataReport:
     Args:
         String path: Path to ThermoML file
     '''
-
+    
     tree = etree.parse(path)
     root = tree.getroot()
 
-    dataReport = DataReport(get(getChild(root, 'Citation'), 'sTitle'), get(
-        getChild(root, 'Citation'), 'sDOI'), *__getAuthors__(getChild(root, 'Citation')))
-    compIDs = __addComponents__(dataReport, root)
+    
+    datareport = DataReport(*__getCitation__(root))
+    comps = __getCompounds__(root)
+    
+    for comp in comps.values():
+        datareport.addCompound(comp)
+    
+    pOMData = __getPOMData__(root, comps)
+    
+    # experiment[0] Object
+    # experiment[1] ElementTree
+    for key, experiment in pOMData.items():
+        props = __getProperties__(experiment[1])
+        vars = __getVariables__(experiment[1])
 
-    __addPureOrMixtureData__(dataReport, root, compIDs)
+        for id, value in props.items():
+            experiment[0].addProperty(value[0](id, value[1]))
+        
+        for id, value in vars.items():
+            experiment[0].addVariable(value[0](id, value[1]))
+        
+        measurements = __getDatapoints__(experiment[1])
 
-    return dataReport
+        datapoints = []
+        for dp in measurements.values():
+            datapoints.append(dp)
+        
+        experiment[0].addMeasurement(dataPoints=datapoints)
+        datareport.addPureOrMixtureData(experiment[0])
+    
+    print(datareport)
+
+
+
+def __get__(root, tag, namespace=namespace):
+    '''
+    just refactored method to get text of one  Element
+    '''
+    try:
+        textelem = root.findall(namespace + tag)[0].text
+    except IndexError:
+        textelem = ""
+    return textelem
+
+    
+
+def __getCitation__(root, namespace=namespace):
+
+    title = root.findall(namespace + "sTitle")[0].text
+    doi = root.findall(namespace + 'sDOI')[0].text
+    authorList = root.findall(namespace + 'sAuthor')
+    authors = []
+    
+    for author in authorList:
+        authors.append(author.text)
+    return title, doi, *authors
+
+def __getCompounds__(root) -> dict:
+    '''
+    adds components in ThermoML to object layer
+    returns dictionary with compounds
+    '''
+    comps = dict()
+    for compound in root.findall(namespace + 'Compound'):
+        comps[__get__(compound, 'nOrgNum')] = Compound(__get__(compound, 'nOrgNum'), 
+        __get__(compound, 'sStandardInChi'), __get__(compound, 'sStandardInChiKey'), 
+        __get__(compound, 'sSmiles'), __get__(compound, 'sCommonName'))
+    return comps
+
+def __getPOMData__(root, comps) -> dict:
+    '''
+    Return dictionary of pureOrMixtureData in dataReport
+    
+    Key: nPureOrMixtureDataNumber
+    Value: [PureOrMixtureData, pureOrMixtureData]
+    First argument is Object of PureOrMixtureData, second argument returns ET Element. 
+    -> only get following properties/variables of pureOrMixtureData, not whole root
+    '''
+    pOMData = dict()
+    
+    for pureOrMixtureData in root.findall(namespace + 'PureOrMixtureData'):
+        # All declared compounds should be used in pure or mixture Data
+        pOMData[__get__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (
+            PureOrMixtureData(__get__(pureOrMixtureData, 'nPureOrMixtureDataNumber'), *comps.keys()),
+            pureOrMixtureData)
+    
+    return pOMData
+
+def __getProperties__(pureOrMixtureData) -> dict:
+    '''
+    Return dictionary of properties used in pureOrMixtureData
+    
+    Key: nPropNumber
+    Value: [Func, eMethodName]
+    '''
+    properties = dict()
+    for property in pureOrMixtureData.findall(namespace + 'Property'):
+        
+        properties[__get__(property, 'nPropNumber')] = (__getPropMapping__(__get__(property, 'ePropName')),
+         __get__(property, 'eMethodName'))
+    return properties
+
+
+def __getPropMapping__(ePropName):
+    '''
+    Returns function that matches to ePropName
+    '''
+    try:
+        func = propMapping[ePropName]
+    except KeyError:
+        print('Property not found')
+    return func
+
+def __getVariables__(pureOrMixtureData) -> dict:
+    '''
+    Returns dict of variables used in pureOrMixtureData
+    
+    Key: nVarNumber
+    Value: [Func, compID]
+    compID is gonna be ignored if variable is not component specific
+    '''
+
+    variables = dict()
+    for variable in pureOrMixtureData.findall(namespace + 'Variable'):
+        variableType = variable.findall(namespace + 'VariableType')
+        varName = variableType[0].getchildren()[0].text
+        try:
+            compID = __get__(variable, 'nOrgNum')
+        except IndexError:
+            compID = ""
+        
+        variables[__get__(variable, 'nVarNumber')] = (__getVarMapping__(varName), compID)
+    return variables
+
+def __getVarMapping__(varName):
+    '''
+    Return function that matches to variable
+    '''
+    try:
+        func = varMapping[varName]
+    except KeyError:
+        print('Variable not found')
+    return func
+
+def __getDatapoints__(pureOrMixtureData) -> dict:
+    datapoints = dict()
+    for numValues in pureOrMixtureData.findall(namespace + 'NumValues'):
+        for variableValue in numValues.findall(namespace + 'VariableValue'):
+            # measID not needed in ThermoML?
+            datapoints[__get__(variableValue, 'nVarNumber')] = DataPoint("measID", float(__get__(variableValue, 'nVarValue')), 
+            varID = __get__(variableValue, 'nVarNumber'), uncertainty=float(__get__(variableValue, 'nExpandUncertValue')))
+        
+        for propertyValue in numValues.findall(namespace + 'PropertyValue'):
+            datapoints[__get__(propertyValue, 'nPropNumber')] = DataPoint("measID", float(__get__(propertyValue, 'nPropValue')), 
+            propID = __get__(propertyValue, 'nPropNumber'), uncertainty= float(__get__(propertyValue, 'nCombExpandUncertValue')))
+    return datapoints

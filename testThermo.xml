@@ -5,11 +5,10 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sAuthor>author1</sAuthor>
-    <sAuthor>author2</sAuthor>
-    <sAuthor>author3</sAuthor>
-    <sDOI>DOI244</sDOI>
-    <sTitle>Examination of blablabla</sTitle>
+    <sAuthor>author 1</sAuthor>
+    <sAuthor>author 2</sAuthor>
+    <sDOI>DOI of referred paper</sDOI>
+    <sTitle>Title of referred paper</sTitle>
   </Citation>
   <Compound>
     <RegNum>
@@ -17,8 +16,8 @@
     </RegNum>
     <sStandardInChi>inhi1</sStandardInChi>
     <sStandardInChiKey>inchikey1</sStandardInChiKey>
-    <sCommonName>smiles1</sCommonName>
-    <sSmiles>water</sSmiles>
+    <sCommonName>water</sCommonName>
+    <sSmiles>smiles1</sSmiles>
   </Compound>
   <Compound>
     <RegNum>
@@ -26,11 +25,16 @@
     </RegNum>
     <sStandardInChi>inchi2</sStandardInChi>
     <sStandardInChiKey>inchikey2</sStandardInChiKey>
-    <sCommonName>smiles2</sCommonName>
-    <sSmiles>ethanol</sSmiles>
+    <sCommonName>ethanol</sCommonName>
+    <sSmiles>smiles2</sSmiles>
   </Compound>
   <PureOrMixtureData>
     <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
+    <Component>
+      <RegNum>
+        <nOrgNum>experiement1</nOrgNum>
+      </RegNum>
+    </Component>
     <Component>
       <RegNum>
         <nOrgNum>id1</nOrgNum>
@@ -42,7 +46,7 @@
       </RegNum>
     </Component>
     <Property>
-      <nPropNumber>V</nPropNumber>
+      <nPropNumber>visc1</nPropNumber>
       <PropertyMethod-ID>
         <PropertyGroup>
           <TransportProp>
@@ -51,17 +55,23 @@
           </TransportProp>
         </PropertyGroup>
       </PropertyMethod-ID>
+      <CombinedUncertainty>
+        <nCombUncertAssessNum>1</nCombUncertAssessNum>
+      </CombinedUncertainty>
     </Property>
     <Variable>
-      <nVarNumber>T</nVarNumber>
+      <nVarNumber>temp1</nVarNumber>
       <VariableID>
         <VariableType>
           <eTemperature>Temperature, K</eTemperature>
         </VariableType>
       </VariableID>
+      <VarUncertainty>
+        <nUncertAssessNum>1</nUncertAssessNum>
+      </VarUncertainty>
     </Variable>
     <Variable>
-      <nVarNumber>MF1</nVarNumber>
+      <nVarNumber>moleFrac1</nVarNumber>
       <VariableID>
         <VariableType>
           <eComponentComposition>Mole fraction</eComponentComposition>
@@ -70,9 +80,12 @@
           <nOrgNum>id1</nOrgNum>
         </RegNum>
       </VariableID>
+      <VarUncertainty>
+        <nUncertAssessNum>1</nUncertAssessNum>
+      </VarUncertainty>
     </Variable>
     <Variable>
-      <nVarNumber>MF2</nVarNumber>
+      <nVarNumber>moleFrac2</nVarNumber>
       <VariableID>
         <VariableType>
           <eComponentComposition>Mole fraction</eComponentComposition>
@@ -81,23 +94,42 @@
           <nOrgNum>id2</nOrgNum>
         </RegNum>
       </VariableID>
+      <VarUncertainty>
+        <nUncertAssessNum>1</nUncertAssessNum>
+      </VarUncertainty>
     </Variable>
     <NumValues>
       <VariableValue>
-        <nVarNumber>T</nVarNumber>
-        <nVarValue>274</nVarValue>
+        <nVarNumber>temp1</nVarNumber>
+        <nVarValue>300.0</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>10.0</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>MF1</nVarNumber>
-        <nVarValue>0.5</nVarValue>
+        <nVarNumber>moleFrac1</nVarNumber>
+        <nVarValue>0.2</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>0.01</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>MF2</nVarNumber>
-        <nVarValue>0.5</nVarValue>
+        <nVarNumber>moleFrac2</nVarNumber>
+        <nVarValue>0.8</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>0.02</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>V</nPropNumber>
-        <nPropValue>1.0</nPropValue>
+        <nPropNumber>visc1</nPropNumber>
+        <nPropValue>10.0</nPropValue>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
+        </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
   </PureOrMixtureData>

@@ -27,7 +27,7 @@ class Bioproperty(PropertyBase):
 
 
 # Initializer functions
-def peakTemperature(ID, method):
+def PeakTemperature(ID, method):
 
     bioProp = Bioproperty(
         propName="Peak temperature",

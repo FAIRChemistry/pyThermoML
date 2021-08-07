@@ -10,6 +10,7 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 
+from core import compound
 import json
 
 
@@ -20,13 +21,17 @@ class VariableBase(object):
         varType,
         varName,
         ID,
-        unit
+        unit,
+        compoundID = None
     ) -> None:
 
         self.varType = varType
         self.varName = varName
         self.ID = ID
         self.unit = unit
+        if compoundID is not None:
+            self.compoundID = compoundID
+            
         self.__type = "var"
 
     def __str__(self):
@@ -70,3 +75,11 @@ class VariableBase(object):
     @unit.setter
     def unit(self, unit):
         self._unit = unit
+    
+    @property
+    def compoundID(self):
+        return self._compoundID
+    
+    @compoundID.setter
+    def compoundID(self, compoundID):
+        self._compoundID = compoundID

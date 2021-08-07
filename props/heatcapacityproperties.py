@@ -15,7 +15,7 @@ class HeatCapacityProperty(PropertyBase):
 
 
 # Initializer functions
-def molarHCconstPressure(ID, method):
+def MolarHCconstPressure(ID, method):
 
     hcprop = HeatCapacityProperty(
         propName="Molar heat capacity at constant pressure",
@@ -26,7 +26,7 @@ def molarHCconstPressure(ID, method):
 
     return hcprop
 
-def molarHCconstVolume(ID, method):
+def MolarHCconstVolume(ID, method):
 
     hcprop = HeatCapacityProperty(
         propName="Molar heat capacity at constant volume",

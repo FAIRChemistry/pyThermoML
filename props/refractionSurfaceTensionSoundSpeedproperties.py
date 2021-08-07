@@ -16,7 +16,7 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
 
 # Initializer functions
 # TODO: convert unnits?
-def surfaceTension(ID, method):
+def SurfaceTension(ID, method):
 
     rprop = RefractionSurfaceTensionSoundSpeedproperty(
         propName="Surface tension liquid-gas",
@@ -27,7 +27,7 @@ def surfaceTension(ID, method):
 
     return rprop
 
-def speedOfSound(ID, method):
+def SpeedOfSound(ID, method):
 
     speedProp = RefractionSurfaceTensionSoundSpeedproperty(
         propName="Speed of sound",

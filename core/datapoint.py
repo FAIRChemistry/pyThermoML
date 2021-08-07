@@ -1,5 +1,5 @@
 from core.functionalities import TypeChecker
-
+import json
 
 class DataPoint(object):
 
@@ -11,6 +11,7 @@ class DataPoint(object):
         varID=None,
         uncertainty=None
     ) -> None:
+
 
         self.measurementID = measurementID
         self.value = value
@@ -25,6 +26,13 @@ class DataPoint(object):
 
         if uncertainty:
             self.uncertainty = uncertainty
+
+
+    def __str__(self):
+        return json.dumps(
+            self.__dict__,
+            indent=4
+    )
 
     @property
     def elementID(self):

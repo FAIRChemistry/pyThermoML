@@ -13,54 +13,71 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 from vars.variableBase import VariableBase
 
 
-class Temperature(VariableBase):
+class TemperatureBase(VariableBase):
 
     def __init__(
         self,
         varName,
         ID,
-        unit
+        unit,
+        compoundID=None,
     ):
 
         super().__init__(
             varType="eTemperature",
             varName=varName,
             ID=ID,
-            unit=unit
+            unit=unit,
+            compoundID = compoundID
         )
 
 # Initializers
 
-def temperature(
-    ID: "Unique identifier"
+def Temperature(
+    ID: "Unique identifier",
+    compoundID = None
 ):
-    temperatureVar = Temperature(
+    
+    # not component specific!
+    if compoundID is not None:
+        compoundID=None
+
+    temperatureVar = TemperatureBase(
         varName="Temperature",
         ID=ID,
-        unit="K"
+        unit="K",
+        compoundID = compoundID
     )
 
     return temperatureVar
 
 
-def upperTemperature(
-    ID: "Unique identifier"
+def UpperTemperature(
+    ID: "Unique identifier",
+    compoundID = None
 ):
-    upperTemperatureVar = Temperature(
+    if compoundID is not None:
+        compoundID = None
+    upperTemperatureVar = TemperatureBase(
         varName="Upper temperature",
         ID=ID,
-        unit="K"
+        unit="K",
+        compoundID=compoundID
     )
 
     return upperTemperatureVar
 
-def lowerTemperature(
-    ID: "Unique identifier"
+def LowerTemperature(
+    ID: "Unique identifier",
+    compoundID = None
 ):
-    lowerTemperatureVar = Temperature(
+    if compoundID is not None:
+        compoundID = None
+    lowerTemperatureVar = TemperatureBase(
         varName="Lower temperature",
         ID=ID,
-        unit="K"
+        unit="K",
+        compoundID=None
     )
 
     return lowerTemperatureVar

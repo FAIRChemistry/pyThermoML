@@ -19,13 +19,11 @@ class PureOrMixtureData(object):
     def __init__(
         self,
         ID,
-        name,
         *components,
 
     ):
         # Initialize metadata
         self.ID = ID
-        self.name = name
 
         # Initialize dictionaries
         self.comps = []
@@ -90,14 +88,6 @@ class PureOrMixtureData(object):
     @ID.setter
     def ID(self, ID):
         self._ID = ID
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        self._name = name
 
     @property
     def properties(self):

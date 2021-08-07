@@ -14,7 +14,7 @@ class VolumetricProperty(PropertyBase):
         )
 
 # functions
-def massDensity(ID, method):
+def MassDensity(ID, method):
 
     volumetricProp = VolumetricProperty(
         propName="Mass density",

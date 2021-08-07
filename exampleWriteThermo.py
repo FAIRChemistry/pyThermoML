@@ -1,67 +1,86 @@
-from core import PureOrMixtureData, Measurement, DataReport, Compound, datareport
+from core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint
 
-from vars.componentcomposition import moleFraction
-from vars.temperature import temperature
-from props.transportproperties import viscosity
-from props.bioproperties import peakTemperature
+from vars.componentcomposition import MoleFraction
+from vars.temperature import LowerTemperature, Temperature
+from vars.pressure import Pressure
+from props.transportproperties import Viscosity
+
 # TODO: import writer not intuitiv
 from tools.writeTools import writeThermo
 import json as j
 
 # TODO: reading input data from excel spreadsheet
-# TODO: uncertainty, significant digits
+# TODO: significant digits
 
 # title, DOI, authors
-dataReport = DataReport(
-    "Examination of blablabla",
-    "DOI734",
-    "author1", "author2", "author3"
-)
+dataReport = DataReport("Title of referred paper", "DOI of referred paper", "author 1", "author 2")
 
 # declaration of compound used in measurements
 # TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
 comp1 = Compound("id1", "inhi1", "inchikey1", "smiles1", "water")
 comp2 = Compound("id2", "inchi2", "inchikey2", "smiles2", "ethanol")
 
+
 comp1_ID = dataReport.addCompound(comp1)
 comp2_ID = dataReport.addCompound(comp2)
 
 # components which are used in respective experiment
-experiment = PureOrMixtureData("ID", "experiment1", comp1_ID, comp2_ID)
+experiment = PureOrMixtureData("ID", comp1_ID, comp2_ID)
 
-# Property definitions
-visc = viscosity('V', "simulation")
+#property definitions
+visc = Viscosity('visc1', "simulation")
 # Variable definitions
-temp = temperature('T')
+temp = Temperature('temp1')
 
-# mole fractions, depends on compound
-frac1 = moleFraction('MF1', comp1_ID)
-frac2 = moleFraction('MF2', comp2_ID)
+frac1 = MoleFraction('moleFrac1', comp1_ID)
+frac2 = MoleFraction('moleFrac2', comp2_ID)
 
 viscID = experiment.addProperty(visc)
 tempID = experiment.addVariable(temp)
 frac1ID = experiment.addVariable(frac1)
 frac2ID = experiment.addVariable(frac2)
 
-dataReport.addPureOrMixtureData(experiment)
+# not used in ThermoML
+measurementID = "meas1"
 
-values = dict()
-
-values[viscID] = 1.0
-
-values[tempID] = 274
-values[frac1ID] = 0.5
-values[frac2ID] = 0.5
-
-
-meas1 = Measurement(
-    "meas1",
-    values,
-    pureOrMixtureData=experiment
+viscDataPoint = DataPoint(
+    measurementID=measurementID,
+    value=10.0,
+    propID=viscID,
+    uncertainty=0.1
 )
 
-experiment.addMeasurements(meas1)
+tempDataPoint = DataPoint(
+    measurementID=measurementID,
+    value=300.0,
+    varID=tempID,
+    uncertainty=10.0
+)
+
+frac1DataPoint = DataPoint(
+    measurementID=measurementID,
+    value=0.2,
+    varID=frac1ID,
+    uncertainty=0.01
+)
+
+frac2DataPoint = DataPoint(
+    measurementID=measurementID,
+    value=0.8,
+    varID=frac2ID,
+    uncertainty=0.02
+)
+
+print(viscDataPoint)
+datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
+
+# add Measurement to experiment
+experiment.addMeasurement(dataPoints=datapoints)
+
+# add experiment to dataReport
+dataReport.addPureOrMixtureData(experiment)
+print(dataReport)
 
 writeThermo(dataReport, 'testThermo')
 
-print(dataReport)
+

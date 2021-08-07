@@ -17,7 +17,7 @@ class TransportProperty(PropertyBase):
 # functions
 # dynamic viscosity
 # TODO: convert mPa*s -> Pa*s
-def viscosity(ID, method):
+def Viscosity(ID, method):
 
     viscosityProp = TransportProperty(
         propName="Viscosity",
@@ -31,7 +31,7 @@ def viscosity(ID, method):
 # kinematic visosity
 
 
-def kinematicViscosity(ID, method):
+def KinematicViscosity(ID, method):
 
     viscosityProp = TransportProperty(
         propName="Kinematic Viscosity",
@@ -46,7 +46,7 @@ def kinematicViscosity(ID, method):
 # component specific?
 
 
-def microviscosity(ID, method):
+def Microviscosity(ID, method):
 
     microviscosityProp = TransportProperty(
         propName="Microviscosity",
@@ -60,7 +60,7 @@ def microviscosity(ID, method):
 # TODO: self, tracer, binary?
 
 
-def diffusioncoefficient(ID, method):
+def Diffusioncoefficient(ID, method):
 
     diffProp = TransportProperty(
         propName="Self diffusion coefficient",
