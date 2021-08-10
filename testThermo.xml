@@ -32,11 +32,6 @@
     <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
     <Component>
       <RegNum>
-        <nOrgNum>experiement1</nOrgNum>
-      </RegNum>
-    </Component>
-    <Component>
-      <RegNum>
         <nOrgNum>id1</nOrgNum>
       </RegNum>
     </Component>
@@ -98,7 +93,7 @@
         <nUncertAssessNum>1</nUncertAssessNum>
       </VarUncertainty>
     </Variable>
-    <NumValues>
+    <NumValues ID="meas1">
       <VariableValue>
         <nVarNumber>temp1</nVarNumber>
         <nVarValue>300.0</nVarValue>
@@ -109,7 +104,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>0.5</nVarValue>
+        <nVarValue>0.2</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.01</nExpandUncertValue>
@@ -117,7 +112,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>0.5</nVarValue>
+        <nVarValue>0.8</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.02</nExpandUncertValue>
@@ -125,7 +120,7 @@
       </VariableValue>
       <PropertyValue>
         <nPropNumber>visc1</nPropNumber>
-        <nPropValue>0.001</nPropValue>
+        <nPropValue>10.0</nPropValue>
         <CombinedUncertainty>
           <nCombUncertAssesNum>1</nCombUncertAssesNum>
           <nCombExpandUncertValue>0.1</nCombExpandUncertValue>

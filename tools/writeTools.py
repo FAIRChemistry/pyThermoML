@@ -159,8 +159,8 @@ def __createVariables(pureOrMixtureDict, PureOrMixtureData):
 def __createDatapoints(pureOrMixtureDict, PureOrMixtureData):
 
     for measKey, measurements in pureOrMixtureDict['_measurements'].items():
-        NumValues = etree.SubElement(PureOrMixtureData, 'NumValues')
-        
+        NumValues = etree.SubElement(PureOrMixtureData, 'NumValues', ID=str(measKey))
+
         for key, vars in measurements['_variables'].items():
             VariableValue = etree.SubElement(NumValues, 'VariableValue')
             nVarNumber = etree.SubElement(VariableValue, 'nVarNumber')

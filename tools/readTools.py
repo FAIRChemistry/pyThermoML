@@ -8,7 +8,7 @@ from vars.temperature import LowerTemperature, Temperature, UpperTemperature
 from vars.pressure import Pressure
 from vars.componentcomposition import MoleFraction
 
-from core import Compound, DataPoint, DataReport, datareport, functionalities, Measurement, PureOrMixtureData, measurement, pureOrMixtureData
+from core import Compound, DataPoint, DataReport, PureOrMixtureData
 
 from lxml import etree
 
@@ -78,7 +78,7 @@ def readThermo(path) -> DataReport:
         experiment[0].addMeasurement(dataPoints=datapoints)
         datareport.addPureOrMixtureData(experiment[0])
 
-    return datareport.toJSON()
+    return datareport
 
 
 
@@ -195,12 +195,12 @@ def __getVarMapping__(varName):
 def __getDatapoints__(pureOrMixtureData) -> dict:
     datapoints = dict()
     for numValues in pureOrMixtureData.findall(namespace + 'NumValues'):
+        measID = numValues.attrib['ID']
         for variableValue in numValues.findall(namespace + 'VariableValue'):
-            # measID not needed in ThermoML?
-            datapoints[__get__(variableValue, 'nVarNumber')] = DataPoint("measID", float(__get__(variableValue, 'nVarValue')), 
+            datapoints[__get__(variableValue, 'nVarNumber')] = DataPoint(measID, float(__get__(variableValue, 'nVarValue')), 
             varID = __get__(variableValue, 'nVarNumber'), uncertainty=float(__get__(variableValue, 'nExpandUncertValue')))
         
         for propertyValue in numValues.findall(namespace + 'PropertyValue'):
-            datapoints[__get__(propertyValue, 'nPropNumber')] = DataPoint("measID", float(__get__(propertyValue, 'nPropValue')), 
+            datapoints[__get__(propertyValue, 'nPropNumber')] = DataPoint(measID, float(__get__(propertyValue, 'nPropValue')), 
             propID = __get__(propertyValue, 'nPropNumber'), uncertainty= float(__get__(propertyValue, 'nCombExpandUncertValue')))
     return datapoints
