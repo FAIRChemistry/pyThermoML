@@ -1,0 +1,111 @@
+{
+    "_title": "Title of referred paper",
+    "_DOI": "DOI of referred paper",
+    "_authors": {
+        "_author0": "author1",
+        "_author1": "author2"
+    },
+    "compounds": {
+        "id1": {
+            "_Compound__type": "comp",
+            "_ID": "id1",
+            "_standardInchi": "inhi1",
+            "_standardInchiKey": "inchikey1",
+            "_smiles": "smiles1",
+            "_commonName": "water"
+        },
+        "id2": {
+            "_Compound__type": "comp",
+            "_ID": "id2",
+            "_standardInchi": "inchi2",
+            "_standardInchiKey": "inchikey2",
+            "_smiles": "smiles2",
+            "_commonName": "ethanol"
+        }
+    },
+    "pureOrMixtureData": {
+        "ID": {
+            "_ID": "ID",
+            "comps": [
+                "id1",
+                "id2"
+            ],
+            "_properties": {
+                "visc1": {
+                    "_propName": "Viscosity",
+                    "_ID": "visc1",
+                    "_propGroup": "TransportProp",
+                    "_unit": "Pa*s",
+                    "_method": "simulation",
+                    "_PropertyBase__type": "prop"
+                }
+            },
+            "_variables": {
+                "temp1": {
+                    "_varType": "eTemperature",
+                    "_varName": "Temperature",
+                    "_ID": "temp1",
+                    "_unit": "K",
+                    "_VariableBase__type": "var"
+                },
+                "moleFrac1": {
+                    "_varType": "eComponentComposition",
+                    "_varName": "Mole fraction",
+                    "_ID": "moleFrac1",
+                    "_unit": "",
+                    "_compoundID": "id1",
+                    "_VariableBase__type": "var"
+                },
+                "moleFrac2": {
+                    "_varType": "eComponentComposition",
+                    "_varName": "Mole fraction",
+                    "_ID": "moleFrac2",
+                    "_unit": "",
+                    "_compoundID": "id2",
+                    "_VariableBase__type": "var"
+                }
+            },
+            "_measurements": {
+                "meas1": {
+                    "_ID": "meas1",
+                    "_properties": {
+                        "visc1": [
+                            {
+                                "_measurementID": "meas1",
+                                "_value": 10.0,
+                                "_elementID": "visc1",
+                                "_uncertainty": 0.1
+                            }
+                        ]
+                    },
+                    "_variables": {
+                        "temp1": [
+                            {
+                                "_measurementID": "meas1",
+                                "_value": 300.0,
+                                "_elementID": "temp1",
+                                "_uncertainty": 10.0
+                            }
+                        ],
+                        "moleFrac1": [
+                            {
+                                "_measurementID": "meas1",
+                                "_value": 0.2,
+                                "_elementID": "moleFrac1",
+                                "_uncertainty": 0.01
+                            }
+                        ],
+                        "moleFrac2": [
+                            {
+                                "_measurementID": "meas1",
+                                "_value": 0.8,
+                                "_elementID": "moleFrac2",
+                                "_uncertainty": 0.02
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

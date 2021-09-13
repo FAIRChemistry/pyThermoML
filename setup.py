@@ -8,5 +8,5 @@ setup(
     url = 'https://github.com/matzegltg/pyThermoML',
     author='Gültig, Matthias',
     packages=setuptools.find_packages(),
-    _install_requires=['lxml', 'json'],
+    _install_requires=['lxml', 'json', 'flask', 'fkask-restful', 'csv'],
 )

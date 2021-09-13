@@ -1,19 +1,19 @@
-from core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint
+from pythermo.thermoml.core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint
 
-from vars.componentcomposition import MoleFraction
-from vars.temperature import LowerTemperature, Temperature
-from vars.pressure import Pressure
-from props.transportproperties import Viscosity
+from pythermo.thermoml.vars.componentcomposition import MoleFraction
+from pythermo.thermoml.vars.temperature import LowerTemperature, Temperature
+from pythermo.thermoml.vars.pressure import Pressure
+from pythermo.thermoml.props.transportproperties import Viscosity
 
 # TODO: import writer not intuitiv
-from tools.writeTools import writeThermo
+from pythermo.thermoml.tools.writeTools import writeThermo
 import json as j
 
 # TODO: reading input data from excel spreadsheet
 # TODO: significant digits
 
 # title, DOI, authors
-dataReport = DataReport("Title of referred paper", "DOI of referred paper", "author 1", "author 2")
+dataReport = DataReport("Title of referred paper", "DOI of referred paper", "author1", "author2")
 
 # declaration of compound used in measurements
 # TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
@@ -71,11 +71,41 @@ frac2DataPoint = DataPoint(
     uncertainty=0.02
 )
 
-datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
+measurementID = "meas2"
 
+viscDataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value=1000.0,
+    propID=viscID,
+    uncertainty=0.1
+)
+
+tempDataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value=1000.0,
+    varID=tempID,
+    uncertainty=10.0
+)
+
+frac1DataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value=1000.0,
+    varID=frac1ID,
+    uncertainty=0.01
+)
+
+frac2DataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value=1000,
+    varID=frac2ID,
+    uncertainty=0.02
+)
+
+datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
+datapoints2 = [viscDataPoint2, tempDataPoint2, frac1DataPoint2, frac2DataPoint2]
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
-
+experiment.addMeasurement(dataPoints = datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 

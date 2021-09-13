@@ -1,3 +1,8 @@
-from tools.readTools import readThermo
+from pythermo.thermoml.tools.readTools import readThermo
+import json
 
-print(readThermo("testThermo.xml"))
+
+dataRep = readThermo("testThermo.xml")
+datajson = dataRep.toJSON()
+print(datajson)
+print(type(datajson).__name__)

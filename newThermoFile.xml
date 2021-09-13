@@ -127,39 +127,5 @@
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
-    <NumValues ID="meas2">
-      <VariableValue>
-        <nVarNumber>temp1</nVarNumber>
-        <nVarValue>1000.0</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>10.0</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>1000.0</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.01</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>1000</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.02</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <PropertyValue>
-        <nPropNumber>visc1</nPropNumber>
-        <nPropValue>1000.0</nPropValue>
-        <CombinedUncertainty>
-          <nCombUncertAssesNum>1</nCombUncertAssesNum>
-          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
-        </CombinedUncertainty>
-      </PropertyValue>
-    </NumValues>
   </PureOrMixtureData>
 </DataReport>
