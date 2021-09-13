@@ -5,17 +5,17 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sAuthor>author1</sAuthor>
-    <sAuthor>author2</sAuthor>
-    <sDOI>DOI of referred paper</sDOI>
-    <sTitle>Title of referred paper</sTitle>
+    <sAuthor>author 1</sAuthor>
+    <sAuthor>author 2</sAuthor>
+    <sDOI>84821</sDOI>
+    <sTitle>Title of referred Paper</sTitle>
   </Citation>
   <Compound>
     <RegNum>
       <nOrgNum>id1</nOrgNum>
     </RegNum>
-    <sStandardInChi>inhi1</sStandardInChi>
-    <sStandardInChiKey>inchikey1</sStandardInChiKey>
+    <sstandardInchI>inhi1</sstandardInchI>
+    <sstandardInchIKey>inchikey1</sstandardInchIKey>
     <sCommonName>water</sCommonName>
     <sSmiles>smiles1</sSmiles>
   </Compound>
@@ -23,13 +23,10 @@
     <RegNum>
       <nOrgNum>id2</nOrgNum>
     </RegNum>
-    <sStandardInChi>inchi2</sStandardInChi>
-    <sStandardInChiKey>inchikey2</sStandardInChiKey>
     <sCommonName>ethanol</sCommonName>
-    <sSmiles>smiles2</sSmiles>
   </Compound>
   <PureOrMixtureData>
-    <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
+    <nPureOrMixtureDataNumber>experiement1</nPureOrMixtureDataNumber>
     <Component>
       <RegNum>
         <nOrgNum>id1</nOrgNum>
@@ -104,7 +101,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>0.2</nVarValue>
+        <nVarValue>0.5</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.01</nExpandUncertValue>
@@ -112,7 +109,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>0.8</nVarValue>
+        <nVarValue>0.5</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.02</nExpandUncertValue>
@@ -120,44 +117,10 @@
       </VariableValue>
       <PropertyValue>
         <nPropNumber>visc1</nPropNumber>
-        <nPropValue>10.0</nPropValue>
+        <nPropValue>0.001</nPropValue>
         <CombinedUncertainty>
           <nCombUncertAssesNum>1</nCombUncertAssesNum>
-          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
-        </CombinedUncertainty>
-      </PropertyValue>
-    </NumValues>
-    <NumValues ID="meas2">
-      <VariableValue>
-        <nVarNumber>temp1</nVarNumber>
-        <nVarValue>1000.0</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>10.0</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>1000.0</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.01</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>1000</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.02</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <PropertyValue>
-        <nPropNumber>visc1</nPropNumber>
-        <nPropValue>1000.0</nPropValue>
-        <CombinedUncertainty>
-          <nCombUncertAssesNum>1</nCombUncertAssesNum>
-          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
+          <nCombExpandUncertValue>0.0001</nCombExpandUncertValue>
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>

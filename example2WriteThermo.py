@@ -1,3 +1,3 @@
-from pythermo.thermoml.tools.writeTools import writeThermo, writeThermoFromJSON
+from pythermo.thermoml.tools.writeTools import writeThermoFromJSON
 
 writeThermoFromJSON('testThermo2.json', 'testThermo2')

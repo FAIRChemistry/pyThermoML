@@ -6,18 +6,26 @@ class Compound(object):
     def __init__(
         self,
         ID,
-        standardInchI,
-        standardInchIKey,
-        smiles,
-        commonName
+        standardInchI=None,
+        standardInchIKey=None,
+        smiles=None,
+        commonName=None
     ) -> None:
+
+        if standardInchI is not None:
+            self.standardInchI = standardInchI
+        
+        if standardInchIKey is not None:
+            self.standardInchIKey = standardInchIKey
+        
+        if smiles is not None:
+            self.smiles = smiles
+        
+        if commonName is not None:
+            self.commonName = commonName
 
         self.__type = "comp"
         self.ID = ID
-        self.standardInchI = standardInchI
-        self.standardInchIKey = standardInchIKey
-        self.smiles = smiles
-        self.commonName = commonName
 
     def __str__(self):
         return json.dumps(

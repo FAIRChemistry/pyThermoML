@@ -213,21 +213,30 @@ def __getMeasurements__(experiment, pureOrMixtureData):
         datapoints = []
         for variableValue in numValues.findall(namespace + 'VariableValue'):
             try:
-                uncert = float(__get__(variableValue, 'nCombExpandUncertValue'))
+                uncert = float(__get__(variableValue, 'nExpandUncertValue'))
             except ValueError:
                 uncert = "NG"
             
+            try:
+                numbOfDig = int(__get__(variableValue, 'nVarDigits'))
+            except ValueError:
+                numbOfDig = ""
             #varDict[__get__(variableValue, 'nVarNumber')]
             #
-            datapoints.append(DataPoint(measID, float(__get__(variableValue, 'nVarValue')), varID = __get__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=int(__get__(variableValue, 'nVarDigits'))))
+            datapoints.append(DataPoint(measID, float(__get__(variableValue, 'nVarValue')), varID = __get__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
 
         for propertyValue in numValues.findall(namespace + 'PropertyValue'):
             try:
                 uncert = float(__get__(propertyValue, 'nCombExpandUncertValue'))
             except ValueError:
                 uncert = "NG"
+            
+            try:
+                numbOfDig = int(__get__(propertyValue, 'nPropDigits'))
+            except ValueError:
+                numbOfDig = ""
             # datapoint[__get__(propertyValue, 'nPropNumber')]    
-            datapoints.append(DataPoint(measID, float(__get__(propertyValue, 'nPropValue')), propID =__get__(propertyValue, 'nPropNumber'), uncertainty= uncert, numberOfDigits=int(__get__(propertyValue, 'nPropDigits'))))
+            datapoints.append(DataPoint(measID, float(__get__(propertyValue, 'nPropValue')), propID =__get__(propertyValue, 'nPropNumber'), uncertainty= uncert, numberOfDigits=numbOfDig))
 
         
         

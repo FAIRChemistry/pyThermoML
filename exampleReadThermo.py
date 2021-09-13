@@ -3,6 +3,6 @@ import json
 
 
 dataRep = readThermo("testThermo.xml")
-datajson = dataRep.toJSON()
-print(datajson)
-print(type(datajson).__name__)
+print(dataRep)
+
+

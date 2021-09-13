@@ -14,7 +14,7 @@ def writeThermoFromJSON(filename, targetfilename):
     
     dataRep = json.loads(dataRep)
     
-    print(dataRep)
+    #print(dataRep)
     dataRepXml = __createVersion(dataRepXml, dataRep)
     dataRepXml = __createCitation(dataRepXml, dataRep)
     dataRepXml = __createCompoundFromJSON(dataRepXml, dataRep)
@@ -59,7 +59,7 @@ def __createCitation(dataRepXml, dataRep):
     #print(dataRep)
     Citation = etree.SubElement(dataRepXml, 'Citation')
     if __keyInDict(dataRep, '_authors'):
-        print(dataRep['_title'])
+        #print(dataRep['_title'])
         for i in range(len(dataRep['_authors'])):
             sAuthor = etree.SubElement(Citation, 'sAuthor')
             sAuthor.text = dataRep['_authors']['_author' + str(i)]
