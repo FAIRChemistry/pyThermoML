@@ -13,7 +13,8 @@ import json as j
 # TODO: significant digits
 
 # title, DOI, authors
-dataReport = DataReport("Title of referred paper", "DOI of referred paper", "author1", "author2")
+dataReport = DataReport("Title of referred paper",
+                        "DOI of referred paper", "author1", "author2")
 
 # declaration of compound used in measurements
 # TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
@@ -27,7 +28,7 @@ comp2_ID = dataReport.addCompound(comp2)
 # components which are used in respective experiment
 experiment = PureOrMixtureData("ID", comp1_ID, comp2_ID)
 
-#property definitions
+# property definitions
 visc = Viscosity('visc1', "simulation")
 # Variable definitions
 temp = Temperature('temp1')
@@ -102,14 +103,14 @@ frac2DataPoint2 = DataPoint(
 )
 
 datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
-datapoints2 = [viscDataPoint2, tempDataPoint2, frac1DataPoint2, frac2DataPoint2]
+datapoints2 = [viscDataPoint2, tempDataPoint2,
+               frac1DataPoint2, frac2DataPoint2]
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
-experiment.addMeasurement(dataPoints = datapoints2)
+experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
 #writeThermo(dataReport, 'testThermo')
 
 print(dataReport.toJSON(d=True))
-

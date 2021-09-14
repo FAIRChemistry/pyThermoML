@@ -14,13 +14,13 @@ class Compound(object):
 
         if standardInchI is not None:
             self.standardInchI = standardInchI
-        
+
         if standardInchIKey is not None:
             self.standardInchIKey = standardInchIKey
-        
+
         if smiles is not None:
             self.smiles = smiles
-        
+
         if commonName is not None:
             self.commonName = commonName
 
@@ -28,10 +28,27 @@ class Compound(object):
         self.ID = ID
 
     def __str__(self):
-        return json.dumps(
-            self.__dict__,
-            indent=4
-        )
+        return self.toJSON()
+
+    def toJSON(self, d=False):
+
+        def transformAttributes(self):
+            jsonData = dict()
+
+            for key, value in self.__dict__.items():
+                jsonData[key.replace('_', '')] = value
+
+            return jsonData
+
+        if d:
+            return transformAttributes(self)
+        else:
+            return json.dumps(
+                self,
+                default=transformAttributes,
+                indent=4,
+                sort_keys=True
+            )
 
     @property
     def dataType(self):
