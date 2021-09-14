@@ -5,48 +5,34 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sAuthor>author1</sAuthor>
-    <sAuthor>author2</sAuthor>
-    <sDOI>DOI of referred paper</sDOI>
-    <sTitle>Title of referred paper</sTitle>
+    <sAuthor>Bruno J. Zwolinski</sAuthor>
+    <sAuthor>Lawrence D. Eicher</sAuthor>
+    <sDOI>10.1021/j100682a019</sDOI>
+    <sTitle>High-precision viscosity of supercooled water and analysis of the extended range temperature coefficient</sTitle>
   </Citation>
   <Compound>
     <RegNum>
-      <nOrgNum>id1</nOrgNum>
+      <nOrgNum>1</nOrgNum>
     </RegNum>
-    <sStandardInChi>inhi1</sStandardInChi>
-    <sStandardInChiKey>inchikey1</sStandardInChiKey>
+    <sstandardInchI>InChI=1S/H2O/h1H2</sstandardInchI>
+    <sstandardInchIKey>XLYOFNOQVPJJNP-UHFFFAOYSA-N</sstandardInchIKey>
     <sCommonName>water</sCommonName>
-    <sSmiles>smiles1</sSmiles>
-  </Compound>
-  <Compound>
-    <RegNum>
-      <nOrgNum>id2</nOrgNum>
-    </RegNum>
-    <sStandardInChi>inchi2</sStandardInChi>
-    <sStandardInChiKey>inchikey2</sStandardInChiKey>
-    <sCommonName>ethanol</sCommonName>
-    <sSmiles>smiles2</sSmiles>
+    <sSmiles>H20</sSmiles>
   </Compound>
   <PureOrMixtureData>
-    <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
+    <nPureOrMixtureDataNumber>1</nPureOrMixtureDataNumber>
     <Component>
       <RegNum>
-        <nOrgNum>id1</nOrgNum>
-      </RegNum>
-    </Component>
-    <Component>
-      <RegNum>
-        <nOrgNum>id2</nOrgNum>
+        <nOrgNum>1</nOrgNum>
       </RegNum>
     </Component>
     <Property>
-      <nPropNumber>visc1</nPropNumber>
+      <nPropNumber>1</nPropNumber>
       <PropertyMethod-ID>
         <PropertyGroup>
           <TransportProp>
             <ePropName>Viscosity, Pa*s</ePropName>
-            <eMethodName>simulation</eMethodName>
+            <eMethodName></eMethodName>
           </TransportProp>
         </PropertyGroup>
       </PropertyMethod-ID>
@@ -55,7 +41,7 @@
       </CombinedUncertainty>
     </Property>
     <Variable>
-      <nVarNumber>temp1</nVarNumber>
+      <nVarNumber>1</nVarNumber>
       <VariableID>
         <VariableType>
           <eTemperature>Temperature, K</eTemperature>
@@ -66,64 +52,393 @@
       </VarUncertainty>
     </Variable>
     <Variable>
-      <nVarNumber>moleFrac1</nVarNumber>
+      <nVarNumber>2</nVarNumber>
       <VariableID>
         <VariableType>
           <eComponentComposition>Mole fraction</eComponentComposition>
         </VariableType>
         <RegNum>
-          <nOrgNum>id1</nOrgNum>
+          <nOrgNum>1</nOrgNum>
         </RegNum>
       </VariableID>
       <VarUncertainty>
         <nUncertAssessNum>1</nUncertAssessNum>
       </VarUncertainty>
     </Variable>
-    <Variable>
-      <nVarNumber>moleFrac2</nVarNumber>
-      <VariableID>
-        <VariableType>
-          <eComponentComposition>Mole fraction</eComponentComposition>
-        </VariableType>
-        <RegNum>
-          <nOrgNum>id2</nOrgNum>
-        </RegNum>
-      </VariableID>
-      <VarUncertainty>
-        <nUncertAssessNum>1</nUncertAssessNum>
-      </VarUncertainty>
-    </Variable>
-    <NumValues ID="meas1">
+    <NumValues ID="1">
       <VariableValue>
-        <nVarNumber>temp1</nVarNumber>
-        <nVarValue>300.0</nVarValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>264.87</nVarValue>
+        <nVarDigits>5</nVarDigits>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>10.0</nExpandUncertValue>
+          <nExpandUncertValue>NG</nExpandUncertValue>
         </VarUncertainty>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>moleFrac1</nVarNumber>
-        <nVarValue>0.2</nVarValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.01</nExpandUncertValue>
-        </VarUncertainty>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>0.8</nVarValue>
-        <VarUncertainty>
-          <nUncertAssesNum>1</nUncertAssesNum>
-          <nExpandUncertValue>0.02</nExpandUncertValue>
+          <nExpandUncertValue>NG</nExpandUncertValue>
         </VarUncertainty>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>visc1</nPropNumber>
-        <nPropValue>10.0</nPropValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0024551</nPropValue>
+        <nPropDigits>5</nPropDigits>
         <CombinedUncertainty>
           <nCombUncertAssesNum>1</nCombUncertAssesNum>
-          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="2">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>266.503</nVarValue>
+        <nVarDigits>6</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.002296</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="3">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>268.616</nVarValue>
+        <nVarDigits>6</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0021137</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="4">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>272.042</nVarValue>
+        <nVarDigits>6</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.001863</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="5">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>273.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0017919</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="6">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>278.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.001519</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="7">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>283.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0013067</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="8">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>288.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0011381</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="9">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>293.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.001002</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="10">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>298.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0008902</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="11">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>303.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.00079723</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="12">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>308.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.00071911</nPropValue>
+        <nPropDigits>5</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
+        </CombinedUncertainty>
+      </PropertyValue>
+    </NumValues>
+    <NumValues ID="13">
+      <VariableValue>
+        <nVarNumber>1</nVarNumber>
+        <nVarValue>313.15</nVarValue>
+        <nVarDigits>5</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <VariableValue>
+        <nVarNumber>2</nVarNumber>
+        <nVarValue>1.0</nVarValue>
+        <nVarDigits>1</nVarDigits>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>NG</nExpandUncertValue>
+        </VarUncertainty>
+      </VariableValue>
+      <PropertyValue>
+        <nPropNumber>1</nPropNumber>
+        <nPropValue>0.0006527</nPropValue>
+        <nPropDigits>4</nPropDigits>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>NG</nCombExpandUncertValue>
         </CombinedUncertainty>
       </PropertyValue>
     </NumValues>

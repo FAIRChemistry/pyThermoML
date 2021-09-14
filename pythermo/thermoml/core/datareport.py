@@ -35,26 +35,12 @@ class DataReport(object):
             authorID += 1
 
     def __str__(self):
-        
-        def transformAttributes(self):
-            
-            jsonDict = dict()
-            for key, value in self.__dict__.items():
-
-                try:
-                    jsonDict[key] = value
-                except TypeError:
-                    jsonDict[key] = str(value)
-
-            return jsonDict
-
-        return json.dumps(
-            self,
-            default=transformAttributes,
-            indent=4
-        )
+        return self.toJSON()
     
-    def toJSON(self):
+
+    def toJSON(self, d=False):
+        def transformAttributes(self):
+        
             jsonDict = dict()
             for key, value in self.__dict__.items():
 
@@ -64,6 +50,15 @@ class DataReport(object):
                     jsonDict[key] = str(value)
 
             return jsonDict
+
+        if d:
+            return transformAttributes(self)
+        else:       
+            return json.dumps(
+                self,
+                default=transformAttributes,
+                indent=4
+        )
 
     def addCompound(self, comp):
         if comp.dataType == "comp":

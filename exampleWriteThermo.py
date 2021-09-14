@@ -109,6 +109,7 @@ experiment.addMeasurement(dataPoints = datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-writeThermo(dataReport, 'testThermo')
+#writeThermo(dataReport, 'testThermo')
 
+print(dataReport.toJSON(d=True))
 
