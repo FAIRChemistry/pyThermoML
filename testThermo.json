@@ -1,106 +1,153 @@
 {
-    "_title": "Title of referred paper",
-    "_DOI": "DOI of referred paper",
-    "_authors": {
-        "_author0": "author1",
+    "title": "Title of referred paper",
+    "DOI": "DOI of referred paper",    
+    "authors": {
+        "_author0": "author5",
         "_author1": "author2"
     },
     "compounds": {
         "id1": {
-            "_Compound__type": "comp",
-            "_ID": "id1",
-            "_standardInchi": "inhi1",
-            "_standardInchiKey": "inchikey1",
-            "_smiles": "smiles1",
-            "_commonName": "water"
+            "standardInchI": "inhi1",
+            "standardInchIKey": "inchikey1",
+            "smiles": "smiles1",
+            "commonName": "water",
+            "Compoundtype": "comp",
+            "ID": "id1"
         },
         "id2": {
-            "_Compound__type": "comp",
-            "_ID": "id2",
-            "_standardInchi": "inchi2",
-            "_standardInchiKey": "inchikey2",
-            "_smiles": "smiles2",
-            "_commonName": "ethanol"
+            "standardInchI": "inchi2",
+            "standardInchIKey": "inchikey2",
+            "smiles": "smiles2",
+            "commonName": "ethanol",
+            "Compoundtype": "comp",
+            "ID": "id2"
         }
     },
     "pureOrMixtureData": {
         "ID": {
-            "_ID": "ID",
+            "ID": "ID",
             "comps": [
                 "id1",
                 "id2"
             ],
-            "_properties": {
+            "properties": {
                 "visc1": {
-                    "_propName": "Viscosity",
-                    "_ID": "visc1",
-                    "_propGroup": "TransportProp",
-                    "_unit": "Pa*s",
-                    "_method": "simulation",
-                    "_PropertyBase__type": "prop"
+                    "propName": "Viscosity",
+                    "ID": "visc1",
+                    "propGroup": "TransportProp",
+                    "unit": "Pa*s",
+                    "method": "simulation",
+                    "PropertyBasetype": "prop"
                 }
             },
-            "_variables": {
+            "variables": {
                 "temp1": {
-                    "_varType": "eTemperature",
-                    "_varName": "Temperature",
-                    "_ID": "temp1",
-                    "_unit": "K",
-                    "_VariableBase__type": "var"
+                    "varType": "eTemperature",
+                    "varName": "Temperature",
+                    "ID": "temp1",
+                    "unit": "K",
+                    "VariableBasetype": "var"
                 },
                 "moleFrac1": {
-                    "_varType": "eComponentComposition",
-                    "_varName": "Mole fraction",
-                    "_ID": "moleFrac1",
-                    "_unit": "",
-                    "_compoundID": "id1",
-                    "_VariableBase__type": "var"
+                    "varType": "eComponentComposition",
+                    "varName": "Mole fraction",
+                    "ID": "moleFrac1",
+                    "unit": "",
+                    "compoundID": "id1",
+                    "VariableBasetype": "var"
                 },
                 "moleFrac2": {
-                    "_varType": "eComponentComposition",
-                    "_varName": "Mole fraction",
-                    "_ID": "moleFrac2",
-                    "_unit": "",
-                    "_compoundID": "id2",
-                    "_VariableBase__type": "var"
+                    "varType": "eComponentComposition",
+                    "varName": "Mole fraction",
+                    "ID": "moleFrac2",
+                    "unit": "",
+                    "compoundID": "id2",
+                    "VariableBasetype": "var"
                 }
             },
-            "_measurements": {
+            "measurements": {
                 "meas1": {
-                    "_ID": "meas1",
-                    "_properties": {
+                    "ID": "meas1",
+                    "properties": {
                         "visc1": [
                             {
-                                "_measurementID": "meas1",
-                                "_value": 10.0,
-                                "_elementID": "visc1",
-                                "_uncertainty": 0.1
+                                "measurementID": "meas1",
+                                "value": 10.0,
+                                "elementID": "visc1",
+                                "DataPointtype": "prop",
+                                "uncertainty": 0.1
                             }
                         ]
                     },
-                    "_variables": {
+                    "variables": {
                         "temp1": [
                             {
-                                "_measurementID": "meas1",
-                                "_value": 300.0,
-                                "_elementID": "temp1",
-                                "_uncertainty": 10.0
+                                "measurementID": "meas1",
+                                "value": 300.0,
+                                "elementID": "temp1",
+                                "DataPointtype": "var",
+                                "uncertainty": 10.0
                             }
                         ],
                         "moleFrac1": [
                             {
-                                "_measurementID": "meas1",
-                                "_value": 0.2,
-                                "_elementID": "moleFrac1",
-                                "_uncertainty": 0.01
+                                "measurementID": "meas1",
+                                "value": 0.2,
+                                "elementID": "moleFrac1",
+                                "DataPointtype": "var",
+                                "uncertainty": 0.01
                             }
                         ],
                         "moleFrac2": [
                             {
-                                "_measurementID": "meas1",
-                                "_value": 0.8,
-                                "_elementID": "moleFrac2",
-                                "_uncertainty": 0.02
+                                "measurementID": "meas1",
+                                "value": 0.8,
+                                "elementID": "moleFrac2",
+                                "DataPointtype": "var",
+                                "uncertainty": 0.02
+                            }
+                        ]
+                    }
+                },
+                "meas2": {
+                    "ID": "meas2",
+                    "properties": {
+                        "visc1": [
+                            {
+                                "measurementID": "meas2",
+                                "value": 1000.0,
+                                "elementID": "visc1",
+                                "DataPointtype": "prop",
+                                "uncertainty": 0.1
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "temp1": [
+                            {
+                                "measurementID": "meas2",
+                                "value": 1000.0,
+                                "elementID": "temp1",
+                                "DataPointtype": "var",
+                                "uncertainty": 10.0
+                            }
+                        ],
+                        "moleFrac1": [
+                            {
+                                "measurementID": "meas2",
+                                "value": 1000.0,
+                                "elementID": "moleFrac1",
+                                "DataPointtype": "var",
+                                "uncertainty": 0.01
+                            }
+                        ],
+                        "moleFrac2": [
+                            {
+                                "measurementID": "meas2",
+                                "value": 1000,
+                                "elementID": "moleFrac2",
+                                "DataPointtype": "var",
+                                "uncertainty": 0.02
                             }
                         ]
                     }

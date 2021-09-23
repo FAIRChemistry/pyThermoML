@@ -36,7 +36,7 @@ class Compound(object):
             jsonData = dict()
 
             for key, value in self.__dict__.items():
-                jsonData[key.replace('_', '')] = value
+                jsonData[key.replace('_','')] = value
 
             return jsonData
 

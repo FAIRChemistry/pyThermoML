@@ -40,9 +40,9 @@ class Measurement(object):
             for key, value in self.__dict__.items():
 
                 try:
-                    jsonDict[key] = value
+                    jsonDict[key.replace('_','')] = value
                 except TypeError:
-                    jsonDict[key] = str(value)
+                    jsonDict[key.replace('_','')] = str(value)
 
             return jsonDict
 

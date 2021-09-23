@@ -1,4 +1,4 @@
-from pythermo.thermoml.core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint
+from pythermo.thermoml.core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint, datareport
 
 from pythermo.thermoml.vars.componentcomposition import MoleFraction
 from pythermo.thermoml.vars.temperature import LowerTemperature, Temperature
@@ -7,14 +7,15 @@ from pythermo.thermoml.props.transportproperties import Viscosity
 
 # TODO: import writer not intuitiv
 from pythermo.thermoml.tools.writeTools import writeThermo
+from pythermo.thermoml.tools.readTools import readThermo
 import json as j
-
+from lxml import etree
 # TODO: reading input data from excel spreadsheet
 # TODO: significant digits
 
 # title, DOI, authors
 dataReport = DataReport("Title of referred paper",
-                        "DOI of referred paper", "author1", "author2")
+                        "DOI of referred paper", "author5", "author2")
 
 # declaration of compound used in measurements
 # TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
@@ -111,6 +112,10 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-#writeThermo(dataReport, 'testThermo')
+writeThermo(dataReport.toJSON(), 'testThermo.xml')
 
-print(dataReport.toJSON(d=True))
+#file = etree.parse("testThermo.xml")
+#print(etree.tostring(file, pretty_print=True, encoding=str))
+
+#data = readThermo("testThermo.xml")
+#print(data)

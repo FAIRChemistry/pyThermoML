@@ -5,7 +5,7 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sAuthor>author1</sAuthor>
+    <sAuthor>author5</sAuthor>
     <sAuthor>author2</sAuthor>
     <sDOI>DOI of referred paper</sDOI>
     <sTitle>Title of referred paper</sTitle>
@@ -14,8 +14,8 @@
     <RegNum>
       <nOrgNum>id1</nOrgNum>
     </RegNum>
-    <sstandardInchI>inhi1</sstandardInchI>
-    <sstandardInchIKey>inchikey1</sstandardInchIKey>
+    <sStandardInChI>inhi1</sStandardInChI>
+    <sStandardInChIKey>inchikey1</sStandardInChIKey>
     <sCommonName>water</sCommonName>
     <sSmiles>smiles1</sSmiles>
   </Compound>
@@ -23,8 +23,8 @@
     <RegNum>
       <nOrgNum>id2</nOrgNum>
     </RegNum>
-    <sstandardInchI>inchi2</sstandardInchI>
-    <sstandardInchIKey>inchikey2</sstandardInchIKey>
+    <sStandardInChI>inchi2</sStandardInChI>
+    <sStandardInChIKey>inchikey2</sStandardInChIKey>
     <sCommonName>ethanol</sCommonName>
     <sSmiles>smiles2</sSmiles>
   </Compound>

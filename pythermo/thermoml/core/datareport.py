@@ -43,13 +43,16 @@ class DataReport(object):
             for key, value in self.__dict__.items():
 
                 if isinstance(value, dict):
-                    jsonDict[key] = dict()
+                    jsonDict[key.replace('_','')] = dict()
 
                     for ID, item in value.items():
                         try:
-                            jsonDict[key][ID] = item.toJSON(d=True)
+                            jsonDict[key.replace('_','')][ID] = item.toJSON(d=True)
                         except AttributeError:
-                            jsonDict[key][ID] = item
+                            jsonDict[key.replace('_','')][ID] = item
+                
+                else:
+                    jsonDict[key.replace('_','')] = value
 
             return jsonDict
 
