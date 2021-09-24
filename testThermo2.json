@@ -1,0 +1,536 @@
+{
+    "title": "High-precision viscosity of supercooled water and analysis of the extended range temperature coefficient",
+    "DOI": "10.1021/j100682a019",
+    "authors": {
+        "_author0": "Bruno J. Zwolinski",
+        "_author1": "Lawrence D. Eicher"
+    },
+    "compounds": {
+        "1": {
+            "standardInchI": "InChI=1S/H2O/h1H2",
+            "standardInchIKey": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+            "smiles": "H20",
+            "commonName": "water",
+            "Compoundtype": "comp",
+            "ID": "1"
+        }
+    },
+    "pureOrMixtureData": {
+        "1": {
+            "ID": "1",
+            "comps": [
+                "1"
+            ],
+            "properties": {
+                "1": {
+                    "propName": "Viscosity",
+                    "ID": "1",
+                    "propGroup": "TransportProp",
+                    "unit": "Pa*s",
+                    "method": "",
+                    "PropertyBasetype": "prop"
+                }
+            },
+            "variables": {
+                "1": {
+                    "varType": "eTemperature",
+                    "varName": "Temperature",
+                    "ID": "1",
+                    "unit": "K",
+                    "VariableBasetype": "var"
+                },
+                "2": {
+                    "varType": "eComponentComposition",
+                    "varName": "Mole fraction",
+                    "ID": "2",
+                    "unit": "",
+                    "compoundID": "1",
+                    "VariableBasetype": "var"
+                }
+            },
+            "measurements": {
+                "1": {
+                    "ID": "1",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "1",
+                                "value": 0.0024551,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "1",
+                                "value": 264.87,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "1",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "2": {
+                    "ID": "2",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "2",
+                                "value": 0.002296,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "2",
+                                "value": 266.503,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 6
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "2",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "3": {
+                    "ID": "3",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "3",
+                                "value": 0.0021137,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "3",
+                                "value": 268.616,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 6
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "3",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "4": {
+                    "ID": "4",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "4",
+                                "value": 0.001863,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "4",
+                                "value": 272.042,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 6
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "4",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "5": {
+                    "ID": "5",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "5",
+                                "value": 0.0017919,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "5",
+                                "value": 273.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "5",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "6": {
+                    "ID": "6",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "6",
+                                "value": 0.001519,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "6",
+                                "value": 278.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "6",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "7": {
+                    "ID": "7",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "7",
+                                "value": 0.0013067,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "7",
+                                "value": 283.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "7",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "8": {
+                    "ID": "8",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "8",
+                                "value": 0.0011381,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "8",
+                                "value": 288.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "8",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "9": {
+                    "ID": "9",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "9",
+                                "value": 0.001002,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "9",
+                                "value": 293.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "9",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "10": {
+                    "ID": "10",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "10",
+                                "value": 0.0008902,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "10",
+                                "value": 298.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "10",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "11": {
+                    "ID": "11",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "11",
+                                "value": 0.00079723,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "11",
+                                "value": 303.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "11",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "12": {
+                    "ID": "12",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "12",
+                                "value": 0.00071911,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "12",
+                                "value": 308.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "12",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                },
+                "13": {
+                    "ID": "13",
+                    "properties": {
+                        "1": [
+                            {
+                                "measurementID": "13",
+                                "value": 0.0006527,
+                                "elementID": "1",
+                                "DataPointtype": "prop",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 4
+                            }
+                        ]
+                    },
+                    "variables": {
+                        "1": [
+                            {
+                                "measurementID": "13",
+                                "value": 313.15,
+                                "elementID": "1",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 5
+                            }
+                        ],
+                        "2": [
+                            {
+                                "measurementID": "13",
+                                "value": 1.0,
+                                "elementID": "2",
+                                "DataPointtype": "var",
+                                "uncertainty": "NG",
+                                "numberOfDigits": 1
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
