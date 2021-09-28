@@ -69,8 +69,8 @@ def visualizeDatapoints(tempdict, viscdict):
     
     plt.grid()
     plt.title("arrhenius pure water")
-    plt.xlabel("1/RT")
-    plt.ylabel("ln(eta)")
+    plt.xlabel("1/RT in [mol/KJ]")
+    plt.ylabel("ln(eta) in [cP]")
     plt.legend()
     plt.show()
 
