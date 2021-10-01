@@ -1,5 +1,6 @@
-from typing import Type
 from pythermo.thermoml.core.functionalities import TypeChecker
+from pythermo.thermoml.core import PureOrMixtureData
+
 import json
 
 
@@ -43,16 +44,17 @@ class DataReport(object):
             for key, value in self.__dict__.items():
 
                 if isinstance(value, dict):
-                    jsonDict[key.replace('_','')] = dict()
+                    jsonDict[key.replace('_', '')] = dict()
 
                     for ID, item in value.items():
                         try:
-                            jsonDict[key.replace('_','')][ID] = item.toJSON(d=True)
+                            jsonDict[key.replace(
+                                '_', '')][ID] = item.toJSON(d=True)
                         except AttributeError:
-                            jsonDict[key.replace('_','')][ID] = item
-                
+                            jsonDict[key.replace('_', '')][ID] = item
+
                 else:
-                    jsonDict[key.replace('_','')] = value
+                    jsonDict[key.replace('_', '')] = value
 
             return jsonDict
 
@@ -78,6 +80,31 @@ class DataReport(object):
         self.pureOrMixtureData[pureOrMixtureData.ID] = pureOrMixtureData
 
         return pureOrMixtureData.ID
+
+    @property
+    def pureOrMixtureData(self):
+        return self._pureOrMixtureData
+
+    @pureOrMixtureData.setter
+    def pureOrMixtureData(self, pureOrMixtureData):
+        self._pureOrMixtureData = TypeChecker(
+            pureOrMixtureData, dict
+        )
+
+    def getPureOrMixtureData(self, ID):
+        try:
+            return self._pureOrMixtureData[ID]
+        except KeyError:
+            raise KeyError(
+                f"PureOrMixtureData with ID {ID} does not exist."
+            )
+
+    def getPureOrMixtureDataList(self):
+        return [
+            pureOrMixtureDataInstance
+            for pureOrMixtureDataInstance in self._pureOrMixtureData.values()
+
+        ]
 
     @property
     def title(self):
