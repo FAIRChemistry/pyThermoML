@@ -33,16 +33,16 @@ class Measurement(object):
     '''
 
     def __str__(self):
-        
+
         def transformAttributes(self):
 
             jsonDict = dict()
             for key, value in self.__dict__.items():
 
                 try:
-                    jsonDict[key.replace('_','')] = value
+                    jsonDict[key.replace('_', '')] = value
                 except TypeError:
-                    jsonDict[key.replace('_','')] = str(value)
+                    jsonDict[key.replace('_', '')] = str(value)
 
             return jsonDict
 
@@ -51,18 +51,17 @@ class Measurement(object):
             default=transformAttributes,
             indent=4
         )
-    
+
     def addDataPoints(self, dataPoints, pureMixtureData):
 
         if isinstance(dataPoints, DataPoint):
             dataPoints = [dataPoints]
 
-        
         for dataPoint in dataPoints:
-            #print(dataPoint)    
+            # print(dataPoint)
             elementID = dataPoint.elementID
             dataPointType = dataPoint.dataType
-            #print(pureMixtureData.properties)
+            # print(pureMixtureData.properties)
             if elementID in pureMixtureData.properties.keys() and dataPointType == "prop":
                 self.addToElementList(elementID, self.properties, dataPoint)
             elif elementID in pureMixtureData.variables.keys() and dataPointType == "var":
@@ -94,10 +93,32 @@ class Measurement(object):
     def properties(self, properties):
         self._properties = TypeChecker(properties, dict)
 
-    @property
+    def getProperty(self, propertyID):
+        return self._getElement(
+            propertyID,
+            self._properties,
+            "Property"
+        )
+
+    def getVariable(self, variableID):
+        return self._getElement(
+            variableID,
+            self._variables,
+            "Variable"
+        )
+
+    def _getElement(self, elementID, dictionary, type_):
+        try:
+            return dictionary[elementID]
+        except KeyError:
+            raise KeyError(
+                f"{type_} {elementID} is not defined yet."
+            )
+
+    @ property
     def variables(self):
         return self._variables
 
-    @variables.setter
+    @ variables.setter
     def variables(self, variables):
         self._variables = TypeChecker(variables, dict)

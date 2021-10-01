@@ -36,16 +36,16 @@ class PureOrMixtureData(object):
             self.comps.append(comp)
 
     def __str__(self):
-        
+
         def transformAttributes(self):
 
             jsonDict = dict()
             for key, value in self.__dict__.items():
 
                 try:
-                    jsonDict[key.replace('_','')] = value
+                    jsonDict[key.replace('_', '')] = value
                 except TypeError:
-                    jsonDict[key.replace('_','')] = str(value)
+                    jsonDict[key.replace('_', '')] = str(value)
 
             return jsonDict
 
@@ -72,18 +72,23 @@ class PureOrMixtureData(object):
             return variable.ID
 
     def addMeasurement(self, dataPoints):
-        #print(dataPoints)
+        # print(dataPoints)
         for dataPoint in dataPoints:
 
-            
             measurementID = dataPoint.measurementID
-            #print(measurementID)
-            #print(dataPoint)
+            # print(measurementID)
+            # print(dataPoint)
             if measurementID not in self.measurements.keys():
                 self.measurements[measurementID] = Measurement(measurementID)
 
             self.measurements[measurementID].addDataPoints(dataPoint, self)
-            #print(self.measurements[measurementID])
+            # print(self.measurements[measurementID])
+
+    def getMeasurementsList(self):
+        return [
+            measurement
+            for measurement in self._measurements.values()
+        ]
 
     @property
     def ID(self):
