@@ -86,14 +86,19 @@ class PureOrMixtureData(object):
             for measurement in self._measurements.values()
         ]
 
+    # not used?
     def getSameMoleFracMeasurementsListByID(self, IDs):
         '''
         :param ID: array list with measurementIDs
         '''
         sameMoleFracMeasurements = []
+
         for elem in self._measurements.values():
-            if elem.ID in ID:
-                return sameMoleFracMeasurements.append(elem)
+            
+            if elem.ID in IDs:
+                sameMoleFracMeasurements.append(elem)
+        
+        return sameMoleFracMeasurements
             
     @property
     def ID(self):

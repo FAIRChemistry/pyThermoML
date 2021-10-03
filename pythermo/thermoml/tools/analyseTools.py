@@ -89,8 +89,7 @@ def getMoleFractionRatios(pureOrMixtureData):
         moleFractionRatios[meas.ID] = dict()
         for compID, moleFractionID in moleFracAssignment.items():
             moleFractionRatios[meas.ID][compID] = meas.getVariable(variableID=moleFractionID)[0].value
-    
-    print(moleFractionRatios)
+
     return moleFractionRatios
 
 def getMeasurementsWithSameMoleFractions(moleFractionRatios):
@@ -118,3 +117,5 @@ def getMeasurementsWithSameMoleFractions(moleFractionRatios):
                     
             if measID not in dataMap[dataMapKey]["same measurements"]:
                  dataMap[dataMapKey]["same measurements"].append(measID)
+
+    return dataMap

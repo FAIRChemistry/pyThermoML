@@ -1,10 +1,11 @@
-from pythermo.thermoml.tools.analyseTools import getMoleFractionRatios
+from pythermo.thermoml.tools.analyseTools import extractPropertyValues, extractVariableValues, getMeasurementsWithSameMoleFractions, getMoleFractionRatios
 from pythermo.thermoml.tools.visualizationTools import plotArrhenius
 from pythermo.thermoml.tools.readTools import readThermo
 import os
 import numpy as np
-
-
+import pprint
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
 
 path = ""
@@ -17,11 +18,11 @@ def transformViscosity(eta):
 def tranformTemperature(temperature):
     return 1 / (R*temperature)
 
-def getArrheniusData():
+def getArrheniusData(pathLastName):
     # temps, viscs = doArrhenius(path)
 
     dirpath = os.path.join(
-        "./DataGudrunGygli/cml2ThermoML/ChCL_glycerol/"
+        "./DataGudrunGygli/cml2ThermoML/" + pathLastName
     )
 
     # Change working directory and get files
@@ -29,26 +30,108 @@ def getArrheniusData():
     fileList = os.listdir(os.getcwd())
 
     # Initialize data dictionary
-    viscDict, tempDict = {}, {}
-
+    # superDicts have as key dois, values dictionary with key MoleRatios and values arrays of viscositys
+    superViscDict, superTempDict, viscDict, tempDict = {}, {}, {}, {}
+    
+    
     for filename in fileList:
-        
-        # Load ThermoML
-        dataReport = readThermo(path)
-        doi = dataReport.DOI
 
+        # Load ThermoML
+        dataReport = readThermo(filename)
+        doi = dataReport.DOI
 
         # Get pureOrMixtureData from the dataReport
         pureOrMixtureData = dataReport.getPureOrMixtureData("1")
         
         # Find measurements with same moleFractions
-        sameMoleFracDict = getMoleFractionRatios(pureOrMixtureData=pureOrMixtureData)
+        moleFracRatios = getMoleFractionRatios(pureOrMixtureData=pureOrMixtureData)
+        dataDict = getMeasurementsWithSameMoleFractions(moleFractionRatios=moleFracRatios)
         
-        for dataMapKey in sameMoleFracDict:
-            # erhaöte aus sameMoleFracDict Ids mit gleichen mole Fractions
-            measurements = pureOrMixtureData.getSameMoleFracMeasurementsListByID(IDs=sameMoleFracDict):
+        # basic dict with key: MoleFraction, value: Array viscositys of one paper
+        viscDict = dict()
+        tempDict = dict()
+
+        for dataMapKey in dataDict:
+            
+            # array of measurement objects with same mole fractions and same DOI (two for loops)
+            measurements = pureOrMixtureData.getSameMoleFracMeasurementsListByID(IDs=dataDict[dataMapKey]["same measurements"])
+            #TODO: abstract propertyID/variableID getter  1 = viscosity, 1 = temperature
+            viscList = extractPropertyValues(measurements, propertyID="1")
+            tempList = extractVariableValues(measurements, variableID="1")
+            # recalculate temperature and viscosity
+            tempList = list(map(tranformTemperature, tempList))
+            viscList = list(map(transformViscosity, viscList))
+            #add Lists to basic dictionary
+            viscDict[dataMapKey] = viscList
+            tempDict[dataMapKey] = tempList
+            
         
-        propList = extractPropertyValues(measurements, propertyID)
+        superViscDict[doi] = viscDict
+        superTempDict[doi] = tempDict
     
+    
+    
+    # need Dictionary with top level molefraction -> DOI -> values, current Dicts have DOI -> molefraction -> values
+    #superViscDict = _transpose(superViscDict)
+    #superTempDict = _transpose(superTempDict)
+    
+    numberOfMoleFractions = len(superTempDict)
+
+    #pprint.pprint(superTempDict)
+    #print(superTempDict.values())
+    
+    '''
+    fig, axs = plt.subplots(2,16, figsize=(15, 6), facecolor='w', edgecolor='k')
+    fig.subplots_adjust(hspace = .5, wspace=.001)
+    axs = axs.ravel()
+    '''
+
+    for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):      
+        for key in tempDictionary:
+            x = np.array(tempDictionary[key])
+            x = x.reshape(-1, 1)
+            y = np.array(viscDictionary[key])
+
+            model = LinearRegression()
+            model.fit(x, y)
+        
+            print("R2: ", round(model.score(x, y), 2))
+
+            t = (min(x), max(x))
+
+            plt.scatter(x, y, alpha=0.5)
+        
+            plt.plot(t, model.predict(t), label=key)
+
+        plt.grid()
+        plt.title(str(viscMoleFraction))
+        plt.xlabel("1/RT in [mol/KJ]")
+        plt.ylabel("ln(eta) in [cP]")
+        plt.legend()
+                
+        plt.show()
+    
+
+def _transpose(dictionary):
+    '''
+    method changes key, value order of dictionaries key1 -> key2 -> value to key2 -> key1 -> value
+    '''
+    transposedDict = dict()
+    for doi, value in dictionary.items():
+        for moleFracRatio, viscValues in value.items():
+            if moleFracRatio not in transposedDict:
+                transposedDict[moleFracRatio] = dict()
+                if doi not in transposedDict[moleFracRatio]:
+                    transposedDict[moleFracRatio][doi] = viscValues
+                else:
+                    transposedDict[moleFracRatio][doi].append(viscValues)
+            else:
+                if doi in transposedDict[moleFracRatio]:
+                    transposedDict[moleFracRatio][doi].append(viscValues)
+                else:
+                    transposedDict[moleFracRatio][doi] = viscValues
+    
+    return transposedDict
+
 if __name__ == "__main__":
-    getArrheniusData()
+    getArrheniusData("ChCl_glycerol")
