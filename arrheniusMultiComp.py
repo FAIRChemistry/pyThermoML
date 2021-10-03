@@ -1,12 +1,13 @@
-from pythermo.thermoml.tools.analyseTools import getData
+from pythermo.thermoml.tools.analyseTools import getMoleFractionRatios
 from pythermo.thermoml.tools.visualizationTools import plotArrhenius
+from pythermo.thermoml.tools.readTools import readThermo
 import os
 import numpy as np
 
 
 
 
-path = "DataGudrunGygli/cml2ThermoML/ChCL_glycerol"
+path = ""
 R = 8.31446261815324/1000
 
 def transformViscosity(eta):
@@ -16,7 +17,7 @@ def transformViscosity(eta):
 def tranformTemperature(temperature):
     return 1 / (R*temperature)
 
-def visualizeWater():
+def getArrheniusData():
     # temps, viscs = doArrhenius(path)
 
     dirpath = os.path.join(
@@ -31,26 +32,23 @@ def visualizeWater():
     viscDict, tempDict = {}, {}
 
     for filename in fileList:
+        
+        # Load ThermoML
+        dataReport = readThermo(path)
+        doi = dataReport.DOI
 
-        viscData, tempData, doi = getData(
-            path=filename,
-            pureOrMixtureDataID="1",
-            propertyID="1",
-            variableID="1"
-        )
 
-        # Add to dicitonaries
-        viscDict[doi] = list(map(
-            transformViscosity,
-            viscData
-        ))
-        tempDict[doi] = list(map(
-            tranformTemperature,
-            tempData
-        ))
-
-    # Visualize data
-    plotArrhenius(tempDict, viscDict, "Arrhenius water")
+        # Get pureOrMixtureData from the dataReport
+        pureOrMixtureData = dataReport.getPureOrMixtureData("1")
+        
+        # Find measurements with same moleFractions
+        sameMoleFracDict = getMoleFractionRatios(pureOrMixtureData=pureOrMixtureData)
+        
+        for dataMapKey in sameMoleFracDict:
+            # erhaöte aus sameMoleFracDict Ids mit gleichen mole Fractions
+            measurements = pureOrMixtureData.getSameMoleFracMeasurementsListByID(IDs=sameMoleFracDict):
+        
+        propList = extractPropertyValues(measurements, propertyID)
     
 if __name__ == "__main__":
-    visualizeWater()
+    getArrheniusData()

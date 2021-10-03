@@ -24,13 +24,6 @@ class Measurement(object):
         self.ID = ID
         self.properties = dict()
         self.variables = dict()
-    '''
-    def __str__(self):
-        return json.dumps(
-            self.__dict__,
-            indent=4
-        )
-    '''
 
     def __str__(self):
 
@@ -58,10 +51,8 @@ class Measurement(object):
             dataPoints = [dataPoints]
 
         for dataPoint in dataPoints:
-            # print(dataPoint)
             elementID = dataPoint.elementID
             dataPointType = dataPoint.dataType
-            # print(pureMixtureData.properties)
             if elementID in pureMixtureData.properties.keys() and dataPointType == "prop":
                 self.addToElementList(elementID, self.properties, dataPoint)
             elif elementID in pureMixtureData.variables.keys() and dataPointType == "var":
@@ -76,6 +67,7 @@ class Measurement(object):
             dictionary[elementID] = list()
 
         dictionary[elementID].append(dataPoint)
+        
 
     @property
     def ID(self):

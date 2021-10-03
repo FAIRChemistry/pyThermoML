@@ -19,10 +19,7 @@ class ComponentCompositionBase(VariableBase):
         )
 
 
-def MoleFraction(
-    ID: "Unique identifier",
-    compoundID: "ID of compound"
-):
+def MoleFraction(ID, compoundID):
     moleFractionVar = ComponentCompositionBase(
         varName="Mole fraction",
         ID=ID,

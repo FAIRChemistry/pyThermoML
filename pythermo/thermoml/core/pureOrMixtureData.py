@@ -72,17 +72,13 @@ class PureOrMixtureData(object):
             return variable.ID
 
     def addMeasurement(self, dataPoints):
-        # print(dataPoints)
         for dataPoint in dataPoints:
 
             measurementID = dataPoint.measurementID
-            # print(measurementID)
-            # print(dataPoint)
             if measurementID not in self.measurements.keys():
                 self.measurements[measurementID] = Measurement(measurementID)
 
             self.measurements[measurementID].addDataPoints(dataPoint, self)
-            # print(self.measurements[measurementID])
 
     def getMeasurementsList(self):
         return [
@@ -90,6 +86,15 @@ class PureOrMixtureData(object):
             for measurement in self._measurements.values()
         ]
 
+    def getSameMoleFracMeasurementsListByID(self, IDs):
+        '''
+        :param ID: array list with measurementIDs
+        '''
+        sameMoleFracMeasurements = []
+        for elem in self._measurements.values():
+            if elem.ID in ID:
+                return sameMoleFracMeasurements.append(elem)
+            
     @property
     def ID(self):
         return self._ID
@@ -134,6 +139,15 @@ class PureOrMixtureData(object):
             self._variables,
         )
 
+    def getPOMPropertyList(self):
+        return [
+        property
+        for property in self._properties.values()
+    ]
+    
+    def getPOMVariableList(self):
+        return [variable for variable in self._variables.values()]
+    
     def _getElement(self, elementID, dictionary):
         try:
             return dictionary[elementID]
@@ -142,6 +156,39 @@ class PureOrMixtureData(object):
                 f"{elementID} is not defined yet."
             )
         
+    # not used
     def getMoleFractionID(self, compID):
-        print(type(self.getPOMProperty("1")).value)
-
+        '''
+        returns ID of mole fraction of compound with compound ID compID.
+        The mole fraction is a VARIABLE
+        
+        :param compID: compoundID
+        :return: moleFraction... The compound with the compID has stored its value in variable
+        with elem.ID
+        '''
+        for elem in self.getPOMVariableList():
+            try:
+                if elem.compoundID is compID:
+                    return elem.ID
+            except AttributeError:
+                continue
+    
+    def getMoleFractionIDs(self):
+        '''
+        returns dictionary of compound <-> molefraction assignement
+        keys: compoundIDs
+        values: moleFractionVariableIDs
+        '''
+        
+        moleFracCompound = dict()
+        
+        for key in self.comps:
+            
+            for value in self.variables:
+                try:
+                    if self.getPOMVariable(value).compoundID == key:
+                        moleFracCompound[key] = value
+                        
+                except AttributeError:
+                    continue
+        return moleFracCompound

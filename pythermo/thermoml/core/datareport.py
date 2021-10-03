@@ -112,13 +112,24 @@ class DataReport(object):
             pureOrMixtureData, dict
         )
 
-    def getPureOrMixtureData(self, ID):
-        try:
-            return self._pureOrMixtureData[ID]
-        except KeyError:
-            raise KeyError(
-                f"PureOrMixtureData with ID {ID} does not exist."
-            )
+    def getPureOrMixtureData(self, ID=None):
+        if ID is not None:
+            try:
+                return self._pureOrMixtureData[ID]
+            except KeyError:
+                
+                raise KeyError(
+                    f"PureOrMixtureData with ID {ID} does not exist."
+                )
+        
+        #DANGEROUS!
+        else:
+            try:
+                print("used pure or mixture data key = ID")
+                return self._pureOrMixtureData["ID"]
+                
+            except KeyError:
+                raise KeyError(f"Please enter key of pure or mixture Data")
 
     def getPureOrMixtureDataList(self):
         return [
