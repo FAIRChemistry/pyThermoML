@@ -122,4 +122,26 @@ class PureOrMixtureData(object):
     def measurements(self, measurements):
         self._measurements = measurements
 
-    # TODO: getter/setter comps
+    def getPOMProperty(self, propertyID):
+        return self._getElement(
+            propertyID,
+            self._properties,
+        )
+
+    def getPOMVariable(self, variableID):
+        return self._getElement(
+            variableID,
+            self._variables,
+        )
+
+    def _getElement(self, elementID, dictionary):
+        try:
+            return dictionary[elementID]
+        except KeyError:
+            raise KeyError(
+                f"{elementID} is not defined yet."
+            )
+        
+    def getMoleFractionID(self, compID):
+        print(type(self.getPOMProperty("1")).value)
+

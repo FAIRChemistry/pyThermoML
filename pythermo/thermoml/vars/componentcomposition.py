@@ -18,8 +18,7 @@ class ComponentCompositionBase(VariableBase):
             compoundID = compoundID
         )
 
-# Initializers
-# TODO: reference to compound ID -> Done?
+
 def MoleFraction(
     ID: "Unique identifier",
     compoundID: "ID of compound"

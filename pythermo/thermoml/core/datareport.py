@@ -82,6 +82,27 @@ class DataReport(object):
         return pureOrMixtureData.ID
 
     @property
+    def compounds(self):
+        return self._compounds
+    
+    @compounds.setter
+    def compounds(self, compounds):
+        self._compounds = TypeChecker(compounds, dict)
+
+    def getCompound(self, ID):
+        try:
+            return self._compounds[ID]
+        except KeyError:
+            raise KeyError(
+                f"Compound wit ID {ID} does not exist."
+            )
+        
+    def getCompoundList(self):
+        return [
+            compoundInstance for compoundInstance in self._compounds.values()
+        ]
+    
+    @property
     def pureOrMixtureData(self):
         return self._pureOrMixtureData
 
