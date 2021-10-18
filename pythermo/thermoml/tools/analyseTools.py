@@ -54,7 +54,7 @@ def _extractElementValues(measurements, ID, type_):
 
     return elementList
 
-# not used
+
 def getMoleFractionsOfComp(pureOrMixtureData, compID):
     """
     method returns all values of molefractions stored in ThermoML file

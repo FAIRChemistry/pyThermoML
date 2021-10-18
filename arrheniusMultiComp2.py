@@ -136,22 +136,16 @@ def getEEta(superViscDict, superTempDict):
         xw = viscMoleFraction.split(",")[0]
         #print(xw)
         eEtaDict[xw] = dict()
-        for doi in dois:
-            for doiTemp in tempDictionary:
-                if doi in doiTemp:
-                    x = np.array(tempDictionary[doi])
-                    
-                    y = np.array(viscDictionary[doi])
+        for doi in tempDictionary:
+            x = np.array(tempDictionary[doi])
+            x = x.reshape(-1, 1)
+            y = np.array(viscDictionary[doi])
 
-                    model = LinearRegression()
-                    model.fit(x, y)
-                    eEta = model.coef_[0]
-                    #print(type(eEta))
-                    
-                    plt.scatter(x,y)
-                    eEtaDict[xw][doi] = eEta
-                else:
-                    eEtaDict[xw][doi] = np.NaN
+            model = LinearRegression()
+            model.fit(x, y)
+            eEta = model.coef_[0]
+            eEtaDict[xw][doi] = eEta
+    
     
     return eEtaDict
 
@@ -174,83 +168,74 @@ def getEta0(superViscDict, superTempDict):
     
     for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):
         xw = viscMoleFraction.split(",")[0]
-        print(viscMoleFraction)
-        if xw not in eta0dict.keys():
-            eta0dict[xw] = dict()
+        eta0dict[xw] = dict()
+        for doi in tempDictionary:
+            x = np.array(tempDictionary[doi])
+            x = x.reshape(-1, 1)
+            y = np.array(viscDictionary[doi])
 
-        
-        for doi in dois:
-            for doiTemp in tempDictionary:
-                if doi in doiTemp:
-                    x = np.array(tempDictionary[doi])
-                    x = x.reshape(-1, 1)
-                    y = np.array(viscDictionary[doi])
+            model = LinearRegression()
+            model.fit(x, y)
+            eta0 = model.intercept_
 
-                    model = LinearRegression()
-                    model.fit(x, y)
-                    eta0 = model.intercept_
+            eta0dict[xw][doi] = eta0
 
-                    eta0dict[xw][doi] = eta0
-                else:
-                    eta0dict[xw][doi] = np.NaN
-    
     return eta0dict
 
 
 def plotEEta(eEtaDict):
-    
-    xws = []   
     dois = []
-    eEtas = []
-    
-
-    for xw in eEtaDict.keys():
-        xws.append(xw)
-        xws.append(xw)
-        xws.append(xw)
-    
     for doiDictionary in eEtaDict.values():
         for doi in doiDictionary:
-            dois.append(doi)
-        for eEta in doiDictionary.values():
-            eEtas.append(eEta)
+            if doi not in dois:
+                dois.append(doi)
+                
+
+    for DOI in dois:
+        xs = []
+        ys = []
+        for xw, doiDict in eEtaDict.items():
+            for doi, eEta in doiDict.items():
+                if doi == DOI:
+                    xs.append(xw)
+                    ys.append(eEta)
     
-    matrix = [xws,
-              dois,
-              eEtas,
-    ]
-    
-    print(matrix)
-              
-    data = {"dois":dois, 'Eeta':eEtas, 'xws' : xws}
-    d = pd.DataFrame(data)
-    
-    g = sns.scatterplot(x="xws", y="Eeta", hue="dois", data = d)
+        plt.plot(xs, ys, "o", label=DOI, alpha = 0.5)
+        plt.legend()
+        
+    plt.xlabel("chi w")
+    plt.ylabel("Eeta in KJ/mol")
+    plt.title("glycerol")
     plt.show()
+
+
     
 def plotEta0(eta0dict):
-    
-    xws = []   
+    #pprint.pprint(eta0dict)
     dois = []
-    eta0s = []
-    
-    for xw in eta0dict.keys():
-        xws.append(xw)
-        xws.append(xw)
-        xws.append(xw)
     for doiDictionary in eta0dict.values():
         for doi in doiDictionary:
-            dois.append(doi)
-        for eta0 in doiDictionary.values():
-            eta0s.append(eta0)
+            if doi not in dois:
+                dois.append(doi)
+                
 
-            
-    data = {"dois":dois, 'ln(eta0)':eta0s, 'xws' : xws}
-    d = pd.DataFrame(data)
+    for DOI in dois:
+        xs = []
+        ys = []
+        for xw, doiDict in eta0dict.items():
+            for doi, eta0 in doiDict.items():
+                if doi == DOI:
+                    xs.append(xw)
+                    ys.append(eta0)
     
-    g = sns.scatterplot(x="xws", y="ln(eta0)", hue="dois", data =d)
+        plt.plot(xs, ys, "o", label=DOI, alpha = 0.5)
+        plt.legend()
+        
+    plt.xlabel("chi w")
+    plt.ylabel("ln(eta0)")
+    plt.title("glycerol")
     plt.show()
-  
+    
 def _transpose(dictionary):
     '''
     method changes key, value order of dictionaries key1 -> key2 -> value to key2 -> key1 -> value
@@ -278,5 +263,5 @@ if __name__ == "__main__":
     eta0dict = getEta0(superViscDict=superViscDict, superTempDict=superTempDict)
     plotEta0(eta0dict=eta0dict)
     
-    #eEtadict = getEEta(superViscDict=superViscDict, superTempDict=superTempDict)
-    #plotEEta(eEtadict)
+    eEtadict = getEEta(superViscDict=superViscDict, superTempDict=superTempDict)
+    plotEEta(eEtadict)
