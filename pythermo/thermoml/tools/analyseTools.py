@@ -79,7 +79,8 @@ def getMoleFractionRatios(pureOrMixtureData):
     """
     method returns dictionary
     key: meas ID
-    value: dictionary with compID as key and respective mole fraction as value"""
+    value: dictionary with compID as key and respective mole fraction as value
+    """
     moleFracAssignment = pureOrMixtureData.getMoleFractionIDs()
     measurements = pureOrMixtureData.getMeasurementsList()
     

@@ -24,7 +24,7 @@ def getArrheniusData(pathLastName):
     dirpath = os.path.join(
         "./DataGudrunGygli/cml2ThermoML/" + pathLastName
     )
-
+    
     # Change working directory and get files
     os.chdir(dirpath)
     fileList = os.listdir(os.getcwd())
@@ -36,57 +36,59 @@ def getArrheniusData(pathLastName):
     
     for filename in fileList:
 
-        # Load ThermoML
-        dataReport = readThermo(filename)
-        doi = dataReport.DOI
+        if ".xml" in filename:
+            # Load ThermoML
+            dataReport = readThermo(filename)
+            doi = dataReport.DOI
 
-        # Get pureOrMixtureData from the dataReport
-        pureOrMixtureData = dataReport.getPureOrMixtureData("1")
-        
-        # Find measurements with same moleFractions
-        moleFracRatios = getMoleFractionRatios(pureOrMixtureData=pureOrMixtureData)
-        dataDict = getMeasurementsWithSameMoleFractions(moleFractionRatios=moleFracRatios)
-        
-        # basic dict with key: MoleFraction, value: Array viscositys of one paper
-        viscDict = dict()
-        tempDict = dict()
-
-        for dataMapKey in dataDict:
+            # Get pureOrMixtureData from the dataReport
+            pureOrMixtureData = dataReport.getPureOrMixtureData("1")
             
-            # array of measurement objects with same mole fractions and same DOI (two for loops)
-            measurements = pureOrMixtureData.getSameMoleFracMeasurementsListByID(IDs=dataDict[dataMapKey]["same measurements"])
-            #TODO: abstract propertyID/variableID getter  1 = viscosity, 1 = temperature
-            viscList = extractPropertyValues(measurements, propertyID="1")
-            tempList = extractVariableValues(measurements, variableID="1")
-            # recalculate temperature and viscosity
-            tempList = list(map(tranformTemperature, tempList))
-            viscList = list(map(transformViscosity, viscList))
-            #add Lists to basic dictionary
-            viscDict[dataMapKey] = viscList
-            tempDict[dataMapKey] = tempList
+            # Find measurements with same moleFractions
+            moleFracRatios = getMoleFractionRatios(pureOrMixtureData=pureOrMixtureData)
+            dataDict = getMeasurementsWithSameMoleFractions(moleFractionRatios=moleFracRatios)
             
+            # basic dict with key: MoleFraction, value: Array viscositys of one paper
+            viscDict = dict()
+            tempDict = dict()
+
+            for dataMapKey in dataDict:
+                
+                # array of measurement objects with same mole fractions and same DOI (two for loops)
+                measurements = pureOrMixtureData.getSameMoleFracMeasurementsListByID(IDs=dataDict[dataMapKey]["same measurements"])
+                #TODO: abstract propertyID/variableID getter  1 = viscosity, 1 = temperature
+                viscList = extractPropertyValues(measurements, propertyID="1")
+                tempList = extractVariableValues(measurements, variableID="1")
+                # recalculate temperature and viscosity
+                tempList = list(map(tranformTemperature, tempList))
+                viscList = list(map(transformViscosity, viscList))
+                #add Lists to basic dictionary
+                viscDict[dataMapKey] = viscList
+                tempDict[dataMapKey] = tempList
+                
+            
+            superViscDict[doi] = viscDict
+            superTempDict[doi] = tempDict
         
-        superViscDict[doi] = viscDict
-        superTempDict[doi] = tempDict
-    
-    
-    
-    # need Dictionary with top level molefraction -> DOI -> values, current Dicts have DOI -> molefraction -> values
-    #superViscDict = _transpose(superViscDict)
-    #superTempDict = _transpose(superTempDict)
-    
-    numberOfMoleFractions = len(superTempDict)
+        
+        
+        # need Dictionary with top level molefraction -> DOI -> values, current Dicts have DOI -> molefraction -> values
+        #superViscDict = _transpose(superViscDict)
+        #superTempDict = _transpose(superTempDict)
+        
+        numberOfMoleFractions = len(superTempDict)
 
-    #pprint.pprint(superTempDict)
-    #print(superTempDict.values())
-    
-    '''
-    fig, axs = plt.subplots(2,16, figsize=(15, 6), facecolor='w', edgecolor='k')
-    fig.subplots_adjust(hspace = .5, wspace=.001)
-    axs = axs.ravel()
-    '''
+        #pprint.pprint(superTempDict)
+    return superViscDict, superTempDict
 
-    for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):      
+def plotArrheniusSameDOIsOverMoleFractions(superViscDict, superTempDict):
+    
+    # counter to store plots
+    counter = 0
+
+    for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):
+    
+
         for key in tempDictionary:
             x = np.array(tempDictionary[key])
             x = x.reshape(-1, 1)
@@ -94,8 +96,9 @@ def getArrheniusData(pathLastName):
 
             model = LinearRegression()
             model.fit(x, y)
-        
-            print("R2: ", round(model.score(x, y), 2))
+            
+            # Information about R^2
+            #print("R2: ", round(model.score(x, y), 2))
 
             t = (min(x), max(x))
 
@@ -103,14 +106,18 @@ def getArrheniusData(pathLastName):
         
             plt.plot(t, model.predict(t), label=key)
 
+        
         plt.grid()
         plt.title(str(viscMoleFraction))
         plt.xlabel("1/RT in [mol/KJ]")
         plt.ylabel("ln(eta) in [cP]")
-        plt.legend()
-                
-        plt.show()
-    
+        plt.legend(bbox_to_anchor=(0.5, -0.1), title="Mole Fractions", mode="expand", ncol=2)
+
+        #print(os.path)
+        plt.savefig("./plots/plot" + str(counter) + ".jpg", bbox_inches="tight")
+        
+        counter += 1
+
 
 def _transpose(dictionary):
     '''
@@ -134,4 +141,6 @@ def _transpose(dictionary):
     return transposedDict
 
 if __name__ == "__main__":
-    getArrheniusData("ChCl_glycerol")
+    superViscDict, superTempDict = getArrheniusData("glycerol")
+    plotArrheniusSameDOIsOverMoleFractions(superTempDict=superTempDict, superViscDict=superViscDict)
+    
