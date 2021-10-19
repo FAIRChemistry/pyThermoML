@@ -132,9 +132,8 @@ def getEEta(superViscDict, superTempDict):
     #keys: mole fractions, values: dict with key: doi, array of eta0
     eEtaDict = dict()
     for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):
-        #pprint.pprint(tempMoleFraction)
         xw = viscMoleFraction.split(",")[0]
-        #print(xw)
+        xw = float(xw)
         eEtaDict[xw] = dict()
         for doi in tempDictionary:
             x = np.array(tempDictionary[doi])
@@ -168,6 +167,7 @@ def getEta0(superViscDict, superTempDict):
     
     for (viscMoleFraction, viscDictionary), (tempMoleFraction, tempDictionary) in zip(superViscDict.items(), superTempDict.items()):
         xw = viscMoleFraction.split(",")[0]
+        xw = float(xw)
         eta0dict[xw] = dict()
         for doi in tempDictionary:
             x = np.array(tempDictionary[doi])
@@ -190,17 +190,20 @@ def plotEEta(eEtaDict):
             if doi not in dois:
                 dois.append(doi)
                 
+    pprint.pprint(eEtaDict)
+    
 
+    
     for DOI in dois:
-        xs = []
-        ys = []
+        xs1 = []
+        ys1 = []
         for xw, doiDict in eEtaDict.items():
             for doi, eEta in doiDict.items():
                 if doi == DOI:
-                    xs.append(xw)
-                    ys.append(eEta)
-    
-        plt.plot(xs, ys, "o", label=DOI, alpha = 0.5)
+                    xs1.append(xw)
+                    ys1.append(eEta)
+                
+        plt.plot(xs1, ys1, "o", label=DOI, alpha = 0.5)
         plt.legend()
         
     plt.xlabel("chi w")
@@ -211,7 +214,6 @@ def plotEEta(eEtaDict):
 
     
 def plotEta0(eta0dict):
-    #pprint.pprint(eta0dict)
     dois = []
     for doiDictionary in eta0dict.values():
         for doi in doiDictionary:
@@ -219,16 +221,17 @@ def plotEta0(eta0dict):
                 dois.append(doi)
                 
 
+        
     for DOI in dois:
-        xs = []
-        ys = []
+        xs1 = []
+        ys1 = []
         for xw, doiDict in eta0dict.items():
             for doi, eta0 in doiDict.items():
                 if doi == DOI:
-                    xs.append(xw)
-                    ys.append(eta0)
+                    xs1.append(xw)
+                    ys1.append(eta0)
     
-        plt.plot(xs, ys, "o", label=DOI, alpha = 0.5)
+        plt.plot(xs1, ys1, "o", label=DOI, alpha = 0.5)
         plt.legend()
         
     plt.xlabel("chi w")
