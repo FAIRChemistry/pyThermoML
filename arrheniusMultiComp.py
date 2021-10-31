@@ -1,4 +1,3 @@
-from scipy.sparse.linalg.eigen.arpack.arpack import DNAUPD_ERRORS
 from pythermo.thermoml.tools.analyseTools import extractPropertyValues, extractVariableValues, getMeasurementsWithSameMoleFractions, getMoleFractionRatios
 from pythermo.thermoml.tools.visualizationTools import plotArrhenius
 from pythermo.thermoml.tools.readTools import readThermo
@@ -21,7 +20,8 @@ def transformViscosity(eta):
 def tranformTemperature(temperature):
     return 1 / (R*temperature)
 
-def getArrheniusData(pathLastName):
+def getArrheniusData(pathLastName) -> tuple[dict, dict]:
+    """returns dictionary with viscosities and temperatures"""
     # temps, viscs = doArrhenius(path)
 
     dirpath = os.path.join(
@@ -110,9 +110,7 @@ def plotArrheniusSameDOIsOverMoleFractions(superViscDict, superTempDict):
         plt.xlabel("1/RT in [mol/KJ]")
         plt.ylabel("ln(eta) in [cP]")
         plt.legend(bbox_to_anchor=(0.5, -0.1), title="Mole Fractions", mode="expand", ncol=2)
-
-        #print(os.path)
-        plt.savefig("./plots/doiConstant"+ str(counter) + ".jpg", bbox_inches="tight")
+        plt.savefig("./plots/DOI"+ str(counter) + ".jpg", bbox_inches="tight")
         
         counter += 1
 
@@ -183,7 +181,7 @@ def getEta0(superViscDict, superTempDict):
     return eta0dict
 
 
-def plotEEta(eEtaDict):
+def plotEEta(eEtaDict, folderName):
     dois = []
     for doiDictionary in eEtaDict.values():
         for doi in doiDictionary:
@@ -208,12 +206,11 @@ def plotEEta(eEtaDict):
         
     plt.xlabel("chi w")
     plt.ylabel("Eeta in KJ/mol")
-    plt.title("glycerol")
-    plt.show()
-
+    plt.title(folderName)
+    plt.savefig("./plots/Xw_EEta.jpg", bbox_inches="tight")
 
     
-def plotEta0(eta0dict):
+def plotEta0(eta0dict, folderName):
     dois = []
     for doiDictionary in eta0dict.values():
         for doi in doiDictionary:
@@ -236,8 +233,8 @@ def plotEta0(eta0dict):
         
     plt.xlabel("chi w")
     plt.ylabel("ln(eta0)")
-    plt.title("glycerol")
-    plt.show()
+    plt.title(folderName)
+    plt.savefig("./plots/Xw_Eta0.jpg", bbox_inches="tight")
     
 def _transpose(dictionary):
     '''
@@ -261,10 +258,11 @@ def _transpose(dictionary):
     return transposedDict
 
 if __name__ == "__main__":
-    superViscDict, superTempDict = getArrheniusData("glycerol")
+    folderName = "water"
+    superViscDict, superTempDict = getArrheniusData(folderName)
     #plotArrheniusMoleFractionConstant(superViscDict=superViscDict, superTempDict=superTempDict)
     eta0dict = getEta0(superViscDict=superViscDict, superTempDict=superTempDict)
-    plotEta0(eta0dict=eta0dict)
+    plotEta0(eta0dict=eta0dict, folderName=folderName)
     
     eEtadict = getEEta(superViscDict=superViscDict, superTempDict=superTempDict)
-    plotEEta(eEtadict)
+    plotEEta(eEtadict, folderName=folderName)
