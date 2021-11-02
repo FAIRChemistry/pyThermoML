@@ -49,11 +49,9 @@ def __createVersion(dataRepXml, dataRep):
 def __createCitation(dataRepXml, dataRep):
     Citation = etree.SubElement(dataRepXml, 'Citation')
     if __keyInDict(dataRep, 'authors'):
-        for i in range(len(dataRep['authors'])):
+        for key in dataRep['authors'].keys():
             sAuthor = etree.SubElement(Citation, 'sAuthor')
-
-            #TODO: _author has underline?
-            sAuthor.text = dataRep['authors']['_author' + str(i)]
+            sAuthor.text = dataRep['authors'][key]
     if __keyInDict(dataRep, 'DOI'):
         sDOI = etree.SubElement(Citation, 'sDOI')
         sDOI.text = dataRep['DOI']

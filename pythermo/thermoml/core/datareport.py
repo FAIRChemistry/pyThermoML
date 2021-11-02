@@ -1,5 +1,6 @@
+
 from pythermo.thermoml.core.functionalities import TypeChecker
-from pythermo.thermoml.core import PureOrMixtureData
+from pythermo.thermoml.core import PureOrMixtureData, compound
 
 import json
 
@@ -9,7 +10,7 @@ class DataReport(object):
         self,
         title=None,
         DOI=None,
-        *authors
+        authors=None,
     ) -> None:
         '''
         Object describing a DataReport.
@@ -17,32 +18,39 @@ class DataReport(object):
         Args:
             String title: Title of referred paper
             String DOI: DOI of referred
-            *String authors: Authors of referred paper
+            List authors: Authors of referred paper
         '''
+        
+        
         if title is not None:
-            self.title = title
+            self.title = TypeChecker(title, str)
         if DOI is not None:
-            self.DOI = DOI
+            self.DOI = TypeChecker(DOI, str)
 
-        self._authors = dict()
-
+        self.authors = dict()
         self.compounds = dict()
         self.pureOrMixtureData = dict()
 
-        authorID = 0
-        for name in authors:
-            self._authors['_author' + str(authorID)] = name
-            authorID += 1
-
-    def __str__(self):
+        if authors is not None:
+            try:
+                for key, value in authors.items():
+                    self.authors[key] = value
+            except AttributeError:
+                raise AttributeError(
+                    f"authors should be stored in a dict"
+                )
+    
+    def __str__(self) -> str:
         return self.toJSON()
 
-    def toJSON(self, d=False):
+    def toJSON(self, d=False) -> str:
+        '''retunrs json formatted string representation of DataReport class'''
+        
         def transformAttributes(self):
-
+            
             jsonDict = dict()
             for key, value in self.__dict__.items():
-
+                
                 if isinstance(value, dict):
                     jsonDict[key.replace('_', '')] = dict()
 
@@ -68,7 +76,8 @@ class DataReport(object):
                 indent=4
             )
 
-    def addCompound(self, comp):
+    def addCompound(self, comp) -> str:
+        """adds compund to DataReport returns ID"""
         if comp.dataType == "comp":
 
             # Add compound to dictionary in DataReport
@@ -81,20 +90,30 @@ class DataReport(object):
 
         return pureOrMixtureData.ID
 
-    @property
-    def compounds(self):
-        return self._compounds
+    def addAuthor(self, name, ID):
+        self.authors[ID] = name
+
+        return ID
+
+    def getAuthor(self, ID):
+        try:
+            return self._authors[ID]
+        except KeyError:
+            raise KeyError(
+                f"Author with ID {ID} does not exist"
+            )
     
-    @compounds.setter
-    def compounds(self, compounds):
-        self._compounds = TypeChecker(compounds, dict)
+    def getAuthorList(self):
+        return [
+            authorInstance for authorInstance in self._authors.values()
+        ]
 
     def getCompound(self, ID):
         try:
             return self._compounds[ID]
         except KeyError:
             raise KeyError(
-                f"Compound wit ID {ID} does not exist."
+                f"Compound with ID {ID} does not exist."
             )
         
     def getCompoundList(self):
@@ -102,17 +121,14 @@ class DataReport(object):
             compoundInstance for compoundInstance in self._compounds.values()
         ]
     
-    @property
-    def pureOrMixtureData(self):
-        return self._pureOrMixtureData
+    def getCompDict(self) -> dict:
+        """returns dictionary with ID (key) of compound (value) used in dataReport"""
+        compoundDict = dict()
+        for value in self._compounds.values():
+            compoundDict[value.ID] = value
+        return compoundDict
 
-    @pureOrMixtureData.setter
-    def pureOrMixtureData(self, pureOrMixtureData):
-        self._pureOrMixtureData = TypeChecker(
-            pureOrMixtureData, dict
-        )
-
-    def getPureOrMixtureData(self, ID=None):
+    def getPureOrMixtureData(self, ID=None) -> PureOrMixtureData:
         if ID is not None:
             try:
                 return self._pureOrMixtureData[ID]
@@ -136,7 +152,41 @@ class DataReport(object):
             pureOrMixtureDataInstance
             for pureOrMixtureDataInstance in self._pureOrMixtureData.values()
 
-        ]
+    ]
+
+    def getPureOrMixtureDataIDs(self) -> list:
+        """returns list with keys used in DataReport"""
+        keys = list()
+        for key in self._pureOrMixtureData.keys():
+            keys.append(key)
+        return keys
+    
+
+    @property
+    def compounds(self):
+        return self._compounds
+    
+    @compounds.setter
+    def compounds(self, compounds):
+        self._compounds = TypeChecker(compounds, dict)
+
+    @property
+    def authors(self):
+        return self._authors
+    
+    @authors.setter
+    def authors(self, authors):
+        self._authors = TypeChecker(authors, dict)
+
+    @property
+    def pureOrMixtureData(self):
+        return self._pureOrMixtureData
+
+    @pureOrMixtureData.setter
+    def pureOrMixtureData(self, pureOrMixtureData):
+        self._pureOrMixtureData = TypeChecker(
+            pureOrMixtureData, dict
+        )
 
     @property
     def title(self):
@@ -153,5 +203,3 @@ class DataReport(object):
     @DOI.setter
     def DOI(self, DOI):
         self._DOI = TypeChecker(DOI, str)
-
-    # TODO: multiple authors

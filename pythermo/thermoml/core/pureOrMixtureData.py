@@ -55,6 +55,12 @@ class PureOrMixtureData(object):
             indent=4
         )
 
+    """    def getPropertyIDs(self) -> dict:
+        returns dict with name -> id relation
+        propertyIDs = dict()
+        for key, value in self.properties.items():
+            propertyIDs[value]"""
+    
     def addProperty(self, prop):
         if prop.dataType == "prop":
 
@@ -144,14 +150,19 @@ class PureOrMixtureData(object):
             self._variables,
         )
 
-    def getPOMPropertyList(self):
-        return [
-        property
-        for property in self._properties.values()
-    ]
+    def getPOMPropertyList(self) -> dict:
+        """returns dictionary with ID (key) of property (value) used in pure or mixture data"""
+        propertyDict = dict()
+        for value in self._properties.values():
+            propertyDict[value.ID] = value
+        return propertyDict
     
-    def getPOMVariableList(self):
-        return [variable for variable in self._variables.values()]
+    def getPOMVariableList(self) -> dict:
+        """returns dictionary with ID (key) of variable (value) used in pure or mixture data"""
+        variableDict = dict()
+        for value in self._variables.values():
+            variableDict[value.ID] = value
+        return variableDict
     
     def _getElement(self, elementID, dictionary):
         try:

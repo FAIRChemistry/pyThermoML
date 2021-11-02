@@ -258,11 +258,12 @@ def _transpose(dictionary):
     return transposedDict
 
 if __name__ == "__main__":
-    folderName = "water"
+    """folderName = "water"
     superViscDict, superTempDict = getArrheniusData(folderName)
     #plotArrheniusMoleFractionConstant(superViscDict=superViscDict, superTempDict=superTempDict)
     eta0dict = getEta0(superViscDict=superViscDict, superTempDict=superTempDict)
     plotEta0(eta0dict=eta0dict, folderName=folderName)
     
     eEtadict = getEEta(superViscDict=superViscDict, superTempDict=superTempDict)
-    plotEEta(eEtadict, folderName=folderName)
+    plotEEta(eEtadict, folderName=folderName)"""
+    

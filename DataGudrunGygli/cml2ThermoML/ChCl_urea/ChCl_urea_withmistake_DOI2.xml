@@ -25,7 +25,7 @@
     </RegNum>
     <sStandardInChI>InChI=1S/C5H14NO.ClH/c1-6(2,3)4-5-7;/h7H,4-5H2,1-3H3;1H/q+1;/p-1</sStandardInChI>
     <sStandardInChIKey>SGMZJAMFUVOLNK-UHFFFAOYSA-M</sStandardInChIKey>
-    <sCommonName>choline choloride</sCommonName>
+    <sCommonName>choline chloride</sCommonName>
     <sSmiles>C[N+](C)(C)CCO.[Cl-]</sSmiles>
   </Compound>
   <Compound>

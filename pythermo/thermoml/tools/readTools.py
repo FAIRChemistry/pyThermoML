@@ -70,18 +70,6 @@ def readThermo(path) -> DataReport:
         for id, value in vars.items():
             experiment[0].addVariable(value[0](id, value[1]))
         
-        
-        
-        #print(numValues)
-        #print(experiment[0])
-        #print(measurementpoint)
-        #for a in measurements.values():
-        #    datapoints.append(dp)
-        
-        #print("Datenpunkte: " + str(datapoints))
-        #experiment[0].addMeasurement(dataPoints=numValues)
-
-        #print(experiment[0])
         datareport.addPureOrMixtureData(__getMeasurements__(experiment[0], experiment[1]))
 
     return datareport
@@ -105,11 +93,11 @@ def __getCitation__(root, namespace=namespace):
     title = root.findall(namespace + "sTitle")[0].text
     doi = root.findall(namespace + 'sDOI')[0].text
     authorList = root.findall(namespace + 'sAuthor')
-    authors = []
+    authors = dict()
     
-    for author in authorList:
-        authors.append(author.text)
-    return title, doi, *authors
+    for index, author in enumerate(authorList):
+        authors[str(index)] = author.text
+    return title, doi, authors
 
 def __getCompounds__(root) -> dict:
     '''

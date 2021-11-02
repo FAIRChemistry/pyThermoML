@@ -1,5 +1,5 @@
 import json
-
+from pythermo.thermoml.core.functionalities import TypeChecker
 
 class Compound(object):
 
@@ -13,19 +13,19 @@ class Compound(object):
     ) -> None:
 
         if standardInchI is not None:
-            self.standardInchI = standardInchI
+            self.standardInchI = TypeChecker(standardInchI, str)
 
         if standardInchIKey is not None:
-            self.standardInchIKey = standardInchIKey
+            self.standardInchIKey = TypeChecker(standardInchIKey, str)
 
         if smiles is not None:
-            self.smiles = smiles
+            self.smiles = TypeChecker(smiles, str)
 
         if commonName is not None:
-            self.commonName = commonName
+            self.commonName = TypeChecker(commonName, str)
 
         self.__type = "comp"
-        self.ID = ID
+        self.ID = TypeChecker(ID, str)
 
     def __str__(self):
         return self.toJSON()

@@ -99,6 +99,7 @@ class Measurement(object):
             "Variable"
         )
 
+
     def _getElement(self, elementID, dictionary, type_):
         try:
             return dictionary[elementID]
