@@ -9,7 +9,6 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
-
 from pythermo.thermoml.core.functionalities import TypeChecker
 from pythermo.thermoml.core.datapoint import DataPoint
 import json

@@ -43,7 +43,6 @@ def KinematicViscosity(ID, method):
     return viscosityProp
 
 # Note: not inncluded in ThermoMl.xsd
-# component specific?
 
 
 def Microviscosity(ID, method):

@@ -95,7 +95,7 @@ class DataPoint(object):
         try:
             self._uncertainty = TypeChecker(uncertainty, float)
         except TypeError:
-            self._uncertainty = "NG"
+             "please insert uncertainty as float"
 
     @property
     def dataType(self):

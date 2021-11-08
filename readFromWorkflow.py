@@ -1,4 +1,4 @@
-from pythermo.thermoml.core import PureOrMixtureData, Measurement, DataReport, Compound, DataPoint
+from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
 
 from pythermo.thermoml.vars.componentcomposition import MoleFraction
 from pythermo.thermoml.vars.temperature import Temperature
@@ -8,14 +8,28 @@ from pythermo.thermoml.props.volumetricproperties import MassDensity
 from pythermo.thermoml.props.transportproperties import Diffusioncoefficient
 # TODO: import writer not intuitiv
 from pythermo.thermoml.tools.writeTools import writeThermo
-from pythermo.thermoml.tools.readTools import readThermo
 import json
-from lxml import etree
 
 def readJson(loc):
     return json.load(open(loc))
 
-def createDataReport(jsonData):
+def createDataReport(jsonData, dataPointKey=None) -> DataReport:
+    """
+    creates dataReport object based on json output of workflow from Benjamin Schmitz
+    
+    Args:
+        jsonData: This is json input of workflow
+        dataPointKey: the key, where actual data is stored in jsonData
+    
+    Returns:
+        DataReport object which can be converted with writeThermo-function to .xml (ThermoML)
+
+    Raises:
+        KeyError: if keys are not found in compound
+    """
+    if dataPointKey is None:
+        dataPointKey = __getDatapointsKey__(jsonData)
+    
     authors = {
         "author1": "Benjamin Schmitz"
     }
@@ -24,7 +38,6 @@ def createDataReport(jsonData):
     compDict = dict()
     
     for index, molec in enumerate(jsonData['molecules']):
-        print(molec)
         try:
             comp = Compound(ID=str(index), standardInchIKey=molec['InChI key'], smiles=molec['SMILES code'], commonName=molec['Name'])
             compDict[molec['Name']] = dataReport.addCompound(comp)
@@ -37,9 +50,8 @@ def createDataReport(jsonData):
     properties = dict()
     
     # variable definitions
-    # TODO: unit conversions
-    for index, point in enumerate(jsonData['units']):    
-        for name, unit in point.items():
+    for index, point in enumerate(jsonData['units']):
+        for name in point.keys():
             if name == "temperature":
                 variables[name] = experiment.addVariable(Temperature(str(index)))
             elif name == "pressure":
@@ -50,7 +62,7 @@ def createDataReport(jsonData):
 
     for compID in compDict.values():
         maxIndex = int(maxIndex)+1
-        variables[maxIndex] = experiment.addVariable(MoleFraction(maxIndex, compID))
+        variables[f'mole fraction comp{compID}'] = experiment.addVariable(MoleFraction(str(maxIndex), compID))
 
 
             
@@ -71,36 +83,44 @@ def createDataReport(jsonData):
                 properties[name] = experiment.addProperty(visc)
                 index += 1
     
-    print(properties)
-    for measindex, (propName, propindex) in enumerate(properties.items()):
-        if f'averaged_{propName}' in jsonData.keys():
-            measurementID = f'meas{measindex}'
-            
-            for point in jsonData[f'averaged_{propName}']:
-                dataPoints = list()
-                for name, varindex in variables.items():
-                    if len(str(name)) > 1:
-                        dataPoints.append(DataPoint(measurementID=measurementID, value=point[name], varID=str(varindex), numberOfDigits=len(str(point[name]))-1))
-                    # Really bad... -> optimize output JSON
-                    if name == 2:
-                        
-                        dataPoints.append(DataPoint(measurementID=measurementID, value=point["chi_water"], varID=str(varindex), numberOfDigits=len(str(point['chi_water']))-1))
-                    if name == 3: 
-                        dataPoints.append(DataPoint(measurementID=measurementID, value=1 - float(point["chi_water"]), varID=str(varindex), numberOfDigits=len(str(point["chi_water"]))-1))
-                
-                print(str(point[f'stdev_{propName}']))
-                dataPoints.append(DataPoint(measurementID=measurementID, value=point[f'average_{propName}'], propID=str(propindex), uncertainty=str(point[f'stdev_{propName}']), numberOfDigits=len(str(point[f'average_{propName}']))))
+    # Datapoint definition
+    for measindex, point in enumerate(jsonData[dataPointKey]):
+        measurementID = f'meas{measindex}'
+        dataPoints = list()
+        for name, varindex in variables.items():
+            if name in point.keys():
+                # conversion from bar to kPa
+                if name == "pressure":
+                    x = point[name]*100
+                else:
+                    x = point[name]
+                dataPoints.append(DataPoint(measurementID=measurementID, value=x, varID=str(varindex)))
 
-                for dp in dataPoints:
-                    print(dp)
-    
-                experiment.addMeasurement(dataPoints)
-    
-    dataReport.addPureOrMixtureData(experiment)
-    print(dataReport)
-
-def __getMaximumIndex__(dictionary):
+            # not ideal bot enough for  2 component mixutres of benni
+            # TODO: Number of digits
+            if name == 'mole fraction comp0':
+                dataPoints.append(DataPoint(measurementID=measurementID, value=point["chi_water"], varID=str(varindex)))
+            if name == 'mole fraction comp1':
+                dataPoints.append(DataPoint(measurementID=measurementID, value=1 - float(point["chi_water"]), varID=str(varindex)))    
         
+        for propName, propindex in properties.items():
+            if f'average_{propName}' in point.keys():
+                if f'average_{propName}' == 'average_density':
+                    x = point[f'average_{propName}']*1000
+                else:
+                    x = point[f'average_{propName}']
+                dataPoints.append(DataPoint(measurementID=measurementID, value=point[f'average_{propName}'], propID=str(propindex), uncertainty=point[f'stdev_{propName}']))
+        
+        experiment.addMeasurement(dataPoints)            
+
+    dataReport.addPureOrMixtureData(experiment)
+    
+    return dataReport
+
+def __getMaximumIndex__(dictionary) -> int:
+    """
+    just indexing stuf. Used for index variables properly
+    """
     for index in dictionary.values():
         maxIndex = -1
         if int(index) > maxIndex:
@@ -108,30 +128,19 @@ def __getMaximumIndex__(dictionary):
 
     return maxIndex
 
+def __getDatapointsKey__(jsonData) -> str:
+    """
+    Returns:
+        key where actual data might be stored
+    """
+    for key in jsonData.keys():
+        if "average" in key:
+            return key
+
 if __name__ == "__main__":
-    loc = "outputWorkflow/Example JSON/densities.json"
-    jsonData = readJson(loc)
+    LOCATION = "outputWorkflow/Example JSON/viscosities.json"
+    jsonData = readJson(LOCATION)
+    DATA_POINT_KEY = "viscosities"
 
-    createDataReport(jsonData)
-
-
-"""
-
-
-datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
-datapoints2 = [viscDataPoint2, tempDataPoint2,
-               frac1DataPoint2, frac2DataPoint2]
-# add Measurement to experiment
-experiment.addMeasurement(dataPoints=datapoints)
-experiment.addMeasurement(dataPoints=datapoints2)
-# add experiment to dataReport
-dataReport.addPureOrMixtureData(experiment)
-
-writeThermo(dataReport.toJSON(), 'testThermo.xml')
-
-#file = etree.parse("testThermo.xml")
-#print(etree.tostring(file, pretty_print=True, encoding=str))
-
-#data = readThermo("testThermo.xml")
-#print(data)
-"""
+    dataReport = createDataReport(jsonData, DATA_POINT_KEY)
+    writeThermo(dataReport.toJSON(), 'testThermoWFJSON.xml')
