@@ -1,0 +1,1252 @@
+{
+    "project": {
+        "Simulation platform": "CUDA",
+        "Simulation properties": {
+            "DeviceIndex": "0",
+            "Precision": "double"
+        },
+        "Total number of molecules": [
+            2000,
+            8000,
+            20000
+        ],
+        "Initial box side lengths": [
+            41,
+            64,
+            86
+        ],
+        "Water mole fraction(s)": [
+            0
+        ],
+        "Temperature(s) in K": [
+            298.15,
+            308.15,
+            318.15
+        ],
+        "NpT equilibration pressure(s) in bar": [
+            1
+        ],
+        "NpT equilibration pressure coupling Frequency": 500,
+        "NpT equilibration temperature coupling frequency": 0.1,
+        "NpT equilibration timestep in fs": 2,
+        "NpT equilibration duration in ns": 12,
+        "NpT state reporting frequency": 500,
+        "NVT equilibration temperature coupling frequency": 0.1,
+        "NVT equilibration timestep in fs": 2,
+        "NVT equilibration duration in ns": 10,
+        "NVT state reporting frequency": 4000,
+        "NVE production timestep in fs": 1,
+        "NVE production duration in ns": 20,
+        "NVE production report frequency unwrapped": 4000,
+        "NVE production report frequency wrapped": 8000,
+        "NVE production state reporting frequency": 8000,
+        "Number of replicas": 10,
+        "PME error tolerance": 1e-06,
+        "Constraint tolerance": 1e-07,
+        "Cutoff distance in nm": 1.2,
+        "Distance of the start of the switching function in nm": 1.0,
+        "Replica starting number": 1
+    },
+    "molecules": [
+        {
+            "Name": "Water",
+            "Number of atoms": 4,
+            "Abbreviation": "HOH",
+            "Molar ratio": 1,
+            "SMILES code": "O",
+            "InChI key": "1S/H2O/h1H2",
+            "Molar mass": 18.015,
+            "Used as water": false
+        }
+    ],
+    "force fields": [
+        {
+            "Name": "tip4p-fb",
+            "Built in": false,
+            "Added elements": null
+        }
+    ],
+    "units": [
+        {
+            "temperature": "kelvin"
+        },
+        {
+            "pressure": "bar"
+        },
+        {
+            "hydrogen_bonds": "count per molecule"
+        }
+    ],
+    "hydrogen bonds": [
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.06"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.07"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.08"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.05"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.01"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.02"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.04"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.07"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.02"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.07"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.95"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.95"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.95"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.97"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.96"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.97"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 3.00"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.94"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.95"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.98"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.82"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.82"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.87"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.86"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.87"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.87"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.89"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.85"
+            ]
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.83"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.89"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.86"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.85"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.87"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.88"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.87"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.79"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.80"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.80"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.78"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.79"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.76"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.79"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.78"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.78"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.79"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.70"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.70"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.69"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.81"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.81"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.80"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.81"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.80"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.79"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.80"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.81"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.82"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.81"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.70"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.70"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.72"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.72"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.71"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.63"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.62"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.62"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.62"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.62"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.63"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.63"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.61"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.63"
+            ]
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "hydrogen_bonds": [
+                "HOH:O to HOH:O: 2.62"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,136 @@
+{
+    "project": {
+        "Simulation platform": "CUDA",
+        "Simulation properties": {
+            "DeviceIndex": "0",
+            "Precision": "double"
+        },
+        "Total number of molecules": [
+            2000,
+            8000,
+            20000
+        ],
+        "Initial box side lengths": [
+            41,
+            64,
+            86
+        ],
+        "Water mole fraction(s)": [
+            0
+        ],
+        "Temperature(s) in K": [
+            298.15,
+            308.15,
+            318.15
+        ],
+        "NpT equilibration pressure(s) in bar": [
+            1
+        ],
+        "NpT equilibration pressure coupling Frequency": 500,
+        "NpT equilibration temperature coupling frequency": 0.1,
+        "NpT equilibration timestep in fs": 2,
+        "NpT equilibration duration in ns": 12,
+        "NpT state reporting frequency": 500,
+        "NVT equilibration temperature coupling frequency": 0.1,
+        "NVT equilibration timestep in fs": 2,
+        "NVT equilibration duration in ns": 10,
+        "NVT state reporting frequency": 4000,
+        "NVE production timestep in fs": 1,
+        "NVE production duration in ns": 20,
+        "NVE production report frequency unwrapped": 4000,
+        "NVE production report frequency wrapped": 8000,
+        "NVE production state reporting frequency": 8000,
+        "Number of replicas": 10,
+        "PME error tolerance": 1e-06,
+        "Constraint tolerance": 1e-07,
+        "Cutoff distance in nm": 1.2,
+        "Distance of the start of the switching function in nm": 1.0,
+        "Replica starting number": 1
+    },
+    "molecules": [
+        {
+            "Name": "Water",
+            "Number of atoms": 4,
+            "Abbreviation": "HOH",
+            "Molar ratio": 1,
+            "SMILES code": "O",
+            "InChI key": "1S/H2O/h1H2",
+            "Molar mass": 18.015,
+            "Used as water": false
+        }
+    ],
+    "force fields": [
+        {
+            "Name": "tip4p-fb",
+            "Built in": false,
+            "Added elements": null
+        }
+    ],
+    "units": [
+        {
+            "temperature": "kelvin"
+        },
+        {
+            "pressure": "bar"
+        },
+        {
+            "self_diffusion_coefficient": "meter per square seconds"
+        },
+        {
+            "viscosity": "pascal seconds"
+        },
+        {
+            "e eta": "kilojoule per mole"
+        }
+    ],
+    "viscosities": [
+        {
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "viscosity": 0.0044151909758967,
+            "viscosity_stderr": -0.002214879567643361,
+            "self_diffusion_coefficient_infinite": 2.1308442336434672e-09,
+            "self_diffusion_coefficient_infinite_stderr": 5.2375677687587806e-11
+        },
+        {
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "viscosity": 0.0005985357591235845,
+            "viscosity_stderr": -0.002164933130292067,
+            "self_diffusion_coefficient_infinite": 2.774519977415559e-09,
+            "self_diffusion_coefficient_infinite_stderr": 5.532930736169384e-11
+        },
+        {
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "viscosity": 0.0008421116330895811,
+            "viscosity_stderr": -0.0016689917958065085,
+            "self_diffusion_coefficient_infinite": 3.3444467093653978e-09,
+            "self_diffusion_coefficient_infinite_stderr": 7.400485469910958e-11
+        }
+    ]
+}

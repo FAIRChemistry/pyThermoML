@@ -1,0 +1,1668 @@
+{
+    "project": {
+        "Simulation platform": "CUDA",
+        "Simulation properties": {
+            "DeviceIndex": "0",
+            "Precision": "double"
+        },
+        "Total number of molecules": [
+            2000,
+            8000,
+            20000
+        ],
+        "Initial box side lengths": [
+            41,
+            64,
+            86
+        ],
+        "Water mole fraction(s)": [
+            0
+        ],
+        "Temperature(s) in K": [
+            298.15,
+            308.15,
+            318.15
+        ],
+        "NpT equilibration pressure(s) in bar": [
+            1
+        ],
+        "NpT equilibration pressure coupling Frequency": 500,
+        "NpT equilibration temperature coupling frequency": 0.1,
+        "NpT equilibration timestep in fs": 2,
+        "NpT equilibration duration in ns": 12,
+        "NpT state reporting frequency": 500,
+        "NVT equilibration temperature coupling frequency": 0.1,
+        "NVT equilibration timestep in fs": 2,
+        "NVT equilibration duration in ns": 10,
+        "NVT state reporting frequency": 4000,
+        "NVE production timestep in fs": 1,
+        "NVE production duration in ns": 20,
+        "NVE production report frequency unwrapped": 4000,
+        "NVE production report frequency wrapped": 8000,
+        "NVE production state reporting frequency": 8000,
+        "Number of replicas": 10,
+        "PME error tolerance": 1e-06,
+        "Constraint tolerance": 1e-07,
+        "Cutoff distance in nm": 1.2,
+        "Distance of the start of the switching function in nm": 1.0,
+        "Replica starting number": 1
+    },
+    "molecules": [
+        {
+            "Name": "Water",
+            "Number of atoms": 4,
+            "Abbreviation": "HOH",
+            "Molar ratio": 1,
+            "SMILES code": "O",
+            "InChI key": "1S/H2O/h1H2",
+            "Molar mass": 18.015,
+            "Used as water": false
+        }
+    ],
+    "force fields": [
+        {
+            "Name": "tip4p-fb",
+            "Built in": false,
+            "Added elements": null
+        }
+    ],
+    "units": [
+        {
+            "temperature": "kelvin"
+        },
+        {
+            "pressure": "bar"
+        },
+        {
+            "self_diffusion_coefficient": "square meter per second"
+        }
+    ],
+    "self diffusion coefficients": [
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0565112432651426e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 1.972065837893452e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 1.8965858576816854e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0187782719863033e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.266848987762299e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.2154084001772472e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1805786410243404e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.018326209609457e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.2571084062631074e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0486721493811084e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.4792443159195214e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.688047673861791e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.5993345250328793e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.3613552550358255e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.654885542951067e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.467033954855872e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.231589872275851e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.5469338750673565e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.565372097881018e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.4248572664916415e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.4299880914586156e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.4653450204717047e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.076852419770069e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.0405790429008196e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.956037327225107e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.0718656601299548e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.067766473284219e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.823728468153117e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.228903667791867e-09
+        },
+        {
+            "total_number_molecules": 2000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2827179739780773e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.019503953881198e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1169485838259267e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.084654211992259e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.034929889745795e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.2152488742948556e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.282819703091038e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.131844446100542e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.064567531046843e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.072020283425281e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1220581009689894e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.574232998723216e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.4978583269672607e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.517918132507595e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6219311299993276e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.5783071616652822e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.754781365869341e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6058096956918432e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.674114023309008e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6113560179535527e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.578295915974681e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2038386942441687e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.116308923747044e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2764214248827755e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.3146984838505547e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2051730503596322e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.1867070072934677e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.1878297169687877e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2321838669774737e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2257795845065526e-09
+        },
+        {
+            "total_number_molecules": 8000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2349429571194555e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.103140452300478e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.084507736744572e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.134366318710526e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1063538031492075e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1079578537950025e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.1772056242880668e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.125360032964131e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0932489662442577e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0828368102961227e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.0843373647358465e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.64222412707375e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.656717157031395e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.7320790041250724e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.639760571917841e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.667012262528763e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.658315707901383e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6617095016651706e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.5567921057778653e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6185830722128757e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 2.6523878992412433e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 1,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.210721792931123e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 2,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2498252771205373e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 3,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.328452390301212e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 4,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.228750616199101e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 5,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2755542407191547e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 6,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.219788470352897e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 7,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.1638825427986694e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 8,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.3341878298163375e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 9,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2086485033794853e-09
+        },
+        {
+            "total_number_molecules": 20000,
+            "replica_number": 10,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "self_diffusion_coefficient": 3.2962553324004997e-09
+        }
+    ],
+    "averaged self diffusion coefficients": [
+        {
+            "total_number_molecules": 2000,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.033069677034646,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.093088400504414e-09,
+            "stdev_self_diffusion_coefficient": 1.2797300525221584e-10
+        },
+        {
+            "total_number_molecules": 8000,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.1873630478157,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.114459557837273e-09,
+            "stdev_self_diffusion_coefficient": 8.123353993278104e-11
+        },
+        {
+            "total_number_molecules": 20000,
+            "temperature": 298.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 600.2820666965227,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.109931496322821e-09,
+            "stdev_self_diffusion_coefficient": 2.932116785072259e-11
+        },
+        {
+            "total_number_molecules": 2000,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.2055888733406,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.501865437937282e-09,
+            "stdev_self_diffusion_coefficient": 1.3908057579494725e-10
+        },
+        {
+            "total_number_molecules": 8000,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 240.81209671261766,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.6014604768661108e-09,
+            "stdev_self_diffusion_coefficient": 7.367228870678501e-11
+        },
+        {
+            "total_number_molecules": 20000,
+            "temperature": 308.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 602.0594457397798,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 2.648558140947536e-09,
+            "stdev_self_diffusion_coefficient": 4.359245741572848e-11
+        },
+        {
+            "total_number_molecules": 2000,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 60.4292860558624,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 3.1443784145163553e-09,
+            "stdev_self_diffusion_coefficient": 2.0429420879430584e-10
+        },
+        {
+            "total_number_molecules": 8000,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 241.80676878189917,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 3.2183883709949912e-09,
+            "stdev_self_diffusion_coefficient": 5.365172124762838e-11
+        },
+        {
+            "total_number_molecules": 20000,
+            "temperature": 318.15,
+            "pressure": 1.0,
+            "chi_water": 0.0,
+            "volume": 604.4042902537702,
+            "molecules": [
+                "Water"
+            ],
+            "abbreviations": [
+                "HOH"
+            ],
+            "abbreviation": "HOH",
+            "average_self_diffusion_coefficient": 3.251606699601902e-09,
+            "stdev_self_diffusion_coefficient": 5.581952268298787e-11
+        }
+    ]
+}
