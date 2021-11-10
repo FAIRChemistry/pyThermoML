@@ -6,7 +6,7 @@
   </Version>
   <Citation>
     <sAuthor>Anita Yadav</sAuthor>
-    <sAuthor>Siddharth Pandey</sAuthor>
+    <sAuthor>Siddarth Pandey</sAuthor>
     <sTitle>Densities and Viscosities of (Choline Chloride + Urea) Deep Eutectic Solvent and Its Aqueous Mixtures in the Temperature Range 293.15 K to 363.15 K</sTitle>
     <sDOI>10.1021/je5001796</sDOI>
   </Citation>
@@ -25,7 +25,7 @@
     </RegNum>
     <sStandardInChI>InChI=1S/C5H14NO.ClH/c1-6(2,3)4-5-7;/h7H,4-5H2,1-3H3;1H/q+1;/p-1</sStandardInChI>
     <sStandardInChIKey>SGMZJAMFUVOLNK-UHFFFAOYSA-M</sStandardInChIKey>
-    <sCommonName>choline chloride</sCommonName>
+    <sCommonName>choline choloride</sCommonName>
     <sSmiles>C[N+](C)(C)CCO.[Cl-]</sSmiles>
   </Compound>
   <Compound>

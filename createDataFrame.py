@@ -19,7 +19,7 @@ def __tranformTemperature__(temperature):
 
 def createDataFrame():
   
-    
+
     fileList = os.listdir(os.getcwd() + "/DataGudrunGygli/cml2ThermoML/")
 
     data = list()
@@ -49,6 +49,7 @@ def createDataFrame():
                 
                 for comp in dataReport.getCompDict().values():
                     comps.append(comp.commonName)
+
                 measDict = pom.getMeasurementsList()
                 
                 for index, meas in enumerate(measDict):
