@@ -6,7 +6,6 @@ from pythermo.thermoml.vars.pressure import Pressure
 from pythermo.thermoml.props.transportproperties import Viscosity
 from pythermo.thermoml.props.volumetricproperties import MassDensity
 from pythermo.thermoml.props.transportproperties import Diffusioncoefficient
-# TODO: import writer not intuitiv
 from pythermo.thermoml.tools.writeTools import writeThermo
 import json
 

@@ -2,7 +2,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plotArrhenius(tempdict, viscdict, title=None):
+def plotArrheniusOld(tempdict, viscdict, title=None):
 
     if title is None:
         title = "Arrhenius"

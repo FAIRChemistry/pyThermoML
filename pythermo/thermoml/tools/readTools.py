@@ -89,14 +89,21 @@ def __get__(root, tag, namespace=namespace):
     
 
 def __getCitation__(root, namespace=namespace):
+    if len(root.findall(namespace + "sTitle")) > 0:
+        title = root.findall(namespace + "sTitle")[0].text
+    else:
+        title = ""
+    if len(root.findall(namespace + "sTitle")) > 0:
+        doi = root.findall(namespace + 'sDOI')[0].text
+    else:
+        doi = ""
 
-    title = root.findall(namespace + "sTitle")[0].text
-    doi = root.findall(namespace + 'sDOI')[0].text
     authorList = root.findall(namespace + 'sAuthor')
     authors = dict()
-    
+
     for index, author in enumerate(authorList):
         authors[str(index)] = author.text
+
     return title, doi, authors
 
 def __getCompounds__(root) -> dict:

@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 import numpy as np
 from collections import OrderedDict
+from createDataFrame import createDataFrame
 
 def doArrhenius(df):
     """
@@ -45,8 +46,6 @@ def doArrhenius(df):
     if df['N,N-Diethylethanolammonium chloride'].values[0] != "NaN":
         components.append('N,N-Diethylethanolammonium chloride')
             
-        
-    print(components)
     componentString = ""
     for comp in components:
         
@@ -94,42 +93,41 @@ def plotArrhenius(df, componentString):
         componentString: string of components
         
     """
-
-    plt.subplot(111)
+    # TODO: plots next to each other
+    fig, ax = plt.subplots(1, 2, figsize=(13,4), dpi=300)
+    
     x = df.xw
     y = df.Eeta
-    print(x)
-    print(y)
-    plt.scatter(x,y, alpha=0.5)
-    plt.title(df['title'].values[0])
-    plt.xlabel('xw')
-    plt.ylabel('eEta')
-    plt.legend()
-    plt.grid()
+    x = pd.to_numeric(x)
+    y = pd.to_numeric(y)
+    ax[0].scatter(x,y, alpha=0.5)
+    ax[0].plot
+    #ax[0].set_title(df['title'].values[0], pad=20)
+    ax[0].set_xlabel('xw')
+    ax[0].set_ylabel('eEta')
+    ax[0].legend()
+    ax[0].grid()
 
     
-    plt.subplot(112)
     x = df.xw
     y = df['ln(eta0) (cP)']
-    print(x)
-    print(y)
-    plt.scatter(x,y, alpha=0.5)
-    plt.title(df['title'].values[0])
-    plt.xlabel('xw')
-    plt.ylabel('ln(eta0)')
-    plt.legend()
-    plt.grid()
+    x = pd.to_numeric(x)
+    y = pd.to_numeric(y)
+    ax[1].scatter(x,y, alpha=0.5)
+    ax[1].set_xlabel('xw')
+    ax[1].set_ylabel('ln(eta0)')
+    ax[1].legend()
+    ax[1].grid()
     
-    
-    plt.savefig("./plots/" + "arrhenius_"+ componentString + ".jpg", bbox_inches="tight")
-
-    
+    fig.tight_layout()
+    fig.savefig("./plots/" + "arrhenius_"+ componentString + ".jpg", bbox_inches="tight")
+ 
 if __name__ == "__main__":
 
 
-    dataRep = readThermo("DataGudrunGygli/cml2ThermoML/ChCl_glycerol/ChCl_glycerol_DOI2.xml")
+    dataRep = readThermo("DataGudrunGygli/cml2ThermoML/glycerol/glycerol_DOI1.xml")
 
-    df = dataRep.createDataFrame()
+    df = createDataFrame(dataRep)
     (x, comps) = doArrhenius(df)
     
     plotArrhenius(x, comps)

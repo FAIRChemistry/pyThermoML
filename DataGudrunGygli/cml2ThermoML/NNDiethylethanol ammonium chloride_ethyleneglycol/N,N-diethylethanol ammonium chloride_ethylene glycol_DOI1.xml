@@ -18,7 +18,7 @@
     <sStandardInChI>InChI=1S/H2O/h1H2</sStandardInChI>
     <sStandardInChIKey>XLYOFNOQVPJJNP-UHFFFAOYSA-N</sStandardInChIKey>
     <sCommonName>water</sCommonName>
-    <sSmiles>H20</sSmiles>
+    <sSmiles>O</sSmiles>
   </Compound>
   <Compound>
     <RegNum>
@@ -27,7 +27,7 @@
     <sStandardInChI>InChI=1S/C6H16NO.ClH/c1-4-6(3,5-2)8-7;/h4-5H2,1-3,7H3;1H/q+1;/p-1</sStandardInChI>
     <sStandardInChIKey>NIYUVINFVZDPMK-UHFFFAOYSA-M</sStandardInChIKey>
     <sCommonName>N,N-Diethylethanolammonium chloride</sCommonName>
-    <sSmiles>(C2H5)2NCH2CH2OHHCl</sSmiles>
+    <sSmiles>CC(C)(C)NCCO.Cl</sSmiles>
   </Compound>
   <Compound>
     <RegNum>

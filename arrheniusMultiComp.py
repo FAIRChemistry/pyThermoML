@@ -258,6 +258,7 @@ def _transpose(dictionary):
     return transposedDict
 
 if __name__ == "__main__":
+    print("as")
     """folderName = "water"
     superViscDict, superTempDict = getArrheniusData(folderName)
     #plotArrheniusMoleFractionConstant(superViscDict=superViscDict, superTempDict=superTempDict)
