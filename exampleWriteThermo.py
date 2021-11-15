@@ -1,9 +1,10 @@
+from flask.helpers import send_file
 from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
 
 from pythermo.thermoml.vars.componentcomposition import MoleFraction
 from pythermo.thermoml.vars.temperature import LowerTemperature, Temperature
 from pythermo.thermoml.vars.pressure import Pressure
-from pythermo.thermoml.props.transportproperties import Viscosity
+from pythermo.thermoml.props.transportproperties import Viscosity, Selfdiffusioncoefficient
 from pythermo.thermoml.tools.writeTools import writeThermo
 from pythermo.thermoml.tools.readTools import readThermo
 from pythermo.thermoml.props.volumetricproperties import MassDensity
@@ -34,7 +35,9 @@ comp2_ID = dataReport.addCompound(comp2)
 experiment = PureOrMixtureData("1", comp1_ID, comp2_ID)
 
 # property definitions
-dens = MassDensity('1', "simulation")
+dens = MassDensity('1', 'simulation')
+sdiffCoeff1 = Selfdiffusioncoefficient("2", "simulation", comp1_ID)
+sdiffCoeff2 = Selfdiffusioncoefficient("3", "simulation", comp2_ID)
 # Variable definitions
 temp = Temperature('temp1')
 
@@ -42,6 +45,8 @@ frac1 = MoleFraction('moleFrac1', comp1_ID)
 frac2 = MoleFraction('moleFrac2', comp2_ID)
 
 densID = experiment.addProperty(dens)
+dffCoeff1ID = experiment.addProperty(sdiffCoeff1)
+dffCoeff2ID = experiment.addProperty(sdiffCoeff2)
 tempID = experiment.addVariable(temp)
 frac1ID = experiment.addVariable(frac1)
 frac2ID = experiment.addVariable(frac2)
@@ -53,6 +58,18 @@ viscDataPoint = DataPoint(
     measurementID=measurementID,
     value=10.0,
     propID=densID,
+)
+
+sdiff1DataPoint1 = DataPoint(
+    measurementID=measurementID,
+    value = 10334,
+    propID = dffCoeff1ID
+)
+
+sdiff2DataPoint1 = DataPoint(
+    measurementID=measurementID,
+    value=123123,
+    propID=dffCoeff2ID
 )
 
 tempDataPoint = DataPoint(
@@ -74,7 +91,17 @@ frac2DataPoint = DataPoint(
 )
 
 measurementID = "meas2"
+sdiff1DataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value = 10334,
+    propID = dffCoeff1ID
+)
 
+sdiff2DataPoint2 = DataPoint(
+    measurementID=measurementID,
+    value=123123,
+    propID=dffCoeff2ID
+)
 viscDataPoint2 = DataPoint(
     measurementID=measurementID,
     value=1000.0,
@@ -103,8 +130,8 @@ frac2DataPoint2 = DataPoint(
     uncertainty=0.02
 )
 
-datapoints = [viscDataPoint, tempDataPoint, frac1DataPoint, frac2DataPoint]
-datapoints2 = [viscDataPoint2, tempDataPoint2,
+datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1, tempDataPoint, frac1DataPoint, frac2DataPoint]
+datapoints2 = [viscDataPoint2, sdiff1DataPoint2, sdiff2DataPoint2, tempDataPoint2,
                frac1DataPoint2, frac2DataPoint2]
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
@@ -112,10 +139,11 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
+#print(dataReport.toJSON())
 writeThermo(dataReport.toJSON(), 'testThermo.xml')
 
 #file = etree.parse("testThermo.xml")
 #print(etree.tostring(file, pretty_print=True, encoding=str))
 
-#data = readThermo("testThermo.xml")
-#print(data)
+data = readThermo("testThermo.xml")
+print(data)

@@ -2,7 +2,7 @@ from pythermo.thermoml.props.bioproperties import PeakTemperature
 from pythermo.thermoml.props.volumetricproperties import MassDensity
 from pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties import SurfaceTension, SpeedOfSound
 from pythermo.thermoml.props.heatcapacityproperties import MolarHCconstPressure, MolarHCconstVolume
-from pythermo.thermoml.props.transportproperties import Diffusioncoefficient, KinematicViscosity, Microviscosity, Viscosity
+from pythermo.thermoml.props.transportproperties import Selfdiffusioncoefficient, KinematicViscosity, Microviscosity, Viscosity
 
 from pythermo.thermoml.vars.temperature import LowerTemperature, Temperature, UpperTemperature
 from pythermo.thermoml.vars.pressure import Pressure
@@ -17,7 +17,7 @@ namespace = './/{http://www.iupac.org/namespaces/ThermoML}'
 propMapping = {
     'Viscosity, Pa*s': Viscosity,
     'Kinematic Viscosity, m2/s': KinematicViscosity,
-    'Self diffusion coefficient, m2/s': Diffusioncoefficient,
+    'Self diffusion coefficient, m2/s': Selfdiffusioncoefficient,
     'Mass density, kg/m3': MassDensity,
     'Surface tension liquid-gas, N/m': SurfaceTension,
     'Speed of sound, m/s': SpeedOfSound,
@@ -59,13 +59,12 @@ def readThermo(path) -> DataReport:
     
     # experiment[0] Object
     # experiment[1] ElementTree
-
+    
     for key, experiment in pOMData.items():
         props = __getProperties__(experiment[1])
         vars = __getVariables__(experiment[1])
-        
         for id, value in props.items():
-            experiment[0].addProperty(value[0](id, value[1]))
+            experiment[0].addProperty(value[0](id, value[1], value[2]))
         
         for id, value in vars.items():
             experiment[0].addVariable(value[0](id, value[1]))
@@ -146,9 +145,12 @@ def __getProperties__(pureOrMixtureData) -> dict:
     '''
     properties = dict()
     for property in pureOrMixtureData.findall(namespace + 'Property'):
-        
+        try:
+            compID = __get__(property, 'nOrgNum')
+        except IndexError:
+            compID = ""
         properties[__get__(property, 'nPropNumber')] = (__getPropMapping__(__get__(property, 'ePropName')),
-         __get__(property, 'eMethodName'))
+         __get__(property, 'eMethodName'), compID)
     return properties
 
 

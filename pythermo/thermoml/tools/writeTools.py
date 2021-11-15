@@ -136,6 +136,10 @@ def __createProperties(pureOrMixtureDict, PureOrMixtureData):
                 eMethodName = etree.SubElement(propertyGroupName, 'eMethodName')
                 eMethodName.text = value['method']
 
+            if 'compoundID' in value:
+                RegNum = etree.SubElement(PropertyMethodID, 'RegNum')
+                nOrgNum = etree.SubElement(RegNum, 'nOrgNum')
+                nOrgNum.text = value['compoundID']
             CombinedUncertainty = etree.SubElement(Property, 'CombinedUncertainty')
             nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssessNum')
             

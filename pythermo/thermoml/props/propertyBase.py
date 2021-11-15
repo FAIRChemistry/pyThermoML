@@ -11,7 +11,6 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 import json
-from pythermo.thermoml.core.functionalities import TypeChecker
 
 
 class PropertyBase(object):
@@ -23,6 +22,7 @@ class PropertyBase(object):
         ID,
         unit,
         method,
+        compoundID
     ) -> None:
 
         self.propName = propName
@@ -31,6 +31,8 @@ class PropertyBase(object):
         self.unit = unit
         self.method = method
         self.__type = "prop"
+        if compoundID is not None:
+            self.compoundID = compoundID
     
     def __str__(self):
         return json.dumps(
@@ -81,3 +83,11 @@ class PropertyBase(object):
     @method.setter
     def method(self, method):
         self._method = method
+
+    @property
+    def compoundID(self):
+        return self._compoundID
+
+    @compoundID.setter
+    def compoundID(self, compoundID):
+        self._compoundID = compoundID
