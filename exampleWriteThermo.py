@@ -78,7 +78,7 @@ measurementID = "meas2"
 viscDataPoint2 = DataPoint(
     measurementID=measurementID,
     value=1000.0,
-    propID=viscID,
+    propID=densID,
     uncertainty=0.1
 )
 
