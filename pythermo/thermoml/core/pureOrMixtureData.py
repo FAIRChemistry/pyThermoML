@@ -27,7 +27,7 @@ class PureOrMixtureData(BaseModel):
     variables: dict[str, Any] = {}
     measurements: dict[str, Any] = {}
 
-    def addProperty(self, prop: PropertyBase) -> str:
+    def addProperty(self, prop: PropertyBase) -> str():
         if prop.dataType != "prop":
             raise ThermoMLTypeError(
                 given_type=prop.dataType, expected_type="Property"
@@ -38,7 +38,7 @@ class PureOrMixtureData(BaseModel):
 
         return prop.ID
 
-    def addVariable(self, variable: VariableBase) -> str:
+    def addVariable(self, variable: VariableBase) -> str():
         if variable.dataType != "var":
             raise ThermoMLTypeError(
                 given_type=variable.dataType, expected_type="Variable"
@@ -58,18 +58,18 @@ class PureOrMixtureData(BaseModel):
 
             self.measurements[measurementID].addDataPoints(dataPoint, self)
 
-    def getMeasurementsList(self) -> list[Measurement]:
+    def getMeasurementsList(self) -> list[Measurement]():
         return list(self.measurements.values())
 
     @validate_arguments
-    def getPOMProperty(self, propertyID: str) -> PropertyBase:
+    def getPOMProperty(self, propertyID: str) -> PropertyBase():
         return self._getElement(
             propertyID,
             self.properties,
         )
 
     @validate_arguments
-    def getPOMVariable(self, variableID: str) -> VariableBase:
+    def getPOMVariable(self, variableID: str) -> VariableBase():
         return self._getElement(
             variableID,
             self.variables,

@@ -1,30 +1,27 @@
+f
 from pythermo.thermoml.props.propertyBase import PropertyBase
 
 
 class VolumetricProperty(PropertyBase):
 
-    def __init__(self, propName, ID, unit, method, compoundID=None):
+    def __init__(self, propName, ID, unit, method):
 
         super().__init__(
             propName=propName,
             propGroup="VolumetricProp",
             ID=ID,
             unit=unit,
-            method=method,
-            compoundID=compoundID
+            method=method
         )
 
 # functions
-def MassDensity(ID, method, compoundID=None):
-    print(compoundID)
-    if compoundID is not None:
-        compoundID = None
+def MassDensity(ID, method):
 
     volumetricProp = VolumetricProperty(
         propName="Mass density",
         ID=ID,
         unit="kg/m3",
-        method=method,
-        compoundID = compoundID
+        method=method
     )
+
     return volumetricProp

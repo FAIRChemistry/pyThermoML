@@ -11,3 +11,4 @@ class ThermoMLTypeError(Exception):
         return (
             f"Expected {self.expected_type}, got {self.given_type}."
         )
+        
