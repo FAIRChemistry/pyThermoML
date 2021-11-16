@@ -1,5 +1,5 @@
 from pythermo.thermoml.core.functionalities import TypeChecker
-import json
+
 
 class DataPoint(object):
 
@@ -13,10 +13,8 @@ class DataPoint(object):
         numberOfDigits=None
     ) -> None:
 
-
         self.measurementID = measurementID
         self.value = value
-        
 
         if propID:
             self.elementID = propID
@@ -30,25 +28,24 @@ class DataPoint(object):
 
         if uncertainty:
             self.uncertainty = uncertainty
-        
+
         if numberOfDigits:
             self.numberOfDigits = numberOfDigits
-
 
     def __str__(self):
         return self.toJSON()
 
     def toJSON(self):
-        
+
         def transformAttributes(self):
 
             jsonDict = dict()
             for key, value in self.__dict__.items():
 
                 try:
-                    jsonDict[key.replace('_','')] = value
+                    jsonDict[key.replace('_', '')] = value
                 except TypeError:
-                    jsonDict[key.replace('_','')] = str(value)
+                    jsonDict[key.replace('_', '')] = str(value)
 
             return jsonDict
 
@@ -57,7 +54,7 @@ class DataPoint(object):
             default=transformAttributes,
             indent=4
         )
-    
+
     @property
     def elementID(self):
         return self._elementID
@@ -84,7 +81,6 @@ class DataPoint(object):
             self._value = TypeChecker(value, float)
         except TypeError:
             self._value = TypeChecker(value, int)
-        
 
     @property
     def uncertainty(self):
@@ -95,17 +91,16 @@ class DataPoint(object):
         try:
             self._uncertainty = TypeChecker(uncertainty, float)
         except TypeError:
-             "please insert uncertainty as float"
+            "please insert uncertainty as float"
 
     @property
     def dataType(self):
         return self.__type
-    
+
     @property
     def numberOfDigits(self):
         return self._numberOfDigits
-    
+
     @numberOfDigits.setter
     def numberOfDigits(self, numberOfDigits):
         self._numberOfDigits = TypeChecker(numberOfDigits, int)
-        
