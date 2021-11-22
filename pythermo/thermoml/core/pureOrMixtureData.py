@@ -10,15 +10,24 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 
-from typing import Union, Any
+from typing import Union, Any, TYPE_CHECKING
+from dataclasses import dataclass
 from pydantic import BaseModel, validate_arguments
+
 from pythermo.thermoml.props.propertyBase import PropertyBase
 from pythermo.thermoml.vars.variableBase import VariableBase
 from pythermo.thermoml.core.measurement import Measurement
 from pythermo.thermoml.core.datapoint import DataPoint
 from pythermo.thermoml.core.exceptions import ThermoMLTypeError
+from pythermo.thermoml.core.utils import type_checking
+
+if TYPE_CHECKING:  # pragma: no cover
+    static_check_init_args = dataclass
+else:
+    static_check_init_args = type_checking
 
 
+@static_check_init_args
 class PureOrMixtureData(BaseModel):
 
     ID: str
@@ -27,10 +36,10 @@ class PureOrMixtureData(BaseModel):
     variables: dict[str, Any] = {}
     measurements: dict[str, Any] = {}
 
-    def addProperty(self, prop: PropertyBase) -> str():
-        if prop.dataType != "prop":
+    def addProperty(self, prop: PropertyBase) -> str:
+        if prop._type != "prop":
             raise ThermoMLTypeError(
-                given_type=prop.dataType, expected_type="Property"
+                given_type=prop._type, expected_type="Property"
             )
 
         # Add property to dicitonary
@@ -38,7 +47,7 @@ class PureOrMixtureData(BaseModel):
 
         return prop.ID
 
-    def addVariable(self, variable: VariableBase) -> str():
+    def addVariable(self, variable: VariableBase) -> str:
         if variable.dataType != "var":
             raise ThermoMLTypeError(
                 given_type=variable.dataType, expected_type="Variable"
@@ -54,22 +63,24 @@ class PureOrMixtureData(BaseModel):
 
             measurementID = dataPoint.measurementID
             if measurementID not in self.measurements.keys():
-                self.measurements[measurementID] = Measurement(measurementID)
+                self.measurements[measurementID] = Measurement(
+                    ID=measurementID
+                )
 
             self.measurements[measurementID].addDataPoints(dataPoint, self)
 
-    def getMeasurementsList(self) -> list[Measurement]():
+    def getMeasurementsList(self) -> list[Measurement]:
         return list(self.measurements.values())
 
     @validate_arguments
-    def getPOMProperty(self, propertyID: str) -> PropertyBase():
+    def getPOMProperty(self, propertyID: str):
         return self._getElement(
             propertyID,
             self.properties,
         )
 
     @validate_arguments
-    def getPOMVariable(self, variableID: str) -> VariableBase():
+    def getPOMVariable(self, variableID: str):
         return self._getElement(
             variableID,
             self.variables,
@@ -80,7 +91,7 @@ class PureOrMixtureData(BaseModel):
         elementID: str,
         dictionary: Union[dict[str, VariableBase],
                           dict[str, PropertyBase]]
-    ) -> Union[VariableBase, PropertyBase]:
+    ):
 
         try:
             return dictionary[elementID]

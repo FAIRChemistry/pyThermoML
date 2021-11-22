@@ -9,52 +9,32 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
-from pythermo.thermoml.core.functionalities import TypeChecker
+
+from pydantic import BaseModel
+
 from pythermo.thermoml.core.datapoint import DataPoint
 import json
 
 
-class Measurement(object):
+class Measurement(BaseModel):
 
-    def __init__(
-        self,
-        ID
-    ):
-        self.ID = ID
-        self.properties = dict()
-        self.variables = dict()
+    ID: str
+    properties: dict[str, DataPoint] = {}
+    variables: dict[str, DataPoint] = {}
 
-    def __str__(self):
-
-        def transformAttributes(self):
-
-            jsonDict = dict()
-            for key, value in self.__dict__.items():
-
-                try:
-                    jsonDict[key.replace('_', '')] = value
-                except TypeError:
-                    jsonDict[key.replace('_', '')] = str(value)
-
-            return jsonDict
-
-        return json.dumps(
-            self,
-            default=transformAttributes,
-            indent=4
-        )
-
-    def addDataPoints(self, dataPoints, pureMixtureData):
+    def addDataPoints(self, dataPoints: list[DataPoint], pureMixtureData):
 
         if isinstance(dataPoints, DataPoint):
             dataPoints = [dataPoints]
 
         for dataPoint in dataPoints:
+
             elementID = dataPoint.elementID
-            dataPointType = dataPoint.dataType
-            if elementID in pureMixtureData.properties.keys() and dataPointType == "prop":
+            data_point_type = dataPoint.data_point_type
+
+            if elementID in pureMixtureData.properties.keys() and data_point_type == "prop":
                 self.addToElementList(elementID, self.properties, dataPoint)
-            elif elementID in pureMixtureData.variables.keys() and dataPointType == "var":
+            elif elementID in pureMixtureData.variables.keys() and data_point_type == "var":
                 self.addToElementList(elementID, self.variables, dataPoint)
             else:
                 raise AttributeError(
@@ -66,38 +46,20 @@ class Measurement(object):
             dictionary[elementID] = list()
 
         dictionary[elementID].append(dataPoint)
-        
-
-    @property
-    def ID(self):
-        return self._ID
-
-    @ID.setter
-    def ID(self, ID):
-        self._ID = ID
-
-    @property
-    def properties(self):
-        return self._properties
-
-    @properties.setter
-    def properties(self, properties):
-        self._properties = TypeChecker(properties, dict)
 
     def getProperty(self, propertyID):
         return self._getElement(
             propertyID,
-            self._properties,
+            self.properties,
             "Property"
         )
 
     def getVariable(self, variableID):
         return self._getElement(
             variableID,
-            self._variables,
+            self.variables,
             "Variable"
         )
-
 
     def _getElement(self, elementID, dictionary, type_):
         try:
@@ -106,11 +68,3 @@ class Measurement(object):
             raise KeyError(
                 f"{type_} {elementID} is not defined yet."
             )
-
-    @ property
-    def variables(self):
-        return self._variables
-
-    @ variables.setter
-    def variables(self, variables):
-        self._variables = TypeChecker(variables, dict)

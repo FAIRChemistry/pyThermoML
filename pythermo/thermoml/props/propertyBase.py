@@ -10,84 +10,18 @@ Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 
-import json
+
+from pydantic import BaseModel
+from pydantic.fields import PrivateAttr
+from typing import Optional
 
 
-class PropertyBase(object):
+class PropertyBase(BaseModel):
 
-    def __init__(
-        self,
-        propName,
-        propGroup,
-        ID,
-        unit,
-        method,
-        compoundID
-    ) -> None:
-
-        self.propName = propName
-        self.ID = ID
-        self.propGroup = propGroup
-        self.unit = unit
-        self.method = method
-        self.__type = "prop"
-        if compoundID is not None:
-            self.compoundID = compoundID
-    
-    def __str__(self):
-        return json.dumps(
-            self.__dict__,
-            indent=4
-        )
-
-    @property
-    def dataType(self):
-        return self.__type
-
-    @property
-    def propName(self):
-        return self._propName
-
-    @propName.setter
-    def propName(self, propName):
-        self._propName = propName
-
-    @property
-    def ID(self):
-        return self._ID
-
-    @ID.setter
-    def ID(self, ID):
-        self._ID = ID
-
-    @property
-    def propGroup(self):
-        return self._propGroup
-
-    @propGroup.setter
-    def propGroup(self, propGroup):
-        self._propGroup = propGroup
-
-    @property
-    def unit(self):
-        return self._unit
-
-    @unit.setter
-    def unit(self, unit):
-        self._unit = unit
-
-    @property
-    def method(self):
-        return self._method
-
-    @method.setter
-    def method(self, method):
-        self._method = method
-
-    @property
-    def compoundID(self):
-        return self._compoundID
-
-    @compoundID.setter
-    def compoundID(self, compoundID):
-        self._compoundID = compoundID
+    propName: str
+    propGroup: str
+    ID: str
+    unit: str
+    method: str
+    compoundID: Optional[str] = None
+    _type: str = PrivateAttr(default="prop")
