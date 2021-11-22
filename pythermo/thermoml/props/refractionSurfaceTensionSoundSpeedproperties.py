@@ -3,45 +3,24 @@ from pythermo.thermoml.props.propertyBase import PropertyBase
 
 class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
 
-    def __init__(self, propName, ID, unit, method, compoundID = None):
+    propGroup: str = "RefractionSurfaceTensionSoundSpeed"
 
-        super().__init__(
-            propName=propName,
-            propGroup="RefractionSurfaceTensionSoundSpeed",
+    @classmethod
+    def surfaceTension(cls, ID: str, method: str, compoundID: str):
+        return cls(
+            propName="Surface tension liquid-gas",
             ID=ID,
-            unit=unit,
+            unit="N/m",
             method=method,
             compoundID=compoundID
         )
 
-
-# Initializer functions
-# TODO: convert unnits?
-def SurfaceTension(ID, method, compoundID):
-
-    if compoundID is not None:
-        compoundID = None
-
-    rprop = RefractionSurfaceTensionSoundSpeedproperty(
-        propName="Surface tension liquid-gas",
-        ID=ID,
-        unit="N/m",
-        method=method,
-        compoundID=compoundID
-    )
-
-    return rprop
-
-def SpeedOfSound(ID, method, compoundID):
-
-    if compoundID is not None:
-        compoundID = None
-    speedProp = RefractionSurfaceTensionSoundSpeedproperty(
-        propName="Speed of sound",
-        ID = ID,
-        unit="m/s",
-        method = method,
-        compoundID = compoundID
-    )
-
-    return speedProp
+    @classmethod
+    def speedOfSound(cls, ID: str, method: str, compoundID: str):
+        return cls(
+            propName="Speed of sound",
+            ID=ID,
+            unit="m/s",
+            method=method,
+            compoundID=compoundID
+        )

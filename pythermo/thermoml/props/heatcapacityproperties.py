@@ -3,42 +3,24 @@ from pythermo.thermoml.props.propertyBase import PropertyBase
 
 class HeatCapacityProperty(PropertyBase):
 
-    def __init__(self, propName, ID, unit, method, compoundID=None):
+    propGroup: str = "HeatCapacityAndDerivedProp"
 
-        super().__init__(
-            propName=propName,
-            propGroup="HeatCapacityAndDerivedProp",
+    @classmethod
+    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str):
+        return cls(
+            propName="Molar heat capacity at constant pressure",
             ID=ID,
-            unit=unit,
+            unit="J/K/mol",
             method=method,
-            compoundID = compoundID
+            compoundID=compoundID
         )
 
-
-# Initializer functions
-def MolarHCconstPressure(ID, method, compoundID):
-
-    hcprop = HeatCapacityProperty(
-        propName="Molar heat capacity at constant pressure",
-        ID=ID,
-        unit="J/K/mol",
-        method=method,
-        compoundID=None
-    )
-    if compoundID is not None:
-        compoundID=None
-    return hcprop
-
-def MolarHCconstVolume(ID, method, compoundID):
-
-    if compoundID is not None:
-        compoundID = None
-    hcprop = HeatCapacityProperty(
-        propName="Molar heat capacity at constant volume",
-        ID = ID,
-        unit="J/K/mol",
-        method = method,
-        compoundID = compoundID
-    )
-
-    return hcprop
+    @classmethod
+    def MolarHCconstVolume(cls, ID: str, method: str, compoundID: str):
+        return HeatCapacityProperty(
+            propName="Molar heat capacity at constant volume",
+            ID=ID,
+            unit="J/K/mol",
+            method=method,
+            compoundID=compoundID
+        )
