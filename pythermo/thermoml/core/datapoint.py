@@ -20,10 +20,10 @@ class DataPoint(BaseModel):
         varID = values.get("varID")
 
         if propID:
-            values["type"] = "Property"
+            values["data_point_type"] = "Property"
             return propID
         elif varID:
-            values["type"] = "Variable"
+            values["data_point_type"] = "Variable"
             return varID
         else:
             raise TypeError(
