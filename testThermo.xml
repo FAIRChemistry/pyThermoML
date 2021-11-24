@@ -8,12 +8,11 @@
     <sAuthor>Koichi Takamura</sAuthor>
     <sAuthor>Herbert Fischer</sAuthor>
     <sAuthor>Norman R. Morrow</sAuthor>
-    <sDOI>10.1016/j.petrol.2012.09.003</sDOI>
     <sTitle>Physical properties of aqueous glycerol solutions</sTitle>
   </Citation>
   <Compound>
     <RegNum>
-      <nOrgNum>1</nOrgNum>
+      <nOrgNum>c1</nOrgNum>
     </RegNum>
     <sStandardInChI>InChI=1S/H2O/h1H2</sStandardInChI>
     <sStandardInChIKey>XLYOFNOQVPJJNP-UHFFFAOYSA-N</sStandardInChIKey>
@@ -22,7 +21,7 @@
   </Compound>
   <Compound>
     <RegNum>
-      <nOrgNum>2</nOrgNum>
+      <nOrgNum>c2</nOrgNum>
     </RegNum>
     <sStandardInChI>InChI=1S/C3H8O3/c4-1-3(6)2-5/h3-6H,1-2H2</sStandardInChI>
     <sStandardInChIKey>PEDCQBHIVMGVHV-UHFFFAOYSA-N</sStandardInChIKey>
@@ -33,12 +32,12 @@
     <nPureOrMixtureDataNumber>1</nPureOrMixtureDataNumber>
     <Component>
       <RegNum>
-        <nOrgNum>1</nOrgNum>
+        <nOrgNum>c1</nOrgNum>
       </RegNum>
     </Component>
     <Component>
       <RegNum>
-        <nOrgNum>2</nOrgNum>
+        <nOrgNum>c2</nOrgNum>
       </RegNum>
     </Component>
     <Property>
@@ -65,7 +64,7 @@
           </TransportProp>
         </PropertyGroup>
         <RegNum>
-          <nOrgNum>1</nOrgNum>
+          <nOrgNum>c1</nOrgNum>
         </RegNum>
       </PropertyMethod-ID>
       <CombinedUncertainty>
@@ -82,7 +81,7 @@
           </TransportProp>
         </PropertyGroup>
         <RegNum>
-          <nOrgNum>2</nOrgNum>
+          <nOrgNum>c2</nOrgNum>
         </RegNum>
       </PropertyMethod-ID>
       <CombinedUncertainty>
@@ -107,7 +106,7 @@
           <eComponentComposition>Mole fraction</eComponentComposition>
         </VariableType>
         <RegNum>
-          <nOrgNum>1</nOrgNum>
+          <nOrgNum>c1</nOrgNum>
         </RegNum>
       </VariableID>
       <VarUncertainty>
@@ -121,7 +120,7 @@
           <eComponentComposition>Mole fraction</eComponentComposition>
         </VariableType>
         <RegNum>
-          <nOrgNum>2</nOrgNum>
+          <nOrgNum>c2</nOrgNum>
         </RegNum>
       </VariableID>
       <VarUncertainty>
@@ -147,11 +146,11 @@
       </PropertyValue>
       <PropertyValue>
         <nPropNumber>2</nPropNumber>
-        <nPropValue>10334</nPropValue>
+        <nPropValue>10334.0</nPropValue>
       </PropertyValue>
       <PropertyValue>
         <nPropNumber>3</nPropNumber>
-        <nPropValue>123123</nPropValue>
+        <nPropValue>123123.0</nPropValue>
       </PropertyValue>
     </NumValues>
     <NumValues ID="meas2">
@@ -173,7 +172,7 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>1000</nVarValue>
+        <nVarValue>1000.0</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.02</nExpandUncertValue>
@@ -189,11 +188,11 @@
       </PropertyValue>
       <PropertyValue>
         <nPropNumber>2</nPropNumber>
-        <nPropValue>10334</nPropValue>
+        <nPropValue>10334.0</nPropValue>
       </PropertyValue>
       <PropertyValue>
         <nPropNumber>3</nPropNumber>
-        <nPropValue>123123</nPropValue>
+        <nPropValue>123123.0</nPropValue>
       </PropertyValue>
     </NumValues>
   </PureOrMixtureData>

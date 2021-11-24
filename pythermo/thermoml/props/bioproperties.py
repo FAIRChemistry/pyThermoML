@@ -18,11 +18,11 @@ class Bioproperty(PropertyBase):
     propGroup: str = "Bioproperty"
 
     @classmethod
-    def peakTemperature(cls, ID: str, method: str, compoundID: str):
+    def peakTemperature(cls, ID: str, method: str, compoundID: str = None):
         return cls(
             propName="Peak temperature",
             ID=ID,
             unit="K",
             method=method,
-            compoundID=compoundID
+            compoundID = compoundID
         )

@@ -16,4 +16,4 @@ from pythermo.thermoml.core.measurement import Measurement
 from pythermo.thermoml.core.datareport import DataReport
 from pythermo.thermoml.core.compound import Compound
 from pythermo.thermoml.core.datapoint import DataPoint
-from pythermo.thermoml.core.exceptions import ThermoMLTypeError
+from pythermo.thermoml.core.exceptions import *

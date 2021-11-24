@@ -6,21 +6,21 @@ class HeatCapacityProperty(PropertyBase):
     propGroup: str = "HeatCapacityAndDerivedProp"
 
     @classmethod
-    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str):
+    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str = None):
         return cls(
             propName="Molar heat capacity at constant pressure",
             ID=ID,
             unit="J/K/mol",
             method=method,
-            compoundID=compoundID
+            compoundID = compoundID
         )
 
     @classmethod
-    def MolarHCconstVolume(cls, ID: str, method: str, compoundID: str):
+    def MolarHCconstVolume(cls, ID: str, method: str, compoundID: str = None):
         return HeatCapacityProperty(
             propName="Molar heat capacity at constant volume",
             ID=ID,
             unit="J/K/mol",
             method=method,
-            compoundID=compoundID
+            compoundID = compoundID
         )

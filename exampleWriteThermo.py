@@ -1,13 +1,14 @@
 from flask.helpers import send_file
 from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
 
-from pythermo.thermoml.vars.componentcomposition import MoleFraction
-from pythermo.thermoml.vars.temperature import LowerTemperature, Temperature
-from pythermo.thermoml.vars.pressure import Pressure
-from pythermo.thermoml.props.transportproperties import Viscosity, Selfdiffusioncoefficient
-from pythermo.thermoml.tools.writeTools import writeThermo
-from pythermo.thermoml.tools.readTools import readThermo
-from pythermo.thermoml.props.volumetricproperties import MassDensity
+from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
+from pythermo.thermoml.vars.temperature import TemperatureBase
+from pythermo.thermoml.vars.pressure import PressureBase
+from pythermo.thermoml.props.transportproperties import TransportProperty
+from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
+
+from pythermo.thermoml.tools.writeTools import ThermoMLWriter
+from pythermo.thermoml.tools.readTools import ThermoMLReader
 import json as j
 from lxml import etree
 # TODO: reading input data from excel spreadsheet
@@ -19,31 +20,39 @@ authors = {
     "author 3": "Norman R. Morrow"
 }
 
-dataReport = DataReport("Physical properties of aqueous glycerol solutions",
-                        "10.1016/j.petrol.2012.09.003", authors=authors)
+dataReport = DataReport(title="Physical properties of aqueous glycerol solutions",
+                        doi="10.1016/j.petrol.2012.09.003", authors=authors)
+
 
 # declaration of compound used in measurements
 # TODO: Compound ID is fix? 1,2,3,... in ThermoML integers necesarry
-comp1 = Compound("1", "InChI=1S/H2O/h1H2", "XLYOFNOQVPJJNP-UHFFFAOYSA-N", "O", "water")
-comp2 = Compound("2", "InChI=1S/C3H8O3/c4-1-3(6)2-5/h3-6H,1-2H2", "PEDCQBHIVMGVHV-UHFFFAOYSA-N", "C(C(CO)O)O", "glycerol")
+comp1 = Compound(ID="c1", standardInchI="InChI=1S/H2O/h1H2",
+                 standardInchIKey="XLYOFNOQVPJJNP-UHFFFAOYSA-N", smiles="O", commonName="water")
+comp2 = Compound(ID="c2", standardInchI="InChI=1S/C3H8O3/c4-1-3(6)2-5/h3-6H,1-2H2",
+                 standardInchIKey="PEDCQBHIVMGVHV-UHFFFAOYSA-N", smiles="C(C(CO)O)O", commonName="glycerol")
 
 
 comp1_ID = dataReport.addCompound(comp1)
 comp2_ID = dataReport.addCompound(comp2)
 
+comps = [comp1_ID, comp2_ID]
 # components which are used in respective experiment
-experiment = PureOrMixtureData("1", comp1_ID, comp2_ID)
+experiment = PureOrMixtureData(ID="1", comps=comps)
 
 # property definitions
-dens = MassDensity('1', 'simulation')
-sdiffCoeff1 = Selfdiffusioncoefficient("2", "simulation", comp1_ID)
-sdiffCoeff2 = Selfdiffusioncoefficient("3", "simulation", comp2_ID)
+dens = VolumetricProperty.massDensity(ID='1', method='simulation')
+sdiffCoeff1 = TransportProperty.selfDiffusionCoefficient(
+    ID="2", method='simulation', compoundID=comp1_ID)
+sdiffCoeff2 = TransportProperty.selfDiffusionCoefficient(
+    ID="3", method='simulation', compoundID=comp2_ID)
+
 # Variable definitions
-temp = Temperature('temp1')
+temp = TemperatureBase.temperature(ID="temp1")
 
-frac1 = MoleFraction('moleFrac1', comp1_ID)
-frac2 = MoleFraction('moleFrac2', comp2_ID)
+frac1 = ComponentCompositionBase.moleFraction('moleFrac1', comp1_ID)
+frac2 = ComponentCompositionBase.moleFraction('moleFrac2', comp2_ID)
 
+print(temp.json())
 densID = experiment.addProperty(dens)
 dffCoeff1ID = experiment.addProperty(sdiffCoeff1)
 dffCoeff2ID = experiment.addProperty(sdiffCoeff2)
@@ -62,8 +71,8 @@ viscDataPoint = DataPoint(
 
 sdiff1DataPoint1 = DataPoint(
     measurementID=measurementID,
-    value = 10334,
-    propID = dffCoeff1ID
+    value=10334,
+    propID=dffCoeff1ID
 )
 
 sdiff2DataPoint1 = DataPoint(
@@ -93,8 +102,8 @@ frac2DataPoint = DataPoint(
 measurementID = "meas2"
 sdiff1DataPoint2 = DataPoint(
     measurementID=measurementID,
-    value = 10334,
-    propID = dffCoeff1ID
+    value=10334,
+    propID=dffCoeff1ID
 )
 
 sdiff2DataPoint2 = DataPoint(
@@ -130,7 +139,8 @@ frac2DataPoint2 = DataPoint(
     uncertainty=0.02
 )
 
-datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1, tempDataPoint, frac1DataPoint, frac2DataPoint]
+datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1,
+              tempDataPoint, frac1DataPoint, frac2DataPoint]
 datapoints2 = [viscDataPoint2, sdiff1DataPoint2, sdiff2DataPoint2, tempDataPoint2,
                frac1DataPoint2, frac2DataPoint2]
 # add Measurement to experiment
@@ -139,11 +149,15 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-#print(dataReport.toJSON())
-writeThermo(dataReport.toJSON(), 'testThermo.xml')
+print(dataReport.json(exclude_none=True, indent=4))
+writer = ThermoMLWriter(dataRep="testThermo.json", filename="testThermo.xml")
 
-#file = etree.parse("testThermo.xml")
-#print(etree.tostring(file, pretty_print=True, encoding=str))
+"""
+file = etree.parse("testThermo.xml")
+print(etree.tostring(file, pretty_print=True, encoding=str))
+"""
 
-data = readThermo("testThermo.xml")
-print(data)
+reader = ThermoMLReader(path="testThermo.xml")
+dataRepr = reader.readFromFile()
+
+#print(dataReport.getPureOrMixtureData("1").json(exclude_none=True, indent=4))

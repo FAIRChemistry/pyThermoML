@@ -37,7 +37,7 @@ class PureOrMixtureData(BaseModel):
     measurements: dict[str, Any] = {}
 
     def addProperty(self, prop: PropertyBase) -> str:
-        if prop._type != "prop":
+        if prop._type != "Property":
             raise ThermoMLTypeError(
                 given_type=prop._type, expected_type="Property"
             )
@@ -48,9 +48,9 @@ class PureOrMixtureData(BaseModel):
         return prop.ID
 
     def addVariable(self, variable: VariableBase) -> str:
-        if variable.dataType != "var":
+        if variable._type != "Variable":
             raise ThermoMLTypeError(
-                given_type=variable.dataType, expected_type="Variable"
+                given_type=variable._type, expected_type="Variable"
             )
 
         # Add variable to dicitonary

@@ -3,7 +3,7 @@ from pydantic import BaseModel, validator, PrivateAttr
 
 
 class Compound(BaseModel):
-
+    """class representing a compound used in ThermoML"""
     ID: str
     standardInchI: Optional[str] = None
     standardInchIKey: Optional[str] = None
@@ -13,6 +13,17 @@ class Compound(BaseModel):
 
     @validator("ID")
     def validate_ID_string(cls, ID):
+        """[summary]
+
+        Args:
+            ID ([type]): [description]
+
+        Raises:
+            TypeError: [description]
+
+        Returns:
+            [type]: [description]
+        """
         if ID.startswith("c"):
             return ID
         else:

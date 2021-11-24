@@ -32,9 +32,9 @@ class Measurement(BaseModel):
             elementID = dataPoint.elementID
             data_point_type = dataPoint.data_point_type
 
-            if elementID in pureMixtureData.properties.keys() and data_point_type == "prop":
+            if elementID in pureMixtureData.properties.keys() and data_point_type == "Property":
                 self.addToElementList(elementID, self.properties, dataPoint)
-            elif elementID in pureMixtureData.variables.keys() and data_point_type == "var":
+            elif elementID in pureMixtureData.variables.keys() and data_point_type == "Variable":
                 self.addToElementList(elementID, self.variables, dataPoint)
             else:
                 raise AttributeError(

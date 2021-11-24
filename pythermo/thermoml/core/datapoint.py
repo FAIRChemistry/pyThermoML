@@ -1,9 +1,9 @@
-
 from typing import Union, Optional
 from pydantic import BaseModel, validator
 
 
 class DataPoint(BaseModel):
+    """class that represents a data point"""
 
     measurementID: str
     value: Union[float, int]
@@ -16,6 +16,18 @@ class DataPoint(BaseModel):
 
     @validator("elementID", always=True)
     def specify_element_id(cls, v, values):
+        """specifies wheter element is new data point is property or variable. 
+        Sets propID/varID as elementID and sets dat_point_type as "Variable" or "Property".
+
+        Args:
+            values (dict): dict representation of input
+
+        Raises:
+            TypeError: when neither propertyID or variableID has been specified.
+
+        Returns:
+            str: the varID or propID stored as elementID
+        """
         propID = values.get("propID")
         varID = values.get("varID")
 
@@ -29,8 +41,3 @@ class DataPoint(BaseModel):
             raise TypeError(
                 "Neither propertyID or variableID has been specified."
             )
-
-
-if __name__ == "__main__":
-    dp = DataPoint(measurementID="1", value="1", varID="11")
-    print(dp.dict(exclude_none=True))

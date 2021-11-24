@@ -2,32 +2,12 @@ from pythermo.thermoml.vars.variableBase import VariableBase
 
 class ComponentCompositionBase(VariableBase):
 
-    def __init__(
-        self,
-        varName,
-        ID,
-        unit,
-        compoundID
-    ) -> None:
+    varType: str = "eComponentComposition"
 
-        super().__init__(
-            varType="eComponentComposition",
-            varName=varName,
-            ID=ID,
-            unit=unit,
-            compoundID = compoundID
-        )
-
-
-def MoleFraction(ID, compoundID):
-    moleFractionVar = ComponentCompositionBase(
-        varName="Mole fraction",
+    @classmethod
+    def moleFraction(cls, ID: str, compoundID: str):
+        return cls(varName="Mole fraction",
         ID=ID,
         unit="",
         compoundID=compoundID
     )
-
-    return moleFractionVar
-
-
-

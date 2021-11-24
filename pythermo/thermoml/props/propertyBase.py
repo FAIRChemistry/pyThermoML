@@ -24,4 +24,4 @@ class PropertyBase(BaseModel):
     unit: str
     method: str
     compoundID: Optional[str] = None
-    _type: str = PrivateAttr(default="prop")
+    _type: str = PrivateAttr(default="Property")

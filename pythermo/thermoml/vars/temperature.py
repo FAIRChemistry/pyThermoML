@@ -15,69 +15,31 @@ from pythermo.thermoml.vars.variableBase import VariableBase
 
 class TemperatureBase(VariableBase):
 
-    def __init__(
-        self,
-        varName,
-        ID,
-        unit,
-        compoundID=None,
-    ):
+    varType: str = "eTemperature"
 
-        super().__init__(
-            varType="eTemperature",
-            varName=varName,
+    @classmethod
+    def temperature(cls, ID: str, compoundID: str = None):
+        return cls (
+            varName = "Temperature",
             ID=ID,
-            unit=unit,
+            unit="K",
+            compoundID=compoundID
+        )
+
+    @classmethod
+    def upperTemperature(cls, ID: str, compoundID: str = None):
+        return cls(
+            varName = "Upper temperature",
+            ID = ID,
+            unit = "K",
             compoundID = compoundID
         )
 
-# Initializers
-
-def Temperature(
-    ID: "Unique identifier",
-    compoundID = None
-):
-    
-    # not component specific!
-    if compoundID is not None:
-        compoundID=None
-
-    temperatureVar = TemperatureBase(
-        varName="Temperature",
-        ID=ID,
-        unit="K",
-        compoundID = compoundID
-    )
-
-    return temperatureVar
-
-
-def UpperTemperature(
-    ID: "Unique identifier",
-    compoundID = None
-):
-    if compoundID is not None:
-        compoundID = None
-    upperTemperatureVar = TemperatureBase(
-        varName="Upper temperature",
-        ID=ID,
-        unit="K",
-        compoundID=compoundID
-    )
-
-    return upperTemperatureVar
-
-def LowerTemperature(
-    ID: "Unique identifier",
-    compoundID = None
-):
-    if compoundID is not None:
-        compoundID = None
-    lowerTemperatureVar = TemperatureBase(
-        varName="Lower temperature",
-        ID=ID,
-        unit="K",
-        compoundID=None
-    )
-
-    return lowerTemperatureVar
+    @classmethod
+    def lowerTemperature(cls, ID: str, compoundID: str = None):
+        return cls(
+            varName = "Lower temperature",
+            ID = ID,
+            unit = "K",
+            compoundID = compoundID
+        )
