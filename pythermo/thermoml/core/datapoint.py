@@ -11,8 +11,8 @@ class DataPoint(BaseModel):
     varID: Optional[str] = None
     uncertainty: Optional[float]
     numberOfDigits: Optional[int]
-    elementID: Optional[str] = None
     data_point_type: Optional[str] = None
+    elementID: Optional[str] = None
 
     @validator("elementID", always=True)
     def specify_element_id(cls, v, values):
