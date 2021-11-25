@@ -29,7 +29,7 @@ else:
 
 @static_check_init_args
 class PureOrMixtureData(BaseModel):
-
+    """class representing pure or mixture data. Each pure or mixture data has a user specified ID"""
     ID: str
     comps: list[str] = []
     properties: dict[str, Any] = {}
@@ -37,6 +37,17 @@ class PureOrMixtureData(BaseModel):
     measurements: dict[str, Any] = {}
 
     def addProperty(self, prop: PropertyBase) -> str:
+        """adds a property to pureOrMixture data
+
+        Args:
+            prop (PropertyBase): the respective property is inherited from PropertyBase
+
+        Raises:
+            ThermoMLTypeError: If property is no well defined property
+
+        Returns:
+            str: user specified ID of property
+        """
         if prop._type != "Property":
             raise ThermoMLTypeError(
                 given_type=prop._type, expected_type="Property"
@@ -48,6 +59,17 @@ class PureOrMixtureData(BaseModel):
         return prop.ID
 
     def addVariable(self, variable: VariableBase) -> str:
+        """adds a variable to pureOrMixture data
+
+        Args:
+            variable (VariableBase): the respective variable is inherited from VariableBase
+
+        Raises:
+            ThermoMLTypeError: If variable is no well defined variable
+
+        Returns:
+            str: user sepcified ID of variable
+        """
         if variable._type != "Variable":
             raise ThermoMLTypeError(
                 given_type=variable._type, expected_type="Variable"
@@ -59,6 +81,12 @@ class PureOrMixtureData(BaseModel):
         return variable.ID
 
     def addMeasurement(self, dataPoints: list[DataPoint]) -> None:
+        """adds a measurement to pure or mxiture data. 
+        One measurement consists of multiple datapoints which contain experimental/simulation data of property or of variable. With the same meausrement ID.
+
+        Args:
+            dataPoints (list[DataPoint]): 
+        """
         for dataPoint in dataPoints:
 
             measurementID = dataPoint.measurementID
@@ -136,11 +164,3 @@ class PureOrMixtureData(BaseModel):
                 except AttributeError:
                     continue
         return moleFracCompound
-
-
-if __name__ == "__main__":
-    pom = PureOrMixtureData(
-        ID="Lol"
-    )
-
-    print(pom)

@@ -5,84 +5,50 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sAuthor>Koichi Takamura</sAuthor>
-    <sAuthor>Herbert Fischer</sAuthor>
-    <sAuthor>Norman R. Morrow</sAuthor>
-    <sTitle>Physical properties of aqueous glycerol solutions</sTitle>
+    <sTitle>Title of referred paper</sTitle>
+    <sAuthor>author5</sAuthor>
+    <sAuthor>author2</sAuthor>
+    <sDOI>DOI of referred paper</sDOI>
   </Citation>
   <Compound>
     <RegNum>
-      <nOrgNum>c1</nOrgNum>
+      <nOrgNum>id1</nOrgNum>
     </RegNum>
-    <sStandardInChI>InChI=1S/H2O/h1H2</sStandardInChI>
-    <sStandardInChIKey>XLYOFNOQVPJJNP-UHFFFAOYSA-N</sStandardInChIKey>
+    <sStandardInChI>inhi1</sStandardInChI>
+    <sStandardInChIKey>inchikey1</sStandardInChIKey>
     <sCommonName>water</sCommonName>
-    <sSmiles>O</sSmiles>
+    <sSmiles>smiles1</sSmiles>
   </Compound>
   <Compound>
     <RegNum>
-      <nOrgNum>c2</nOrgNum>
+      <nOrgNum>id2</nOrgNum>
     </RegNum>
-    <sStandardInChI>InChI=1S/C3H8O3/c4-1-3(6)2-5/h3-6H,1-2H2</sStandardInChI>
-    <sStandardInChIKey>PEDCQBHIVMGVHV-UHFFFAOYSA-N</sStandardInChIKey>
-    <sCommonName>glycerol</sCommonName>
-    <sSmiles>C(C(CO)O)O</sSmiles>
+    <sStandardInChI>inchi2</sStandardInChI>
+    <sStandardInChIKey>inchikey2</sStandardInChIKey>
+    <sCommonName>ethanol</sCommonName>
+    <sSmiles>smiles2</sSmiles>
   </Compound>
   <PureOrMixtureData>
-    <nPureOrMixtureDataNumber>1</nPureOrMixtureDataNumber>
+    <nPureOrMixtureDataNumber>ID</nPureOrMixtureDataNumber>
     <Component>
       <RegNum>
-        <nOrgNum>c1</nOrgNum>
+        <nOrgNum>id1</nOrgNum>
       </RegNum>
     </Component>
     <Component>
       <RegNum>
-        <nOrgNum>c2</nOrgNum>
+        <nOrgNum>id2</nOrgNum>
       </RegNum>
     </Component>
     <Property>
-      <nPropNumber>1</nPropNumber>
-      <PropertyMethod-ID>
-        <PropertyGroup>
-          <VolumetricProp>
-            <ePropName>Mass density, kg/m3</ePropName>
-            <eMethodName>simulation</eMethodName>
-          </VolumetricProp>
-        </PropertyGroup>
-      </PropertyMethod-ID>
-      <CombinedUncertainty>
-        <nCombUncertAssessNum>1</nCombUncertAssessNum>
-      </CombinedUncertainty>
-    </Property>
-    <Property>
-      <nPropNumber>2</nPropNumber>
+      <nPropNumber>visc1</nPropNumber>
       <PropertyMethod-ID>
         <PropertyGroup>
           <TransportProp>
-            <ePropName>Self diffusion coefficient, m2/s</ePropName>
+            <ePropName>Viscosity, Pa*s</ePropName>
             <eMethodName>simulation</eMethodName>
           </TransportProp>
         </PropertyGroup>
-        <RegNum>
-          <nOrgNum>c1</nOrgNum>
-        </RegNum>
-      </PropertyMethod-ID>
-      <CombinedUncertainty>
-        <nCombUncertAssessNum>1</nCombUncertAssessNum>
-      </CombinedUncertainty>
-    </Property>
-    <Property>
-      <nPropNumber>3</nPropNumber>
-      <PropertyMethod-ID>
-        <PropertyGroup>
-          <TransportProp>
-            <ePropName>Self diffusion coefficient, m2/s</ePropName>
-            <eMethodName>simulation</eMethodName>
-          </TransportProp>
-        </PropertyGroup>
-        <RegNum>
-          <nOrgNum>c2</nOrgNum>
-        </RegNum>
       </PropertyMethod-ID>
       <CombinedUncertainty>
         <nCombUncertAssessNum>1</nCombUncertAssessNum>
@@ -106,7 +72,7 @@
           <eComponentComposition>Mole fraction</eComponentComposition>
         </VariableType>
         <RegNum>
-          <nOrgNum>c1</nOrgNum>
+          <nOrgNum>id1</nOrgNum>
         </RegNum>
       </VariableID>
       <VarUncertainty>
@@ -120,7 +86,7 @@
           <eComponentComposition>Mole fraction</eComponentComposition>
         </VariableType>
         <RegNum>
-          <nOrgNum>c2</nOrgNum>
+          <nOrgNum>id2</nOrgNum>
         </RegNum>
       </VariableID>
       <VarUncertainty>
@@ -131,26 +97,34 @@
       <VariableValue>
         <nVarNumber>temp1</nVarNumber>
         <nVarValue>300.0</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>10.0</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac1</nVarNumber>
         <nVarValue>0.2</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>0.01</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
         <nVarValue>0.8</nVarValue>
+        <VarUncertainty>
+          <nUncertAssesNum>1</nUncertAssesNum>
+          <nExpandUncertValue>0.02</nExpandUncertValue>
+        </VarUncertainty>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>1</nPropNumber>
+        <nPropNumber>visc1</nPropNumber>
         <nPropValue>10.0</nPropValue>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>2</nPropNumber>
-        <nPropValue>10334.0</nPropValue>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>3</nPropNumber>
-        <nPropValue>123123.0</nPropValue>
+        <CombinedUncertainty>
+          <nCombUncertAssesNum>1</nCombUncertAssesNum>
+          <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
+        </CombinedUncertainty>
       </PropertyValue>
     </NumValues>
     <NumValues ID="meas2">
@@ -172,27 +146,19 @@
       </VariableValue>
       <VariableValue>
         <nVarNumber>moleFrac2</nVarNumber>
-        <nVarValue>1000.0</nVarValue>
+        <nVarValue>1000</nVarValue>
         <VarUncertainty>
           <nUncertAssesNum>1</nUncertAssesNum>
           <nExpandUncertValue>0.02</nExpandUncertValue>
         </VarUncertainty>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>1</nPropNumber>
+        <nPropNumber>visc1</nPropNumber>
         <nPropValue>1000.0</nPropValue>
         <CombinedUncertainty>
           <nCombUncertAssesNum>1</nCombUncertAssesNum>
           <nCombExpandUncertValue>0.1</nCombExpandUncertValue>
         </CombinedUncertainty>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>2</nPropNumber>
-        <nPropValue>10334.0</nPropValue>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>3</nPropNumber>
-        <nPropValue>123123.0</nPropValue>
       </PropertyValue>
     </NumValues>
   </PureOrMixtureData>

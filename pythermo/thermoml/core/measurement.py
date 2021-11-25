@@ -13,17 +13,26 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 from pydantic import BaseModel
 
 from pythermo.thermoml.core.datapoint import DataPoint
-import json
-
+from pythermo.thermoml.core.pureOrMixtureData import PureOrMixtureData
 
 class Measurement(BaseModel):
+    """class representing a measurement in data report. Each measurement has a user specified ID. 
+    Each measurement contains all property/variable data point of one measurement."""
 
     ID: str
     properties: dict[str, DataPoint] = {}
     variables: dict[str, DataPoint] = {}
 
-    def addDataPoints(self, dataPoints: list[DataPoint], pureMixtureData):
+    def addDataPoints(self, dataPoints: list[DataPoint], pureMixtureData: PureOrMixtureData) -> None:
+        """adds list of data points of measurement
 
+        Args:
+            dataPoints (list[DataPoint]): list with data points.
+            pureMixtureData (PureOrMixtureData): pure or mixture data base class which contains measurement
+
+        Raises:
+            AttributeError: [description]
+        """
         if isinstance(dataPoints, DataPoint):
             dataPoints = [dataPoints]
 

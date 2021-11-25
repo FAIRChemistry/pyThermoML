@@ -9,7 +9,9 @@ from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
 
 from pythermo.thermoml.tools.writeTools import ThermoMLWriter
 from pythermo.thermoml.tools.readTools import ThermoMLReader
-import json as j
+import json
+
+from pydantic.json import pydantic_encoder
 from lxml import etree
 # TODO: reading input data from excel spreadsheet
 
@@ -21,7 +23,7 @@ authors = {
 }
 
 dataReport = DataReport(title="Physical properties of aqueous glycerol solutions",
-                        doi="10.1016/j.petrol.2012.09.003", authors=authors)
+                        DOI="10.1016/j.petrol.2012.09.003", authors=authors)
 
 
 # declaration of compound used in measurements
@@ -37,7 +39,7 @@ comp2_ID = dataReport.addCompound(comp2)
 
 comps = [comp1_ID, comp2_ID]
 # components which are used in respective experiment
-experiment = PureOrMixtureData(ID="1", comps=comps)
+experiment = PureOrMixtureData(ID="4", comps=comps)
 
 # property definitions
 dens = VolumetricProperty.massDensity(ID='1', method='simulation')
@@ -52,7 +54,6 @@ temp = TemperatureBase.temperature(ID="temp1")
 frac1 = ComponentCompositionBase.moleFraction('moleFrac1', comp1_ID)
 frac2 = ComponentCompositionBase.moleFraction('moleFrac2', comp2_ID)
 
-print(temp.json())
 densID = experiment.addProperty(dens)
 dffCoeff1ID = experiment.addProperty(sdiffCoeff1)
 dffCoeff2ID = experiment.addProperty(sdiffCoeff2)
@@ -149,9 +150,9 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-print(dataReport.json(exclude_none=True, indent=4))
-writer = ThermoMLWriter(dataRep="testThermo.json", filename="testThermo.xml")
 
+writer = ThermoMLWriter(dataRep="testThermo.json", filename="testThermo.xml")
+writer.writeThermo()
 """
 file = etree.parse("testThermo.xml")
 print(etree.tostring(file, pretty_print=True, encoding=str))
@@ -159,5 +160,6 @@ print(etree.tostring(file, pretty_print=True, encoding=str))
 
 reader = ThermoMLReader(path="testThermo.xml")
 dataRepr = reader.readFromFile()
-
+#print(dataRepr.json(exclude_none=True, indent=4))
+#print(dataRepr.authors)
 #print(dataReport.getPureOrMixtureData("1").json(exclude_none=True, indent=4))

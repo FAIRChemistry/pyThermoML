@@ -15,8 +15,9 @@ class DataPoint(BaseModel):
     elementID: Optional[str] = None
 
     @validator("elementID", always=True)
-    def specify_element_id(cls, v, values):
-        """specifies wheter element is new data point is property or variable. 
+    @classmethod
+    def specify_element_id(cls, v, values) -> str:
+        """specifies whether elementID of new data point is property or variable. 
         Sets propID/varID as elementID and sets dat_point_type as "Variable" or "Property".
 
         Args:

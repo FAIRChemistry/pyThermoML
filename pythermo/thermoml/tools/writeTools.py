@@ -3,25 +3,41 @@ from pythermo.thermoml.core import DataReport
 import json
 from pydantic import BaseModel, validator
 from typing import  Union
-from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError
+from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError, ThermoMLWriterDataReportTypeError
+from pydantic.json import pydantic_encoder
 
 class ThermoMLWriter(BaseModel):
-    '''
-    Converts a given jsonformats to ThermoML
-    
+    """class that contains methods used for thermoML 
+
     Args:
-        dataRep: JSON dictionary
-        String filename: Filename of ThermoML file which should be created
-    
-    '''
-    #read json from file
+        BaseModel ([type]): [description]
+
+    Raises:
+        TypeError: [description]
+        ThermoMLFileFormatError: [description]
+
+    Returns:
+        [type]: [description]
+    """
         
 
-    dataRep: Union[DataReport, str]
+    dataRep: Union[DataReport, dict, str]
     filename: str
     _attr_qname: etree.QName = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     _nsmap: dict[str, str] = {None: 'http://www.iupac.org/namespaces/ThermoML', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance'}
+    
+    @validator('dataRep')
+    @classmethod
+    def check_dataReport(cls, v):
+        if type(v) is DataReport:
+            return json.loads(json.dumps(v, indent=4, default=pydantic_encoder))
+        elif type(v) is str:
+            with open (v) as f:
+                return json.load(f)
+        else:
+            raise ThermoMLWriterDataReportTypeError(type=v)
 
+    
     @validator('filename')
     @classmethod
     def check_filename(cls, v):
@@ -32,20 +48,9 @@ class ThermoMLWriter(BaseModel):
         else:
             return v
     
-    @validator('dataRep')
-    @classmethod
-    def check_dataReport(cls, v):
-        if "{" not in v:
-            with open (v) as f:
-                return json.load(f)
-        
-        #read json from object layer
-        else:
-            return json.loads(v)
     
     
     def writeThermo(self):
-
         dataRepXml = etree.Element("DataReport", {self._attr_qname: "http://www.iupac.org/namespaces/ThermoML ThermoML.xsd"}, nsmap=self._nsmap)
         
         dataRepXml = self.__createVersion(dataRepXml)

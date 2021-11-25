@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-
 from typing import Optional
 from pydantic import BaseModel
 
@@ -10,7 +7,7 @@ from pythermo.thermoml.core.compound import Compound
 
 
 class DataReport(BaseModel):
-
+    """class that represents a data report. Basic soft data of ThermoML file"""
     title: Optional[str]
     DOI: Optional[str]
     authors: dict[str, str] = {}
@@ -18,25 +15,62 @@ class DataReport(BaseModel):
     pureOrMixtureData: dict[str, PureOrMixtureData] = {}
 
     def addCompound(self, comp: Compound) -> str:
-        """adds compund to DataReport returns ID"""
+        """adds Compound to data report
+
+        Args:
+            comp (Compound): the compound that should be added.
+
+        Raises:
+            ThermoMLTypeError: When type of compound is not "Compound". The compound wont be added.
+
+        Returns:
+            str: ID of added compound
+        """
         if comp._type != "comp":
             raise ThermoMLTypeError(
                 given_type=comp._type, expected_type="Compound"
             )
             # Add compound to dictionary in DataReport
-        self.compounds[comp.ID] = comp
+        else:
+            self.compounds[comp.ID] = comp
 
         return comp.ID
 
-    def addPureOrMixtureData(self, pureOrMixtureData):
+    def addPureOrMixtureData(self, pureOrMixtureData: PureOrMixtureData) -> str:
+        """adds pureOrMixtureData object to data report.
+
+        Args:
+            pureOrMixtureData (PureOrMixtureData): PureOrMixtureData object, that contains experimental information.
+
+        Returns:
+            str: Id of added pureOrMixtureData object
+        """
         self.pureOrMixtureData[pureOrMixtureData.ID] = pureOrMixtureData
 
         return pureOrMixtureData.ID
 
     def addAuthor(self, name: str, ID: str):
+        """adds authors to data report. Basic
+
+        Args:
+            name (str): name of the author
+            ID (str): freely selectable ID, to receive information about author.
+        """
         self.authors[ID] = name
 
-    def getAuthor(self, ID):
+    def getAuthor(self, ID: str):
+        """returns author with given author ID.
+
+        Args:
+            ID (str): The user specified ID of the author. When used with a data Report objcet which was read in by ThermoML Reader,
+            be aware that user specified IDs will be deleted. Information about IDs via dataReport.authors
+
+        Raises:
+            KeyError: When author with respective ID does not exist.
+
+        Returns:
+            str: name of the author
+        """
         try:
             return self.authors[ID]
         except KeyError:
@@ -44,7 +78,18 @@ class DataReport(BaseModel):
                 f"Author with ID {ID} does not exist"
             )
 
-    def getCompound(self, ID):
+    def getCompound(self, ID: str) -> Compound:
+        """returns compound with given compound ID.
+
+        Args:
+            ID (str): The user specified ID of the compound.
+
+        Raises:
+            KeyError: When data report does not contain compound with respective ID.
+
+        Returns:
+            Compound: compound object with respective ID.
+        """
         try:
             return self.compounds[ID]
         except KeyError:
@@ -53,36 +98,21 @@ class DataReport(BaseModel):
             )
 
     def getPureOrMixtureData(self, ID: str) -> PureOrMixtureData:
-        if ID is not None:
-            try:
-                return self.pureOrMixtureData[ID]
-            except KeyError:
+        """retunrs pure or mixture data with given pure or mixture data ID.
 
-                raise KeyError(
-                    f"PureOrMixtureData with ID {ID} does not exist."
-                )
+        Args:
+            ID (str): The user specified ID of pureOrMixtureData 
 
-        # DANGEROUS!
-        else:
-            try:
-                print("used pure or mixture data key = ID")
-                return self.pureOrMixtureData["ID"]
+        Raises:
+            KeyError: [description]
 
-            except KeyError:
-                raise KeyError("Please enter key of pure or mixture Data")
+        Returns:
+            PureOrMixtureData: [description]
+        """
+        try:
+            return self.pureOrMixtureData[ID]
+        except KeyError:
 
-    def getAuthorList(self):
-        return self._getElementList(self.authors)
-
-    def getCompoundList(self):
-        return self._getElementList(self.compounds)
-
-    def getPureOrMixtureDataList(self):
-        return self._getElementList(self.pureOrMixtureData)
-
-    def _getElementList(self, dictionary: dict) -> list[str]:
-        return list(dictionary.keys())
-
-    def getPureOrMixtureDataIDs(self) -> list:
-        """returns list with keys used in DataReport"""
-        return list(self.pureOrMixtureData.keys())
+            raise KeyError(
+                f"PureOrMixtureData with ID {ID} does not exist."
+            )

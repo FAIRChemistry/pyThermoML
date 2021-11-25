@@ -76,13 +76,11 @@ class ThermoMLReader(BaseModel):
         for experiment in pOMData.values():
             props = self.__getProperties__(experiment[1])
             vars = self.__getVariables__(experiment[1])
-            print(props)
             for id, value in props.items():
                 
                 experiment[0].addProperty(value[0](ID = id, method= value[1], compoundID=value[2]))
             
             for id, value in vars.items():
-                print(value)
                 experiment[0].addVariable(value[0](ID=id, compoundID=value[1]))
             
             datareport.addPureOrMixtureData(self.__getMeasurements__(experiment[0], experiment[1]))
@@ -162,8 +160,6 @@ class ThermoMLReader(BaseModel):
                 pOMData[self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (PureOrMixtureData(
                     ID = self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber'), 
                     comps = comps), pureOrMixtureData)
-
-        print(pOMData)
         return pOMData
 
     def __getProperties__(self, pureOrMixtureData) -> dict:

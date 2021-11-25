@@ -73,3 +73,20 @@ class ThermoMLFileFormatError(Exception):
         return(
             "Please end your new ThermoML file with '.xml'"
         )
+
+class ThermoMLWriterDataReportTypeError(Exception):
+    """Raised when type of data report is not readable by ThermoMLWriter."""
+
+    def __init__(self, type):
+        """creates ThermoMLWriterDataReportTypeError
+
+        Args:
+            type (any): received data report type
+        """
+        self.type = type
+
+    def __str__(self):
+        """string representation of ThermoMLWriterDataReportTypeError."""
+        return(
+            f"Writer can not read data report. Got {self.type} data report. Please enter data report as DataReport, str or dict"
+        )
