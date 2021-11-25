@@ -1,3 +1,15 @@
+'''
+File: readTools.py
+Project: tools
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+-----
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
+-----
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
+'''
+
 from pythermo.thermoml.props.bioproperties import Bioproperty
 from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
 from pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties import RefractionSurfaceTensionSoundSpeedproperty
@@ -11,87 +23,103 @@ from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLSchemaError, ThermoMLMissingIDError, ThermoMLNoCompoundError
 from lxml import etree
 from pydantic import BaseModel, validator
-from typing import Dict, Optional
-
+from typing import Dict
 
 class ThermoMLReader(BaseModel):
+    """
+    Class providing reader functionalities.
+
+        Args:
+            path (str): path to ThermoML file (.xml)
+            NAMESPACE (str): Namespace of ThermoML  
+            propMapping (dict): Dict with property names and units (str) as keys and initalizer function as values.  
+            varMapping (dict): Dict with variable names and units (str) as keys and initalizer function as values.    
+    """
     path: str
     NAMESPACE: str = './/{http://www.iupac.org/namespaces/ThermoML}'
     propMapping: Dict = {
-            'Viscosity, Pa*s': TransportProperty.viscosity,
-            'Kinematic Viscosity, m2/s': TransportProperty.kinematicViscosity,
-            'Self diffusion coefficient, m2/s': TransportProperty.selfDiffusionCoefficient,
-            'Mass density, kg/m3': VolumetricProperty.massDensity,
-            'Surface tension liquid-gas, N/m': RefractionSurfaceTensionSoundSpeedproperty.surfaceTension,
-            'Speed of sound, m/s': RefractionSurfaceTensionSoundSpeedproperty.speedOfSound,
-            'Molar heat capacity at constant pressure, J/K/mol': HeatCapacityProperty.molarHCconstPressure,
-            'Molar heat capacity at constant volume, J/K/mol': HeatCapacityProperty.MolarHCconstVolume,
-            'Peak temperature, K': Bioproperty.peakTemperature,
+        'Viscosity, Pa*s': TransportProperty.viscosity,
+        'Kinematic Viscosity, m2/s': TransportProperty.kinematicViscosity,
+        'Self diffusion coefficient, m2/s': TransportProperty.selfDiffusionCoefficient,
+        'Mass density, kg/m3': VolumetricProperty.massDensity,
+        'Surface tension liquid-gas, N/m': RefractionSurfaceTensionSoundSpeedproperty.surfaceTension,
+        'Speed of sound, m/s': RefractionSurfaceTensionSoundSpeedproperty.speedOfSound,
+        'Molar heat capacity at constant pressure, J/K/mol': HeatCapacityProperty.molarHCconstPressure,
+        'Molar heat capacity at constant volume, J/K/mol': HeatCapacityProperty.molarHCconstVolume,
+        'Peak temperature, K': Bioproperty.peakTemperature,
 
-            # not in ThermoML
-            'Microviscosity, Pa*s': TransportProperty.microViscosity
-        }
-    
+        # not in ThermoML
+        'Microviscosity, Pa*s': TransportProperty.microViscosity
+    }
+
     varMapping: Dict = {
-            'Temperature, K': TemperatureBase.temperature,
-            'Lower temperature, K': TemperatureBase.lowerTemperature,
-            'Upper temperature, K': TemperatureBase.upperTemperature,
-            'Mole fraction': ComponentCompositionBase.moleFraction,
-            'Pressure, kPa': PressureBase.pressure
+        'Temperature, K': TemperatureBase.temperature,
+        'Lower temperature, K': TemperatureBase.lowerTemperature,
+        'Upper temperature, K': TemperatureBase.upperTemperature,
+        'Mole fraction': ComponentCompositionBase.moleFraction,
+        'Pressure, kPa': PressureBase.pressure
     }
 
     @validator('path')
     @classmethod
-    def convertPath(cls, values):
-        try:
-            tree = etree.parse(values)
+    def convertPath(cls, path: str) -> etree._Element:
+        """converts given path into readable root
 
+        Args:
+            path (str): path to ThermoML filename
+
+        Returns:
+            etree._Element: readable root
+        """
+        try:
+            tree = etree.parse(path)
             return tree.getroot()
         except FileNotFoundError:
             print(f"Could not find ThermoML file")
 
     def readFromFile(self) -> DataReport:
-        '''
-        Reads ThermoML document to an object layer ThermoML
+        """Reads given ThermoML file to DataReport object.
 
-        Args:
-            String path: Path to ThermoML file
-        '''
-
+        Returns:
+            DataReport: Based on given ThermoML file
+        """
         title = self.__getOneEntry__(self.path, tag="sTitle")
-        doi = self.__getOneEntry__(self.path, tag= "sDOI")
+        doi = self.__getOneEntry__(self.path, tag="sDOI")
         authors = self.__getAuthors__()
-        
+
         datareport = DataReport(title=title, doi=doi, authors=authors)
-        
+
         comps = self.__getCompounds__()
-        
+
         for comp in comps.values():
             datareport.addCompound(comp)
-        
+
         pOMData = self.__getPOMData__(comps)
-        
+
         # experiment[0] Object
         # experiment[1] ElementTree
         for experiment in pOMData.values():
             props = self.__getProperties__(experiment[1])
             vars = self.__getVariables__(experiment[1])
-            for id, value in props.items():
-                
-                experiment[0].addProperty(value[0](ID = id, method= value[1], compoundID=value[2]))
             
+            for id, value in props.items():
+                experiment[0].addProperty(
+                    value[0](ID=id, method=value[1], compoundID=value[2]))
+
             for id, value in vars.items():
                 experiment[0].addVariable(value[0](ID=id, compoundID=value[1]))
-            
-            datareport.addPureOrMixtureData(self.__getMeasurements__(experiment[0], experiment[1]))
+
+            datareport.addPureOrMixtureData(
+                self.__getMeasurements__(experiment[0], experiment[1]))
 
         return datareport
 
-    def __getOneEntry__(self, root, tag) -> str:
+    def __getOneEntry__(self, root: etree._Element, tag:str) -> str:
         """returns value of specified tag in ThermoML file
 
         Args:
             tag (str): name of the tag
+            root (etree._Element): root of element
 
         Raises:
             ThermoMLSchemaError: when tag con not be found in schema or multiple tags with same name are in file
@@ -104,7 +132,6 @@ class ThermoMLReader(BaseModel):
                 return root.findall(self.NAMESPACE + tag)[0].text
             else:
                 raise ThermoMLSchemaError(tag)
-
 
     def __getAuthors__(self) -> dict[str, str]:
         """returns authors dictionary from sAuthors tag in ThermoML file
@@ -124,82 +151,108 @@ class ThermoMLReader(BaseModel):
 
             return authors
 
-    def __getCompounds__(self) -> dict:
+    def __getCompounds__(self) -> dict[str, Compound]:
+        """returns dictionary of compounds used in ThermoML file.
+
+        Raises:
+            ThermoMLNoCompoundError: ThermoML file does not contain compounds
+
+        Returns:
+            dict[str, Compound]: compounds used in ThermoML file. Key is compID
+        """
         comps = dict()
         if self.path.findall(self.NAMESPACE + 'Compound'):
-            
+
             for compound in self.path.findall(self.NAMESPACE + 'Compound'):
                 comps[self.__getOneEntry__(compound, 'nOrgNum')] = Compound(
-                    ID = self.__getOneEntry__(compound, 'nOrgNum'),
-                    standardInchI = self.__getOneEntry__(compound, 'sStandardInchi'),
-                    standardInchIKey = self.__getOneEntry__(compound, 'sStandardInchiKey'),
-                    smiles = self.__getOneEntry__(compound, 'sSmiles'),
-                    commonName = self.__getOneEntry__(compound, 'commonName')
+                    ID=self.__getOneEntry__(compound, 'nOrgNum'),
+                    standardInchI=self.__getOneEntry__(
+                        compound, 'sStandardInchi'),
+                    standardInchIKey=self.__getOneEntry__(
+                        compound, 'sStandardInchiKey'),
+                    smiles=self.__getOneEntry__(compound, 'sSmiles'),
+                    commonName=self.__getOneEntry__(compound, 'commonName')
                 )
-            
+
             return comps
         else:
             raise ThermoMLNoCompoundError()
 
-    def __getPOMData__(self, comps) -> dict:
-        '''
-        Return dictionary of pureOrMixtureData in dataReport
-        
-        Key: nPureOrMixtureDataNumber
-        Value: [PureOrMixtureData, pureOrMixtureData]
-        First argument is Object of PureOrMixtureData, second argument returns ET Element. 
-        -> only get following properties/variables of pureOrMixtureData, not whole path
-        '''
-        
+    def __getPOMData__(self, comps: dict[str, Compound]) -> dict[str, list[PureOrMixtureData, etree.Element]]:
+        """returns dict of pureOrMixtureData in dataReport
+
+        Args:
+            comps (dict): compound dictionary
+
+        Returns:
+            dict: dict with keys: nPureOrMixtureDataNumber and values: [PureOrMixtureData, pureOrMixtureData]
+            First argument is Object of PureOrMixtureData, second argument returns ET Element. 
+            -> only get following properties/variables of pureOrMixtureData, not whole path
+        """
+
         pOMData = dict()
         comps = list(comps.keys())
         if self.path.findall(self.NAMESPACE + 'PureOrMixtureData'):
-            
+
             for pureOrMixtureData in self.path.findall(self.NAMESPACE + 'PureOrMixtureData'):
+    
                 # All declared compounds should be used in pure or mixture Data
                 pOMData[self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (PureOrMixtureData(
-                    ID = self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber'), 
-                    comps = comps), pureOrMixtureData)
+                    ID=self.__getOneEntry__(
+                        pureOrMixtureData, 'nPureOrMixtureDataNumber'),
+                    comps=comps), pureOrMixtureData)
         return pOMData
 
-    def __getProperties__(self, pureOrMixtureData) -> dict:
-        '''
-        Return dictionary of properties used in pureOrMixtureData
+    def __getProperties__(self, pureOrMixtureData:etree._Element) -> dict:
+        """get properties from ThermoML file
+
+        Args:
+            pureOrMixtureData (etree._Element): pureOrMixtureData object that contains properties
         
-        Key: nPropNumber
-        Value: [Func, eMethodName]
-        '''
+        Note:
+            compID is gonna be ignored if property is not component specific
+
+        Returns:
+            dict: dict of properties used in pureOrMixtureData. Keys: nPropNumber, Values: [Func, compID]
+        """
         properties = dict()
         for property in pureOrMixtureData.findall(self.NAMESPACE + 'Property'):
             try:
                 compID = self.__getOneEntry__(property, 'nOrgNum')
             except IndexError:
                 raise ThermoMLMissingIDError('nOrgNum')
-    
+
             properties[self.__getOneEntry__(property, 'nPropNumber')] = (self.__getPropMapping__(self.__getOneEntry__(property, 'ePropName')),
-            self.__getOneEntry__(property, 'eMethodName'), compID)
+                                                                         self.__getOneEntry__(property, 'eMethodName'), compID)
         return properties
 
+    def __getPropMapping__(self, ePropName:str):
+        """returns function that matches to ePropName
 
-    def __getPropMapping__(self, ePropName):
-        '''
-        Returns function that matches to ePropName
-        '''
+        Args:
+            ePropName (str): name of property
+
+        Returns:
+            method: method that matches to vePropName
+        """
         try:
             func = self.propMapping[ePropName]
         except KeyError:
             print('Property not found')
         return func
 
-    def __getVariables__(self, pureOrMixtureData) -> dict:
-        '''
-        Returns dict of variables used in pureOrMixtureData
-        
-        Key: nVarNumber
-        Value: [Func, compID]
-        compID is gonna be ignored if variable is not component specific
-        '''
+    def __getVariables__(self, pureOrMixtureData:etree._Element) -> dict:
+        """get variables from ThermoML file
 
+        Args:
+            pureOrMixtureData (etree._Element): pureOrMixtureData object that contains variables
+        
+        Note:
+            compID is gonna be ignored if variable is not component specific
+
+        Returns:
+            dict: dict of variables used in pureOrMixtureData. Keys: nVarNumber, Values: [Func, compID]
+        """
         variables = dict()
         for variable in pureOrMixtureData.findall(self.NAMESPACE + 'Variable'):
             variableType = variable.findall(self.NAMESPACE + 'VariableType')
@@ -208,64 +261,84 @@ class ThermoMLReader(BaseModel):
                 compID = self.__getOneEntry__(variable, 'nOrgNum')
             except IndexError:
                 compID = ""
-            
-            variables[self.__getOneEntry__(variable, 'nVarNumber')] = (self.__getVarMapping__(varName), compID)
+
+            variables[self.__getOneEntry__(variable, 'nVarNumber')] = (
+                self.__getVarMapping__(varName), compID)
         return variables
 
-    def __getVarMapping__(self, varName):
-        '''
-        Return function that matches to variable
-        '''
+    def __getVarMapping__(self, varName: str):
+        """returns function that matches to varName
+
+        Args:
+            varName (str): name of variable
+
+        Returns:
+            method: method that matches to varName
+        """
         try:
             func = self.varMapping[varName]
         except KeyError:
             print('Variable not found')
         return func
 
-    def __getMeasurements__(self, experiment, pureOrMixtureData):
+    def __getMeasurements__(self, experiment:PureOrMixtureData, pureOrMixtureData:etree._Element) -> PureOrMixtureData:
+        """fill pureOrMixtureData object with measurement data from ThermoML file.
 
+        Args:
+            experiment (PureOrMixtureData): currently instanciated PureOrMixtureData object, that have to be filled in with data
+            pureOrMixtureData (etree._Element): ThermoML file pureOrMixtureData entries
+
+        Returns:
+            PureOrMixtureData: filled pureOrMixtureData object
+        """
         measID = 0
-        for numValues in pureOrMixtureData.findall(self.NAMESPACE + 'NumValues'):        
+        for numValues in pureOrMixtureData.findall(self.NAMESPACE + 'NumValues'):
             if 'ID' in numValues.attrib:
                 measID = numValues.attrib['ID']
             else:
                 # default measurmentIDs
                 measID = int(measID)
-                measID+= 1
+                measID += 1
                 measID = str(measID)
 
             datapoints = []
             for variableValue in numValues.findall(self.NAMESPACE + 'VariableValue'):
                 try:
-                    uncert = float(self.__getOneEntry__(variableValue, 'nExpandUncertValue'))
+                    uncert = float(self.__getOneEntry__(
+                        variableValue, 'nExpandUncertValue'))
                 except ValueError:
                     uncert = None
                 except TypeError:
                     uncert = None
-                
+
                 try:
-                    numbOfDig = int(self.__getOneEntry__(variableValue, 'nVarDigits'))
+                    numbOfDig = int(self.__getOneEntry__(
+                        variableValue, 'nVarDigits'))
                 except ValueError:
                     numbOfDig = None
                 except TypeError:
                     numbOfDig = None
-                datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(variableValue, 'nVarValue')), varID = self.__getOneEntry__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
+                datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(variableValue, 'nVarValue')),
+                                  varID=self.__getOneEntry__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
 
             for propertyValue in numValues.findall(self.NAMESPACE + 'PropertyValue'):
                 try:
-                    uncert = float(self.__getOneEntry__(propertyValue, 'nCombExpandUncertValue'))
+                    uncert = float(self.__getOneEntry__(
+                        propertyValue, 'nCombExpandUncertValue'))
                 except ValueError:
                     uncert = None
                 except TypeError:
                     uncert = None
-                
+
                 try:
-                    numbOfDig = int(self.__getOneEntry__(propertyValue, 'nPropDigits'))
+                    numbOfDig = int(self.__getOneEntry__(
+                        propertyValue, 'nPropDigits'))
                 except ValueError:
                     numbOfDig = None
                 except TypeError:
-                    numbOfDig = None  
-                datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(propertyValue, 'nPropValue')), propID =self.__getOneEntry__(propertyValue, 'nPropNumber'), uncertainty= uncert, numberOfDigits=numbOfDig))
+                    numbOfDig = None
+                datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(propertyValue, 'nPropValue')),
+                                  propID=self.__getOneEntry__(propertyValue, 'nPropNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
             experiment.addMeasurement(dataPoints=datapoints)
 
         return experiment

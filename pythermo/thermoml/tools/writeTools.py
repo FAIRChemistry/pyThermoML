@@ -1,3 +1,15 @@
+'''
+File: writeTools.py
+Project: tools
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+-----
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
+-----
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
+'''
+
 import lxml.etree as etree
 from pythermo.thermoml.core import DataReport
 import json
@@ -5,19 +17,16 @@ from pydantic import BaseModel, validator
 from typing import  Union
 from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError, ThermoMLWriterDataReportTypeError
 from pydantic.json import pydantic_encoder
+from pathlib import Path
 
 class ThermoMLWriter(BaseModel):
-    """class that contains methods used for thermoML 
+    """Class providing functionalities for writing ThermoML file.
 
-    Args:
-        BaseModel ([type]): [description]
-
-    Raises:
-        TypeError: [description]
-        ThermoMLFileFormatError: [description]
-
-    Returns:
-        [type]: [description]
+        Args:
+            dataRep (dict): dictionary representation of data report.
+            filename (str): name of the ThermoML file that should be written.
+            _attr_qname (etree.Qname): .xml schema attributes
+            _nsmap (dict[str, str]): mapping of ThermoML schema definition
     """
         
 
@@ -26,31 +35,58 @@ class ThermoMLWriter(BaseModel):
     _attr_qname: etree.QName = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     _nsmap: dict[str, str] = {None: 'http://www.iupac.org/namespaces/ThermoML', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance'}
     
-    @validator('dataRep')
+    @validator('dataRep', always=True)
     @classmethod
-    def check_dataReport(cls, v):
-        if type(v) is DataReport:
-            return json.loads(json.dumps(v, indent=4, default=pydantic_encoder))
-        elif type(v) is str:
-            with open (v) as f:
-                return json.load(f)
+    def check_dataReport(cls, dataRep:Union[DataReport, dict, str]) -> dict:
+        """converts entered dataReport into iterable dictionary
+
+        Args:
+            dataRep (Union[DataReport, dict, str]): entered dataReport. Can be either filename to .json data report or DataReport object
+
+        Raises:
+            ThermoMLWriterDataReportTypeError: entered dataReport is no DataReport/.json
+
+        Returns:
+            dict: iterable dataReport dict
+        """
+        if type(dataRep) is DataReport:
+            return json.loads(json.dumps(dataRep, indent=4, default=pydantic_encoder))
+        elif type(dataRep) is str:
+            dataRep = Path(dataRep)
+            dataRep = DataReport.parse_file(dataRep)
+    
+            return json.loads(json.dumps(dataRep, indent=4, default=pydantic_encoder))
         else:
-            raise ThermoMLWriterDataReportTypeError(type=v)
+            raise ThermoMLWriterDataReportTypeError(type=dataRep)
 
     
-    @validator('filename')
+    @validator('filename', always=True)
     @classmethod
-    def check_filename(cls, v):
-        if type(v) is not str:
+    def check_filename(cls, filename:str):
+        """Checks whether filename has been entered correctly.
+
+        Args:
+            filename (str): filename of new ThermoML (.xml) file
+
+        Raises:
+            TypeError: filename no string
+            ThermoMLFileFormatError: filename does not end with ".xml"
+
+        Returns:
+            str: entered filename
+        """
+        if type(filename) is not str:
             raise TypeError('filename must be a string')
-        elif ".xml" not in v:
+        elif ".xml" not in filename:
             raise ThermoMLFileFormatError()
         else:
-            return v
+            return filename
     
     
     
     def writeThermo(self):
+        """writes ThermoML file to entered filename, by basically checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.
+        """
         dataRepXml = etree.Element("DataReport", {self._attr_qname: "http://www.iupac.org/namespaces/ThermoML ThermoML.xsd"}, nsmap=self._nsmap)
         
         dataRepXml = self.__createVersion(dataRepXml)
@@ -60,7 +96,13 @@ class ThermoMLWriter(BaseModel):
 
         self.__writeFile(dataRepXml)
 
-    def __createVersion(self, dataRepXml):
+    def __writeFile(self, dataRepXml:etree._Element):
+        convertedString = etree.tostring(dataRepXml, pretty_print=True, xml_declaration=True, encoding="utf-8")
+        file = open(self.filename, 'wb')
+        file.write(convertedString)
+        file.close()
+    
+    def __createVersion(self, dataRepXml:etree._Element) -> etree._Element:
         
         Version = etree.SubElement(dataRepXml, 'Version')
         nVersionMajor = etree.SubElement(Version, 'nVersionMajor')
@@ -70,7 +112,7 @@ class ThermoMLWriter(BaseModel):
 
         return dataRepXml
 
-    def __createCitation(self, dataRepXml):
+    def __createCitation(self, dataRepXml:etree._Element) -> etree._Element:
         Citation = etree.SubElement(dataRepXml, 'Citation')
         if 'title' in self.dataRep:
             sTitle = etree.SubElement(Citation, 'sTitle')
@@ -85,7 +127,7 @@ class ThermoMLWriter(BaseModel):
 
         return dataRepXml
 
-    def __createCompound(self, dataRepXml):
+    def __createCompound(self, dataRepXml:etree._Element) -> etree._Element:
         
         if 'compounds' in self.dataRep:   
             for key, value in self.dataRep['compounds'].items():
@@ -114,7 +156,7 @@ class ThermoMLWriter(BaseModel):
         
         return dataRepXml
 
-    def __createPureOrMixtureData(self, dataRepXml):
+    def __createPureOrMixtureData(self, dataRepXml:etree._Element) -> etree._Element:
         
         if 'pureOrMixtureData' in self.dataRep:
             for key, value in self.dataRep['pureOrMixtureData'].items():
@@ -131,7 +173,7 @@ class ThermoMLWriter(BaseModel):
 
         return dataRepXml
 
-    def __createComponents(self, pureOrMixtureDict, PureOrMixtureData):
+    def __createComponents(self, pureOrMixtureDict:dict, PureOrMixtureData:etree._Element)-> etree._Element:
         # Declaration of components
         if 'comps' in pureOrMixtureDict:
             for comp in pureOrMixtureDict['comps']:
@@ -141,7 +183,7 @@ class ThermoMLWriter(BaseModel):
                 nOrgNum.text = comp
         return PureOrMixtureData
 
-    def __createProperties(self, pureOrMixtureDict, PureOrMixtureData):
+    def __createProperties(self, pureOrMixtureDict:dict, PureOrMixtureData:etree._Element) -> etree._Element:
         if 'properties' in pureOrMixtureDict:
             for key, value in pureOrMixtureDict['properties'].items():
                 Property = etree.SubElement(PureOrMixtureData, 'Property')
@@ -168,11 +210,11 @@ class ThermoMLWriter(BaseModel):
                 CombinedUncertainty = etree.SubElement(Property, 'CombinedUncertainty')
                 nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssessNum')
                 
-                #one uncertainty for each property
+                # one uncertainty for each property
                 nCombUncertAssessNum.text = str(1)
         return PureOrMixtureData
 
-    def __createVariables(self, pureOrMixtureDict, PureOrMixtureData):
+    def __createVariables(self, pureOrMixtureDict:dict, PureOrMixtureData:etree._Element) -> etree._Element:
         if 'variables' in pureOrMixtureDict:
             for key, value in pureOrMixtureDict['variables'].items():
                 Variable = etree.SubElement(PureOrMixtureData, 'Variable')
@@ -204,15 +246,15 @@ class ThermoMLWriter(BaseModel):
                 nUncertAssessNum.text = str(1)
         return PureOrMixtureData
 
-    def __createDatapoints(self, pureOrMixtureDict, PureOrMixtureData):
+    def __createDatapoints(self, pureOrMixtureDict:dict, PureOrMixtureData:etree._Element) -> etree._Element:
         if 'measurements' in pureOrMixtureDict:
             for measKey, measurements in pureOrMixtureDict['measurements'].items():
                 NumValues = etree.SubElement(PureOrMixtureData, 'NumValues', ID=str(measKey))
 
                 if 'variables' in measurements:
                     for vars in measurements['variables'].values():
+                        VariableValue = etree.SubElement(NumValues, 'VariableValue')
                         if 'elementID' in vars[0]:
-                            VariableValue = etree.SubElement(NumValues, 'VariableValue')
                             nVarNumber = etree.SubElement(VariableValue, 'nVarNumber')
                             nVarNumber.text = str(vars[0]['elementID'])
                         if 'value' in vars[0]:
@@ -224,9 +266,6 @@ class ThermoMLWriter(BaseModel):
                             nVarDigits.text = str(vars[0]['numberOfDigits'])
                         
                         if  'uncertainty' in vars[0]:
-                            # ExpandUncertValue is the quantity defining an interval about the result of a measurement that may
-                            # be expected to encompass a large fraction of the distribution of values that
-                            # could reasonably be attributed to the measurand. ExpandUncertValue
                             VarUncertainty = etree.SubElement(VariableValue, 'VarUncertainty')
                             nUncertAssessNum = etree.SubElement(VarUncertainty, 'nUncertAssesNum')
                             nUncertAssessNum.text = str(1)
@@ -237,8 +276,8 @@ class ThermoMLWriter(BaseModel):
 
                 if 'properties' in measurements:        
                     for key, props in measurements['properties'].items():
+                        PropertyValue = etree.SubElement(NumValues, 'PropertyValue')
                         if 'elementID' in props[0]:
-                            PropertyValue = etree.SubElement(NumValues, 'PropertyValue')
                             nPropNumber = etree.SubElement(PropertyValue, 'nPropNumber')
                             nPropNumber.text = str(props[0]['elementID'])
                         if 'value' in props[0]:
@@ -250,9 +289,6 @@ class ThermoMLWriter(BaseModel):
                             nPropDigits.text = str(props[0]['numberOfDigits'])
                         
                         if  'uncertainty' in props[0]:
-                            # The combined standard uncertainty ucomb is included only for the quantity designated as the property. 
-                            # The combined coverage factor kcomb and the combined expanded uncertainty Ucomb, which also apply only 
-                            # to the designated property, are defined through the equation Ucomb = ucomb * kcomb
                             CombinedUncertainty = etree.SubElement(PropertyValue, 'CombinedUncertainty')
                             nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssesNum')
                             nCombUncertAssessNum.text = str(1)
@@ -260,9 +296,4 @@ class ThermoMLWriter(BaseModel):
                             nCombExpandUncertValue.text = str(props[0]['uncertainty'])
 
         return PureOrMixtureData
-        
-    def __writeFile(self, dataRepXml):
-        convertedString = etree.tostring(dataRepXml, pretty_print=True, xml_declaration=True, encoding="utf-8")
-        file = open(self.filename, 'wb')
-        file.write(convertedString)
-        file.close()
+    

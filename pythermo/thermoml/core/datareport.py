@@ -1,3 +1,15 @@
+'''
+File: datareport.py
+Project: core
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+-----
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
+-----
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
+'''
+
 from typing import Optional
 from pydantic import BaseModel
 
@@ -7,7 +19,20 @@ from pythermo.thermoml.core.compound import Compound
 
 
 class DataReport(BaseModel):
-    """class that represents a data report. Basic soft data of ThermoML file"""
+    """
+    Class that represents a data report. Basic class of ThermoML - data report.
+
+    Note:
+        All entrys of this API refer to http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd ThermoML - schema definition.
+
+    Args:
+        title (Optional[str]): Title of a referred paper.
+        DOI (Optional[str]): DOI of a referred paper.
+        authors (dict[str, str]): Dictionary with authors of a referred paper. The keys wont be stored in ThermoML.
+        compounds (dict[str, Compound]): Compounds which are used in data reprot. The keys are stored in the ThermoML .xml file in the nOrgNum tag.
+        pureOrMixtureData (dict[str, PureOrMixtureData]): PureOrMixtureData elements which are used in data report. The keys are stored in the ThermoML .xml file in the nPureOrMixtureDataNumber tag.
+
+    """
     title: Optional[str]
     DOI: Optional[str]
     authors: dict[str, str] = {}
@@ -98,16 +123,16 @@ class DataReport(BaseModel):
             )
 
     def getPureOrMixtureData(self, ID: str) -> PureOrMixtureData:
-        """retunrs pure or mixture data with given pure or mixture data ID.
+        """returns pure or mixture data with given pure or mixture data ID.
 
         Args:
             ID (str): The user specified ID of pureOrMixtureData 
 
         Raises:
-            KeyError: [description]
+            KeyError: pure or mixture data with ID does not exist
 
         Returns:
-            PureOrMixtureData: [description]
+            PureOrMixtureData: object of type PureOrMixtureData with respective ID
         """
         try:
             return self.pureOrMixtureData[ID]

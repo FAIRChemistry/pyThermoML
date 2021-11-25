@@ -1,3 +1,15 @@
+'''
+File: exampleWriteThermo.py
+Project: examples
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+-----
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
+-----
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
+'''
+
 from flask.helpers import send_file
 from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
 
@@ -10,6 +22,7 @@ from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
 from pythermo.thermoml.tools.writeTools import ThermoMLWriter
 from pythermo.thermoml.tools.readTools import ThermoMLReader
 import json
+from pathlib import Path
 
 from pydantic.json import pydantic_encoder
 from lxml import etree
@@ -39,20 +52,20 @@ comp2_ID = dataReport.addCompound(comp2)
 
 comps = [comp1_ID, comp2_ID]
 # components which are used in respective experiment
-experiment = PureOrMixtureData(ID="4", comps=comps)
+experiment = PureOrMixtureData(ID="pom1", comps=comps)
 
 # property definitions
-dens = VolumetricProperty.massDensity(ID='1', method='simulation')
+dens = VolumetricProperty.massDensity(ID='p1', method='simulation')
 sdiffCoeff1 = TransportProperty.selfDiffusionCoefficient(
-    ID="2", method='simulation', compoundID=comp1_ID)
+    ID="p2", method='simulation', compoundID=comp1_ID)
 sdiffCoeff2 = TransportProperty.selfDiffusionCoefficient(
-    ID="3", method='simulation', compoundID=comp2_ID)
+    ID="p3", method='simulation', compoundID=comp2_ID)
 
 # Variable definitions
-temp = TemperatureBase.temperature(ID="temp1")
+temp = TemperatureBase.temperature(ID="v1")
 
-frac1 = ComponentCompositionBase.moleFraction('moleFrac1', comp1_ID)
-frac2 = ComponentCompositionBase.moleFraction('moleFrac2', comp2_ID)
+frac1 = ComponentCompositionBase.moleFraction('v2', comp1_ID)
+frac2 = ComponentCompositionBase.moleFraction('v3', comp2_ID)
 
 densID = experiment.addProperty(dens)
 dffCoeff1ID = experiment.addProperty(sdiffCoeff1)
@@ -142,24 +155,30 @@ frac2DataPoint2 = DataPoint(
 
 datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1,
               tempDataPoint, frac1DataPoint, frac2DataPoint]
+
 datapoints2 = [viscDataPoint2, sdiff1DataPoint2, sdiff2DataPoint2, tempDataPoint2,
                frac1DataPoint2, frac2DataPoint2]
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
 experiment.addMeasurement(dataPoints=datapoints2)
+
+#print(experiment.getMoleFractionIDs())
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
 
-writer = ThermoMLWriter(dataRep="testThermo.json", filename="testThermo.xml")
+#print(y.getPureOrMixtureData('pom1').measurements)
+
+writer = ThermoMLWriter(dataRep=dataReport, filename="testThermo.xml")
 writer.writeThermo()
 """
-file = etree.parse("testThermo.xml")
-print(etree.tostring(file, pretty_print=True, encoding=str))
+#file = etree.parse("testThermo.xml")
+#print(etree.tostring(file, pretty_print=True, encoding=str))
 """
 
 reader = ThermoMLReader(path="testThermo.xml")
 dataRepr = reader.readFromFile()
+
 #print(dataRepr.json(exclude_none=True, indent=4))
 #print(dataRepr.authors)
 #print(dataReport.getPureOrMixtureData("1").json(exclude_none=True, indent=4))

@@ -1,3 +1,15 @@
+'''
+File: exceptions.py
+Project: core
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+-----
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
+-----
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
+'''
+
 class ThermoMLTypeError(Exception):
     """Raised when the type of either variable or property isnt matched
     """
