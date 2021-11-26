@@ -144,7 +144,7 @@ writer.writeThermo()
 The generated 'githubExample.xml' is available [here](https://github.com/matzegltg/pyThermoML/blob/master/templates/githubExample.xml). 
 For more information please visit [templates](https://github.com/matzegltg/pyThermoML/tree/master/templates).
 
-Interacting between .json, .xml, and DataReport object works.
+Interaction between .json, .xml, and DataReport object works.
 
 ## Attention:
 The project is continuously being worked on. 
