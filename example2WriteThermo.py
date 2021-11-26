@@ -1,17 +1,16 @@
-from pythermo.thermoml.core import DataReport, Compound
-from pythermo.thermoml.core.pureOrMixtureData import PureOrMixtureData
 from pythermo.thermoml.tools.writeTools import ThermoMLWriter
 from pythermo.thermoml.tools.readTools import ThermoMLReader
 
 
 
-
-writer = ThermoMLWriter(dataRep="github.json", filename="a.xml")
+# creating ThermoML - writer object to convert json file to ThermoML file.
+writer = ThermoMLWriter(dataRep="githubExample.json", filename=".githubExample.xml")
 writer.writeThermo()
 
-reader = ThermoMLReader(path="a.xml")
-dr = reader.readFromThermoMLFile()
+reader = ThermoMLReader(path="github.json")
+dataReport = reader.readFromJSON()
 
 
-x = dr.getPureOrMixtureData("pom1").getMeasurement("meas1")._getProperty("pdens")
-print(x)
+method = dataReport.getPureOrMixtureData("pom1").getMeasurement("meas1").getProperty("pdens").value
+
+print(method)

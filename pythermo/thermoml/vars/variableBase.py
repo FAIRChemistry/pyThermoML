@@ -43,7 +43,7 @@ class VariableBase(BaseModel):
             ID (str): user specified ID
 
         Raises:
-            TypeError: When ID does not match expected pattern.
+            TypeError: ID does not match expected pattern.
 
         Returns:
             str: ID

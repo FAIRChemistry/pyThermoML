@@ -20,7 +20,7 @@
                     "propName": "Mass density",
                     "ID": "pdens",
                     "propGroup": "VolumetricProp",
-                    "method": "simulation",
+                    "method": "experiment",
                     "unit": "kg/m3"
                 }
             },
