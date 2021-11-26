@@ -15,7 +15,7 @@ pip install PyThermoML
 
 Let's consider the following .json file as result of your measuremnt:
 
-```
+```json
 {
     "title": "Title of referred paper",
     "DOI": "DOI of referred paper",    
@@ -121,7 +121,7 @@ Let's consider the following .json file as result of your measuremnt:
 ```
 Attention: The project is continuously being worked on.
 ## Test
-```
+```python
 '''
 File: exampleWriteThermo.py
 Project: examples
