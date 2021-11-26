@@ -137,7 +137,7 @@ from pythermo.thermoml.tools.writeTools import ThermoMLWriter
 
 # suppose .json file is stored named 'githubExample.json'
 # create ThermoMLWriter object to convert .json file to ThermoML file.
-writer = ThermoMLWriter(dataRep="githubExample.json", filename=".githubExample.xml")
+writer = ThermoMLWriter(dataRep="githubExample.json", filename="githubExample.xml")
 writer.writeThermo()
 ```
 

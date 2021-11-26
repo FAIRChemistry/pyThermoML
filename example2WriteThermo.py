@@ -4,7 +4,7 @@ from pythermo.thermoml.tools.readTools import ThermoMLReader
 
 
 # creating ThermoML - writer object to convert json file to ThermoML file.
-writer = ThermoMLWriter(dataRep="githubExample.json", filename=".githubExample.xml")
+writer = ThermoMLWriter(dataRep="githubExample.json", filename="githubExample.xml")
 writer.writeThermo()
 
 reader = ThermoMLReader(path="github.json")
