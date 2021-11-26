@@ -6,7 +6,7 @@ setup(
     version='1.1.1',
     description='Handling of ThermoML files',
     url = 'https://github.com/matzegltg/pyThermoML',
-    author='Gültig, Matthias',
+    author='Gultig, Matthias',
     packages=setuptools.find_packages(),
-    _install_requires=['lxml', 'json'],
+    _install_requires=['lxml', 'json', 'pydantic'],
 )

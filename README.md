@@ -112,7 +112,7 @@ Let's consider an easy example for explanation how pyThermoML works: In this cas
     }
 }
 ```
-Some other mandatory parameters for instance IDs units units are also specified. With the propGroup/varType keyword the respective property/variable groups referring to [ThermoML - schema](http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd) have to be defined. That's it. The rest is done by the API.
+Some other mandatory parameters for instance IDs units units are also specified. With the propGroup/varType keyword the respective property/variable groups referring to [ThermoML - schema](http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd) have to be defined. The rest is done by the API.
 
 You can read in the .json file with the following code excerpt:
 
@@ -141,7 +141,7 @@ writer = ThermoMLWriter(dataRep="githubExample.json", filename="githubExample.xm
 writer.writeThermo()
 ```
 
-The generated 'githubExample.xml' is available [here](). 
+The generated 'githubExample.xml' is available [here](https://github.com/matzegltg/pyThermoML/blob/master/githubExample.xml). 
 Attention: The project is continuously being worked on. Interacting between .json, .xml, and DataReport object works.
 
 For more information please visit [templates](https://github.com/matzegltg/pyThermoML/tree/master/templates).

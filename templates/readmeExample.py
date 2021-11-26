@@ -7,7 +7,7 @@ from pythermo.thermoml.tools.readTools import ThermoMLReader
 writer = ThermoMLWriter(dataRep="githubExample.json", filename="githubExample.xml")
 writer.writeThermo()
 
-reader = ThermoMLReader(path="github.json")
+reader = ThermoMLReader(path="githubExample.json")
 dataReport = reader.readFromJSON()
 
 
