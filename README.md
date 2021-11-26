@@ -52,7 +52,7 @@ The units are fixed and cannot be changed - otherwise you will receive error mes
 
 ## Examples
 
-Let's consider an easy example for explanation how pyThermoML works: In this case you have measured a mass density of pure water of 1000 kg/m^3 at 273.15K. If you are interessted in storing your data in a structured way you could use basic functionalities of pyThermoML. All you need to do is write your experimental data into a basic .json file as you can see below or [here](https://github.com/matzegltg/pyThermoML/blob/master/templates/githubExample.json).
+Let's consider an easy example for explanation how pyThermoML works: In this case you have measured a mass density of pure water of 1000 kg/m^3 at 273.15K. If you are interessted in storing your data in a structured way you could use basic functionalities of pyThermoML. All you need to do is write your experimental data into a basic .json file as you can see below.
 
 ```json
 {
@@ -141,12 +141,7 @@ writer = ThermoMLWriter(dataRep="githubExample.json", filename="githubExample.xm
 writer.writeThermo()
 ```
 
-The generated 'githubExample.xml' is available [here](https://github.com/matzegltg/pyThermoML/blob/master/templates/githubExample.xml). 
-The code snippets are available [here](https://github.com/matzegltg/pyThermoML/blob/master/templates/readmeExample.py)
+The generated 'githubExample.xml' is available [here](https://github.com/matzegltg/pyThermoML/blob/master/githubExample.xml). 
+Attention: The project is continuously being worked on. Interacting between .json, .xml, and DataReport object works.
+
 For more information please visit [templates](https://github.com/matzegltg/pyThermoML/tree/master/templates).
-
-Interacting between .json, .xml, and DataReport object works.
-
-## Attention
-The project is continuously being worked on.
-
