@@ -46,7 +46,7 @@ class DataReport(BaseModel):
             comp (Compound): the compound that should be added.
 
         Raises:
-            ThermoMLTypeError: When type of compound is not "Compound". The compound wont be added.
+            ThermoMLTypeError: type of compound is not "Compound". The compound wont be added.
 
         Returns:
             str: ID of added compound

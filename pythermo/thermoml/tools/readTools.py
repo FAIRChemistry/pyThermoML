@@ -20,10 +20,12 @@ from pythermo.thermoml.vars.temperature import TemperatureBase
 from pythermo.thermoml.vars.pressure import PressureBase
 from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 
-from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLSchemaError, ThermoMLMissingIDError, ThermoMLNoCompoundError
+from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLMissingIDError, ThermoMLQuantityNotFoundError
 from lxml import etree
 from pydantic import BaseModel, validator
 from typing import Dict
+from pydantic.json import pydantic_encoder
+from pathlib import Path
 
 class ThermoMLReader(BaseModel):
     """
@@ -70,14 +72,30 @@ class ThermoMLReader(BaseModel):
 
         Returns:
             etree._Element: readable root
+        
+        Raises:
+            FileNotFoundError: file have to 
         """
-        try:
-            tree = etree.parse(path)
-            return tree.getroot()
-        except FileNotFoundError:
-            print(f"Could not find ThermoML file")
+        if '.xml' in path:
+            try:
+                tree = etree.parse(path)
+                return tree.getroot()
+            except FileNotFoundError:
+                print(f"Could not find ThermoML file")
+        elif '.json' in path:
+            return path
+        else:
+            raise FileNotFoundError("input file format for reader has to be '.json' or '.xml")
 
-    def readFromFile(self) -> DataReport:
+    def readFromJSON(self) -> DataReport:
+        """Reads given .json formatted file to DataReport object.
+
+            Returns:
+                DataReport: Based on given .json file DataReport object
+        """
+        return DataReport.parse_file(Path(self.path))
+        
+    def readFromThermoMLFile(self) -> DataReport:
         """Reads given ThermoML file to DataReport object.
 
         Returns:
@@ -121,17 +139,14 @@ class ThermoMLReader(BaseModel):
             tag (str): name of the tag
             root (etree._Element): root of element
 
-        Raises:
-            ThermoMLSchemaError: when tag con not be found in schema or multiple tags with same name are in file
-
         Returns:
             str: value of specified tag in ThermoML file
+            None: if tag cannot be found in file
         """
         if root.findall(self.NAMESPACE + tag):
-            if len(root.findall(self.NAMESPACE + tag)) == 1:
-                return root.findall(self.NAMESPACE + tag)[0].text
-            else:
-                raise ThermoMLSchemaError(tag)
+            return root.findall(self.NAMESPACE + tag)[0].text
+        else:
+            return None
 
     def __getAuthors__(self) -> dict[str, str]:
         """returns authors dictionary from sAuthors tag in ThermoML file
@@ -175,8 +190,6 @@ class ThermoMLReader(BaseModel):
                 )
 
             return comps
-        else:
-            raise ThermoMLNoCompoundError()
 
     def __getPOMData__(self, comps: dict[str, Compound]) -> dict[str, list[PureOrMixtureData, etree.Element]]:
         """returns dict of pureOrMixtureData in dataReport
@@ -221,7 +234,7 @@ class ThermoMLReader(BaseModel):
                 compID = self.__getOneEntry__(property, 'nOrgNum')
             except IndexError:
                 raise ThermoMLMissingIDError('nOrgNum')
-
+            
             properties[self.__getOneEntry__(property, 'nPropNumber')] = (self.__getPropMapping__(self.__getOneEntry__(property, 'ePropName')),
                                                                          self.__getOneEntry__(property, 'eMethodName'), compID)
         return properties
@@ -233,13 +246,14 @@ class ThermoMLReader(BaseModel):
             ePropName (str): name of property
 
         Returns:
-            method: method that matches to vePropName
+            method: method that matches to ePropName
         """
         try:
             func = self.propMapping[ePropName]
+            return func
         except KeyError:
-            print('Property not found')
-        return func
+            raise ThermoMLQuantityNotFoundError(ePropName)
+        
 
     def __getVariables__(self, pureOrMixtureData:etree._Element) -> dict:
         """get variables from ThermoML file

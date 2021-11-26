@@ -52,8 +52,8 @@ class Measurement(BaseModel):
                 "ID does not match the expected pattern of 'meas[digit/s]'"
             )
 
-    def addDataPoints(self, dataPoints: list[DataPoint], pureMixtureData) -> None:
-        """adds list of data points to measurement
+    def addDataPoint(self, dataPoint: DataPoint, pureMixtureData) -> None:
+        """Adds list of DataPoints to measurement.
 
         Args:
             dataPoints (list[DataPoint]): list with data points, that should be added to measurement.
@@ -62,30 +62,41 @@ class Measurement(BaseModel):
         Raises:
             AttributeError: property/variable with respective ID is not defined.
         """
-        if isinstance(dataPoints, DataPoint):
-            dataPoints = [dataPoints]
+        elementID = dataPoint.elementID
+        data_point_type = dataPoint.data_point_type
 
-        for dataPoint in dataPoints:
+        if elementID in pureMixtureData.properties.keys() and data_point_type == "Property":
+            self._addDataPointToMeasurement(elementID, self.properties, dataPoint)
+        elif elementID in pureMixtureData.variables.keys() and data_point_type == "Variable":
+            self._addDataPointToMeasurement(elementID, self.variables, dataPoint)
+        else:
+            raise AttributeError(
+                f"The property/variable with ID {elementID} is not defined yet.")
 
-            elementID = dataPoint.elementID
-            data_point_type = dataPoint.data_point_type
+    def getProperty(self, propertyID:str) -> DataPoint:
+        """Returns DataPoint representation of property in measurement.
 
-            if elementID in pureMixtureData.properties.keys() and data_point_type == "Property":
-                self._addToElementList(elementID, self.properties, dataPoint)
-            elif elementID in pureMixtureData.variables.keys() and data_point_type == "Variable":
-                self._addToElementList(elementID, self.variables, dataPoint)
-            else:
-                raise AttributeError(
-                    f"The property/variable with ID {elementID} is not defined yet.")
+        Args:
+            propertyID (str): ID of property
 
-    def _getProperty(self, propertyID):
+        Returns:
+            DataPoint: Datapoint representation of respective property.
+        """
         return self._getElement(
             propertyID,
             self.properties,
             "Property"
         )
 
-    def _getVariable(self, variableID):
+    def getVariable(self, variableID:str) -> DataPoint:
+        """Returns DataPoint representation of variable in measurement.
+
+        Args:
+            variableID (str): ID of variable
+
+        Returns:
+            DataPoint: Datapoint representation of respective variable
+        """
         return self._getElement(
             variableID,
             self.variables,
@@ -93,17 +104,34 @@ class Measurement(BaseModel):
         )
 
     @staticmethod
-    def _addToElementList(elementID, dictionary, dataPoint):
-        if elementID not in dictionary:
-            dictionary[elementID] = list()
-
-        dictionary[elementID].append(dataPoint)
+    def _addDataPointToMeasurement(elementID:str, dictionary:dict[str, DataPoint], dataPoint:DataPoint):
+        """Refactored method for adding dataPoint to variable/property dictionary.
+        
+        Args:
+            elementID (str): ID of prop/var
+            dictionary (dict[str, DataPoint]): variable/property dictionary
+            datapoint (DataPoint): DataPoint object
+        """
+        dictionary[elementID] = dataPoint
 
     @staticmethod
-    def _getElement(elementID, dictionary, type_):
+    def _getElement(elementID:str, dictionary:dict[str, DataPoint], data_point_type:str) -> DataPoint:
+        """Refactored method to get prop/var.
+
+        Args:
+            elementID (str): ID of var/prop
+            dictionary (dict[str, DataPoint]): variable/property dict
+            data_point_type (str): type of DataPoint ("Property" or "Variable")
+
+        Raises:
+            KeyError: variable/property is not defined.
+
+        Returns:
+            DataPoint: DataPoint representation of variable/property.
+        """
         try:
             return dictionary[elementID]
         except KeyError:
             raise KeyError(
-                f"{type_} {elementID} is not defined yet."
+                f"{data_point_type} {elementID} is not defined yet."
             )

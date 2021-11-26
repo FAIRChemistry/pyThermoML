@@ -1,11 +1,11 @@
 '''
 File: __init__.py
 Project: props
-Author: Jan Range
+Author: Matthias Gueltig, Jan Range
 License: BSD-2 clause
 -----
-Last Modified: Tuesday June 29th 2021 2:16:13 pm
-Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''

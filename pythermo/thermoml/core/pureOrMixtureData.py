@@ -43,7 +43,7 @@ class PureOrMixtureData(BaseModel):
     comps: list[str] = []
     properties: dict[str, PropertyBase] = {}
     variables: dict[str, VariableBase] = {}
-    measurements: dict[str, Any] = {}
+    measurements: dict[str, Measurement] = {}
 
     @validator("ID", always=True)
     @classmethod
@@ -126,8 +126,8 @@ class PureOrMixtureData(BaseModel):
                     ID=measurementID
                 )
             
-            print(type(self.measuremnts[measurementID]))
-            self.measurements[measurementID].addDataPoints(dataPoint, self)
+            
+            self.measurements[measurementID].addDataPoint(dataPoint, self)
     
     def getMeasurement(self, ID: str) -> Measurement:
         """Returns measurement with given measurementID.

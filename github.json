@@ -22,6 +22,13 @@
                     "propGroup": "VolumetricProp",
                     "method": "simulation",
                     "unit": "kg/m3"
+                },
+                "pvisc": {
+                    "propName": "Viscosity",
+                    "ID": "pvisc",
+                    "propGroup": "TransportProp",
+                    "method": "simulation",
+                    "unit": "Pa*s"
                 }
             },
             "variables": {
@@ -36,22 +43,18 @@
                 "meas1": {
                     "ID": "meas1",
                     "properties": {
-                        "pdens": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 1000,
-                                "propID": "pdens"
-                            }
-                        ]
+                        "pdens": {
+                            "measurementID": "meas1",
+                            "propID": "pdens",
+                            "value": 1000
+                        }
                     },
                     "variables": {
-                        "vtemp": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 293.15,
-                                "varID": "vtemp"
-                            }
-                        ]
+                        "vtemp": {
+                            "measurementID": "meas1",
+                            "varID": "vtemp",
+                            "value": 293.15
+                        }
                     }
                 }
             }

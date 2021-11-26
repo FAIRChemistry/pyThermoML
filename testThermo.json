@@ -1,21 +1,25 @@
 {
-    "title": "Title of referred paper",
-    "DOI": "DOI of referred paper",    
+    "title": "Physical properties of aqueous glycerol solutions",
+    "DOI": "10.1016/j.petrol.2012.09.003",
     "authors": {
-        "author0": "author1",
-        "author1": "author2"
+        "author 1": "Koichi Takamura",
+        "author 2": "Herbert Fischer",
+        "author 3": "Norman R. Morrow"
     },
     "compounds": {
         "c1": {
-            "standardInchI": "inhi1",
-            "standardInchIKey": "inchikey1",
-            "commonName": "water",
-            "ID": "c1"
+            "ID": "c1",
+            "standardInchI": "InChI=1S/H2O/h1H2",
+            "standardInchIKey": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+            "smiles": "O",
+            "commonName": "water"
         },
         "c2": {
-            "smiles": "smiles2",
-            "commonName": "ethanol",
-            "ID": "c2"
+            "ID": "c2",
+            "standardInchI": "InChI=1S/C3H8O3/c4-1-3(6)2-5/h3-6H,1-2H2",
+            "standardInchIKey": "PEDCQBHIVMGVHV-UHFFFAOYSA-N",
+            "smiles": "C(C(CO)O)O",
+            "commonName": "glycerol"
         }
     },
     "pureOrMixtureData": {
@@ -26,74 +30,153 @@
                 "c2"
             ],
             "properties": {
-                "pvisc1": {
-                    "propName": "Viscosity",
-                    "ID": "pvisc1",
-                    "propGroup": "TransportProp",
-                    "unit": "Pa*s",
+                "p1": {
+                    "propName": "Mass density",
+                    "propGroup": "VolumetricProp",
+                    "ID": "p1",
+                    "unit": "kg/m3",
                     "method": "simulation"
+                },
+                "p2": {
+                    "propName": "Self diffusion coefficient",
+                    "propGroup": "TransportProp",
+                    "ID": "p2",
+                    "unit": "m2/s",
+                    "method": "simulation",
+                    "compoundID": "c1"
+                },
+                "p3": {
+                    "propName": "Self diffusion coefficient",
+                    "propGroup": "TransportProp",
+                    "ID": "p3",
+                    "unit": "m2/s",
+                    "method": "simulation",
+                    "compoundID": "c2"
                 }
             },
             "variables": {
-                "vtemp1": {
+                "v1": {
+                    "varType": "eTemperature",
                     "varName": "Temperature",
-                    "ID": "vtemp1",
-                    "unit": "K",
-                    "varType": "eTemperature"
+                    "ID": "v1",
+                    "unit": "K"
                 },
-                "vmoleFrac1": {
+                "v2": {
+                    "varType": "eComponentComposition",
                     "varName": "Mole fraction",
-                    "ID": "vmoleFrac1",
+                    "ID": "v2",
                     "unit": "",
-                    "compoundID": "c1",
-                    "varType": "eComponentComposition"
+                    "compoundID": "c1"
                 },
-                "vmoleFrac2": {
+                "v3": {
+                    "varType": "eComponentComposition",
                     "varName": "Mole fraction",
-                    "ID": "vmoleFrac2",
+                    "ID": "v3",
                     "unit": "",
-                    "compoundID": "c2",
-                    "varType": "eComponentComposition"
+                    "compoundID": "c2"
                 }
             },
             "measurements": {
                 "meas1": {
                     "ID": "meas1",
                     "properties": {
-                        "pvisc1": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 10.0,
-                                "uncertainty": 0.1,
-                                "ID": "pvisc1"
-                            }
-                        ]
+                        "p1": {
+                            "measurementID": "meas1",
+                            "value": 10.0,
+                            "propID": "p1",
+                            "data_point_type": "Property",
+                            "elementID": "p1"
+                        },
+                        "p2": {
+                            "measurementID": "meas1",
+                            "value": 10334.0,
+                            "propID": "p2",
+                            "data_point_type": "Property",
+                            "elementID": "p2"
+                        },
+                        "p3": {
+                            "measurementID": "meas1",
+                            "value": 123123.0,
+                            "propID": "p3",
+                            "data_point_type": "Property",
+                            "elementID": "p3"
+                        }
                     },
                     "variables": {
-                        "vtemp1": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 300.0,
-                                "uncertainty": 10.0,
-                                "ID": "vtemp1"
-                            }
-                        ],
-                        "vmoleFrac1": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 0.2,
-                                "uncertainty": 0.01,
-                                "ID": "vmoleFrac1"
-                            }
-                        ],
-                        "vmoleFrac2": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 0.8,
-                                "uncertainty": 0.02,
-                                "ID": "vMoleFrac2"
-                            }
-                        ]
+                        "v1": {
+                            "measurementID": "meas1",
+                            "value": 300.0,
+                            "varID": "v1",
+                            "data_point_type": "Variable",
+                            "elementID": "v1"
+                        },
+                        "v2": {
+                            "measurementID": "meas1",
+                            "value": 0.2,
+                            "varID": "v2",
+                            "data_point_type": "Variable",
+                            "elementID": "v2"
+                        },
+                        "v3": {
+                            "measurementID": "meas1",
+                            "value": 0.8,
+                            "varID": "v3",
+                            "data_point_type": "Variable",
+                            "elementID": "v3"
+                        }
+                    }
+                },
+                "meas2": {
+                    "ID": "meas2",
+                    "properties": {
+                        "p1": {
+                            "measurementID": "meas2",
+                            "value": 1000.0,
+                            "propID": "p1",
+                            "uncertainty": 0.1,
+                            "data_point_type": "Property",
+                            "elementID": "p1"
+                        },
+                        "p2": {
+                            "measurementID": "meas2",
+                            "value": 10334.0,
+                            "propID": "p2",
+                            "data_point_type": "Property",
+                            "elementID": "p2"
+                        },
+                        "p3": {
+                            "measurementID": "meas2",
+                            "value": 123123.0,
+                            "propID": "p3",
+                            "data_point_type": "Property",
+                            "elementID": "p3"
+                        }
+                    },
+                    "variables": {
+                        "v1": {
+                            "measurementID": "meas2",
+                            "value": 1000.0,
+                            "varID": "v1",
+                            "uncertainty": 10.0,
+                            "data_point_type": "Variable",
+                            "elementID": "v1"
+                        },
+                        "v2": {
+                            "measurementID": "meas2",
+                            "value": 1000.0,
+                            "varID": "v2",
+                            "uncertainty": 0.01,
+                            "data_point_type": "Variable",
+                            "elementID": "v2"
+                        },
+                        "v3": {
+                            "measurementID": "meas2",
+                            "value": 1000.0,
+                            "varID": "v3",
+                            "uncertainty": 0.02,
+                            "data_point_type": "Variable",
+                            "elementID": "v3"
+                        }
                     }
                 }
             }

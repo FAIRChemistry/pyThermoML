@@ -5,5 +5,13 @@ from pythermo.thermoml.tools.readTools import ThermoMLReader
 
 
 
-writer = ThermoMLWriter(dataRep="github.json", filename="testThermo1.xml")
+
+writer = ThermoMLWriter(dataRep="github.json", filename="a.xml")
 writer.writeThermo()
+
+reader = ThermoMLReader(path="a.xml")
+dr = reader.readFromThermoMLFile()
+
+
+x = dr.getPureOrMixtureData("pom1").getMeasurement("meas1")._getProperty("pdens")
+print(x)

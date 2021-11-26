@@ -28,7 +28,9 @@ class ComponentCompositionBase(VariableBase):
     @classmethod
     def moleFraction(cls, ID: str, compoundID: str):
         """creates mole fraction object. For more information visit documentation of VariableBase.
-        Unit: ""
+        
+        Note:
+            Unit: ""
 
         Args:
             ID (str): ID

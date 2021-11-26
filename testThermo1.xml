@@ -65,4 +65,51 @@
       </PropertyValue>
     </NumValues>
   </PureOrMixtureData>
+  <PureOrMixtureData>
+    <nPureOrMixtureDataNumber>pom2</nPureOrMixtureDataNumber>
+    <Component>
+      <RegNum>
+        <nOrgNum>c1</nOrgNum>
+      </RegNum>
+    </Component>
+    <Property>
+      <nPropNumber>pdens</nPropNumber>
+      <PropertyMethod-ID>
+        <PropertyGroup>
+          <VolumetricProp>
+            <ePropName>Mass density, kg/m3</ePropName>
+            <eMethodName>simulation</eMethodName>
+          </VolumetricProp>
+        </PropertyGroup>
+        <RegNum>
+          <nOrgNum/>
+        </RegNum>
+      </PropertyMethod-ID>
+      <CombinedUncertainty>
+        <nCombUncertAssessNum>1</nCombUncertAssessNum>
+      </CombinedUncertainty>
+    </Property>
+    <Variable>
+      <nVarNumber>vtemp</nVarNumber>
+      <VariableID>
+        <VariableType>
+          <eTemperature>Temperature, K</eTemperature>
+        </VariableType>
+        <RegNum>
+          <nOrgNum/>
+        </RegNum>
+      </VariableID>
+      <VarUncertainty>
+        <nUncertAssessNum>1</nUncertAssessNum>
+      </VarUncertainty>
+    </Variable>
+    <NumValues ID="meas1">
+      <VariableValue>
+        <nVarValue>293.15</nVarValue>
+      </VariableValue>
+      <PropertyValue>
+        <nPropValue>1000</nPropValue>
+      </PropertyValue>
+    </NumValues>
+  </PureOrMixtureData>
 </DataReport>

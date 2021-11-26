@@ -11,7 +11,7 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 from flask.helpers import send_file
-from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
+from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint, Measurement
 
 from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.vars.temperature import TemperatureBase
@@ -158,6 +158,7 @@ datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1,
 
 datapoints2 = [viscDataPoint2, sdiff1DataPoint2, sdiff2DataPoint2, tempDataPoint2,
                frac1DataPoint2, frac2DataPoint2]
+
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
 experiment.addMeasurement(dataPoints=datapoints2)
@@ -166,11 +167,11 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-
+print(dataReport.json(exclude_none=True, indent=4))
 #print(y.getPureOrMixtureData('pom1').measurements)
-
+"""
 writer = ThermoMLWriter(dataRep="github.json", filename="testThermo.xml")
-writer.writeThermo()
+writer.writeThermo()"""
 """
 #file = etree.parse("testThermo.xml")
 #print(etree.tostring(file, pretty_print=True, encoding=str))

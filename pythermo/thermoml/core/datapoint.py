@@ -69,7 +69,7 @@ class DataPoint(BaseModel):
         varID = values.get("varID")
 
 
-        print(f"varID = {varID}, propID = {propID}")
+        #print(f"varID = {varID}, propID = {propID}")
         if propID:
             values["data_point_type"] = "Property"
             return propID

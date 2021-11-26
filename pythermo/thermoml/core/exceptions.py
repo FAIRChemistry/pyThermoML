@@ -11,7 +11,7 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 
 class ThermoMLTypeError(Exception):
-    """Raised when the type of either variable or property isnt matched
+    """Raised if the type of either variable or property isnt matched
     """
 
     def __init__(self, given_type, expected_type):
@@ -23,32 +23,8 @@ class ThermoMLTypeError(Exception):
             f"Expected {self.expected_type}, got {self.given_type}."
         )
 
-class ThermoMLSchemaError(Exception):
-    """Raised when ThermoML file that schould read in does not follow schema definition
-
-    Args:
-        Exception ([type]): [description]
-    """
-
-    def __init__(self, tagname):
-        """creates ThermoMLSchemaError object
-
-        Args:
-            tagname (object): object that does not follow schema definition
-        """
-        self.tag_name = tagname
-    
-    def __str__(self):
-        """returns a string representation of ThermoMLSchemaError"""
-        return(
-            f"Problems in {self.tag_name} - tag. Maybe tag name or element name does not follow ThermoML schema definition?"
-        )
-
 class ThermoMLMissingIDError(Exception):
-    """Raised when a necesarry ID is missing.
-
-    Args:
-        Exception ([type]): [description]
+    """Raised if necessary ID is missing.
     """
 
     def __init__(self, element):
@@ -66,28 +42,18 @@ class ThermoMLMissingIDError(Exception):
             f"Please enter an ID for {self.element}."
         )
 
-class ThermoMLNoCompoundError(Exception):
-    """Raised when no compound as been specified"""
-
-    def __str__(self):
-        """returns a string representation of ThermoMLNoCompoundError
-        """
-        return(
-            f"No compounds have been specified"
-        )
-
 class ThermoMLFileFormatError(Exception):
-    """Raised when ThermoML file that should be written has no .xml in its name."""
+    """Raised if ThermoML file that should be written has no .xml in its name."""
     def __str__(self):
         """returns a string representation of ThermoMLFileFormatError
         """
 
         return(
-            "Please end your new ThermoML file with '.xml'"
+            "New ThermoML file should end with '.xml'"
         )
 
 class ThermoMLWriterDataReportTypeError(Exception):
-    """Raised when type of data report is not readable by ThermoMLWriter."""
+    """Raised if type of data report is not readable by ThermoMLWriter."""
 
     def __init__(self, type):
         """creates ThermoMLWriterDataReportTypeError
@@ -101,4 +67,21 @@ class ThermoMLWriterDataReportTypeError(Exception):
         """string representation of ThermoMLWriterDataReportTypeError."""
         return(
             f"Writer can not read data report. Got {self.type} data report. Please enter data report as DataReport, str or dict"
+        )
+
+class ThermoMLQuantityNotFoundError(Exception):
+    """Raise if property/variable can not be found in prop/var mapping, or if there are issues with units"""
+
+    def __init__(self, propName:str):
+        """creates ThermoMLQuantityNotFoundError
+
+        Args:
+            propName (str): name of not founded property
+        """
+        self.propName = propName
+    
+    def __str__(self):
+        """string representation of ThermoMLQuantityNotFoundError."""
+        return(
+            f"Defined property/variable: '{self.propName}' could not be found in this version of API. \n Please also check whether unit fits ThermoML - schema definition."
         )
