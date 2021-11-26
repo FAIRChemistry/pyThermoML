@@ -318,6 +318,8 @@ class ThermoMLReader(BaseModel):
                     numbOfDig = None
                 except TypeError:
                     numbOfDig = None
+                
+                print(variableValue.findall(self.NAMESPACE + 'nVarValue'))
                 datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(variableValue, 'nVarValue')),
                                   varID=self.__getOneEntry__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
 

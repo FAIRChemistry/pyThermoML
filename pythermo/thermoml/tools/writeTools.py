@@ -54,7 +54,7 @@ class ThermoMLWriter(BaseModel):
         elif type(dataRep) is str:
             dataRep = Path(dataRep)
             dataRep = DataReport.parse_file(dataRep)
-    
+            print(type(dataRep.getPureOrMixtureData("pom1").getMeasurement("meas1")))
             return json.loads(json.dumps(dataRep, indent=4, default=pydantic_encoder))
         else:
             raise ThermoMLWriterDataReportTypeError(type=dataRep)

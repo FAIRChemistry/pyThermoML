@@ -169,15 +169,15 @@ dataReport.addPureOrMixtureData(experiment)
 
 #print(y.getPureOrMixtureData('pom1').measurements)
 
-writer = ThermoMLWriter(dataRep=dataReport, filename="testThermo.xml")
+writer = ThermoMLWriter(dataRep="github.json", filename="testThermo.xml")
 writer.writeThermo()
 """
 #file = etree.parse("testThermo.xml")
 #print(etree.tostring(file, pretty_print=True, encoding=str))
 """
 
-reader = ThermoMLReader(path="testThermo.xml")
-dataRepr = reader.readFromFile()
+#reader = ThermoMLReader(path="testThermo.xml")
+#dataRepr = reader.readFromFile()
 
 #print(dataRepr.json(exclude_none=True, indent=4))
 #print(dataRepr.authors)

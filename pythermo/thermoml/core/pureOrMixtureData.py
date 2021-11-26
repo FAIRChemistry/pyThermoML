@@ -125,7 +125,8 @@ class PureOrMixtureData(BaseModel):
                 self.measurements[measurementID] = Measurement(
                     ID=measurementID
                 )
-
+            
+            print(type(self.measuremnts[measurementID]))
             self.measurements[measurementID].addDataPoints(dataPoint, self)
     
     def getMeasurement(self, ID: str) -> Measurement:
@@ -141,6 +142,7 @@ class PureOrMixtureData(BaseModel):
             Measurement: object of type Measurement
         """
         try:
+            
             return self.measurements[ID]
         except KeyError:
 

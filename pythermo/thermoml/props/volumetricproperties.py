@@ -10,6 +10,7 @@ Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 from pythermo.thermoml.props.propertyBase import PropertyBase
+from pydantic import validator
 
 
 class VolumetricProperty(PropertyBase):
