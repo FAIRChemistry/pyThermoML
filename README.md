@@ -5,7 +5,7 @@
 **Authors:** Matthias Gueltig, Jan Range
 **License:** BSD 2 Clause - see the [License](https://github.com/matzegltg/pyThermoML/blob/master/LICENSE) for details.
 
-This project provides the first means to interact with the ThermoML format. The library is written in python, and is avalable on PyPi, so all you sholud need to do is run:
+This project provides the first means to interact with the ThermoML format. The library is written in python, and PyPi embedding is coming soon, then the API is available by calling:
 
 ```
 pip install PyThermoML
