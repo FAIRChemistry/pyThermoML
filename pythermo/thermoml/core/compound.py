@@ -41,7 +41,7 @@ class Compound(BaseModel):
             ID (str): User specified ID
 
         Raises:
-            TypeError: When ID does not match expected pattern.
+            TypeError: If ID does not match expected pattern.
 
         Returns:
             str: ID

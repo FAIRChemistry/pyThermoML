@@ -105,7 +105,7 @@ class ThermoMLReader(BaseModel):
         doi = self.__getOneEntry__(self.path, tag="sDOI")
         authors = self.__getAuthors__()
 
-        datareport = DataReport(title=title, doi=doi, authors=authors)
+        datareport = DataReport(title=title, DOI=doi, authors=authors)
 
         comps = self.__getCompounds__()
 
