@@ -18,6 +18,7 @@ from typing import  Union
 from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError, ThermoMLWriterDataReportTypeError
 from pydantic.json import pydantic_encoder
 from pathlib import Path
+from pythermo.thermoml.tools.readTools import ThermoMLReader
 
 class ThermoMLWriter(BaseModel):
     """Class providing functionalities for writing ThermoML file.
@@ -50,12 +51,11 @@ class ThermoMLWriter(BaseModel):
             dict: iterable dataReport dict
         """
         if type(dataRep) is DataReport:
-            return json.loads(json.dumps(dataRep, indent=4, default=pydantic_encoder))
+            return dataRep.dict(exclude_none=True)
         elif type(dataRep) is str:
-            dataRep = Path(dataRep)
-            dataRep = DataReport.parse_file(dataRep)
-            print(type(dataRep.getPureOrMixtureData("pom1").getMeasurement("meas1")))
-            return json.loads(json.dumps(dataRep, indent=4, default=pydantic_encoder))
+            reader = ThermoMLReader(path=dataRep)
+            dataRep = reader.readFromJSON()
+            return dataRep.dict(exclude_none=True)
         else:
             raise ThermoMLWriterDataReportTypeError(type=dataRep)
 
@@ -252,48 +252,52 @@ class ThermoMLWriter(BaseModel):
                 NumValues = etree.SubElement(PureOrMixtureData, 'NumValues', ID=str(measKey))
 
                 if 'variables' in measurements:
-                    for vars in measurements['variables'].values():
-                        VariableValue = etree.SubElement(NumValues, 'VariableValue')
-                        if 'elementID' in vars[0]:
+                    for dataPointKey in measurements['variables'].values():
+
+                        if 'elementID' in dataPointKey:
+                            # in if clause because elementID is mandatory else raise Error
+                            VariableValue = etree.SubElement(NumValues, 'VariableValue')
                             nVarNumber = etree.SubElement(VariableValue, 'nVarNumber')
-                            nVarNumber.text = str(vars[0]['elementID'])
-                        if 'value' in vars[0]:
+                            nVarNumber.text = str(dataPointKey['elementID'])
+                        if 'value' in dataPointKey:
                             nVarValue = etree.SubElement(VariableValue, 'nVarValue')
-                            nVarValue.text = str(vars[0]['value'])
+                            nVarValue.text = str(dataPointKey['value'])
                         
-                        if 'numberOfDigits' in vars[0]:
+                        if 'numberOfDigits' in dataPointKey:
                             nVarDigits = etree.SubElement(VariableValue, 'nVarDigits')
-                            nVarDigits.text = str(vars[0]['numberOfDigits'])
+                            nVarDigits.text = str(dataPointKey['numberOfDigits'])
                         
-                        if  'uncertainty' in vars[0]:
+                        if  'uncertainty' in dataPointKey:
                             VarUncertainty = etree.SubElement(VariableValue, 'VarUncertainty')
                             nUncertAssessNum = etree.SubElement(VarUncertainty, 'nUncertAssesNum')
                             nUncertAssessNum.text = str(1)
                             nExpandUncertValue = etree.SubElement(VarUncertainty, 'nExpandUncertValue')
-                            nExpandUncertValue.text = str(vars[0]['uncertainty'])
+                            nExpandUncertValue.text = str(dataPointKey['uncertainty'])
                         
 
 
                 if 'properties' in measurements:        
-                    for key, props in measurements['properties'].items():
-                        PropertyValue = etree.SubElement(NumValues, 'PropertyValue')
-                        if 'elementID' in props[0]:
+                    for dataPointKey in measurements['properties'].values():
+                        
+                        if 'elementID' in dataPointKey:
+                            # in if clause because elementID is mandatory else raise Error
+                            PropertyValue = etree.SubElement(NumValues, 'PropertyValue')
                             nPropNumber = etree.SubElement(PropertyValue, 'nPropNumber')
-                            nPropNumber.text = str(props[0]['elementID'])
-                        if 'value' in props[0]:
+                            nPropNumber.text = str(dataPointKey['elementID'])
+                        if 'value' in dataPointKey:
                             nPropValue = etree.SubElement(PropertyValue, 'nPropValue')
-                            nPropValue.text = str(props[0]['value'])
+                            nPropValue.text = str(dataPointKey['value'])
                         
-                        if  'numberOfDigits' in props[0]:
+                        if  'numberOfDigits' in dataPointKey:
                             nPropDigits = etree.SubElement(PropertyValue, 'nPropDigits')
-                            nPropDigits.text = str(props[0]['numberOfDigits'])
+                            nPropDigits.text = str(dataPointKey['numberOfDigits'])
                         
-                        if  'uncertainty' in props[0]:
+                        if  'uncertainty' in dataPointKey:
                             CombinedUncertainty = etree.SubElement(PropertyValue, 'CombinedUncertainty')
                             nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssesNum')
                             nCombUncertAssessNum.text = str(1)
                             nCombExpandUncertValue = etree.SubElement(CombinedUncertainty, 'nCombExpandUncertValue')
-                            nCombExpandUncertValue.text = str(props[0]['uncertainty'])
+                            nCombExpandUncertValue.text = str(dataPointKey['uncertainty'])
 
         return PureOrMixtureData
     

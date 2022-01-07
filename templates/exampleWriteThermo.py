@@ -10,12 +10,10 @@ Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
 
-from flask.helpers import send_file
-from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint
+from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint, Measurement
 
 from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.vars.temperature import TemperatureBase
-from pythermo.thermoml.vars.pressure import PressureBase
 from pythermo.thermoml.props.transportproperties import TransportProperty
 from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
 
@@ -30,13 +28,13 @@ from lxml import etree
 
 # title, DOI, authors
 authors = {
-    "author 1": "Koichi Takamura",
-    "author 2": "Herbert Fischer",
-    "author 3": "Norman R. Morrow"
+    "author 1": "authror1",
+    "author 2": "author2",
+    "author 3": "author3"
 }
 
-dataReport = DataReport(title="Physical properties of aqueous glycerol solutions",
-                        DOI="10.1016/j.petrol.2012.09.003", authors=authors)
+dataReport = DataReport(title="Title of referred",
+                        DOI="Doi of referred paper", authors=authors)
 
 
 # declaration of compound used in measurements
@@ -158,6 +156,7 @@ datapoints = [viscDataPoint, sdiff1DataPoint1, sdiff2DataPoint1,
 
 datapoints2 = [viscDataPoint2, sdiff1DataPoint2, sdiff2DataPoint2, tempDataPoint2,
                frac1DataPoint2, frac2DataPoint2]
+
 # add Measurement to experiment
 experiment.addMeasurement(dataPoints=datapoints)
 experiment.addMeasurement(dataPoints=datapoints2)
@@ -166,18 +165,18 @@ experiment.addMeasurement(dataPoints=datapoints2)
 # add experiment to dataReport
 dataReport.addPureOrMixtureData(experiment)
 
-
+print(dataReport.json(exclude_none=True, indent=4))
 #print(y.getPureOrMixtureData('pom1').measurements)
-
-writer = ThermoMLWriter(dataRep="github.json", filename="testThermo.xml")
-writer.writeThermo()
+"""
+writer = ThermoMLWriter(dataRep=dataReport, filename="testThermo.xml")
+writer.writeThermo()"""
 """
 #file = etree.parse("testThermo.xml")
 #print(etree.tostring(file, pretty_print=True, encoding=str))
 """
 
-#reader = ThermoMLReader(path="testThermo.xml")
-#dataRepr = reader.readFromFile()
+reader = ThermoMLReader(path="testThermo.xml")
+dataRepr = reader.readFromThermoMLFile()
 
 #print(dataRepr.json(exclude_none=True, indent=4))
 #print(dataRepr.authors)

@@ -27,7 +27,9 @@ class PressureBase(VariableBase):
     @classmethod
     def pressure(cls, ID: str, compoundID: str = None):
         """creates pressure object. For more information visit documentation of VariableBase.
-        Unit: "kPa"
+
+        Note:
+            Unit: "kPa"
 
         Args:
             ID (str): ID

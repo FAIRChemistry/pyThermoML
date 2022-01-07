@@ -34,9 +34,9 @@ class PureOrMixtureData(BaseModel):
         Args:
             ID (str): user specified ID. Stored in ThermoML .xml in nPureOrMixtureDataNumber tag.
             comps (list[str]): used Compounds
-            properties (dict[str, Any]): dictionary of properties used in pureOrMixtureData. (Key: pID, Value: Property)
-            variables (dict[str, Any]): dictionary of variables used in pureOrMixtureData. (Key: vID, Value: Variable)
-            measurements (dict[str, Any]): dictionary of measurements of pureOrMixtureData. (Key: mID, Value: Measurement)           
+            properties (dict[str, PropertyBase]): dictionary of properties used in pureOrMixtureData. (Key: pID, Value: Property)
+            variables (dict[str, VariableBase]): dictionary of variables used in pureOrMixtureData. (Key: vID, Value: Variable)
+            measurements (dict[str, Measurement]): dictionary of measurements of pureOrMixtureData. (Key: mID, Value: Measurement)           
 
     """
     
@@ -44,7 +44,7 @@ class PureOrMixtureData(BaseModel):
     comps: list[str] = []
     properties: dict[str, PropertyBase] = {}
     variables: dict[str, VariableBase] = {}
-    measurements: dict[str, Any] = {}
+    measurements: dict[str, Measurement] = {}
 
     @validator("ID", always=True)
     @classmethod

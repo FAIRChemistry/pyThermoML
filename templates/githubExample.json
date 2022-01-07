@@ -20,7 +20,7 @@
                     "propName": "Mass density",
                     "ID": "pdens",
                     "propGroup": "VolumetricProp",
-                    "method": "simulation",
+                    "method": "experiment",
                     "unit": "kg/m3"
                 }
             },
@@ -36,22 +36,18 @@
                 "meas1": {
                     "ID": "meas1",
                     "properties": {
-                        "pdens": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 1000,
-                                "propID": "pdens"
-                            }
-                        ]
+                        "pdens": {
+                            "measurementID": "meas1",
+                            "propID": "pdens",
+                            "value": 1000
+                        }
                     },
                     "variables": {
-                        "vtemp": [
-                            {
-                                "measurementID": "meas1",
-                                "value": 293.15,
-                                "varID": "vtemp"
-                            }
-                        ]
+                        "vtemp": {
+                            "measurementID": "meas1",
+                            "varID": "vtemp",
+                            "value": 293.15
+                        }
                     }
                 }
             }

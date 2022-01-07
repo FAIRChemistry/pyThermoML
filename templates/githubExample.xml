@@ -7,16 +7,12 @@
   <Citation>
     <sTitle>name of your paper</sTitle>
     <sAuthor>your name</sAuthor>
-    <sDOI/>
   </Citation>
   <Compound>
     <RegNum>
       <nOrgNum>c1</nOrgNum>
     </RegNum>
-    <sStandardInChI/>
-    <sStandardInChIKey/>
     <sCommonName>water</sCommonName>
-    <sSmiles/>
   </Compound>
   <PureOrMixtureData>
     <nPureOrMixtureDataNumber>pom1</nPureOrMixtureDataNumber>
@@ -31,12 +27,9 @@
         <PropertyGroup>
           <VolumetricProp>
             <ePropName>Mass density, kg/m3</ePropName>
-            <eMethodName>simulation</eMethodName>
+            <eMethodName>experiment</eMethodName>
           </VolumetricProp>
         </PropertyGroup>
-        <RegNum>
-          <nOrgNum/>
-        </RegNum>
       </PropertyMethod-ID>
       <CombinedUncertainty>
         <nCombUncertAssessNum>1</nCombUncertAssessNum>
@@ -48,9 +41,6 @@
         <VariableType>
           <eTemperature>Temperature, K</eTemperature>
         </VariableType>
-        <RegNum>
-          <nOrgNum/>
-        </RegNum>
       </VariableID>
       <VarUncertainty>
         <nUncertAssessNum>1</nUncertAssessNum>
@@ -58,10 +48,12 @@
     </Variable>
     <NumValues ID="meas1">
       <VariableValue>
+        <nVarNumber>vtemp</nVarNumber>
         <nVarValue>293.15</nVarValue>
       </VariableValue>
       <PropertyValue>
-        <nPropValue>1000</nPropValue>
+        <nPropNumber>pdens</nPropNumber>
+        <nPropValue>1000.0</nPropValue>
       </PropertyValue>
     </NumValues>
   </PureOrMixtureData>
