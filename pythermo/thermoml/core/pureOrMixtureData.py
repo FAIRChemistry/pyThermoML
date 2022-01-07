@@ -39,6 +39,7 @@ class PureOrMixtureData(BaseModel):
             measurements (dict[str, Any]): dictionary of measurements of pureOrMixtureData. (Key: mID, Value: Measurement)           
 
     """
+    
     ID: str
     comps: list[str] = []
     properties: dict[str, PropertyBase] = {}
@@ -126,7 +127,6 @@ class PureOrMixtureData(BaseModel):
                     ID=measurementID
                 )
             
-            print(type(self.measuremnts[measurementID]))
             self.measurements[measurementID].addDataPoints(dataPoint, self)
     
     def getMeasurement(self, ID: str) -> Measurement:
