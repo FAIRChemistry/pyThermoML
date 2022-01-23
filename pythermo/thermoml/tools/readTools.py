@@ -182,9 +182,9 @@ class ThermoMLReader(BaseModel):
                 comps[self.__getOneEntry__(compound, 'nOrgNum')] = Compound(
                     ID=self.__getOneEntry__(compound, 'nOrgNum'),
                     standardInchI=self.__getOneEntry__(
-                        compound, 'sStandardInchi'),
+                        compound, 'sStandardInchI'),
                     standardInchIKey=self.__getOneEntry__(
-                        compound, 'sStandardInchiKey'),
+                        compound, 'sStandardInchIKey'),
                     smiles=self.__getOneEntry__(compound, 'sSmiles'),
                     commonName=self.__getOneEntry__(compound, 'commonName')
                 )
