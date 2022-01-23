@@ -189,7 +189,7 @@ class ThermoMLWriter(BaseModel):
                 Property = etree.SubElement(PureOrMixtureData, 'Property')
                 nPropNumber = etree.SubElement(Property, 'nPropNumber')
                 nPropNumber.text = key
-                PropertyMethodID = etree.SubElement(Property, 'PropertyMethod-ID')
+                PropertyMethodID = etree.SubElement(Property, 'Property-MethodID')
                 
                 if 'propName' in value:
                     PropertyGroup = etree.SubElement(PropertyMethodID, 'PropertyGroup')
@@ -207,8 +207,8 @@ class ThermoMLWriter(BaseModel):
                     RegNum = etree.SubElement(PropertyMethodID, 'RegNum')
                     nOrgNum = etree.SubElement(RegNum, 'nOrgNum')
                     nOrgNum.text = value['compoundID']
-                CombinedUncertainty = etree.SubElement(Property, 'CombinedUncertainty')
-                nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssessNum')
+                PropUncertainty = etree.SubElement(Property, 'PropUncertainty')
+                nCombUncertAssessNum = etree.SubElement(PropUncertainty, 'nUncertAssessNum')
                 
                 # one uncertainty for each property
                 nCombUncertAssessNum.text = str(1)
@@ -269,10 +269,10 @@ class ThermoMLWriter(BaseModel):
                         
                         if  'uncertainty' in dataPointKey:
                             VarUncertainty = etree.SubElement(VariableValue, 'VarUncertainty')
-                            nUncertAssessNum = etree.SubElement(VarUncertainty, 'nUncertAssesNum')
+                            nUncertAssessNum = etree.SubElement(VarUncertainty, 'nUncertAssessNum')
                             nUncertAssessNum.text = str(1)
-                            nExpandUncertValue = etree.SubElement(VarUncertainty, 'nExpandUncertValue')
-                            nExpandUncertValue.text = str(dataPointKey['uncertainty'])
+                            nStdUncertValue = etree.SubElement(VarUncertainty, 'nStdUncertValue')
+                            nStdUncertValue.text = str(dataPointKey['uncertainty'])
                         
 
 
@@ -293,10 +293,10 @@ class ThermoMLWriter(BaseModel):
                             nPropDigits.text = str(dataPointKey['numberOfDigits'])
                         
                         if  'uncertainty' in dataPointKey:
-                            CombinedUncertainty = etree.SubElement(PropertyValue, 'CombinedUncertainty')
-                            nCombUncertAssessNum = etree.SubElement(CombinedUncertainty, 'nCombUncertAssesNum')
+                            PropUncertainty = etree.SubElement(PropertyValue, 'PropUncertainty')
+                            nCombUncertAssessNum = etree.SubElement(PropUncertainty, 'nUncertAssessNum')
                             nCombUncertAssessNum.text = str(1)
-                            nCombExpandUncertValue = etree.SubElement(CombinedUncertainty, 'nCombExpandUncertValue')
+                            nCombExpandUncertValue = etree.SubElement(PropUncertainty, 'nStdUncertValue')
                             nCombExpandUncertValue.text = str(dataPointKey['uncertainty'])
 
         return PureOrMixtureData
