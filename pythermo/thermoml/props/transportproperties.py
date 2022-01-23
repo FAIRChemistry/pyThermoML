@@ -26,7 +26,7 @@ class TransportProperty(PropertyBase):
     propGroup: str = "TransportProp"
 
     @classmethod
-    def viscosity(cls, ID: str, method: str, compoundID: str):
+    def viscosity(cls, ID: str, method: str, compoundID: str = None):
         """creates viscosity object. For more information vist documentation of PropertyBase.
         
         Note:

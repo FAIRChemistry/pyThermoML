@@ -141,3 +141,4 @@ class DataReport(BaseModel):
             raise KeyError(
                 f"PureOrMixtureData with ID {ID} does not exist."
             )
+    
