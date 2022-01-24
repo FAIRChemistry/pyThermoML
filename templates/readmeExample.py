@@ -14,8 +14,7 @@ writer.writeThermo()
 reader = ThermoMLReader(path="testThermo.xml")
 dataReport = reader.readFromThermoMLFile()
 
-print(dataReport.compounds)
-print(dataReport.getPureOrMixtureData("pom1").getPOMProperty("p1"))
+print(list(dataReport.getPureOrMixtureData("pom1").properties.values()))
 #method = dataReport.getPureOrMixtureData("pom1").getMeasurement("meas1").getProperty("pdens").value
 
 #print(method)
