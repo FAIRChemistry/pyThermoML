@@ -182,9 +182,9 @@ class ThermoMLReader(BaseModel):
                 comps[self.__getOneEntry__(compound, 'nOrgNum')] = Compound(
                     ID=self.__getOneEntry__(compound, 'nOrgNum'),
                     standardInchI=self.__getOneEntry__(
-                        compound, 'sStandardInchi'),
+                        compound, 'sStandardInChI'),
                     standardInchIKey=self.__getOneEntry__(
-                        compound, 'sStandardInchiKey'),
+                        compound, 'sStandardInChIKey'),
                     smiles=self.__getOneEntry__(compound, 'sSmiles'),
                     commonName=self.__getOneEntry__(compound, 'commonName')
                 )
@@ -287,7 +287,7 @@ class ThermoMLReader(BaseModel):
             varName (str): name of variable
 
         Returns:
-            method: method that matches to varName
+            method: s that matches to varName
         """
         try:
             func = self.varMapping[varName]
@@ -319,7 +319,7 @@ class ThermoMLReader(BaseModel):
             for variableValue in numValues.findall(self.NAMESPACE + 'VariableValue'):
                 try:
                     uncert = float(self.__getOneEntry__(
-                        variableValue, 'nExpandUncertValue'))
+                        variableValue, 'nStdUncertValue'))
                 except ValueError:
                     uncert = None
                 except TypeError:
@@ -339,7 +339,7 @@ class ThermoMLReader(BaseModel):
             for propertyValue in numValues.findall(self.NAMESPACE + 'PropertyValue'):
                 try:
                     uncert = float(self.__getOneEntry__(
-                        propertyValue, 'nCombExpandUncertValue'))
+                        propertyValue, 'nStdUncertValue'))
                 except ValueError:
                     uncert = None
                 except TypeError:

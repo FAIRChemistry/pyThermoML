@@ -142,6 +142,7 @@
                             "value": 10334.0,
                             "propID": "p2",
                             "data_point_type": "Property",
+                            "uncertainty": 1111111,
                             "elementID": "p2"
                         },
                         "p3": {
@@ -149,6 +150,7 @@
                             "value": 123123.0,
                             "propID": "p3",
                             "data_point_type": "Property",
+                            "uncertainty": -123123123123123,
                             "elementID": "p3"
                         }
                     },
