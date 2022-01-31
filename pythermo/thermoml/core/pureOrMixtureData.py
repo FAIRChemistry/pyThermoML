@@ -126,8 +126,7 @@ class PureOrMixtureData(BaseModel):
                 self.measurements[measurementID] = Measurement(
                     ID=measurementID
                 )
-            
-            self.measurements[measurementID].addDataPoints(dataPoint, self)
+            self.measurements[measurementID].addDataPoint(dataPoint, self)
     
     def getMeasurement(self, ID: str) -> Measurement:
         """Returns measurement with given measurementID.

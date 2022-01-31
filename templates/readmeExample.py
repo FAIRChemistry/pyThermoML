@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(1, 'C://Users//Matthias Gültig//Documents//pyThermoML')
+sys.path.insert(1, 'C://Users//matth//Documents//GitHub//pyThermoML')
 
 from pythermo.thermoml.tools.writeTools import ThermoMLWriter
 from pythermo.thermoml.tools.readTools import ThermoMLReader
