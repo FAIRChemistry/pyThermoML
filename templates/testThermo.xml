@@ -131,32 +131,6 @@
     <NumValues ID="meas1">
       <VariableValue>
         <nVarNumber>v1</nVarNumber>
-        <nVarValue>300.0</nVarValue>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>v2</nVarNumber>
-        <nVarValue>0.2</nVarValue>
-      </VariableValue>
-      <VariableValue>
-        <nVarNumber>v3</nVarNumber>
-        <nVarValue>0.8</nVarValue>
-      </VariableValue>
-      <PropertyValue>
-        <nPropNumber>p1</nPropNumber>
-        <nPropValue>10.0</nPropValue>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>p2</nPropNumber>
-        <nPropValue>10334.0</nPropValue>
-      </PropertyValue>
-      <PropertyValue>
-        <nPropNumber>p3</nPropNumber>
-        <nPropValue>123123.0</nPropValue>
-      </PropertyValue>
-    </NumValues>
-    <NumValues ID="meas2">
-      <VariableValue>
-        <nVarNumber>v1</nVarNumber>
         <nVarValue>1000.0</nVarValue>
         <VarUncertainty>
           <nUncertAssessNum>1</nUncertAssessNum>

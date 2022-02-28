@@ -1,4 +1,4 @@
-{
+{   
     "title": "Title of referred",
     "DOI": "Doi of referred paper",
     "authors": {
@@ -126,7 +126,7 @@
                         }
                     }
                 },
-                "meas2": {
+                "meas1": {
                     "ID": "meas2",
                     "properties": {
                         "p1": {
