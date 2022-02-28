@@ -19,8 +19,8 @@ class Bioproperty(PropertyBase):
     Peak temperature.
     Inherited from PropertyBase.
     
-        Args:
-            propGroup (str): Bioproperty
+    Args:
+        propGroup (str): Bioproperty
     
     """
     propGroup: str = "Bioproperty"

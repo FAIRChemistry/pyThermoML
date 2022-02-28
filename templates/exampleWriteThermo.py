@@ -9,11 +9,16 @@ Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
 -----
 Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
 '''
+import sys
+
+sys.path.insert(1, 'C://Users//matth//Documents//GitHub//pyThermoML')
 
 from pythermo.thermoml.core import PureOrMixtureData, DataReport, Compound, DataPoint, Measurement
 
 from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.vars.temperature import TemperatureBase
+
+
 from pythermo.thermoml.props.transportproperties import TransportProperty
 from pythermo.thermoml.props.volumetricproperties import VolumetricProperty
 

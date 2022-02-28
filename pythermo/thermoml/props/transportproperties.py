@@ -19,8 +19,8 @@ class TransportProperty(PropertyBase):
     Viscosity, kinematic viscosity, micro viscosity (not included in ThermoML schema), self diffusion coefficient.
     Inherited from PropertyBase.
     
-        Args:
-            propGroup (str): Transport property group
+    Args:
+        propGroup (str): Transport property group
     
     """
     propGroup: str = "TransportProp"

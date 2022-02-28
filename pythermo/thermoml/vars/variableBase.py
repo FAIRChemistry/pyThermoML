@@ -18,13 +18,12 @@ class VariableBase(BaseModel):
     """
     Base class for variables. For more information visit ThermoMLSchema definition.
 
-        Args:
-            varName (str): Name of the variable. Determined in child classes.
-            varType (str): Name of belonging variable type. Determined in child classes.
-            ID (str): User specified variable ID. Will be stored in nVarNumber tag in ThermoML .xml
-            unit (str): Unit of Variable. Determined in child classes.
-            compoundID (str, optional): ID of reffered compound
-            _type (str): type of varable. Default is "Variable"
+    Args:
+        varName (str): Name of the variable. Determined in child classes.
+        varType (str): Name of belonging variable type. Determined in child classes.
+        ID (str): User specified variable ID. Will be stored in nVarNumber tag in ThermoML .xml
+        unit (str): Unit of Variable. Determined in child classes.
+        compoundID (str, optional): ID of reffered compound
 
     """
     varType: str

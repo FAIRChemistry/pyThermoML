@@ -23,11 +23,9 @@ from pythermo.thermoml.tools.readTools import ThermoMLReader
 class ThermoMLWriter(BaseModel):
     """Class providing functionalities for writing ThermoML file.
 
-        Args:
-            dataRep (dict): dictionary representation of data report.
-            filename (str): name of the ThermoML file that should be written.
-            _attr_qname (etree.Qname): .xml schema attributes
-            _nsmap (dict[str, str]): mapping of ThermoML schema definition
+    Args:
+        dataRep (dict): dictionary representation of data report.
+        filename (str): name of the ThermoML file that should be written.
     """
         
 

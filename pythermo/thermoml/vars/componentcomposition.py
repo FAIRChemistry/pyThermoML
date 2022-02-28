@@ -18,8 +18,8 @@ class ComponentCompositionBase(VariableBase):
     Mole fraction.
     Inherited from VariableBase.
     
-        Args:
-            varType (str): extracted from schema definition: eComponentComposition
+    Args:
+        varType (str): extracted from schema definition: eComponentComposition
     
     """
 

@@ -18,8 +18,8 @@ class PressureBase(VariableBase):
     pressure.
     Inherited from VariableBase.
     
-        Args:
-            varType (str): extracted from schema definition: ePressure
+    Args:
+        varType (str): extracted from schema definition: ePressure
     
     """
     varType: str ="ePressure"

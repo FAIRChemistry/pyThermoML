@@ -83,25 +83,6 @@ class DataReport(BaseModel):
         """
         self.authors[ID] = name
 
-    def getAuthor(self, ID: str):
-        """returns author with given author ID.
-
-        Args:
-            ID (str): The user specified ID of the author. When used with a data Report objcet which was read in by ThermoML Reader,
-            be aware that user specified IDs will be deleted. Information about IDs via dataReport.authors
-
-        Raises:
-            KeyError: When author with respective ID does not exist.
-
-        Returns:
-            str: name of the author
-        """
-        try:
-            return self.authors[ID]
-        except KeyError:
-            raise KeyError(
-                f"Author with ID {ID} does not exist"
-            )
 
     def getCompound(self, ID: str) -> Compound:
         """returns compound with given compound ID.

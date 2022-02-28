@@ -20,14 +20,13 @@ class PropertyBase(BaseModel):
     """
     Base class for properties. Fore more information visit ThermoMLSchema definition.
 
-        Args:
-            propName (str): Name of the property. Determined in child classes.
-            propGroup (str): Name of belonging property group. Determined in child classes.
-            ID (str): User specified property ID. Will be stored in nPropNumber tag in ThermoML .xml
-            unit (str): Unit of property. Determined in child classes.
-            method (str): Method used to obtain experimental/simulation data. Please enter "experiment" for experimental data and "simulation" for simulation data.
-            compoundID (str, optional): ID of reffered compound
-            _type (str): Type of property. Default is "Property"
+    Args:
+        propName (str): Name of the property. Determined in child classes.
+        propGroup (str): Name of belonging property group. Determined in child classes.
+        ID (str): User specified property ID. Will be stored in nPropNumber tag in ThermoML .xml
+        unit (str): Unit of property. Determined in child classes.
+        method (str): Method used to obtain experimental/simulation data. Please enter "experiment" for experimental data and "simulation" for simulation data.
+        compoundID (str, optional): ID of reffered compound
     """
     propName: str
     propGroup: str

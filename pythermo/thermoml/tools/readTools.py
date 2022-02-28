@@ -31,15 +31,16 @@ class ThermoMLReader(BaseModel):
     """
     Class providing reader functionalities.
 
-        Args:
-            path (str): path to ThermoML file (.xml)
-            NAMESPACE (str): Namespace of ThermoML  
-            propMapping (dict): Dict with property names and units (str) as keys and initalizer function as values.  
-            varMapping (dict): Dict with variable names and units (str) as keys and initalizer function as values.    
+    Args:
+        path (str): path to ThermoML file (.xml) 
     """
+
+    # NAMESPACE (str): Namespace of ThermoML 
     path: str
-    NAMESPACE: str = './/{http://www.iupac.org/namespaces/ThermoML}'
-    propMapping: Dict = {
+    __NAMESPACE__: str = './/{http://www.iupac.org/namespaces/ThermoML}'
+
+    # propMapping (dict): Dict with property names and units (str) as keys and initalizer function as values.     
+    __propMapping__: Dict = {
         'Viscosity, Pa*s': TransportProperty.viscosity,
         'Kinematic Viscosity, m2/s': TransportProperty.kinematicViscosity,
         'Self diffusion coefficient, m2/s': TransportProperty.selfDiffusionCoefficient,
@@ -54,7 +55,8 @@ class ThermoMLReader(BaseModel):
         'Microviscosity, Pa*s': TransportProperty.microViscosity
     }
 
-    varMapping: Dict = {
+    # varMapping (dict): Dict with variable names and units (str) as keys and initalizer function as values.
+    __varMapping__: Dict = {
         'Temperature, K': TemperatureBase.temperature,
         'Lower temperature, K': TemperatureBase.lowerTemperature,
         'Upper temperature, K': TemperatureBase.upperTemperature,
@@ -143,8 +145,8 @@ class ThermoMLReader(BaseModel):
             str: value of specified tag in ThermoML file
             None: if tag cannot be found in file
         """
-        if root.findall(self.NAMESPACE + tag):
-            return root.findall(self.NAMESPACE + tag)[0].text
+        if root.findall(self.__NAMESPACE__ + tag):
+            return root.findall(self.__NAMESPACE__ + tag)[0].text
         else:
             return None
 
@@ -157,8 +159,8 @@ class ThermoMLReader(BaseModel):
         Returns:
             dict[str, str]: dict of authors
         """
-        if self.path.findall(self.NAMESPACE + 'sAuthor'):
-            authorList = self.path.findall(self.NAMESPACE + 'sAuthor')
+        if self.path.findall(self.__NAMESPACE__ + 'sAuthor'):
+            authorList = self.path.findall(self.__NAMESPACE__ + 'sAuthor')
             authors = dict()
 
             for index, author in enumerate(authorList):
@@ -176,9 +178,9 @@ class ThermoMLReader(BaseModel):
             dict[str, Compound]: compounds used in ThermoML file. Key is compID
         """
         comps = dict()
-        if self.path.findall(self.NAMESPACE + 'Compound'):
+        if self.path.findall(self.__NAMESPACE__ + 'Compound'):
 
-            for compound in self.path.findall(self.NAMESPACE + 'Compound'):
+            for compound in self.path.findall(self.__NAMESPACE__ + 'Compound'):
                 comps[self.__getOneEntry__(compound, 'nOrgNum')] = Compound(
                     ID=self.__getOneEntry__(compound, 'nOrgNum'),
                     standardInchI=self.__getOneEntry__(
@@ -205,9 +207,9 @@ class ThermoMLReader(BaseModel):
 
         pOMData = dict()
         comps = list(comps.keys())
-        if self.path.findall(self.NAMESPACE + 'PureOrMixtureData'):
+        if self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
 
-            for pureOrMixtureData in self.path.findall(self.NAMESPACE + 'PureOrMixtureData'):
+            for pureOrMixtureData in self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
     
                 # All declared compounds should be used in pure or mixture Data
                 pOMData[self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (PureOrMixtureData(
@@ -229,7 +231,7 @@ class ThermoMLReader(BaseModel):
             dict: dict of properties used in pureOrMixtureData. Keys: nPropNumber, Values: [Func, compID]
         """
         properties = dict()
-        for property in pureOrMixtureData.findall(self.NAMESPACE + 'Property'):
+        for property in pureOrMixtureData.findall(self.__NAMESPACE__ + 'Property'):
             try:
                 compID = self.__getOneEntry__(property, 'nOrgNum')
             except IndexError:
@@ -249,7 +251,7 @@ class ThermoMLReader(BaseModel):
             method: method that matches to ePropName
         """
         try:
-            func = self.propMapping[ePropName]
+            func = self.__propMapping__[ePropName]
             return func
         except KeyError:
             raise ThermoMLQuantityNotFoundError(ePropName)
@@ -268,8 +270,8 @@ class ThermoMLReader(BaseModel):
             dict: dict of variables used in pureOrMixtureData. Keys: nVarNumber, Values: [Func, compID]
         """
         variables = dict()
-        for variable in pureOrMixtureData.findall(self.NAMESPACE + 'Variable'):
-            variableType = variable.findall(self.NAMESPACE + 'VariableType')
+        for variable in pureOrMixtureData.findall(self.__NAMESPACE__ + 'Variable'):
+            variableType = variable.findall(self.__NAMESPACE__ + 'VariableType')
             varName = variableType[0].getchildren()[0].text
             try:
                 compID = self.__getOneEntry__(variable, 'nOrgNum')
@@ -290,7 +292,7 @@ class ThermoMLReader(BaseModel):
             method: s that matches to varName
         """
         try:
-            func = self.varMapping[varName]
+            func = self.__varMapping__[varName]
         except KeyError:
             print('Variable not found')
         return func
@@ -306,7 +308,7 @@ class ThermoMLReader(BaseModel):
             PureOrMixtureData: filled pureOrMixtureData object
         """
         measID = 0
-        for numValues in pureOrMixtureData.findall(self.NAMESPACE + 'NumValues'):
+        for numValues in pureOrMixtureData.findall(self.__NAMESPACE__ + 'NumValues'):
             if 'ID' in numValues.attrib:
                 measID = numValues.attrib['ID']
             else:
@@ -316,7 +318,7 @@ class ThermoMLReader(BaseModel):
                 measID = str(measID)
 
             datapoints = []
-            for variableValue in numValues.findall(self.NAMESPACE + 'VariableValue'):
+            for variableValue in numValues.findall(self.__NAMESPACE__ + 'VariableValue'):
                 try:
                     uncert = float(self.__getOneEntry__(
                         variableValue, 'nStdUncertValue'))
@@ -336,7 +338,7 @@ class ThermoMLReader(BaseModel):
                 datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(variableValue, 'nVarValue')),
                                   varID=self.__getOneEntry__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
 
-            for propertyValue in numValues.findall(self.NAMESPACE + 'PropertyValue'):
+            for propertyValue in numValues.findall(self.__NAMESPACE__ + 'PropertyValue'):
                 try:
                     uncert = float(self.__getOneEntry__(
                         propertyValue, 'nStdUncertValue'))

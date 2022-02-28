@@ -19,8 +19,8 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
     Surface tension, speed of sound.
     Inherited from PropertyBase.
     
-        Args:
-            propGroup (str): surface tension and speed of sound property group
+    Args:
+        propGroup (str): surface tension and speed of sound property group
     
     """
 

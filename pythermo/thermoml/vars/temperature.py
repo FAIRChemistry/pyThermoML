@@ -19,8 +19,8 @@ class TemperatureBase(VariableBase):
     Temperature, upper temperature and lower temperature.
     Inherited from VariableBase.
     
-        Args:
-            varType (str): extracted from schema definition: eTemperature
+    Args:
+        varType (str): extracted from schema definition: eTemperature
     
     """
     varType: str = "eTemperature"

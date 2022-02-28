@@ -20,10 +20,10 @@ class Measurement(BaseModel):
     Class representing a measurement in DataReport. 
     Each measurement contains property/variable data point of one measurement (same measurement ID).
 
-        Args:
-            ID (str): user specified measurement ID.
-            properties (dict[str, DataPoint]): dict with keys: propID, values: DataPoint of type Property.
-            variables (dict[str, DataPoint]): dict with keys: varID, values: DataPoint of type Variable.
+    Args:
+        ID (str): user specified measurement ID.
+        properties (dict[str, DataPoint]): dict with keys: propID, values: DataPoint of type Property.
+        variables (dict[str, DataPoint]): dict with keys: varID, values: DataPoint of type Variable.
 
     """
 

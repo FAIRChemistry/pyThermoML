@@ -18,27 +18,27 @@ class DataPoint(BaseModel):
     """
     Class that represents a data point. Datapoint is used to describe one value of a specific measurement.
     
-        Args:
-            measurementID (str): ID of the whole measurement.
-            value (Union[float, int]): measured/determined value.
-            propID (Optional[str]): reference to ID of measured property. propID = None when type of dataPoint is "Variable".
-            varID (Optional[str]): reference to ID of determined variable. varID = None when type of dataPoint is "Property".
-            uncertainty (Optional[float]): Depending whether type of dataPoint is "Variable" or "Property".
-                If data point is a variable: 
-                    Quantity defining an interval about the result of a measurement that may be expected to 
-                    encompass a large fraction of the distribution of values that could reasonably be attributed to the measurand. 
-                    (In ThermoML the expanded uncertainty value) 
+    Args:
+        measurementID (str): ID of the whole measurement.
+        value (Union[float, int]): measured/determined value.
+        propID (Optional[str]): reference to ID of measured property. propID = None when type of dataPoint is "Variable".
+        varID (Optional[str]): reference to ID of determined variable. varID = None when type of dataPoint is "Property".
+        uncertainty (Optional[float]): Depending whether type of dataPoint is "Variable" or "Property".
+            If data point is a variable: 
+                Quantity defining an interval about the result of a measurement that may be expected to 
+                encompass a large fraction of the distribution of values that could reasonably be attributed to the measurand. 
+                (In ThermoML the expanded uncertainty value) 
 
-                If data point is property:
-                    The combined standard uncertainty ucomb. The combined coverage factor kcomb and the combined expanded uncertainty Ucomb, 
-                    which also apply only to the designated property, are defined through the equation Ucomb = ucomb * kcomb. 
-                    For further information visit the link below.
+            If data point is property:
+                The combined standard uncertainty ucomb. The combined coverage factor kcomb and the combined expanded uncertainty Ucomb, 
+                which also apply only to the designated property, are defined through the equation Ucomb = ucomb * kcomb. 
+                For further information visit the link below.
 
-                (From: ThermoML An XML-Based Approach for Storage and Exchange of Experimental and Critically Evaluated Thermophysical and Thermochemical 
-                Property Data. 1. Experimental Data, Michael Frenkel et. al., DOI: https://doi.org/10.1021/je025645o)
-            numberOfDigits (Optional[int]): number of digits of determined value.
-            data_point_type (Optional[str]): deciedes whether data point is "Variable" or "Property"
-            elementID (Optional[str]): Contains in both cases (Variable and Property) the respective ID.
+            (From: ThermoML An XML-Based Approach for Storage and Exchange of Experimental and Critically Evaluated Thermophysical and Thermochemical 
+            Property Data. 1. Experimental Data, Michael Frenkel et. al., DOI: https://doi.org/10.1021/je025645o)
+        numberOfDigits (Optional[int]): number of digits of determined value.
+        data_point_type (Optional[str]): deciedes whether data point is "Variable" or "Property"
+        elementID (Optional[str]): Contains in both cases (Variable and Property) the respective ID.
     """
 
     measurementID: str

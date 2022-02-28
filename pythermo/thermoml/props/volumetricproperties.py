@@ -19,8 +19,8 @@ class VolumetricProperty(PropertyBase):
     Mass density.
     Inherited from PropertyBase.
     
-        Args:
-            propGroup (str): Volumetric property group
+    Args:
+        propGroup (str): Volumetric property group
     
     """
     propGroup: str = "VolumetricProp"

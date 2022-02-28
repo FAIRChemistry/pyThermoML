@@ -18,13 +18,12 @@ class Compound(BaseModel):
     """
     Class representing a compound used in ThermoML.
 
-        Args:
-            ID (str): user specified ID
-            standardInchI (Optional[str]): standardInchI of used compound (Optional)
-            standardInchIKey (Optional[str]): standardInchIKey of used compound (Optional)
-            smiles (Optional[str]): smiles code of used compound (Optional)
-            commonName (Optional[str]): common name of used compound (Optional)
-            _type (str): type of elements of Compound class. Used for technichal reasons.
+    Args:
+        ID (str): user specified ID
+        standardInchI (Optional[str]): standardInchI of used compound (Optional)
+        standardInchIKey (Optional[str]): standardInchIKey of used compound (Optional)
+        smiles (Optional[str]): smiles code of used compound (Optional)
+        commonName (Optional[str]): common name of used compound (Optional)
     """
     ID: str
     standardInchI: Optional[str] = None

@@ -20,8 +20,8 @@ class HeatCapacityProperty(PropertyBase):
     Malar heat capacity at constant volume (molarHCconstVolume)
     Inherited from PropertyBase.
 
-        Args:
-            propGroup (str): Heat capacity and derived properies
+    Args:
+        propGroup (str): Heat capacity and derived properies
 
     """
     propGroup: str = "HeatCapacityAndDerivedProp"
