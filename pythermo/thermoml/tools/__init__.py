@@ -11,3 +11,4 @@ Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgar
 '''
 from pythermo.thermoml.tools.readTools import ThermoMLReader
 from pythermo.thermoml.tools.writeTools import ThermoMLWriter
+from pythermo.thermoml.tools.uploadTools import ThermoMLDaRUSHandler

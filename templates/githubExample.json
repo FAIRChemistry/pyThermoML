@@ -1,5 +1,6 @@
 {
-    "title": "name of your paper",
+    "title": "Name of paper",
+    "DOI": "DOI of paper",
     "authors": {
         "author1": "your name"
     },

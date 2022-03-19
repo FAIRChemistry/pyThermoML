@@ -5,8 +5,9 @@
     <nVersionMinor>0</nVersionMinor>
   </Version>
   <Citation>
-    <sTitle>name of your paper</sTitle>
+    <sTitle>Name of paper</sTitle>
     <sAuthor>your name</sAuthor>
+    <sDOI>DOI of paper</sDOI>
   </Citation>
   <Compound>
     <RegNum>
@@ -23,17 +24,17 @@
     </Component>
     <Property>
       <nPropNumber>pdens</nPropNumber>
-      <PropertyMethod-ID>
+      <Property-MethodID>
         <PropertyGroup>
           <VolumetricProp>
             <ePropName>Mass density, kg/m3</ePropName>
             <eMethodName>experiment</eMethodName>
           </VolumetricProp>
         </PropertyGroup>
-      </PropertyMethod-ID>
-      <CombinedUncertainty>
-        <nCombUncertAssessNum>1</nCombUncertAssessNum>
-      </CombinedUncertainty>
+      </Property-MethodID>
+      <PropUncertainty>
+        <nUncertAssessNum>1</nUncertAssessNum>
+      </PropUncertainty>
     </Property>
     <Variable>
       <nVarNumber>vtemp</nVarNumber>

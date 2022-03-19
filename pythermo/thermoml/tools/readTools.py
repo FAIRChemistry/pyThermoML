@@ -23,16 +23,17 @@ from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLMissingIDError, ThermoMLQuantityNotFoundError
 from lxml import etree
 from pydantic import BaseModel, validator
-from typing import Dict
+from typing import Union, Dict
 from pydantic.json import pydantic_encoder
 from pathlib import Path
+import json
 
 class ThermoMLReader(BaseModel):
     """
     Class providing reader functionalities.
 
     Args:
-        path (str): path to ThermoML file (.xml) 
+        path (str): path to file to interact with
     """
 
     # NAMESPACE (str): Namespace of ThermoML 
@@ -66,14 +67,11 @@ class ThermoMLReader(BaseModel):
 
     @validator('path')
     @classmethod
-    def convertPath(cls, path: str) -> etree._Element:
+    def convertPath(cls, path: Union[str,dict]):
         """converts given path into readable root
 
         Args:
             path (str): path to ThermoML filename
-
-        Returns:
-            etree._Element: readable root
         
         Raises:
             FileNotFoundError: file have to 
@@ -95,7 +93,8 @@ class ThermoMLReader(BaseModel):
             Returns:
                 DataReport: Based on given .json file DataReport object
         """
-        return DataReport.parse_file(Path(self.path))
+        if type(self.path) == str:
+            return DataReport.parse_file(Path(self.path))
         
     def readFromThermoMLFile(self) -> DataReport:
         """Reads given ThermoML file to DataReport object.
@@ -111,26 +110,27 @@ class ThermoMLReader(BaseModel):
 
         comps = self.__getCompounds__()
 
-        for comp in comps.values():
-            datareport.addCompound(comp)
+        if comps is not None:
+            for comp in comps.values():
+                datareport.addCompound(comp)
 
-        pOMData = self.__getPOMData__(comps)
+            pOMData = self.__getPOMData__(comps)
 
-        # experiment[0] Object
-        # experiment[1] ElementTree
-        for experiment in pOMData.values():
-            props = self.__getProperties__(experiment[1])
-            vars = self.__getVariables__(experiment[1])
-            
-            for id, value in props.items():
-                experiment[0].addProperty(
-                    value[0](ID=id, method=value[1], compoundID=value[2]))
+            # experiment[0] Object
+            # experiment[1] ElementTree
+            for experiment in pOMData.values():
+                props = self.__getProperties__(experiment[1])
+                vars = self.__getVariables__(experiment[1])
+                
+                for id, value in props.items():
+                    experiment[0].addProperty(
+                        value[0](ID=id, method=value[1], compoundID=value[2]))
 
-            for id, value in vars.items():
-                experiment[0].addVariable(value[0](ID=id, compoundID=value[1]))
+                for id, value in vars.items():
+                    experiment[0].addVariable(value[0](ID=id, compoundID=value[1]))
 
-            datareport.addPureOrMixtureData(
-                self.__getMeasurements__(experiment[0], experiment[1]))
+                datareport.addPureOrMixtureData(
+                    self.__getMeasurements__(experiment[0], experiment[1]))
 
         return datareport
 
@@ -188,7 +188,7 @@ class ThermoMLReader(BaseModel):
                     standardInchIKey=self.__getOneEntry__(
                         compound, 'sStandardInChIKey'),
                     smiles=self.__getOneEntry__(compound, 'sSmiles'),
-                    commonName=self.__getOneEntry__(compound, 'commonName')
+                    commonName=self.__getOneEntry__(compound, 'sCommonName')
                 )
 
             return comps
