@@ -8,7 +8,9 @@
 This project provides the first means to interact with the ThermoML format. The library is written in python, and PyPi embedding is coming soon, then the API is available by calling:
 
 ```
-pip install PyThermoML
+git clone https://github.com/matzegltg/pyThermoML.git
+cd pyThermoML
+python setup.py install
 ```
 
 This library depends on the following libraries:
