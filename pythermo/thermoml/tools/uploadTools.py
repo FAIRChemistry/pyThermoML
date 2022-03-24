@@ -1,15 +1,18 @@
+from typing import List
 from pythermo.thermoml.tools.readTools import ThermoMLReader
 from pyDaRUS import Citation, Dataset, EngMeta
-from pyDaRUS.metadatablocks.citation import SubjectEnum, IdType
+from pyDaRUS.metadatablocks.citation import SubjectEnum, IdType, Contact
 from pyDaRUS.metadatablocks.engMeta import DataGeneration
 
+from pydantic import BaseModel
 
-class ThermoMLDaRUSHandler(object):
+class ThermoMLDaRUSHandler(BaseModel):
     """Class providing functionalities to upload/download ThermoML 
     files to DaRUS (data repository of the university of Stuttgart)
     """
 
-    def uploadToDaRUS(self, local_path:str, dv_path:str, dv_name:str) -> str:
+    
+    def uploadToDaRUS(self, local_path:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, authors:List[Contact]) -> str:
         """uploads ThermoML file to DaRUS
 
         Warning: Please note, that the interface easyDataverse will infer the DATAVERSE_URL as well as 
@@ -20,6 +23,10 @@ class ThermoMLDaRUSHandler(object):
             local_path (str): local path to ThermoML file
             dv_path (str): path of ThermoML file, that should be stored DaRUS dataverse
             dv_name (str): name of datavarese in DaRUS
+            title (str): title of the file that should be uploaded to DaRUS
+            subject (SubjectEnum): Subject of the dataset e. g. chemistry
+            description (str): A summary describing the purpose of the dataset
+            authors (List(Contact)): The person(s) responsible for creating the work
         
         Returns:
             str: ID of uploaded dataset. Needed for accessing dataset and download it from DaRUS
@@ -33,19 +40,15 @@ class ThermoMLDaRUSHandler(object):
         
 
         # citation meta data extracted from ThermoML file
-        citation.add_description(text=f"Partial or complete data integration of dataset from {dataReport.title}")
-        citation.title = dataReport.title
-        citation.subject = [SubjectEnum.chemistry]
+        citation.add_description(text=description)
+        citation.title = title
+        citation.subject = subject
 
         citation.add_related_publication(id_type = IdType.doi, id_number = dataReport.DOI)
             
-        for author in dataReport.authors.values():
-
-            citation.add_author(name=author)
-
-            # NOTE Email is necessary for DaRUS, but currently dummy values because mail
-            # can not be stored in ThermoML files
-            citation.add_contact(name=author, email="mail@author.de")
+        for author in authors:
+            citation.add_author(name=author.name)
+            citation.add_contact(name=author.name, email=author.email)
         
         dataset.add_metadatablock(citation)
 
@@ -86,7 +89,7 @@ class ThermoMLDaRUSHandler(object):
                     unit = var.unit
                 engMeta.add_controlled_variables(name=varName, unit = unit)
     
-        # If we want to store each value in engMeta
+        # If we want to store each measured value in engMeta
         """
         for pom in dataReport.pureOrMixtureData.values():
             for meas in pom.measurements.values():
@@ -139,4 +142,4 @@ class ThermoMLDaRUSHandler(object):
             filedir (str): local path in which dataset should be stored
         """
         dataset = Dataset.from_dataverse_doi(p_id, filedir)
-        
+
