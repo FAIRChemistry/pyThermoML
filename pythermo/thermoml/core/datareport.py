@@ -1,14 +1,9 @@
-'''
-File: datareport.py
-Project: core
-Author: Matthias Gueltig, Jan Range
-License: BSD-2 clause
------
-Last Modified: Thursday November 25th 2021
-Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   datareport.py
+# @Last modified :   2022/04/07 23:13:12
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from typing import Optional
 from pydantic import BaseModel
@@ -23,19 +18,24 @@ class DataReport(BaseModel):
     Class that represents a data report. Basic class of ThermoML - data report.
 
     Note:
-        All entrys of this API refer to http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd ThermoML - schema definition.
+        All entrys of this API refer to http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd 
+        ThermoML - schema definition.
 
     Args:
         title (Optional[str]): Title of a referred paper.
         DOI (Optional[str]): DOI of a referred paper.
-        authors (dict[str, str]): Dictionary with authors of a referred paper. The keys wont be stored in ThermoML.
-        compounds (dict[str, Compound]): Compounds which are used in data reprot. The keys are stored in the ThermoML .xml file in the nOrgNum tag.
-        pureOrMixtureData (dict[str, PureOrMixtureData]): PureOrMixtureData elements which are used in data report. The keys are stored in the ThermoML .xml file in the nPureOrMixtureDataNumber tag.
+        authors (Optional[dict[str, str]]): Dictionary with authors of a referred paper. 
+            The keys wont be stored in ThermoML.
+        compounds (dict[str, Compound]): Compounds which are used in data reprot. 
+            The keys are stored in the ThermoML .xml file in the nOrgNum tag.
+        pureOrMixtureData (dict[str, PureOrMixtureData]): PureOrMixtureData elements which are 
+            used in data report. The keys are stored in the ThermoML .xml file in the 
+            nPureOrMixtureDataNumber tag.
 
     """
     title: Optional[str]
     DOI: Optional[str]
-    authors: dict[str, str] = {}
+    authors: Optional[dict[str, str]] = {}
     compounds: dict[str, Compound] = {}
     pureOrMixtureData: dict[str, PureOrMixtureData] = {}
 
@@ -65,7 +65,8 @@ class DataReport(BaseModel):
         """adds pureOrMixtureData object to data report.
 
         Args:
-            pureOrMixtureData (PureOrMixtureData): PureOrMixtureData object, that contains experimental information.
+            pureOrMixtureData (PureOrMixtureData): PureOrMixtureData object, 
+                that contains experimental information.
 
         Returns:
             str: Id of added pureOrMixtureData object
@@ -80,46 +81,39 @@ class DataReport(BaseModel):
         Args:
             name (str): name of the author
             ID (str): freely selectable ID, to receive information about author.
-        """
-        self.authors[ID] = name
-
-
-    def getCompound(self, ID: str) -> Compound:
-        """returns compound with given compound ID.
-
-        Args:
-            ID (str): The user specified ID of the compound.
-
-        Raises:
-            KeyError: When data report does not contain compound with respective ID.
 
         Returns:
-            Compound: compound object with respective ID.
+            DataReport: Returns data report that has been modified.
+
+        Warning:
+            The author ID gets lost by writing a ThermoML file.
         """
-        try:
-            return self.compounds[ID]
-        except KeyError:
-            raise KeyError(
-                f"Compound with ID {ID} does not exist."
-            )
+        if self.authors:
+            self.authors[ID] = name
+            return self
+        else:
+            authors = dict()
+            authors[ID] = name
+            self = DataReport(authors=authors, compounds=self.compounds,
+                              pureOrMixtureData=self.pureOrMixtureData)
+            return self
 
-    def getPureOrMixtureData(self, ID: str) -> PureOrMixtureData:
-        """returns pure or mixture data with given pure or mixture data ID.
-
-        Args:
-            ID (str): The user specified ID of pureOrMixtureData 
-
-        Raises:
-            KeyError: pure or mixture data with ID does not exist
+    def getPureOrMixtureDataIDs(self) -> list[str]:
+        """returns all IDs of pure or mixture entries in the data report.
 
         Returns:
-            PureOrMixtureData: object of type PureOrMixtureData with respective ID
+            IDs (list[str]): List with IDs of pure or mixture data objects.
         """
-        try:
-            return self.pureOrMixtureData[ID]
-        except KeyError:
+        IDs = list()
+        for ID in self.pureOrMixtureData.keys():
+            IDs.append(ID)
+        return IDs
 
-            raise KeyError(
-                f"PureOrMixtureData with ID {ID} does not exist."
-            )
-    
+    def to_string(self) -> str:
+        """returns nice printed string representation of data report object.
+
+        Returns:
+            str: string representation
+        """
+
+        return self.json(indent=4, exclude_none=True)

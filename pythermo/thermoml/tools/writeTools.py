@@ -111,19 +111,22 @@ class ThermoMLWriter(BaseModel):
         return dataRepXml
 
     def __createCitation(self, dataRepXml:etree._Element) -> etree._Element:
-        Citation = etree.SubElement(dataRepXml, 'Citation')
-        if 'title' in self.dataRep:
-            sTitle = etree.SubElement(Citation, 'sTitle')
-            sTitle.text = self.dataRep['title']
-        if 'authors' in self.dataRep:
-            for key in self.dataRep['authors'].keys():
-                sAuthor = etree.SubElement(Citation, 'sAuthor')
-                sAuthor.text = self.dataRep['authors'][key]
-        if 'DOI' in self.dataRep:
-            sDOI = etree.SubElement(Citation, 'sDOI')
-            sDOI.text = self.dataRep['DOI']
+        if 'title' not in self.dataRep and 'DOI' not in self.dataRep and self.dataRep['authors'] == {}:
+            return dataRepXml
+        else:
+            Citation = etree.SubElement(dataRepXml, 'Citation')
+            if 'title' in self.dataRep:
+                sTitle = etree.SubElement(Citation, 'sTitle')
+                sTitle.text = self.dataRep['title']
+            if 'authors' in self.dataRep:
+                for key in self.dataRep['authors'].keys():
+                    sAuthor = etree.SubElement(Citation, 'sAuthor')
+                    sAuthor.text = self.dataRep['authors'][key]
+            if 'DOI' in self.dataRep:
+                sDOI = etree.SubElement(Citation, 'sDOI')
+                sDOI.text = self.dataRep['DOI']
 
-        return dataRepXml
+            return dataRepXml
 
     def __createCompound(self, dataRepXml:etree._Element) -> etree._Element:
         
@@ -164,6 +167,8 @@ class ThermoMLWriter(BaseModel):
                 nPureOrMixtureDataNumber = etree.SubElement(PureOrMixtureData, 'nPureOrMixtureDataNumber')
                 nPureOrMixtureDataNumber.text = str(key)
 
+                sCompiler = etree.SubElement(PureOrMixtureData, 'sCompiler')
+                sCompiler.text = value['compiler']
                 PureOrMixtureData = self.__createComponents(value, PureOrMixtureData)
                 PureOrMixtureData = self.__createProperties(value, PureOrMixtureData)
                 PureOrMixtureData = self.__createVariables(value, PureOrMixtureData)

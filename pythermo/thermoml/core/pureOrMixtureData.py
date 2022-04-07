@@ -33,6 +33,7 @@ class PureOrMixtureData(BaseModel):
 
     Args:
         ID (str): user specified ID. Stored in ThermoML .xml in nPureOrMixtureDataNumber tag.
+        compiler (str): The name of the person who compiled the data contained in the ThermoML file.
         comps (list[str]): used Compounds
         properties (dict[str, PropertyBase]): dictionary of properties used in pureOrMixtureData. (Key: pID, Value: Property)
         variables (dict[str, VariableBase]): dictionary of variables used in pureOrMixtureData. (Key: vID, Value: Variable)
@@ -41,6 +42,7 @@ class PureOrMixtureData(BaseModel):
     """
     
     ID: str
+    compiler: str
     comps: list[str] = []
     properties: dict[str, PropertyBase] = {}
     variables: dict[str, VariableBase] = {}
@@ -128,6 +130,20 @@ class PureOrMixtureData(BaseModel):
                 )
             self.measurements[measurementID].addDataPoint(dataPoint, self)
     
+    
+    def getMeasurementByValues(self, var1ID:str, var1Value:float):
+        conditionedMeasurement = list()
+        for measID, values in self.measurements.items():
+            for varID, values in values.variables.items():
+                try:
+                    if var1ID == varID and values.value == var1Value:
+                        conditionedMeasurement.append(self.measurements[values.measurementID])
+                except:
+                    print("did not find data point with respective value")
+        return conditionedMeasurement
+                        
+
+
     def getMeasurement(self, ID: str) -> Measurement:
         """Returns measurement with given measurementID.
 
@@ -230,6 +246,9 @@ class PureOrMixtureData(BaseModel):
                 except AttributeError:
                     continue
         return moleFracCompound
+    
+
+
 
     def _getElement(
         self,

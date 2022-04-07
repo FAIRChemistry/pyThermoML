@@ -210,12 +210,13 @@ class ThermoMLReader(BaseModel):
         if self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
 
             for pureOrMixtureData in self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
-    
+                compiler = self.__getOneEntry__(pureOrMixtureData, 'sCompiler')
                 # All declared compounds should be used in pure or mixture Data
                 pOMData[self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (PureOrMixtureData(
                     ID=self.__getOneEntry__(
                         pureOrMixtureData, 'nPureOrMixtureDataNumber'),
-                    comps=comps), pureOrMixtureData)
+                    comps=comps,
+                    compiler=compiler), pureOrMixtureData)
         return pOMData
 
     def __getProperties__(self, pureOrMixtureData:etree._Element) -> dict:
