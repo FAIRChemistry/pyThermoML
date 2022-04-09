@@ -1,16 +1,11 @@
-'''
-File: pureOrMixtureData.py
-Project: core
-Author: Matthias Gueltig, Jan Range
-License: BSD-2 clause
------
-Last Modified: Thursday November 25th 2021
-Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   pureOrMixtureData.py
+# @Last modified :   2022/04/09 18:57:31
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
-from typing import Union, Any, TYPE_CHECKING
+from typing import Union, Any, TYPE_CHECKING, Optional
 from dataclasses import dataclass
 from pydantic import BaseModel, validate_arguments, validator
 
@@ -131,17 +126,48 @@ class PureOrMixtureData(BaseModel):
             self.measurements[measurementID].addDataPoint(dataPoint, self)
     
     
-    def getMeasurementByValues(self, var1ID:str, var1Value:float):
-        conditionedMeasurement = list()
-        for measID, values in self.measurements.items():
-            for varID, values in values.variables.items():
-                try:
-                    if var1ID == varID and values.value == var1Value:
-                        conditionedMeasurement.append(self.measurements[values.measurementID])
-                except:
-                    print("did not find data point with respective value")
-        return conditionedMeasurement
-                        
+    def getMeasurementByValues(self, val1:tuple[str, float], val2:tuple[str, float]=None) -> 'DataReport':
+        """With this function property values of specific variable values can be found. 
+        
+        One or two variable IDs and values must be stored in a tuple.
+
+        Args:
+            val1 (tuple[str, float]): First entry: ID of searched variable, value of searched variable.
+            val2 (tuple[str, float], optional): Optionally a second variable can be added. 
+
+        Returns:
+            PureOrMixtureData: The new created PureOrMixtureData object containing only the measurements 
+                with specified variable values.
+            
+        """
+
+        conditionedPOM = PureOrMixtureData(ID=self.ID, compiler=self.compiler, comps=self.comps, 
+            properties=self.properties, variables = self.variables, measurements=dict())
+
+        def __addMeasToPOM__(measValue, conditionedPOM):
+            dp = measValue.getDataPointList()
+            conditionedPOM.addMeasurement(dp)
+            
+        if not val2:
+            for measID, measValue in self.measurements.items():
+                for varID, values in measValue.variables.items():
+                    if val1[0] == varID and values.value == val1[1]:
+                        __addMeasToPOM__(measValue=measValue, conditionedPOM=conditionedPOM)
+        elif val2:
+            for measID, measValue in self.measurements.items():
+                for varID, values in measValue.variables.items():
+                    if val1[0] in measValue.variables.keys() and val2[0] in measValue.variables.keys():
+                        if measValue.variables[val1[0]].value == val1[1] and measValue.variables[val2[0]].value == val2[1]:
+                            __addMeasToPOM__(measValue=measValue, conditionedPOM=conditionedPOM)    
+        
+        if conditionedPOM.measurements:
+            print("At least one matching measurement could be found.")
+        else:
+            print("No matching measurement could be found. No measurement entrys in returned pure or mixture data")
+
+        return conditionedPOM
+
+                
 
 
     def getMeasurement(self, ID: str) -> Measurement:
@@ -204,30 +230,6 @@ class PureOrMixtureData(BaseModel):
         )
 
     @validate_arguments
-    def getPOMPropertyDict(self) -> dict:
-        """returns dictionary with properties and their keys used in pureOrMixtureData.
-
-        Returns:
-            dict: keys: propID, values: objects of type inherited from PropertyBase
-        """
-        propertyDict = dict()
-        for value in self.properties.values():
-            propertyDict[value.ID] = value
-        return propertyDict
-
-    @validate_arguments
-    def getPOMVariableDict(self) -> dict:
-        """returns dictionary with variables and their keys used in pureOrMixtureData.findall
-
-        Returns:
-            dict: keys: varID, values: objects of type inherited from VariableBase
-        """
-        variableDict = dict()
-        for value in self.variables.values():
-            variableDict[value.ID] = value
-        return variableDict
-
-    @validate_arguments
     def getMoleFractionIDs(self) -> dict[str, str]:
         """returns dictionary with compoundID <-> moleFraction assignment.
 
@@ -248,6 +250,14 @@ class PureOrMixtureData(BaseModel):
         return moleFracCompound
     
 
+    def to_string(self) -> str:
+        """returns nice printed string representation of pureOrMixtureData object.
+
+        Returns:
+            str: string representation
+        """
+
+        return self.json(indent=4, exclude_none=True)
 
 
     def _getElement(
@@ -263,3 +273,4 @@ class PureOrMixtureData(BaseModel):
             raise KeyError(
                 f"{elementID} is not defined yet."
             )
+

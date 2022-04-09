@@ -1,14 +1,9 @@
-'''
-File: measurement.py
-Project: core
-Author: Matthias Gueltig, Jan Range
-License: BSD-2 clause
------
-Last Modified: Thursday November 25th 2021
-Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   measurement.py
+# @Last modified :   2022/04/09 19:27:25
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from pydantic import BaseModel, validator
 
@@ -103,6 +98,21 @@ class Measurement(BaseModel):
             "Variable"
         )
 
+    def getDataPointList(self) -> list[DataPoint]:
+        """Returns list representation of data points used in measurement
+
+        Returns:
+            list[DataPoint]: list with data points.
+        """
+        dplist = []
+
+        for propDp in self.properties.values():
+            dplist.append(propDp)
+        for varDp in self.variables.values():
+            dplist.append(varDp)
+        
+        return dplist
+
     @staticmethod
     def _addDataPointToMeasurement(elementID:str, dictionary:dict[str, DataPoint], dataPoint:DataPoint):
         """Refactored method for adding dataPoint to variable/property dictionary.
@@ -135,3 +145,12 @@ class Measurement(BaseModel):
             raise KeyError(
                 f"{data_point_type} {elementID} is not defined yet."
             )
+
+    def to_string(self) -> str:
+        """returns nice printed string representation of measurement object.
+
+        Returns:
+            str: string representation
+        """
+
+        return self.json(indent=4, exclude_none=True)

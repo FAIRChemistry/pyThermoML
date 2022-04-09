@@ -1,3 +1,10 @@
+# @File          :   uploadTools.py
+# @Last modified :   2022/04/09 19:29:00
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
+
 from typing import List
 from pythermo.thermoml.tools.readTools import ThermoMLReader
 from pythermo.thermoml.core.datareport import DataReport

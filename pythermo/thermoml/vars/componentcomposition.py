@@ -1,14 +1,9 @@
-'''
-File: componentcomposition.py
-Project: vars
-Author: Matthias Gueltig, Jan Range
-License: BSD-2 clause
------
-Last Modified: Thursday November 25th 2021
-Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   componentcomposition.py
+# @Last modified :   2022/04/09 19:29:17
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from pythermo.thermoml.vars.variableBase import VariableBase
 

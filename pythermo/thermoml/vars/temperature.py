@@ -1,14 +1,9 @@
-'''
-File: temperature.py
-Project: vars
-Author: Jan Range
-License: BSD-2 clause
------
-Last Modified: Tuesday June 29th 2021 12:08:59 pm
-Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   temperature.py
+# @Last modified :   2022/04/09 19:29:28
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from pythermo.thermoml.vars.variableBase import VariableBase
 

@@ -1,14 +1,9 @@
-'''
-File: bioproperties.py
-Project: props
-Author: Jan Range
-License: BSD-2 clause
------
-Last Modified: Tuesday June 29th 2021 2:12:04 pm
-Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   refractionSurfaceTensionSoundSpeedproperties.py
+# @Last modified :   2022/04/09 19:28:27
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from pythermo.thermoml.props.propertyBase import PropertyBase
 

@@ -1,15 +1,9 @@
-'''
-File: propertyBase.py
-Project: props
-Author: Matthias Gueltig, Jan Range
-License: BSD-2 clause
------
-Last Modified: Thursday November 25th 2021
-Modified By: Matthias Gueltig (<matthias2906@t-online.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
-
+# @File          :   propertyBase.py
+# @Last modified :   2022/04/09 19:28:22
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from pydantic import BaseModel, validator
 from pydantic.fields import PrivateAttr
@@ -84,3 +78,12 @@ class PropertyBase(BaseModel):
             raise TypeError(
                 "Please define whether data was obtained by 'experiment', 'simulation' or 'other'"
         )
+    
+    def to_string(self) -> str:
+        """returns nice printed string representation of propertyBase object.
+
+        Returns:
+            str: string representation
+        """
+
+        return self.json(indent=4, exclude_none=True)

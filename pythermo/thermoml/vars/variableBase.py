@@ -1,14 +1,10 @@
-'''
-File: variableBase.py
-Project: vars
-Author: Jan Range
-License: BSD-2 clause
------
-Last Modified: Tuesday June 29th 2021 3:12:14 pm
-Modified By: Jan Range (<jan.range@simtech.uni-stuttgart.de>)
------
-Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart
-'''
+# @File          :   variableBase.py
+# @Last modified :   2022/04/09 19:26:43
+# @Author        :   Matthias Gueltig, Jan Range
+# @Version       :   1.0
+# @License       :   BSD-2-Clause License
+# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
+
 from typing import Optional
 from pydantic import BaseModel, validator
 from pydantic.fields import PrivateAttr
@@ -53,3 +49,12 @@ class VariableBase(BaseModel):
             raise TypeError(
                 "ID does not match the expected pattern of 'v[digit/s]'"
             )
+        
+    def to_string(self) -> str:
+        """returns nice printed string representation of variableBase object.
+
+        Returns:
+            str: string representation
+        """
+
+        return self.json(indent=4, exclude_none=True)
