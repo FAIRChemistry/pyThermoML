@@ -71,6 +71,7 @@ Let's consider an easy example for explanation how pyThermoML works: In this cas
     "pureOrMixtureData": {
         "pom1": {
             "ID": "pom1",
+            "compiler": "Matthias Gueltig",
             "comps": [
                 "c1"
             ],
