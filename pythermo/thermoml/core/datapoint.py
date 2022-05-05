@@ -31,9 +31,9 @@ class DataPoint(BaseModel):
     uncertainty: Optional[float]
     numberOfDigits: Optional[int]
     data_point_type: Optional[str] = None
-    _elementID: PrivateAttr(Optional[str]) = None
+    elementID: Optional[str] = None
 
-    @validator("_elementID", always=True)
+    @validator("elementID", always=True)
     @classmethod
     def specify_element_id(cls, v, values) -> str:
         """specifies whether elementID of new data point is property or variable.

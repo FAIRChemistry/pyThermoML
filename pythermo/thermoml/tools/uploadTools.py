@@ -106,7 +106,7 @@ class ThermoMLDaRUSHandler(BaseModel):
                 engMeta.add_controlled_variables(name=varName, unit = unit)
 
         dataset.add_metadatablock(engMeta)
-        dataset.add_file(dv_path=dv_path, local_path=f"{self.folder_thermoML_files}{thermoML_filename}")
+        dataset.add_file(dv_path=dv_path, local_path=f"{self.folder_thermoML_files}/{thermoML_filename}")
 
         p_id = dataset.upload(dataverse_name=dv_name)
 

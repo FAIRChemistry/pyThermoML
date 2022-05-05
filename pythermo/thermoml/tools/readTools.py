@@ -20,7 +20,7 @@ from lxml import etree
 from pydantic import BaseModel
 from typing import Dict
 from pathlib import Path
-
+import warnings
 
 class ThermoMLReader(BaseModel):
     """
@@ -67,7 +67,7 @@ class ThermoMLReader(BaseModel):
         """
         return DataReport.parse_file(Path(f"{self.folder_thermoML_files}{filename}"))
 
-    def readFromThermoMLFile(self, filename:str) -> DataReport:
+    def readFromThermoMLFile(self, filename:str, NIST:bool=False) -> DataReport:
         """Reads given ThermoML file to DataReport object.
         Args:
             filename (str): name of the thermoML file that should be read in.
@@ -97,8 +97,12 @@ class ThermoMLReader(BaseModel):
                 vars = self.__getVariables__(experiment[1])
                 
                 for id, value in props.items():
+                    if NIST:
+                        method = "experiment"
+                    else:
+                        method = value[1]
                     experiment[0].addProperty(
-                        value[0](ID=id, method=value[1], compoundID=value[2]))
+                        value[0](ID=id, method=method, compoundID=value[2]))
 
                 for id, value in vars.items():
                     experiment[0].addVariable(value[0](ID=id, compoundID=value[1]))
@@ -256,10 +260,7 @@ class ThermoMLReader(BaseModel):
             varName = variableType[0].getchildren()[0].text
             
             if self.__getOneEntry__(variable, 'nOrgNum'):
-                if obtainedNIST:
-                    compID = f"c{self.__getOneEntry__(variable, 'nOrgNum')}"
-                else:
-                    compID = self.__getOneEntry__(variable, 'nOrgNum')
+                compID = self.__getOneEntry__(variable, 'nOrgNum')
             else:
                 compID = None
             

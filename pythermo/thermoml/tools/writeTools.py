@@ -1,7 +1,3 @@
-from email import header
-from h11 import Data
-
-
 # @File          :   writeTools.py
 # @Last modified :   2022/04/09 19:29:12
 # @Author        :   Matthias Gueltig, Jan Range
@@ -11,13 +7,9 @@ from h11 import Data
 
 import lxml.etree as etree
 from pythermo.thermoml.core import DataReport
+from pydantic import BaseModel
+from typing import Optional
 import json
-from pydantic import BaseModel, validator
-from typing import  Union, Optional
-from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError, ThermoMLWriterDataReportTypeError
-from pydantic.json import pydantic_encoder
-from pathlib import Path
-from pythermo.thermoml.tools.readTools import ThermoMLReader
 
 class ThermoMLWriter(BaseModel):
     """Class providing functionalities for writing ThermoML file.
@@ -41,10 +33,8 @@ class ThermoMLWriter(BaseModel):
             dataReport (DataReport): Dataset that schould be converted into .json file.
             filename (str): name of the .json file
         """
-        jsonstring = dataReport.to_string()
-        file = open(f"{self.folder_json_files}{filename}", "wb")
-        file.write(jsonstring)
-        file.close()
+        with open(f"{self.folder_json_files}{filename}", "w") as file:
+            json.dump(dataReport.to_string(), file)
 
     def writeThermo(self, dataReport:DataReport, filename:str) -> None:
         """writes ThermoML file to entered filename, by checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.

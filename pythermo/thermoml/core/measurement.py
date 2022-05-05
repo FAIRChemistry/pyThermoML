@@ -5,7 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
 
 from pythermo.thermoml.core.datapoint import DataPoint
 

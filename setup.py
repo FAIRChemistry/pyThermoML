@@ -12,8 +12,11 @@ setup(
     name='PyThermoML',
     version='1.1.1',
     description='Handling of ThermoML files',
-    url = 'https://github.com/matzegltg/pyThermoML',
+    url = 'https://github.com/ThermoPyML/pyThermoML',
     author='Gueltig, Matthias',
     packages=setuptools.find_packages(),
-    _install_requires=['lxml', 'json', 'pydantic'],
+    install_requires=['lxml', 'json', 'pydantic',],
+    extras_requires={
+        'dataverse': ['pyDaRUS']
+    }
 )
