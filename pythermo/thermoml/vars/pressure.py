@@ -21,7 +21,7 @@ class PressureBase(VariableBase):
     varType: str ="ePressure"
 
     @classmethod
-    def pressure(cls, ID: str, compoundID: str = None):
+    def pressure(cls, ID: str, compoundID: str = None) -> 'PressureBase':
         """creates pressure object. For more information visit documentation of VariableBase.
 
         Note:

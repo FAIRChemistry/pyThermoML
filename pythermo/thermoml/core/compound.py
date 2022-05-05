@@ -6,8 +6,7 @@
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from typing import Optional
-from pydantic import BaseModel, validator, PrivateAttr
-
+from pydantic import BaseModel, PrivateAttr
 
 class Compound(BaseModel):
     """
@@ -25,24 +24,4 @@ class Compound(BaseModel):
     standardInchIKey: Optional[str] = None
     smiles: Optional[str] = None
     commonName: Optional[str] = None
-    _type: str = PrivateAttr(default="comp")
-
-    @validator("ID", always=True)
-    def validate_ID_string(cls, ID: str):
-        """User specified ID of compund has to be in the following pattern: 'c[digit/s]'.
-
-        Args:
-            ID (str): User specified ID
-
-        Raises:
-            TypeError: If ID does not match expected pattern.
-
-        Returns:
-            str: ID
-        """
-        if ID.startswith("c"):
-            return ID
-        else:
-            raise TypeError(
-                "ID does not match the expected pattern of 'c[digit/s]'"
-            )
+    _type: str = PrivateAttr(default="comp")    

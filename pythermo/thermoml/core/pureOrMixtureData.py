@@ -5,7 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
-from typing import Union, Any, TYPE_CHECKING, Optional
+from typing import Union
 from dataclasses import dataclass
 from pydantic import BaseModel, validate_arguments, validator
 
@@ -16,13 +16,6 @@ from pythermo.thermoml.core.datapoint import DataPoint
 from pythermo.thermoml.core.exceptions import ThermoMLTypeError
 from pythermo.thermoml.core.utils import type_checking
 
-if TYPE_CHECKING:  # pragma: no cover
-    static_check_init_args = dataclass
-else:
-    static_check_init_args = type_checking
-
-
-@static_check_init_args
 class PureOrMixtureData(BaseModel):
     """class representing experimental/simulated pure or mixture data
 
@@ -42,27 +35,6 @@ class PureOrMixtureData(BaseModel):
     properties: dict[str, PropertyBase] = {}
     variables: dict[str, VariableBase] = {}
     measurements: dict[str, Measurement] = {}
-
-    @validator("ID", always=True)
-    @classmethod
-    def validate_ID_string(cls, ID: str):
-        """user specified ID of pure or mixture data has to be determined in the following pattern: 'pom[digit/s]'.
-
-        Args:
-            ID (str): user specified ID
-
-        Raises:
-            TypeError: ID does not match expected pattern.
-
-        Returns:
-            str: ID
-        """
-        if ID.startswith("pom"):
-            return ID
-        else:
-            raise TypeError(
-                "ID does not match the expected pattern of 'pom[digit/s]'"
-            )
 
     def addProperty(self, prop: PropertyBase) -> str:
         """adds a property to pureOrMixture data
@@ -126,7 +98,7 @@ class PureOrMixtureData(BaseModel):
             self.measurements[measurementID].addDataPoint(dataPoint, self)
     
     
-    def getMeasurementByValues(self, val1:tuple[str, float], val2:tuple[str, float]=None) -> 'DataReport':
+    def getMeasurementByValues(self, val1:tuple[str, float], val2:tuple[str, float]=None) -> 'PureOrMixtureData':
         """With this function property values of specific variable values can be found. 
         
         One or two variable IDs and values must be stored in a tuple.
@@ -167,8 +139,28 @@ class PureOrMixtureData(BaseModel):
 
         return conditionedPOM
 
-                
+    def getPropVarIDs(self) -> dict:
+        """Returns dictionary with ID var/prop name assignment
 
+        Returns:
+            assingedDict (dict): 
+        """          
+
+        assignedDict = {}
+
+        for key, prop in self.properties.items():
+            if prop.compoundID:
+                assignedDict[key] = f"{prop.propName} of {prop.compoundID}" 
+            else:
+                assignedDict[key] = prop.propName
+        
+        for key, var in self.variables.items():
+            if var.compoundID:
+                assignedDict[key] = f"{var.varName} of {var.compoundID}"
+            else:
+                assignedDict[key] = var.varName
+        
+        return assignedDict
 
     def getMeasurement(self, ID: str) -> Measurement:
         """Returns measurement with given measurementID.
@@ -231,7 +223,7 @@ class PureOrMixtureData(BaseModel):
 
     @validate_arguments
     def getMoleFractionIDs(self) -> dict[str, str]:
-        """returns dictionary with compoundID <-> moleFraction assignment.
+        """returns dictionary with compoundID <-> moleFractionID assignment.
 
         Returns:
             dict: keys: compoundIDs, values: moleFraction IDs

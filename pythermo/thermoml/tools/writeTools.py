@@ -1,4 +1,5 @@
 from email import header
+from h11 import Data
 
 
 # @File          :   writeTools.py
@@ -12,7 +13,7 @@ import lxml.etree as etree
 from pythermo.thermoml.core import DataReport
 import json
 from pydantic import BaseModel, validator
-from typing import  Union
+from typing import  Union, Optional
 from pythermo.thermoml.core.exceptions import ThermoMLFileFormatError, ThermoMLWriterDataReportTypeError
 from pydantic.json import pydantic_encoder
 from pathlib import Path
@@ -22,79 +23,48 @@ class ThermoMLWriter(BaseModel):
     """Class providing functionalities for writing ThermoML file.
 
     Args:
-        dataRep (dict): dictionary representation of data report.
-        filename (str): name of the ThermoML file that should be written.
+        folder_thermoML_files (str): name of the ThermoML file that should be written.
+        folder_json_files (str): name of the json files that should be written.
     """
         
 
-    dataRep: Union[DataReport, dict, str]
-    filename: str
+    folder_thermoML_files:Optional[str]
+    folder_json_files:Optional[str]
     _attr_qname: etree.QName = etree.QName("http://www.w3.org/2001/XMLSchema-instance", "schemaLocation")
     _nsmap: dict[str, str] = {None: 'http://www.iupac.org/namespaces/ThermoML', 'xsi': 'http://www.w3.org/2001/XMLSchema-instance'}
+ 
     
-    @validator('dataRep', always=True)
-    @classmethod
-    def check_dataReport(cls, dataRep:Union[DataReport, dict, str]) -> dict:
-        """converts entered dataReport into iterable dictionary
+    def writeJSON(self, dataReport:DataReport, filename:str) -> None:
+        """writes pyThermoML readable .json file.
 
         Args:
-            dataRep (Union[DataReport, dict, str]): entered dataReport. Can be either filename to .json data report or DataReport object
-
-        Raises:
-            ThermoMLWriterDataReportTypeError: entered dataReport is no DataReport/.json
-
-        Returns:
-            dict: iterable dataReport dict
+            dataReport (DataReport): Dataset that schould be converted into .json file.
+            filename (str): name of the .json file
         """
-        if type(dataRep) is DataReport:
-            return dataRep.dict(exclude_none=True)
-        elif type(dataRep) is str:
-            reader = ThermoMLReader(path=dataRep)
-            dataRep = reader.readFromJSON()
-            return dataRep.dict(exclude_none=True)
-        else:
-            raise ThermoMLWriterDataReportTypeError(type=dataRep)
+        jsonstring = dataReport.to_string()
+        file = open(f"{self.folder_json_files}{filename}", "wb")
+        file.write(jsonstring)
+        file.close()
 
-    
-    @validator('filename', always=True)
-    @classmethod
-    def check_filename(cls, filename:str):
-        """Checks whether filename has been entered correctly.
+    def writeThermo(self, dataReport:DataReport, filename:str) -> None:
+        """writes ThermoML file to entered filename, by checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.
 
         Args:
-            filename (str): filename of new ThermoML (.xml) file
-
-        Raises:
-            TypeError: filename no string
-            ThermoMLFileFormatError: filename does not end with ".xml"
-
-        Returns:
-            str: entered filename
-        """
-        if type(filename) is not str:
-            raise TypeError('filename must be a string')
-        elif ".xml" not in filename:
-            raise ThermoMLFileFormatError()
-        else:
-            return filename
-    
-    
-    
-    def writeThermo(self):
-        """writes ThermoML file to entered filename, by basically checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.
+            dataReport (DataReport): Dataset that should be written into ThermoML file
+            filename (str): filename of new ThermoML file
         """
         dataRepXml = etree.Element("DataReport", {self._attr_qname: "http://www.iupac.org/namespaces/ThermoML ThermoML.xsd"}, nsmap=self._nsmap)
-        
+        dataReport = dataReport.dict(exclude_none=True)
         dataRepXml = self.__createVersion(dataRepXml)
-        dataRepXml = self.__createCitation(dataRepXml)
-        dataRepXml = self.__createCompound(dataRepXml)
-        dataRepXml = self.__createPureOrMixtureData(dataRepXml)
+        dataRepXml = self.__createCitation(dataReport, dataRepXml)
+        dataRepXml = self.__createCompound(dataReport, dataRepXml)
+        dataRepXml = self.__createPureOrMixtureData(dataReport,dataRepXml)
 
-        self.__writeFile(dataRepXml)
+        self.__writeFile(dataRepXml, filename)
 
-    def __writeFile(self, dataRepXml:etree._Element):
+    def __writeFile(self, dataRepXml:etree._Element, filename):
         convertedString = etree.tostring(dataRepXml, pretty_print=True, xml_declaration=True, encoding="utf-8")
-        file = open(self.filename, 'wb')
+        file = open(f"{self.folder_thermoML_files}{filename}", 'wb')
         file.write(convertedString)
         file.close()
     
@@ -108,28 +78,28 @@ class ThermoMLWriter(BaseModel):
 
         return dataRepXml
 
-    def __createCitation(self, dataRepXml:etree._Element) -> etree._Element:
-        if 'title' not in self.dataRep and 'DOI' not in self.dataRep and self.dataRep['authors'] == {}:
+    def __createCitation(self, dataRep:DataReport, dataRepXml:etree._Element) -> etree._Element:
+        if 'title' not in dataRep and 'DOI' not in dataRep and dataRep['authors'] == {}:
             return dataRepXml
         else:
             Citation = etree.SubElement(dataRepXml, 'Citation')
-            if 'title' in self.dataRep:
+            if 'title' in dataRep:
                 sTitle = etree.SubElement(Citation, 'sTitle')
-                sTitle.text = self.dataRep['title']
-            if 'authors' in self.dataRep:
-                for key in self.dataRep['authors'].keys():
+                sTitle.text = dataRep['title']
+            if 'authors' in dataRep:
+                for key in dataRep['authors'].keys():
                     sAuthor = etree.SubElement(Citation, 'sAuthor')
-                    sAuthor.text = self.dataRep['authors'][key]
-            if 'DOI' in self.dataRep:
+                    sAuthor.text = dataRep['authors'][key]
+            if 'DOI' in dataRep:
                 sDOI = etree.SubElement(Citation, 'sDOI')
-                sDOI.text = self.dataRep['DOI']
+                sDOI.text = dataRep['DOI']
 
             return dataRepXml
 
-    def __createCompound(self, dataRepXml:etree._Element) -> etree._Element:
+    def __createCompound(self, dataRep:DataReport, dataRepXml:etree._Element) -> etree._Element:
         
-        if 'compounds' in self.dataRep:   
-            for key, value in self.dataRep['compounds'].items():
+        if 'compounds' in dataRep:   
+            for key, value in dataRep['compounds'].items():
             
                 Compound = etree.SubElement(dataRepXml, 'Compound')
                 RegNum = etree.SubElement(Compound, 'RegNum')
@@ -155,10 +125,10 @@ class ThermoMLWriter(BaseModel):
         
         return dataRepXml
 
-    def __createPureOrMixtureData(self, dataRepXml:etree._Element) -> etree._Element:
+    def __createPureOrMixtureData(self, dataRep: DataReport, dataRepXml:etree._Element) -> etree._Element:
         
-        if 'pureOrMixtureData' in self.dataRep:
-            for key, value in self.dataRep['pureOrMixtureData'].items():
+        if 'pureOrMixtureData' in dataRep:
+            for key, value in dataRep['pureOrMixtureData'].items():
                 PureOrMixtureData = etree.SubElement(dataRepXml, 'PureOrMixtureData')
                 
                 # ID of respective PureOrMixtureData

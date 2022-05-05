@@ -12,7 +12,7 @@ from pydantic.fields import PrivateAttr
 
 class VariableBase(BaseModel):
     """
-    Base class for variables. For more information visit ThermoMLSchema definition.
+    Base class for variables. All variables that were taken over by the ThermoML-schema definition inherit from this class.
 
     Args:
         varName (str): Name of the variable. Determined in child classes.
@@ -28,27 +28,6 @@ class VariableBase(BaseModel):
     unit: str
     compoundID: Optional[str] = None
     _type: str = PrivateAttr(default="Variable")
-
-    @validator("ID", always=True)
-    @classmethod
-    def validate_ID_string(cls, ID:str) -> str:
-        """user specified ID of variable has to be in the following pattern: 'v[digit/s]'.
-
-        Args:
-            ID (str): user specified ID
-
-        Raises:
-            TypeError: ID does not match expected pattern.
-
-        Returns:
-            str: ID
-        """
-        if ID.startswith("v"):
-            return ID
-        else:
-            raise TypeError(
-                "ID does not match the expected pattern of 'v[digit/s]'"
-            )
         
     def to_string(self) -> str:
         """returns nice printed string representation of variableBase object.

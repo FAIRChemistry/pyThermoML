@@ -21,7 +21,7 @@ class TemperatureBase(VariableBase):
     varType: str = "eTemperature"
 
     @classmethod
-    def temperature(cls, ID: str, compoundID: str = None):
+    def temperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
         """creates temperature object. For more information visit documentation of VariableBase.
     
         Note:
@@ -42,7 +42,7 @@ class TemperatureBase(VariableBase):
         )
 
     @classmethod
-    def upperTemperature(cls, ID: str, compoundID: str = None):
+    def upperTemperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
         """creates upper temperature object. For more information visit documentation of VariableBase.
         
         Note:
@@ -63,7 +63,7 @@ class TemperatureBase(VariableBase):
         )
 
     @classmethod
-    def lowerTemperature(cls, ID: str, compoundID: str = None):
+    def lowerTemperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
         """creates lower temperature object. For more information visit documentation of VariableBase.
 
         Note:

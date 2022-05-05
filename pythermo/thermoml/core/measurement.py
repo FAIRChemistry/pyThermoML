@@ -12,8 +12,8 @@ from pythermo.thermoml.core.datapoint import DataPoint
 
 class Measurement(BaseModel):
     """
-    Class representing a measurement in DataReport. 
-    Each measurement contains property/variable data point of one measurement (same measurement ID).
+    Class representing a measurement in a DataReport. 
+    Each measurement is a list of property/variable datapoints that have the same measurement ID.
 
     Args:
         ID (str): user specified measurement ID.
@@ -26,32 +26,11 @@ class Measurement(BaseModel):
     properties: dict[str, DataPoint] = {}
     variables: dict[str, DataPoint] = {}
 
-    @validator("ID", always=True)
-    @classmethod
-    def validate_ID_string(cls, ID: str):
-        """user specified ID of a measurement data has to be determined in the following pattern: 'meas[digit/s]'.
-
-        Args:
-            ID (str): user specified ID
-
-        Raises:
-            TypeError: ID does not match expected pattern.
-
-        Returns:
-            str: ID
-        """
-        if ID.startswith("meas"):
-            return ID
-        else:
-            raise TypeError(
-                "ID does not match the expected pattern of 'meas[digit/s]'"
-            )
-
     def addDataPoint(self, dataPoint: DataPoint, pureMixtureData) -> None:
-        """Adds list of DataPoints to measurement.
+        """Adds a datapoint to measurement.
 
         Args:
-            dataPoints (list[DataPoint]): list with data points, that should be added to measurement.
+            dataPoint (DataPoint]): Datapoint that should be added to the measurement.
             pureMixtureData (PureOrMixtureData): pure or mixture data base class which contains measurement.
 
         Raises:
@@ -69,7 +48,7 @@ class Measurement(BaseModel):
                 f"The property/variable with ID {elementID} is not defined yet.")
 
     def getProperty(self, propertyID:str) -> DataPoint:
-        """Returns DataPoint representation of property in measurement.
+        """Returns datapoint representation of property in measurement.
 
         Args:
             propertyID (str): ID of property
@@ -84,7 +63,7 @@ class Measurement(BaseModel):
         )
 
     def getVariable(self, variableID:str) -> DataPoint:
-        """Returns DataPoint representation of variable in measurement.
+        """Returns datapoint representation of variable in measurement.
 
         Args:
             variableID (str): ID of variable
@@ -99,7 +78,7 @@ class Measurement(BaseModel):
         )
 
     def getDataPointList(self) -> list[DataPoint]:
-        """Returns list representation of data points used in measurement
+        """Returns list representation of datapoints used in measurement
 
         Returns:
             list[DataPoint]: list with data points.

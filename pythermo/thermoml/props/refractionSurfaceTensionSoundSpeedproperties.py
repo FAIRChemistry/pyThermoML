@@ -22,7 +22,7 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
     propGroup: str = "RefractionSurfaceTensionSoundSpeed"
 
     @classmethod
-    def surfaceTension(cls, ID: str, method: str, compoundID: str = None):
+    def surfaceTension(cls, ID: str, method: str, compoundID: str = None) -> 'RefractionSurfaceTensionSoundSpeedproperty':
         """creates surfaceTension object. For more information vist documentation of PropertyBase.
         Unit: N/m
 
@@ -43,7 +43,7 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
         )
 
     @classmethod
-    def speedOfSound(cls, ID: str, method: str, compoundID: str = None):
+    def speedOfSound(cls, ID: str, method: str, compoundID: str = None) -> 'RefractionSurfaceTensionSoundSpeedproperty':
         """creates speed of sound object. For more information vist documentation of PropertyBase.
         Unit: m/s
 

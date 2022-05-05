@@ -14,8 +14,7 @@ from pythermo.thermoml.core.compound import Compound
 
 
 class DataReport(BaseModel):
-    """
-    Class that represents a data report. Basic class of ThermoML - data report.
+    """Basis class of pyThermoML that represents a dataset.
 
     Note:
         All entrys of this API refer to http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd 
@@ -69,7 +68,7 @@ class DataReport(BaseModel):
                 that contains experimental information.
 
         Returns:
-            str: Id of added pureOrMixtureData object
+            str: ID of the added pureOrMixtureData object
         """
         self.pureOrMixtureData[pureOrMixtureData.ID] = pureOrMixtureData
 
@@ -127,13 +126,24 @@ class DataReport(BaseModel):
             return self            
 
     def getPureOrMixtureDataIDs(self) -> list[str]:
-        """returns all IDs of pure or mixture entries in the data report.
+        """returns all IDs of pure or mixture entries in the dataset.
 
         Returns:
             IDs (list[str]): List with IDs of pure or mixture data objects.
         """
         IDs = list()
         for ID in self.pureOrMixtureData.keys():
+            IDs.append(ID)
+        return IDs
+    
+    def getCompoundIDs(self) -> list[str]:
+        """returns all IDs of compounds in the dataset.
+
+        Returns:
+            list[str]: List with IDs of compound objects.
+        """
+        IDs = list()
+        for ID in self.compounds.keys():
             IDs.append(ID)
         return IDs
 

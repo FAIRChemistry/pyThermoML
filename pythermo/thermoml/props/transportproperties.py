@@ -9,10 +9,8 @@ from pythermo.thermoml.props.propertyBase import PropertyBase
 
 
 class TransportProperty(PropertyBase):
-    """
-    Class representing transport properties. The following properties are taken over from ThermoML - schema definition:
-    Viscosity, kinematic viscosity, micro viscosity (not included in ThermoML schema), self diffusion coefficient.
-    Inherited from PropertyBase.
+    """Class representing transport properties. The following properties are taken over from ThermoML - schema definition:
+    Viscosity, kinematic viscosity, self diffusion coefficient. Inherited from PropertyBase.
     
     Args:
         propGroup (str): Transport property group
@@ -21,7 +19,7 @@ class TransportProperty(PropertyBase):
     propGroup: str = "TransportProp"
 
     @classmethod
-    def viscosity(cls, ID: str, method: str, compoundID: str = None):
+    def viscosity(cls, ID: str, method: str, compoundID: str = None) -> 'TransportProperty':
         """creates viscosity object. For more information vist documentation of PropertyBase.
         
         Note:
@@ -44,7 +42,7 @@ class TransportProperty(PropertyBase):
         )
 
     @classmethod
-    def kinematicViscosity(cls, ID: str, method: str, compoundID: str = None):
+    def kinematicViscosity(cls, ID: str, method: str, compoundID: str = None) -> 'TransportProperty':
         """creates kinematic viscosity object. For more information vist documentation of PropertyBase.
         
         Note:
@@ -67,30 +65,7 @@ class TransportProperty(PropertyBase):
         )
 
     @classmethod
-    def microViscosity(cls, ID: str, method: str, compoundID: str):
-        """creates microviscosity object. For more information vist documentation of PropertyBase.
-        
-        Note:
-            Unit: Pa*s
-
-        Args:
-            ID (str): ID
-            method (str): method
-            compoundID (str): ID of referred compound
-
-        Returns:
-            TransportProperty: object of type TransportProperty.
-        """
-        return cls(
-            propName="Microviscosity",
-            ID=ID,
-            unit="Pa*s",
-            method=method,
-            compoundID=compoundID
-        )
-
-    @classmethod
-    def selfDiffusionCoefficient(cls, ID: str, method: str, compoundID: str):
+    def selfDiffusionCoefficient(cls, ID: str, method: str, compoundID: str) -> 'TransportProperty':
         """creates self diffusion coefficient object. For more information vist documentation of PropertyBase.
         
         Note:

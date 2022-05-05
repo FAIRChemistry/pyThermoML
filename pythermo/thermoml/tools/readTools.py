@@ -15,24 +15,24 @@ from pythermo.thermoml.vars.temperature import TemperatureBase
 from pythermo.thermoml.vars.pressure import PressureBase
 from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 
-from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLMissingIDError, ThermoMLQuantityNotFoundError
+from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLQuantityNotFoundError
 from lxml import etree
-from pydantic import BaseModel, validator
-from typing import Union, Dict
-from pydantic.json import pydantic_encoder
+from pydantic import BaseModel
+from typing import Dict
 from pathlib import Path
-import json
+
 
 class ThermoMLReader(BaseModel):
     """
-    Class providing reader functionalities.
+    Class providing reader functionalities to read a ThermoML file.
 
     Args:
-        path (str): path to file to interact with
+        folder_thermoML_files(str): path to folder that contains thermoML files
     """
 
+    folder_thermoML_files: str
+    
     # NAMESPACE (str): Namespace of ThermoML 
-    path: str
     __NAMESPACE__: str = './/{http://www.iupac.org/namespaces/ThermoML}'
 
     # propMapping (dict): Dict with property names and units (str) as keys and initalizer function as values.     
@@ -46,9 +46,6 @@ class ThermoMLReader(BaseModel):
         'Molar heat capacity at constant pressure, J/K/mol': HeatCapacityProperty.molarHCconstPressure,
         'Molar heat capacity at constant volume, J/K/mol': HeatCapacityProperty.molarHCconstVolume,
         'Peak temperature, K': Bioproperty.peakTemperature,
-
-        # not in ThermoML
-        'Microviscosity, Pa*s': TransportProperty.microViscosity
     }
 
     # varMapping (dict): Dict with variable names and units (str) as keys and initalizer function as values.
@@ -60,56 +57,38 @@ class ThermoMLReader(BaseModel):
         'Pressure, kPa': PressureBase.pressure
     }
 
-    @validator('path')
-    @classmethod
-    def convertPath(cls, path: Union[str,dict]):
-        """converts given path into readable root
 
-        Args:
-            path (str): path to ThermoML filename
-        
-        Raises:
-            FileNotFoundError: file have to 
-        """
-        if '.xml' in path:
-            try:
-                tree = etree.parse(path)
-                return tree.getroot()
-            except FileNotFoundError:
-                print(f"Could not find ThermoML file")
-        elif '.json' in path:
-            return path
-        else:
-            raise FileNotFoundError("input file format for reader has to be '.json' or '.xml")
-
-    def readFromJSON(self) -> DataReport:
+    def readFromJSON(self, filename:str) -> DataReport:
         """Reads given .json formatted file to DataReport object.
-
-            Returns:
-                DataReport: Based on given .json file DataReport object
+        Args:
+            filename (str): name of the json file that 
+        Returns:
+            DataReport: Based on given .json file DataReport object
         """
-        if type(self.path) == str:
-            return DataReport.parse_file(Path(self.path))
-        
-    def readFromThermoMLFile(self) -> DataReport:
-        """Reads given ThermoML file to DataReport object.
+        return DataReport.parse_file(Path(f"{self.folder_thermoML_files}{filename}"))
 
+    def readFromThermoMLFile(self, filename:str) -> DataReport:
+        """Reads given ThermoML file to DataReport object.
+        Args:
+            filename (str): name of the thermoML file that should be read in.
         Returns:
             DataReport: Based on given ThermoML file
         """
-        title = self.__getOneEntry__(self.path, tag="sTitle")
-        doi = self.__getOneEntry__(self.path, tag="sDOI")
-        authors = self.__getAuthors__()
+
+        path = etree.parse(f"{self.folder_thermoML_files}{filename}").getroot()
+        title = self.__getOneEntry__(path, tag="sTitle")
+        doi = self.__getOneEntry__(path, tag="sDOI")
+        authors = self.__getAuthors__(path)
 
         datareport = DataReport(title=title, DOI=doi, authors=authors)
 
-        comps = self.__getCompounds__()
+        comps = self.__getCompounds__(path)
 
         if comps is not None:
             for comp in comps.values():
                 datareport.addCompound(comp)
 
-            pOMData = self.__getPOMData__(comps)
+            pOMData = self.__getPOMData__(path, comps)
 
             # experiment[0] Object
             # experiment[1] ElementTree
@@ -145,7 +124,7 @@ class ThermoMLReader(BaseModel):
         else:
             return None
 
-    def __getAuthors__(self) -> dict[str, str]:
+    def __getAuthors__(self, path) -> dict[str, str]:
         """returns authors dictionary from sAuthors tag in ThermoML file
 
         Args:
@@ -154,8 +133,8 @@ class ThermoMLReader(BaseModel):
         Returns:
             dict[str, str]: dict of authors
         """
-        if self.path.findall(self.__NAMESPACE__ + 'sAuthor'):
-            authorList = self.path.findall(self.__NAMESPACE__ + 'sAuthor')
+        if path.findall(self.__NAMESPACE__ + 'sAuthor'):
+            authorList = path.findall(self.__NAMESPACE__ + 'sAuthor')
             authors = dict()
 
             for index, author in enumerate(authorList):
@@ -163,8 +142,9 @@ class ThermoMLReader(BaseModel):
 
             return authors
 
-    def __getCompounds__(self) -> dict[str, Compound]:
+    def __getCompounds__(self, path) -> dict[str, Compound]:
         """returns dictionary of compounds used in ThermoML file.
+        Args:
 
         Raises:
             ThermoMLNoCompoundError: ThermoML file does not contain compounds
@@ -173,11 +153,12 @@ class ThermoMLReader(BaseModel):
             dict[str, Compound]: compounds used in ThermoML file. Key is compID
         """
         comps = dict()
-        if self.path.findall(self.__NAMESPACE__ + 'Compound'):
+        if path.findall(self.__NAMESPACE__ + 'Compound'):
 
-            for compound in self.path.findall(self.__NAMESPACE__ + 'Compound'):
-                comps[self.__getOneEntry__(compound, 'nOrgNum')] = Compound(
-                    ID=self.__getOneEntry__(compound, 'nOrgNum'),
+            for compound in path.findall(self.__NAMESPACE__ + 'Compound'):
+                ID = self.__getOneEntry__(compound, 'nOrgNum')
+                comps[ID] = Compound(
+                    ID=ID,
                     standardInchI=self.__getOneEntry__(
                         compound, 'sStandardInChI'),
                     standardInchIKey=self.__getOneEntry__(
@@ -188,7 +169,7 @@ class ThermoMLReader(BaseModel):
 
             return comps
 
-    def __getPOMData__(self, comps: dict[str, Compound]) -> dict[str, list[PureOrMixtureData, etree.Element]]:
+    def __getPOMData__(self, path, comps: dict[str, Compound]) -> dict[str, list[PureOrMixtureData, etree.Element]]:
         """returns dict of pureOrMixtureData in dataReport
 
         Args:
@@ -202,14 +183,14 @@ class ThermoMLReader(BaseModel):
 
         pOMData = dict()
         comps = list(comps.keys())
-        if self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
+        if path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
 
-            for pureOrMixtureData in self.path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
+            for pureOrMixtureData in path.findall(self.__NAMESPACE__ + 'PureOrMixtureData'):
                 compiler = self.__getOneEntry__(pureOrMixtureData, 'sCompiler')
+                pomID = self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')
                 # All declared compounds should be used in pure or mixture Data
-                pOMData[self.__getOneEntry__(pureOrMixtureData, 'nPureOrMixtureDataNumber')] = (PureOrMixtureData(
-                    ID=self.__getOneEntry__(
-                        pureOrMixtureData, 'nPureOrMixtureDataNumber'),
+                pOMData[pomID] = (PureOrMixtureData(
+                    ID=pomID,
                     comps=comps,
                     compiler=compiler), pureOrMixtureData)
         return pOMData
@@ -219,6 +200,7 @@ class ThermoMLReader(BaseModel):
 
         Args:
             pureOrMixtureData (etree._Element): pureOrMixtureData object that contains properties
+            
         
         Note:
             compID is gonna be ignored if property is not component specific
@@ -228,13 +210,16 @@ class ThermoMLReader(BaseModel):
         """
         properties = dict()
         for property in pureOrMixtureData.findall(self.__NAMESPACE__ + 'Property'):
-            try:
+            if self.__getOneEntry__(property, 'nOrgNum'):
                 compID = self.__getOneEntry__(property, 'nOrgNum')
-            except IndexError:
-                raise ThermoMLMissingIDError('nOrgNum')
+            else:
+                compID = None
             
-            properties[self.__getOneEntry__(property, 'nPropNumber')] = (self.__getPropMapping__(self.__getOneEntry__(property, 'ePropName')),
-                                                                         self.__getOneEntry__(property, 'eMethodName'), compID)
+            
+            propID = self.__getOneEntry__(property, 'nPropNumber')
+            method = self.__getOneEntry__(property, 'eMethodName')
+            properties[propID] = (self.__getPropMapping__(self.__getOneEntry__(property, 'ePropName')),
+                                                                         method, compID)
         return properties
 
     def __getPropMapping__(self, ePropName:str):
@@ -269,12 +254,18 @@ class ThermoMLReader(BaseModel):
         for variable in pureOrMixtureData.findall(self.__NAMESPACE__ + 'Variable'):
             variableType = variable.findall(self.__NAMESPACE__ + 'VariableType')
             varName = variableType[0].getchildren()[0].text
-            try:
-                compID = self.__getOneEntry__(variable, 'nOrgNum')
-            except IndexError:
-                compID = ""
-
-            variables[self.__getOneEntry__(variable, 'nVarNumber')] = (
+            
+            if self.__getOneEntry__(variable, 'nOrgNum'):
+                if obtainedNIST:
+                    compID = f"c{self.__getOneEntry__(variable, 'nOrgNum')}"
+                else:
+                    compID = self.__getOneEntry__(variable, 'nOrgNum')
+            else:
+                compID = None
+            
+            varID = f"{self.__getOneEntry__(variable, 'nVarNumber')}"
+            
+            variables[varID] = (
                 self.__getVarMapping__(varName), compID)
         return variables
 
@@ -289,9 +280,10 @@ class ThermoMLReader(BaseModel):
         """
         try:
             func = self.__varMapping__[varName]
+            return func
         except KeyError:
-            print('Variable not found')
-        return func
+            raise ThermoMLQuantityNotFoundError(varName)
+        
 
     def __getMeasurements__(self, experiment:PureOrMixtureData, pureOrMixtureData:etree._Element) -> PureOrMixtureData:
         """fill pureOrMixtureData object with measurement data from ThermoML file.
@@ -303,15 +295,13 @@ class ThermoMLReader(BaseModel):
         Returns:
             PureOrMixtureData: filled pureOrMixtureData object
         """
-        measID = 0
-        for numValues in pureOrMixtureData.findall(self.__NAMESPACE__ + 'NumValues'):
+
+        for measID, numValues in enumerate(pureOrMixtureData.findall(self.__NAMESPACE__ + 'NumValues')):
             if 'ID' in numValues.attrib:
                 measID = numValues.attrib['ID']
+
             else:
-                # default measurmentIDs
-                measID = int(measID)
-                measID += 1
-                measID = str(measID)
+                measID = f"{measID}"
 
             datapoints = []
             for variableValue in numValues.findall(self.__NAMESPACE__ + 'VariableValue'):
@@ -331,8 +321,10 @@ class ThermoMLReader(BaseModel):
                 except TypeError:
                     numbOfDig = None
                 
+                
+                varID = self.__getOneEntry__(variableValue, 'nVarNumber')
                 datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(variableValue, 'nVarValue')),
-                                  varID=self.__getOneEntry__(variableValue, 'nVarNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
+                                  varID=varID, uncertainty=uncert, numberOfDigits=numbOfDig))
 
             for propertyValue in numValues.findall(self.__NAMESPACE__ + 'PropertyValue'):
                 try:
@@ -350,8 +342,12 @@ class ThermoMLReader(BaseModel):
                     numbOfDig = None
                 except TypeError:
                     numbOfDig = None
+                
+                propID = self.__getOneEntry__(propertyValue, "nPropNumber")
                 datapoints.append(DataPoint(measurementID=measID, value=float(self.__getOneEntry__(propertyValue, 'nPropValue')),
-                                  propID=self.__getOneEntry__(propertyValue, 'nPropNumber'), uncertainty=uncert, numberOfDigits=numbOfDig))
+                                  propID=propID, uncertainty=uncert, numberOfDigits=numbOfDig))
+            
+            measID = ""
             experiment.addMeasurement(dataPoints=datapoints)
 
         return experiment

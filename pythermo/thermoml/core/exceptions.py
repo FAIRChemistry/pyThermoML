@@ -78,5 +78,5 @@ class ThermoMLQuantityNotFoundError(Exception):
     def __str__(self):
         """string representation of ThermoMLQuantityNotFoundError."""
         return(
-            f"Defined property/variable: '{self.propName}' could not be found in this version of API. \n Please also check whether unit fits ThermoML - schema definition."
+            f"\nDefined property/variable: '{self.propName}' could not be found in this version of API and is not implemented yet. \n Please also check whether unit fits ThermoML - schema definition."
         )

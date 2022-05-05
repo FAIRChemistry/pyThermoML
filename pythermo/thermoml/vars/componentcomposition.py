@@ -21,7 +21,7 @@ class ComponentCompositionBase(VariableBase):
     varType: str = "eComponentComposition"
 
     @classmethod
-    def moleFraction(cls, ID: str, compoundID: str):
+    def moleFraction(cls, ID: str, compoundID: str) -> 'ComponentCompositionBase':
         """creates mole fraction object. For more information visit documentation of VariableBase.
         
         Note:

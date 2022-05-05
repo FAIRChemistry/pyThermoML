@@ -12,7 +12,7 @@ from typing import Optional
 
 class PropertyBase(BaseModel):
     """
-    Base class for properties. Fore more information visit ThermoMLSchema definition.
+    Base class for properties. All properties that were taken over by the ThermoML-schema definition inherit from this class.
 
     Args:
         propName (str): Name of the property. Determined in child classes.
@@ -20,7 +20,7 @@ class PropertyBase(BaseModel):
         ID (str): User specified property ID. Will be stored in nPropNumber tag in ThermoML .xml
         unit (str): Unit of property. Determined in child classes.
         method (str): Method used to obtain experimental/simulation data. Please enter "experiment" for experimental data and "simulation" for simulation data.
-        compoundID (str, optional): ID of reffered compound
+        compoundID (str, optional): ID of referred compound
     """
     propName: str
     propGroup: str
@@ -29,27 +29,6 @@ class PropertyBase(BaseModel):
     method: str
     compoundID: Optional[str] = None
     _type: str = PrivateAttr(default="Property")
-
-    @validator("ID", always=True)
-    @classmethod
-    def validate_ID_string(cls, ID:str) -> str:
-        """user specified ID of property has to be in the following pattern: 'p[digit/s]'.
-
-        Args:
-            ID (str): user specified ID
-
-        Raises:
-            TypeError: When ID does not match expected pattern.
-
-        Returns:
-            str: ID
-        """
-        if ID.startswith("p"):
-            return ID
-        else:
-            raise TypeError(
-                "ID does not match the expected pattern of 'p[digit/s]'"
-            )
 
     @validator("method", always=True)
     @classmethod

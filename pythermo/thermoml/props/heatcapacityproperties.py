@@ -22,7 +22,7 @@ class HeatCapacityProperty(PropertyBase):
     propGroup: str = "HeatCapacityAndDerivedProp"
 
     @classmethod
-    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str = None):
+    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str = None) -> 'HeatCapacityProperty':
         """creates molarHCconstPressure object. For more information vist documentation of PropertyBase.
 
         Note:
@@ -45,7 +45,7 @@ class HeatCapacityProperty(PropertyBase):
         )
 
     @classmethod
-    def molarHCconstVolume(cls, ID: str, method: str, compoundID: str = None):
+    def molarHCconstVolume(cls, ID: str, method: str, compoundID: str = None)  -> 'HeatCapacityProperty':
         """creates molarHCconstVolume object. For more information vist documentation of PropertyBase.
 
         Note:

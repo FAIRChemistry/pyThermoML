@@ -21,7 +21,7 @@ class Bioproperty(PropertyBase):
     propGroup: str = "Bioproperty"
 
     @classmethod
-    def peakTemperature(cls, ID: str, method: str, compoundID: str = None):
+    def peakTemperature(cls, ID: str, method: str, compoundID: str = None) -> 'Bioproperty':
         """creates bioproperty object. For more information vist documentation of PropertyBase.
 
         Note:

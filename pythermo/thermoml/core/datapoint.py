@@ -6,32 +6,20 @@
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from typing import Union, Optional
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, PrivateAttr, validator
 
 
 class DataPoint(BaseModel):
     """
-    Class that represents a data point. Datapoint is used to describe one value of a specific measurement.
+    Class that represents the value of one single variable/property.
     
     Args:
-        measurementID (str): ID of the whole measurement.
-        value (Union[float, int]): measured/determined value.
+        measurementID (str): The ID of the measurement to which the value of the variable/property belongs.
+        value (Union[float, int]): determined, averaged value
         propID (Optional[str]): reference to ID of measured property. propID = None when type of dataPoint is "Variable".
         varID (Optional[str]): reference to ID of determined variable. varID = None when type of dataPoint is "Property".
-        uncertainty (Optional[float]): Depending whether type of dataPoint is "Variable" or "Property".
-            If data point is a variable: 
-                Quantity defining an interval about the result of a measurement that may be expected to 
-                encompass a large fraction of the distribution of values that could reasonably be attributed to the measurand. 
-                (In ThermoML the expanded uncertainty value) 
-
-            If data point is property:
-                The combined standard uncertainty ucomb. The combined coverage factor kcomb and the combined expanded uncertainty Ucomb, 
-                which also apply only to the designated property, are defined through the equation Ucomb = ucomb * kcomb. 
-                For further information visit the link below.
-
-            (From: ThermoML An XML-Based Approach for Storage and Exchange of Experimental and Critically Evaluated Thermophysical and Thermochemical 
-            Property Data. 1. Experimental Data, Michael Frenkel et. al., DOI: https://doi.org/10.1021/je025645o)
-        numberOfDigits (Optional[int]): number of digits of determined value.
+        uncertainty (Optional[float]): standard uncertainty around the value
+        numberOfDigits (Optional[int]): number of digits of the value: Describes the accuracy of the measured value
         data_point_type (Optional[str]): deciedes whether data point is "Variable" or "Property"
         elementID (Optional[str]): Contains in both cases (Variable and Property) the respective ID.
     """
@@ -43,9 +31,9 @@ class DataPoint(BaseModel):
     uncertainty: Optional[float]
     numberOfDigits: Optional[int]
     data_point_type: Optional[str] = None
-    elementID: Optional[str] = None
+    _elementID: PrivateAttr(Optional[str]) = None
 
-    @validator("elementID", always=True)
+    @validator("_elementID", always=True)
     @classmethod
     def specify_element_id(cls, v, values) -> str:
         """specifies whether elementID of new data point is property or variable.

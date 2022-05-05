@@ -5,8 +5,6 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 from pythermo.thermoml.props.propertyBase import PropertyBase
-from pydantic import validator
-
 
 class VolumetricProperty(PropertyBase):
     """
@@ -21,7 +19,7 @@ class VolumetricProperty(PropertyBase):
     propGroup: str = "VolumetricProp"
 
     @classmethod
-    def massDensity(cls, ID: str, method: str, compoundID: str = None):
+    def massDensity(cls, ID: str, method: str, compoundID: str = None) -> 'VolumetricProperty':
         """creates massDensity object. For more information visit documentation of PropertyBase.
 
         Note:

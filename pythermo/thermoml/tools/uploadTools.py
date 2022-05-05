@@ -17,10 +17,13 @@ from pydantic import BaseModel
 class ThermoMLDaRUSHandler(BaseModel):
     """Class providing functionalities to upload/download ThermoML 
     files to DaRUS (data repository of the university of Stuttgart)
-    """
 
+    Args:
+        folder_thermoML_files(str): path to folder that contains thermoML files
+    """
+    folder_thermoML_files: str
     
-    def uploadToDaRUS(self, local_path:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, authors:List[Contact]) -> str:
+    def uploadToDaRUS(self, thermoML_filename:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, authors:List[Contact]) -> str:
         """uploads ThermoML file to DaRUS
 
         Warning: Please note, that the interface easyDataverse will infer the DATAVERSE_URL as well as 
@@ -28,7 +31,7 @@ class ThermoMLDaRUSHandler(BaseModel):
         Thus, please make sure these are available at runtime.
 
         Args:
-            local_path (str): local path to ThermoML file
+            thermoML_filename (str): name of the locally stored thermoML file
             dv_path (str): path of ThermoML file, that should be stored DaRUS dataverse
             dv_name (str): name of datavarese in DaRUS
             title (str): title of the file that should be uploaded to DaRUS
@@ -40,8 +43,9 @@ class ThermoMLDaRUSHandler(BaseModel):
             str: ID of uploaded dataset. Needed for accessing dataset and download it from DaRUS
         """
 
-        reader = ThermoMLReader(path=local_path)
-        dataReport = reader.readFromThermoMLFile()
+    
+        reader = ThermoMLReader(folder_thermoML_files=self.folder_thermoML_files)
+        dataReport = reader.readFromThermoMLFile(filename=thermoML_filename)
 
         dataset = Dataset()
         citation = Citation()
@@ -102,24 +106,22 @@ class ThermoMLDaRUSHandler(BaseModel):
                 engMeta.add_controlled_variables(name=varName, unit = unit)
 
         dataset.add_metadatablock(engMeta)
-        dataset.add_file(dv_path=dv_path, local_path=local_path)
+        dataset.add_file(dv_path=dv_path, local_path=f"{self.folder_thermoML_files}{thermoML_filename}")
 
         p_id = dataset.upload(dataverse_name=dv_name)
 
         return p_id
     
-    def downloadFromDaRUS(self, p_id:str, filedir:str, filename:str) -> DataReport:
+    def downloadFromDaRUS(self, p_id:str, filename:str) -> DataReport:
         """Retrieve a dataset from dataverse by using PID
 
         Args:
             p_id (str): PID of dataset in dataverse
-            filedir (str): local path in which dataset should be stored
+            filename (str): local name of ThermoML file
 
         Returns:
             DataReport: _description_
         """
-        dataset = Dataset.from_dataverse_doi(p_id, filedir)
-       
-        reader = ThermoMLReader(path=f"{filedir}/{filename}")
-        return reader.readFromThermoMLFile()
+        dataset = Dataset.from_dataverse_doi(doi=p_id, filedir=self.folder_thermoML_files)
+        return ThermoMLReader(folder_thermoML_files=self.folder_thermoML_files).readFromThermoMLFile(filename=filename)
 
