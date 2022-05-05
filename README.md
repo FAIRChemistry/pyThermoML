@@ -1,11 +1,8 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/matzegltg/pyThermoML.git/HEAD)
-
 # PyThermoML
 
 **Authors:** Matthias Gueltig, Jan Range
-**License:** BSD 2 Clause - see the [License](https://github.com/matzegltg/pyThermoML/blob/master/LICENSE) for details.
 
-This project provides the first means to interact with the ThermoML format. The library is written in python, and PyPi embedding is coming soon, then the API is available by calling:
+This project provides the first means to interact with the ThermoML format. The library is written in python. Please type the following commands to make pyThermoML run
 
 ```
 git clone https://github.com/matzegltg/pyThermoML.git
@@ -44,13 +41,12 @@ This API provides the following variables:
     * lower temperature(K)
 * pressure:
     * pressure (kPa)
-    
 
 The units are fixed and cannot be changed - otherwise you will receive error messages. For more information visit ThermoML schema definition.
 
 ## Examples
 
-Let's consider an easy example for explanation how pyThermoML works: In this case you have measured a mass density of pure water of 1000 kg/m^3 at 273.15K. If you are interessted in storing your data in a structured way you could use basic functionalities of pyThermoML. All you need to do is write your experimental data into a basic .json file as you can see below or [here](https://github.com/matzegltg/pyThermoML/blob/master/templates/githubExample.json).
+Let's consider an easy example for explanation how pyThermoML works: In this case you have measured a mass density of pure water of 1000 kg/m^3 at 273.15K. If you are interessted in storing your data in a structured way you could use basic functionalities of pyThermoML. All you need to do is write your experimental data into a basic .json file as you can see below.
 
 ```json
 {
@@ -111,7 +107,7 @@ Let's consider an easy example for explanation how pyThermoML works: In this cas
     }
 }
 ```
-Some other mandatory parameters for instance IDs units units are also specified. With the propGroup/varType keyword the respective property/variable groups referring to [ThermoML - schema](http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd) have to be defined. The rest is done by the API.
+Some other mandatory parameters for instance IDs units units are also specified. With the propGroup/varType keyword the respective property/variable groups referring to [ThermoML - schema](http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd) have to be defined.
 
 You can read in the .json file with the following code excerpt:
 
