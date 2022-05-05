@@ -15,9 +15,6 @@ python setup.py install
 
 This library depends on the following libraries:
 
-* typing
-* dataclasses
-* pathlib
 * pydantic
 * lxml
 
@@ -31,7 +28,6 @@ This API provides the following properties:
 * transport properties:
     * viscosity (Pa*s)
     * kinematic viscosity (m2/s)
-    * microviscosity (Pa*s)
     * self dffusion coefficient (m2/s)
 * bioproperties:
     * peakTemperature (K)
