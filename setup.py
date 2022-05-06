@@ -17,6 +17,6 @@ setup(
     packages=setuptools.find_packages(),
     install_requires=['lxml', 'pydantic'],
     extras_requires={
-        'dataverse': ['pyDaRUS']
-    }
+        'dataverse': ['pyDaRUS'],
+    },
 )
