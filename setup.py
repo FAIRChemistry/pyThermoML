@@ -15,7 +15,7 @@ setup(
     url = 'https://github.com/ThermoPyML/pyThermoML',
     author='Gueltig, Matthias',
     packages=setuptools.find_packages(),
-    install_requires=['lxml', 'json', 'pydantic',],
+    install_requires=['lxml', 'pydantic'],
     extras_requires={
         'dataverse': ['pyDaRUS']
     }
