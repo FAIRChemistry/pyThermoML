@@ -7,7 +7,7 @@ This project provides the first means to interact with the ThermoML format. The 
 ```
 git clone https://github.com/ThermoPyML/pyThermoML.git
 cd pyThermoML
-python setup.py install
+python setup.py develop
 ```
 
 This library depends on the following libraries:
