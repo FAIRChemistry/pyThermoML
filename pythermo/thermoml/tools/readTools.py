@@ -18,10 +18,9 @@ from pythermo.thermoml.vars.componentcomposition import ComponentCompositionBase
 from pythermo.thermoml.core import Compound, DataPoint, DataReport, PureOrMixtureData, ThermoMLQuantityNotFoundError
 from lxml import etree
 from pydantic import BaseModel
-from typing import Dict
+from typing import Dict, Optional
 from pathlib import Path
-import warnings
-
+import json
 class ThermoMLReader(BaseModel):
     """
     Class providing reader functionalities to read a ThermoML file.
@@ -30,7 +29,8 @@ class ThermoMLReader(BaseModel):
         folder_thermoML_files(str): path to folder that contains thermoML files
     """
 
-    folder_thermoML_files: str
+    folder_thermoML_files: Optional[str]
+    folder_json_files: Optional[str]
     
     # NAMESPACE (str): Namespace of ThermoML 
     __NAMESPACE__: str = './/{http://www.iupac.org/namespaces/ThermoML}'
@@ -65,7 +65,7 @@ class ThermoMLReader(BaseModel):
         Returns:
             DataReport: Based on given .json file DataReport object
         """
-        return DataReport.parse_file(Path(f"{self.folder_thermoML_files}{filename}"))
+        return DataReport.parse_file(f'{self.folder_json_files}{filename}')
 
     def readFromThermoMLFile(self, filename:str, NIST:bool=False) -> DataReport:
         """Reads given ThermoML file to DataReport object.

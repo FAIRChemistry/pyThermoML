@@ -5,6 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
+from textwrap import indent
 import lxml.etree as etree
 from pythermo.thermoml.core import DataReport
 from pydantic import BaseModel
@@ -33,8 +34,10 @@ class ThermoMLWriter(BaseModel):
             dataReport (DataReport): Dataset that schould be converted into .json file.
             filename (str): name of the .json file
         """
+        json_string = dataReport.to_string()
+        print(type(json_string))
         with open(f"{self.folder_json_files}{filename}", "w") as file:
-            json.dump(dataReport.to_string(), file)
+            file.write(json_string)
 
     def writeThermo(self, dataReport:DataReport, filename:str) -> None:
         """writes ThermoML file to entered filename, by checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.
