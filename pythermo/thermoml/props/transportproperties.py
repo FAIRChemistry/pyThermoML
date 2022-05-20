@@ -86,3 +86,25 @@ class TransportProperty(PropertyBase):
             method=method,
             compoundID=compoundID
         )
+
+    @classmethod
+    def tracerDiffusionCoefficient(cls, ID: str, method: str, compoundID: str) -> 'TransportProperty':
+        """creates tracer diffusion coefficient object.
+        
+        Note:
+            Unit: m2/s
+        Args:
+            ID (str): ID
+            method (str): method
+            compoundID (str): describes referred compound
+            
+        Returns:
+            TransportProperty: object of type TransporProperty.
+        """
+        return cls(
+            propName="Tracer diffusion coefficient",
+            ID = ID,
+            unit="m2/s",
+            method=method,
+            compoundID=compoundID
+        )

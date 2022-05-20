@@ -23,7 +23,7 @@ class ThermoMLDaRUSHandler(BaseModel):
     """
     folder_thermoML_files: str
     
-    def uploadToDaRUS(self, thermoML_filename:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, authors:List[Contact]) -> str:
+    def uploadToDaRUS(self, thermoML_filename:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, contact_name:str, contact_mail:str) -> str:
         """uploads ThermoML file to DaRUS
 
         Warning: Please note, that the interface easyDataverse will infer the DATAVERSE_URL as well as 
@@ -37,7 +37,8 @@ class ThermoMLDaRUSHandler(BaseModel):
             title (str): title of the file that should be uploaded to DaRUS
             subject (SubjectEnum): Subject of the dataset e. g. chemistry
             description (str): A summary describing the purpose of the dataset
-            authors (List(Contact)): The person(s) responsible for creating the work
+            contact_name (str): Contact for this Dataset
+            contact_mail (str): Mail of contact person
         
         Returns:
             str: ID of uploaded dataset. Needed for accessing dataset and download it from DaRUS
@@ -60,9 +61,10 @@ class ThermoMLDaRUSHandler(BaseModel):
 
         citation.add_related_publication(id_type = IdType.doi, id_number = dataReport.DOI)
             
-        for author in authors:
-            citation.add_author(name=author.name)
-            citation.add_contact(name=author.name, email=author.email)
+        for author in dataReport.authors.values():
+            citation.add_author(name=author)
+        
+        citation.add_contact(name=contact_name, email=contact_mail)
         
         dataset.add_metadatablock(citation)
 
@@ -76,7 +78,7 @@ class ThermoMLDaRUSHandler(BaseModel):
                 elif prop.method == "experiment":
                     method = "experiment"
         
-        # TODO distinguish exp/sim
+    
         engMeta = EngMeta()
         if method == "simulation":
             engMeta.data_generation = [DataGeneration.simulation]

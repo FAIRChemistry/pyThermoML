@@ -40,6 +40,7 @@ class ThermoMLReader(BaseModel):
         'Viscosity, Pa*s': TransportProperty.viscosity,
         'Kinematic Viscosity, m2/s': TransportProperty.kinematicViscosity,
         'Self diffusion coefficient, m2/s': TransportProperty.selfDiffusionCoefficient,
+        'Tracer diffusion coefficient, m2/s': TransportProperty.tracerDiffusionCoefficient,
         'Mass density, kg/m3': VolumetricProperty.massDensity,
         'Surface tension liquid-gas, N/m': RefractionSurfaceTensionSoundSpeedproperty.surfaceTension,
         'Speed of sound, m/s': RefractionSurfaceTensionSoundSpeedproperty.speedOfSound,
