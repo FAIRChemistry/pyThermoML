@@ -23,7 +23,7 @@ class ThermoMLDaRUSHandler(BaseModel):
     """
     folder_thermoML_files: str
     
-    def uploadToDaRUS(self, thermoML_filename:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, contact_name:str, contact_mail:str) -> str:
+    def uploadToDaRUS(self, thermoML_filename:str, dv_path:str, dv_name:str, title:str, subject:SubjectEnum, description:str, authors:list[str], contact_name:str, contact_mail:str) -> str:
         """uploads ThermoML file to DaRUS
 
         Warning: Please note, that the interface easyDataverse will infer the DATAVERSE_URL as well as 
@@ -37,6 +37,7 @@ class ThermoMLDaRUSHandler(BaseModel):
             title (str): title of the file that should be uploaded to DaRUS
             subject (SubjectEnum): Subject of the dataset e. g. chemistry
             description (str): A summary describing the purpose of the dataset
+            authors (list(str)): List with authors created the conent.
             contact_name (str): Contact for this Dataset
             contact_mail (str): Mail of contact person
         
@@ -61,7 +62,7 @@ class ThermoMLDaRUSHandler(BaseModel):
 
         citation.add_related_publication(id_type = IdType.doi, id_number = dataReport.DOI)
             
-        for author in dataReport.authors.values():
+        for author in authors:
             citation.add_author(name=author)
         
         citation.add_contact(name=contact_name, email=contact_mail)
