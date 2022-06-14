@@ -17,3 +17,6 @@ This library depends on the following libraries:
 
 # Example workflow
 An automated workflow with data pathway examples can be found [here](https://github.com/FAIRChemistry/pyThermoML/tree/master/pyThermoML_example_workflow).
+
+# API - Reference
+https://fairchemistry.github.io/pyThermoML/
