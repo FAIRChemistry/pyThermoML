@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pythermo.thermoml.props package &mdash; pyThermoML  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyThermoML
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">pythermo.thermoml.props package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.bioproperties">pythermo.thermoml.props.bioproperties module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.heatcapacityproperties">pythermo.thermoml.props.heatcapacityproperties module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.propertyBase">pythermo.thermoml.props.propertyBase module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties">pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.transportproperties">pythermo.thermoml.props.transportproperties module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props.volumetricproperties">pythermo.thermoml.props.volumetricproperties module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.props">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyThermoML</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>pythermo.thermoml.props package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pythermo.thermoml.props.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pythermo-thermoml-props-package">
+<h1>pythermo.thermoml.props package<a class="headerlink" href="#pythermo-thermoml-props-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pythermo.thermoml.props.bioproperties">
+<span id="pythermo-thermoml-props-bioproperties-module"></span><h2>pythermo.thermoml.props.bioproperties module<a class="headerlink" href="#module-pythermo.thermoml.props.bioproperties" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.bioproperties.Bioproperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.bioproperties.</span></span><span class="sig-name descname"><span class="pre">Bioproperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Bioproperty'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.bioproperties.Bioproperty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></code></a></p>
+<p>Class representing bioproperties. The following properties are taken over from ThermoML - schema definition:
+Peak temperature.
+Inherited from PropertyBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propGroup</strong> (<em>str</em>) – Bioproperty</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.bioproperties.Bioproperty.peakTemperature">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peakTemperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.bioproperties.Bioproperty" title="pythermo.thermoml.props.bioproperties.Bioproperty"><span class="pre">pythermo.thermoml.props.bioproperties.Bioproperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.bioproperties.Bioproperty.peakTemperature" title="Permalink to this definition"></a></dt>
+<dd><p>creates bioproperty object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: K</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because peak temperature is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type Bioproperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.bioproperties.Bioproperty" title="pythermo.thermoml.props.bioproperties.Bioproperty">Bioproperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.bioproperties.Bioproperty.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.bioproperties.Bioproperty.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props.heatcapacityproperties">
+<span id="pythermo-thermoml-props-heatcapacityproperties-module"></span><h2>pythermo.thermoml.props.heatcapacityproperties module<a class="headerlink" href="#module-pythermo.thermoml.props.heatcapacityproperties" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.heatcapacityproperties.</span></span><span class="sig-name descname"><span class="pre">HeatCapacityProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'HeatCapacityAndDerivedProp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></code></a></p>
+<p>Class representing heat capacity properties. The following properties are taken over from ThermoML - schema definition:
+Molar heat capacity at constant pressure (molarHCconstPressure)
+Malar heat capacity at constant volume (molarHCconstVolume)
+Inherited from PropertyBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propGroup</strong> (<em>str</em>) – Heat capacity and derived properies</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.molarHCconstPressure">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">molarHCconstPressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty" title="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty"><span class="pre">pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.molarHCconstPressure" title="Permalink to this definition"></a></dt>
+<dd><p>creates molarHCconstPressure object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: J/K/mol</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because heat capacity is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type HeatCapacityProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty" title="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty">HeatCapacityProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.molarHCconstVolume">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">molarHCconstVolume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty" title="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty"><span class="pre">pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.molarHCconstVolume" title="Permalink to this definition"></a></dt>
+<dd><p>creates molarHCconstVolume object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: J/K/mol</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because heat capacity is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type HeatCapacityProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty" title="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty">HeatCapacityProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.heatcapacityproperties.HeatCapacityProperty.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props.propertyBase">
+<span id="pythermo-thermoml-props-propertybase-module"></span><h2>pythermo.thermoml.props.propertyBase module<a class="headerlink" href="#module-pythermo.thermoml.props.propertyBase" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.propertyBase.</span></span><span class="sig-name descname"><span class="pre">PropertyBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Base class for properties. All properties that were taken over by the ThermoML-schema definition inherit from this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>propName</strong> (<em>str</em>) – Name of the property. Determined in child classes.</p></li>
+<li><p><strong>propGroup</strong> (<em>str</em>) – Name of belonging property group. Determined in child classes.</p></li>
+<li><p><strong>ID</strong> (<em>str</em>) – User specified property ID. Will be stored in nPropNumber tag in ThermoML .xml</p></li>
+<li><p><strong>unit</strong> (<em>str</em>) – Unit of property. Determined in child classes.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Method used to obtain experimental/simulation data. Please enter “experiment” for experimental data and “simulation” for simulation data.</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – ID of referred compound</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.ID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.compoundID">
+<span class="sig-name descname"><span class="pre">compoundID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.compoundID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.method">
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.method" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.propName">
+<span class="sig-name descname"><span class="pre">propName</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.propName" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.to_string" title="Permalink to this definition"></a></dt>
+<dd><p>returns nice printed string representation of propertyBase object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.unit">
+<span class="sig-name descname"><span class="pre">unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.unit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.propertyBase.PropertyBase.validate_method_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_method_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.props.propertyBase.PropertyBase.validate_method_string" title="Permalink to this definition"></a></dt>
+<dd><p>user specified method name has to be simulation, experiment, or other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>method</strong> (<em>str</em>) – user specified method name</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – method name does not match</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>method</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties">
+<span id="pythermo-thermoml-props-refractionsurfacetensionsoundspeedproperties-module"></span><h2>pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties module<a class="headerlink" href="#module-pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.</span></span><span class="sig-name descname"><span class="pre">RefractionSurfaceTensionSoundSpeedproperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'RefractionSurfaceTensionSoundSpeed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></code></a></p>
+<p>Class representing refraction surface tension and speed of sound properties. The following properties are taken over from ThermoML - schema definition:
+Surface tension, speed of sound.
+Inherited from PropertyBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propGroup</strong> (<em>str</em>) – surface tension and speed of sound property group</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.speedOfSound">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speedOfSound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty" title="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty"><span class="pre">pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.speedOfSound" title="Permalink to this definition"></a></dt>
+<dd><p>creates speed of sound object. For more information vist documentation of PropertyBase.
+Unit: m/s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because speed of sound in a mixture is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type RefractionSurfaceTensionSoundSpeedproperty</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty" title="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty">RefractionSurfaceTensionSoundSpeedproperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.surfaceTension">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surfaceTension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty" title="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty"><span class="pre">pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty.surfaceTension" title="Permalink to this definition"></a></dt>
+<dd><p>creates surfaceTension object. For more information vist documentation of PropertyBase.
+Unit: N/m</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because surface Tension of a mixture is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type RefractionSurfaceTensionSoundSpeedproperty</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty" title="pythermo.thermoml.props.refractionSurfaceTensionSoundSpeedproperties.RefractionSurfaceTensionSoundSpeedproperty">RefractionSurfaceTensionSoundSpeedproperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props.transportproperties">
+<span id="pythermo-thermoml-props-transportproperties-module"></span><h2>pythermo.thermoml.props.transportproperties module<a class="headerlink" href="#module-pythermo.thermoml.props.transportproperties" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.transportproperties.</span></span><span class="sig-name descname"><span class="pre">TransportProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'TransportProp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></code></a></p>
+<p>Class representing transport properties. The following properties are taken over from ThermoML - schema definition:
+Viscosity, kinematic viscosity, self diffusion coefficient. Inherited from PropertyBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propGroup</strong> (<em>str</em>) – Transport property group</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty.kinematicViscosity">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematicViscosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty"><span class="pre">pythermo.thermoml.props.transportproperties.TransportProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty.kinematicViscosity" title="Permalink to this definition"></a></dt>
+<dd><p>creates kinematic viscosity object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: Pa*s</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em>) – ID of referred compound</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type TransportProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty">TransportProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty.selfDiffusionCoefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">selfDiffusionCoefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty"><span class="pre">pythermo.thermoml.props.transportproperties.TransportProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty.selfDiffusionCoefficient" title="Permalink to this definition"></a></dt>
+<dd><p>creates self diffusion coefficient object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: m2/s</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em>) – determines referred compound</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type TransportProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty">TransportProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty.tracerDiffusionCoefficient">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tracerDiffusionCoefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty"><span class="pre">pythermo.thermoml.props.transportproperties.TransportProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty.tracerDiffusionCoefficient" title="Permalink to this definition"></a></dt>
+<dd><p>creates tracer diffusion coefficient object.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: m2/s</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em>) – describes referred compound</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type TransporProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty">TransportProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.transportproperties.TransportProperty.viscosity">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">viscosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty"><span class="pre">pythermo.thermoml.props.transportproperties.TransportProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.transportproperties.TransportProperty.viscosity" title="Permalink to this definition"></a></dt>
+<dd><p>creates viscosity object. For more information vist documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: Pa*s</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em>) – ID of referred compound</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type TransportProperty.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.transportproperties.TransportProperty" title="pythermo.thermoml.props.transportproperties.TransportProperty">TransportProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props.volumetricproperties">
+<span id="pythermo-thermoml-props-volumetricproperties-module"></span><h2>pythermo.thermoml.props.volumetricproperties module<a class="headerlink" href="#module-pythermo.thermoml.props.volumetricproperties" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.volumetricproperties.VolumetricProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.props.volumetricproperties.</span></span><span class="sig-name descname"><span class="pre">VolumetricProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propGroup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'VolumetricProp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.props.volumetricproperties.VolumetricProperty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></code></a></p>
+<p>Class representing heat volumetric properties. The following properties are taken over from ThermoML - schema definition:
+Mass density.
+Inherited from PropertyBase.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propGroup</strong> (<em>str</em>) – Volumetric property group</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.volumetricproperties.VolumetricProperty.massDensity">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">massDensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compoundID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.props.volumetricproperties.VolumetricProperty" title="pythermo.thermoml.props.volumetricproperties.VolumetricProperty"><span class="pre">pythermo.thermoml.props.volumetricproperties.VolumetricProperty</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.props.volumetricproperties.VolumetricProperty.massDensity" title="Permalink to this definition"></a></dt>
+<dd><p>creates massDensity object. For more information visit documentation of PropertyBase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unit: kg/m3</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – ID</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – method</p></li>
+<li><p><strong>compoundID</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to None, because massDensity is not component specific.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object of type VolumetricProperty</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.props.volumetricproperties.VolumetricProperty" title="pythermo.thermoml.props.volumetricproperties.VolumetricProperty">VolumetricProperty</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.props.volumetricproperties.VolumetricProperty.propGroup">
+<span class="sig-name descname"><span class="pre">propGroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.props.volumetricproperties.VolumetricProperty.propGroup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.props">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pythermo.thermoml.props" title="Permalink to this headline"></a></h2>
+<p>File: __init__.py
+Project: props
+Author: Matthias Gueltig, Jan Range
+License: BSD-2 clause
+—–
+Last Modified: Thursday November 25th 2021
+Modified By: Matthias Gueltig (&lt;<a class="reference external" href="mailto:matthias2906&#37;&#52;&#48;t-online&#46;de">matthias2906<span>&#64;</span>t-online<span>&#46;</span>de</a>&gt;)
+—–
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthias Gueltig.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

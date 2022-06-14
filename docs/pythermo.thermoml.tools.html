@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pythermo.thermoml.tools package &mdash; pyThermoML  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyThermoML
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">pythermo.thermoml.tools package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.tools.readTools">pythermo.thermoml.tools.readTools module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.tools.uploadTools">pythermo.thermoml.tools.uploadTools module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.tools.writeTools">pythermo.thermoml.tools.writeTools module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyThermoML</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>pythermo.thermoml.tools package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pythermo.thermoml.tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pythermo-thermoml-tools-package">
+<h1>pythermo.thermoml.tools package<a class="headerlink" href="#pythermo-thermoml-tools-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pythermo.thermoml.tools.readTools">
+<span id="pythermo-thermoml-tools-readtools-module"></span><h2>pythermo.thermoml.tools.readTools module<a class="headerlink" href="#module-pythermo.thermoml.tools.readTools" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.readTools.ThermoMLReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.tools.readTools.</span></span><span class="sig-name descname"><span class="pre">ThermoMLReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_thermoML_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_json_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.tools.readTools.ThermoMLReader" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class providing reader functionalities to read a ThermoML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>folder_thermoML_files</strong> (<em>str</em>) – path to folder that contains thermoML files</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.readTools.ThermoMLReader.folder_json_files">
+<span class="sig-name descname"><span class="pre">folder_json_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.tools.readTools.ThermoMLReader.folder_json_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.readTools.ThermoMLReader.folder_thermoML_files">
+<span class="sig-name descname"><span class="pre">folder_thermoML_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.tools.readTools.ThermoMLReader.folder_thermoML_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.readTools.ThermoMLReader.readFromJSON">
+<span class="sig-name descname"><span class="pre">readFromJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.tools.readTools.ThermoMLReader.readFromJSON" title="Permalink to this definition"></a></dt>
+<dd><p>Reads given .json formatted file to DataReport object.
+:param filename: name of the json file that
+:type filename: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Based on given .json file DataReport object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport">DataReport</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.readTools.ThermoMLReader.readFromThermoMLFile">
+<span class="sig-name descname"><span class="pre">readFromThermoMLFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">NIST</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.tools.readTools.ThermoMLReader.readFromThermoMLFile" title="Permalink to this definition"></a></dt>
+<dd><p>Reads given ThermoML file to DataReport object.
+:param filename: name of the thermoML file that should be read in.
+:type filename: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Based on given ThermoML file</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport">DataReport</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.tools.uploadTools">
+<span id="pythermo-thermoml-tools-uploadtools-module"></span><h2>pythermo.thermoml.tools.uploadTools module<a class="headerlink" href="#module-pythermo.thermoml.tools.uploadTools" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.tools.uploadTools.</span></span><span class="sig-name descname"><span class="pre">ThermoMLDaRUSHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_thermoML_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class providing functionalities to upload/download ThermoML
+files to DaRUS (data repository of the university of Stuttgart)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>folder_thermoML_files</strong> (<em>str</em>) – path to folder that contains thermoML files</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.downloadFromDaRUS">
+<span class="sig-name descname"><span class="pre">downloadFromDaRUS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.downloadFromDaRUS" title="Permalink to this definition"></a></dt>
+<dd><p>Retrieve a dataset from dataverse by using PID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p_id</strong> (<em>str</em>) – PID of dataset in dataverse</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – local name of ThermoML file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport">DataReport</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.folder_thermoML_files">
+<span class="sig-name descname"><span class="pre">folder_thermoML_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.folder_thermoML_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.uploadToDaRUS">
+<span class="sig-name descname"><span class="pre">uploadToDaRUS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thermoML_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pyDaRUS.metadatablocks.citation.SubjectEnum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_mail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.tools.uploadTools.ThermoMLDaRUSHandler.uploadToDaRUS" title="Permalink to this definition"></a></dt>
+<dd><p>uploads ThermoML file to DaRUS</p>
+<p>Warning: Please note, that the interface easyDataverse will infer the DATAVERSE_URL as well as
+DATAVERSE_API_TOKEN from your environment variables.
+Thus, please make sure these are available at runtime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thermoML_filename</strong> (<em>str</em>) – name of the locally stored thermoML file</p></li>
+<li><p><strong>dv_path</strong> (<em>str</em>) – path of ThermoML file, that should be stored DaRUS dataverse</p></li>
+<li><p><strong>dv_name</strong> (<em>str</em>) – name of datavarese in DaRUS</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – title of the file that should be uploaded to DaRUS</p></li>
+<li><p><strong>subject</strong> (<em>SubjectEnum</em>) – Subject of the dataset e. g. chemistry</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – A summary describing the purpose of the dataset</p></li>
+<li><p><strong>authors</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – List with authors created the conent.</p></li>
+<li><p><strong>contact_name</strong> (<em>str</em>) – Contact for this Dataset</p></li>
+<li><p><strong>contact_mail</strong> (<em>str</em>) – Mail of contact person</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ID of uploaded dataset. Needed for accessing dataset and download it from DaRUS</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.tools.writeTools">
+<span id="pythermo-thermoml-tools-writetools-module"></span><h2>pythermo.thermoml.tools.writeTools module<a class="headerlink" href="#module-pythermo.thermoml.tools.writeTools" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.writeTools.ThermoMLWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.tools.writeTools.</span></span><span class="sig-name descname"><span class="pre">ThermoMLWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_thermoML_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_json_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.tools.writeTools.ThermoMLWriter" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class providing functionalities for writing ThermoML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>folder_thermoML_files</strong> (<em>str</em>) – name of the ThermoML file that should be written.</p></li>
+<li><p><strong>folder_json_files</strong> (<em>str</em>) – name of the json files that should be written.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.writeTools.ThermoMLWriter.folder_json_files">
+<span class="sig-name descname"><span class="pre">folder_json_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.tools.writeTools.ThermoMLWriter.folder_json_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.writeTools.ThermoMLWriter.folder_thermoML_files">
+<span class="sig-name descname"><span class="pre">folder_thermoML_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.tools.writeTools.ThermoMLWriter.folder_thermoML_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.writeTools.ThermoMLWriter.writeJSON">
+<span class="sig-name descname"><span class="pre">writeJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataReport</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pythermo.thermoml.tools.writeTools.ThermoMLWriter.writeJSON" title="Permalink to this definition"></a></dt>
+<dd><p>writes pyThermoML readable .json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataReport</strong> (<a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><em>DataReport</em></a>) – Dataset that schould be converted into .json file.</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – name of the .json file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.tools.writeTools.ThermoMLWriter.writeThermo">
+<span class="sig-name descname"><span class="pre">writeThermo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataReport</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pythermo.thermoml.tools.writeTools.ThermoMLWriter.writeThermo" title="Permalink to this definition"></a></dt>
+<dd><p>writes ThermoML file to entered filename, by checking wheter key is in data report dictionary and by writing entry possibly to respective ThermoML tag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataReport</strong> (<a class="reference internal" href="pythermo.thermoml.core.html#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><em>DataReport</em></a>) – Dataset that should be written into ThermoML file</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – filename of new ThermoML file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pythermo.thermoml.tools" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthias Gueltig.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

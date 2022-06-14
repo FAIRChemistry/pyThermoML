@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pythermo.thermoml.core package &mdash; pyThermoML  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyThermoML
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">pythermo.thermoml.core package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.compound">pythermo.thermoml.core.compound module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.datapoint">pythermo.thermoml.core.datapoint module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.datareport">pythermo.thermoml.core.datareport module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.exceptions">pythermo.thermoml.core.exceptions module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.measurement">pythermo.thermoml.core.measurement module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.pureOrMixtureData">pythermo.thermoml.core.pureOrMixtureData module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core.utils">pythermo.thermoml.core.utils module</a></li>
+<li><a class="reference internal" href="#module-pythermo.thermoml.core">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyThermoML</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>pythermo.thermoml.core package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pythermo.thermoml.core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pythermo-thermoml-core-package">
+<h1>pythermo.thermoml.core package<a class="headerlink" href="#pythermo-thermoml-core-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-pythermo.thermoml.core.compound">
+<span id="pythermo-thermoml-core-compound-module"></span><h2>pythermo.thermoml.core.compound module<a class="headerlink" href="#module-pythermo.thermoml.core.compound" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.compound.</span></span><span class="sig-name descname"><span class="pre">Compound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardInchI</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardInchIKey</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smiles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commonName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class representing a compound used in ThermoML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – user specified ID</p></li>
+<li><p><strong>standardInchI</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – standardInchI of used compound (Optional)</p></li>
+<li><p><strong>standardInchIKey</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – standardInchIKey of used compound (Optional)</p></li>
+<li><p><strong>smiles</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – smiles code of used compound (Optional)</p></li>
+<li><p><strong>commonName</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – common name of used compound (Optional)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound.ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound.ID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound.commonName">
+<span class="sig-name descname"><span class="pre">commonName</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound.commonName" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound.smiles">
+<span class="sig-name descname"><span class="pre">smiles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound.smiles" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound.standardInchI">
+<span class="sig-name descname"><span class="pre">standardInchI</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound.standardInchI" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.compound.Compound.standardInchIKey">
+<span class="sig-name descname"><span class="pre">standardInchIKey</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.compound.Compound.standardInchIKey" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.datapoint">
+<span id="pythermo-thermoml-core-datapoint-module"></span><h2>pythermo.thermoml.core.datapoint module<a class="headerlink" href="#module-pythermo.thermoml.core.datapoint" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.datapoint.</span></span><span class="sig-name descname"><span class="pre">DataPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurementID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncertainty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numberOfDigits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_point_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elementID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class that represents the value of one single variable/property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurementID</strong> (<em>str</em>) – The ID of the measurement to which the value of the variable/property belongs.</p></li>
+<li><p><strong>value</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em>) – determined, averaged value</p></li>
+<li><p><strong>propID</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – reference to ID of measured property. propID = None when type of dataPoint is “Variable”.</p></li>
+<li><p><strong>varID</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – reference to ID of determined variable. varID = None when type of dataPoint is “Property”.</p></li>
+<li><p><strong>uncertainty</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – standard uncertainty around the value</p></li>
+<li><p><strong>numberOfDigits</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – number of digits of the value: Describes the accuracy of the measured value</p></li>
+<li><p><strong>data_point_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – deciedes whether data point is “Variable” or “Property”</p></li>
+<li><p><strong>elementID</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Contains in both cases (Variable and Property) the respective ID.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.data_point_type">
+<span class="sig-name descname"><span class="pre">data_point_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.data_point_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.elementID">
+<span class="sig-name descname"><span class="pre">elementID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.elementID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.measurementID">
+<span class="sig-name descname"><span class="pre">measurementID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.measurementID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.numberOfDigits">
+<span class="sig-name descname"><span class="pre">numberOfDigits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.numberOfDigits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.propID">
+<span class="sig-name descname"><span class="pre">propID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.propID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.specify_element_id">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">specify_element_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.specify_element_id" title="Permalink to this definition"></a></dt>
+<dd><p>specifies whether elementID of new data point is property or variable.
+Sets propID/varID as elementID and sets dat_point_type as “Variable” or “Property”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>dict</em>) – dict representation of input</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – when neither propertyID or variableID has been specified.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the varID or propID stored as elementID</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.uncertainty">
+<span class="sig-name descname"><span class="pre">uncertainty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.uncertainty" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datapoint.DataPoint.varID">
+<span class="sig-name descname"><span class="pre">varID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datapoint.DataPoint.varID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.datareport">
+<span id="pythermo-thermoml-core-datareport-module"></span><h2>pythermo.thermoml.core.datareport module<a class="headerlink" href="#module-pythermo.thermoml.core.datareport" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.datareport.</span></span><span class="sig-name descname"><span class="pre">DataReport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DOI</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.compound.Compound" title="pythermo.thermoml.core.compound.Compound"><span class="pre">pythermo.thermoml.core.compound.Compound</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pureOrMixtureData</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><span class="pre">pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Basis class of pyThermoML that represents a dataset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All entrys of this API refer to <a class="reference external" href="http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd">http://media.iupac.org/namespaces/ThermoML/ThermoML.xsd</a>
+ThermoML - schema definition.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Title of a referred paper.</p></li>
+<li><p><strong>DOI</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – DOI of a referred paper.</p></li>
+<li><p><strong>authors</strong> (<em>Optional</em><em>[</em><em>dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Dictionary with authors of a referred paper.
+The keys wont be stored in ThermoML.</p></li>
+<li><p><strong>compounds</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#pythermo.thermoml.core.compound.Compound" title="pythermo.thermoml.core.compound.Compound"><em>Compound</em></a><em>]</em>) – Compounds which are used in the data reprot.
+The keys are stored in the ThermoML .xml file in the &lt;nOrgNum&gt; tag.</p></li>
+<li><p><strong>pureOrMixtureData</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><em>PureOrMixtureData</em></a><em>]</em>) – PureOrMixtureData elements which are
+used in data report. The keys are stored in the ThermoML .xml file in the
+nPureOrMixtureDataNumber tag.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.DOI">
+<span class="sig-name descname"><span class="pre">DOI</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.DOI" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.addAuthor">
+<span class="sig-name descname"><span class="pre">addAuthor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport"><span class="pre">pythermo.thermoml.core.datareport.DataReport</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.addAuthor" title="Permalink to this definition"></a></dt>
+<dd><p>adds authors to data report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the author</p></li>
+<li><p><strong>ID</strong> (<em>str</em>) – freely selectable ID, to receive information about author.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns data report that has been modified.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport">DataReport</a></p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The author ID gets lost by writing a ThermoML file.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.addCompound">
+<span class="sig-name descname"><span class="pre">addCompound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pythermo.thermoml.core.compound.Compound" title="pythermo.thermoml.core.compound.Compound"><span class="pre">pythermo.thermoml.core.compound.Compound</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.addCompound" title="Permalink to this definition"></a></dt>
+<dd><p>adds Compound to data report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>comp</strong> (<a class="reference internal" href="#pythermo.thermoml.core.compound.Compound" title="pythermo.thermoml.core.compound.Compound"><em>Compound</em></a>) – the compound that should be added.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#pythermo.thermoml.core.exceptions.ThermoMLTypeError" title="pythermo.thermoml.core.exceptions.ThermoMLTypeError"><strong>ThermoMLTypeError</strong></a> – type of compound is not “Compound”. The compound wont be added.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ID of added compound</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.addPureOrMixtureData">
+<span class="sig-name descname"><span class="pre">addPureOrMixtureData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pureOrMixtureData</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><span class="pre">pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.addPureOrMixtureData" title="Permalink to this definition"></a></dt>
+<dd><p>adds pureOrMixtureData object to data report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pureOrMixtureData</strong> (<a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><em>PureOrMixtureData</em></a>) – PureOrMixtureData object,
+that contains experimental information.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ID of the added pureOrMixtureData object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.authors">
+<span class="sig-name descname"><span class="pre">authors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.authors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.compounds">
+<span class="sig-name descname"><span class="pre">compounds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.compound.Compound" title="pythermo.thermoml.core.compound.Compound"><span class="pre">pythermo.thermoml.core.compound.Compound</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.compounds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.deleteAuthor">
+<span class="sig-name descname"><span class="pre">deleteAuthor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.deleteAuthor" title="Permalink to this definition"></a></dt>
+<dd><p>removes author from a data report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the author that has to be deleted</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns modified data report.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.core.datareport.DataReport" title="pythermo.thermoml.core.datareport.DataReport">DataReport</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If multiple authors have the same name, everyone will be removed.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.getCompoundIDs">
+<span class="sig-name descname"><span class="pre">getCompoundIDs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.getCompoundIDs" title="Permalink to this definition"></a></dt>
+<dd><p>returns all IDs of compounds in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List with IDs of compound objects.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.getPureOrMixtureDataIDs">
+<span class="sig-name descname"><span class="pre">getPureOrMixtureDataIDs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.getPureOrMixtureDataIDs" title="Permalink to this definition"></a></dt>
+<dd><p>returns all IDs of pure or mixture entries in the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List with IDs of pure or mixture data objects.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>IDs (list[str])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.pureOrMixtureData">
+<span class="sig-name descname"><span class="pre">pureOrMixtureData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><span class="pre">pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.pureOrMixtureData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.title" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.datareport.DataReport.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.datareport.DataReport.to_string" title="Permalink to this definition"></a></dt>
+<dd><p>returns nice printed string representation of data report object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.exceptions">
+<span id="pythermo-thermoml-core-exceptions-module"></span><h2>pythermo.thermoml.core.exceptions module<a class="headerlink" href="#module-pythermo.thermoml.core.exceptions" title="Permalink to this headline"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.exceptions.ThermoMLFileFormatError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ThermoMLFileFormatError</span></span><a class="headerlink" href="#pythermo.thermoml.core.exceptions.ThermoMLFileFormatError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised if ThermoML file that should be written has no .xml in its name.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.exceptions.ThermoMLMissingIDError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ThermoMLMissingIDError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.exceptions.ThermoMLMissingIDError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised if necessary ID is missing.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.exceptions.ThermoMLQuantityNotFoundError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ThermoMLQuantityNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.exceptions.ThermoMLQuantityNotFoundError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raise if property/variable can not be found in prop/var mapping, or if there are issues with units</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.exceptions.ThermoMLTypeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ThermoMLTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">given_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.exceptions.ThermoMLTypeError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised if the type of either variable or property isnt matched</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.exceptions.ThermoMLWriterDataReportTypeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.exceptions.</span></span><span class="sig-name descname"><span class="pre">ThermoMLWriterDataReportTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.exceptions.ThermoMLWriterDataReportTypeError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised if type of data report is not readable by ThermoMLWriter.</p>
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.measurement">
+<span id="pythermo-thermoml-core-measurement-module"></span><h2>pythermo.thermoml.core.measurement module<a class="headerlink" href="#module-pythermo.thermoml.core.measurement" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.measurement.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>Class representing a measurement in a DataReport.
+Each measurement is a list of property/variable datapoints that have the same measurement ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – user specified measurement ID.</p></li>
+<li><p><strong>properties</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><em>DataPoint</em></a><em>]</em>) – dict with keys: propID, values: DataPoint of type Property.</p></li>
+<li><p><strong>variables</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><em>DataPoint</em></a><em>]</em>) – dict with keys: varID, values: DataPoint of type Variable.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.ID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.addDataPoint">
+<span class="sig-name descname"><span class="pre">addDataPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataPoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pureMixtureData</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.addDataPoint" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a datapoint to measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataPoint</strong> (<a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><em>DataPoint</em></a><em>]</em>) – Datapoint that should be added to the measurement.</p></li>
+<li><p><strong>pureMixtureData</strong> (<a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><em>PureOrMixtureData</em></a>) – pure or mixture data base class which contains measurement.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>AttributeError</strong> – property/variable with respective ID is not defined.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.getDataPointList">
+<span class="sig-name descname"><span class="pre">getDataPointList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.getDataPointList" title="Permalink to this definition"></a></dt>
+<dd><p>Returns list representation of datapoints used in measurement</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list with data points.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint">DataPoint</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.getProperty">
+<span class="sig-name descname"><span class="pre">getProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propertyID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.getProperty" title="Permalink to this definition"></a></dt>
+<dd><p>Returns datapoint representation of property in measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propertyID</strong> (<em>str</em>) – ID of property</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Datapoint representation of respective property.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint">DataPoint</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.getVariable">
+<span class="sig-name descname"><span class="pre">getVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variableID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.getVariable" title="Permalink to this definition"></a></dt>
+<dd><p>Returns datapoint representation of variable in measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variableID</strong> (<em>str</em>) – ID of variable</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Datapoint representation of respective variable</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint">DataPoint</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.properties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.to_string" title="Permalink to this definition"></a></dt>
+<dd><p>returns nice printed string representation of measurement object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.measurement.Measurement.variables">
+<span class="sig-name descname"><span class="pre">variables</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.measurement.Measurement.variables" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.pureOrMixtureData">
+<span id="pythermo-thermoml-core-pureormixturedata-module"></span><h2>pythermo.thermoml.core.pureOrMixtureData module<a class="headerlink" href="#module-pythermo.thermoml.core.pureOrMixtureData" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.pureOrMixtureData.</span></span><span class="sig-name descname"><span class="pre">PureOrMixtureData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compiler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase"><span class="pre">pythermo.thermoml.vars.variableBase.VariableBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement"><span class="pre">pythermo.thermoml.core.measurement.Measurement</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydantic.main.BaseModel</span></code></p>
+<p>class representing experimental/simulated pure or mixture data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> (<em>str</em>) – user specified ID. Stored in ThermoML .xml in nPureOrMixtureDataNumber tag.</p></li>
+<li><p><strong>compiler</strong> (<em>str</em>) – The name of the person who compiled the data contained in the ThermoML file.</p></li>
+<li><p><strong>comps</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – used Compounds</p></li>
+<li><p><strong>properties</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><em>PropertyBase</em></a><em>]</em>) – dictionary of properties used in pureOrMixtureData. (Key: pID, Value: Property)</p></li>
+<li><p><strong>variables</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase"><em>VariableBase</em></a><em>]</em>) – dictionary of variables used in pureOrMixtureData. (Key: vID, Value: Variable)</p></li>
+<li><p><strong>measurements</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement"><em>Measurement</em></a><em>]</em>) – dictionary of measurements of pureOrMixtureData. (Key: measID, Value: Measurement)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.ID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addMeasurement">
+<span class="sig-name descname"><span class="pre">addMeasurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataPoints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><span class="pre">pythermo.thermoml.core.datapoint.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addMeasurement" title="Permalink to this definition"></a></dt>
+<dd><p>creates a new object of type Measurement, adds measurement to pureOrMxiture data.
+One measurement consists of multiple datapoints which contain experimental/simulation data of property/variable,
+with the same meausrement ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataPoints</strong> (<em>list</em><em>[</em><a class="reference internal" href="#pythermo.thermoml.core.datapoint.DataPoint" title="pythermo.thermoml.core.datapoint.DataPoint"><em>DataPoint</em></a><em>]</em>) – List of datapoints that should be added to pureOrMixtureData.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addProperty">
+<span class="sig-name descname"><span class="pre">addProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addProperty" title="Permalink to this definition"></a></dt>
+<dd><p>adds a property to pureOrMixture data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>prop</strong> (<a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><em>PropertyBase</em></a>) – the respective property is inherited from PropertyBase</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#pythermo.thermoml.core.exceptions.ThermoMLTypeError" title="pythermo.thermoml.core.exceptions.ThermoMLTypeError"><strong>ThermoMLTypeError</strong></a> – If property is no well defined property</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>user specified ID of property</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addVariable">
+<span class="sig-name descname"><span class="pre">addVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase"><span class="pre">pythermo.thermoml.vars.variableBase.VariableBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.addVariable" title="Permalink to this definition"></a></dt>
+<dd><p>adds a variable to pureOrMixture data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variable</strong> (<a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase"><em>VariableBase</em></a>) – the respective variable is inherited from VariableBase</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#pythermo.thermoml.core.exceptions.ThermoMLTypeError" title="pythermo.thermoml.core.exceptions.ThermoMLTypeError"><strong>ThermoMLTypeError</strong></a> – If variable is no well defined variable</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>user sepcified ID of variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.compiler">
+<span class="sig-name descname"><span class="pre">compiler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.compiler" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.comps">
+<span class="sig-name descname"><span class="pre">comps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.comps" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurement">
+<span class="sig-name descname"><span class="pre">getMeasurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement"><span class="pre">pythermo.thermoml.core.measurement.Measurement</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurement" title="Permalink to this definition"></a></dt>
+<dd><p>Returns measurement with given measurementID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ID</strong> (<em>str</em>) – The user specified ID of measurement</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>KeyError</strong> – measurement with ID does not exist</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>object of type Measurement</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement">Measurement</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurementByValues">
+<span class="sig-name descname"><span class="pre">getMeasurementByValues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData"><span class="pre">pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData</span></a></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurementByValues" title="Permalink to this definition"></a></dt>
+<dd><p>With this function property values of specific variable values can be found.</p>
+<p>One or two variable IDs and values must be stored in a tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val1</strong> (<em>tuple</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em>) – First entry: ID of searched variable, value of searched variable.</p></li>
+<li><p><strong>val2</strong> (<em>tuple</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em><em>, </em><em>optional</em>) – Optionally a second variable can be added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The new created PureOrMixtureData object containing only the measurements</dt><dd><p>with specified variable values.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData" title="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData">PureOrMixtureData</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurementsList">
+<span class="sig-name descname"><span class="pre">getMeasurementsList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement"><span class="pre">pythermo.thermoml.core.measurement.Measurement</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMeasurementsList" title="Permalink to this definition"></a></dt>
+<dd><p>Returns list of measurements in pureOrMixtureData.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of measurements</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement">Measurement</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMoleFractionIDs">
+<span class="sig-name descname"><span class="pre">getMoleFractionIDs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getMoleFractionIDs" title="Permalink to this definition"></a></dt>
+<dd><p>returns dictionary with compoundID &lt;-&gt; moleFractionID assignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>keys: compoundIDs, values: moleFraction IDs</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPOMProperty">
+<span class="sig-name descname"><span class="pre">getPOMProperty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propertyID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPOMProperty" title="Permalink to this definition"></a></dt>
+<dd><p>returns property with ID propertyID, that is used in pureOrMixtureData.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propertyID</strong> (<em>str</em>) – ID of property</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object with type inherited from PropertyBase.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase">PropertyBase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPOMVariable">
+<span class="sig-name descname"><span class="pre">getPOMVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variableID</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPOMVariable" title="Permalink to this definition"></a></dt>
+<dd><p>returns variable with ID variableID, that is used in pureOrMixtureData.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>variableID</strong> (<em>str</em>) – ID of variable</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>object with type inherited from VariableBase.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase">VariableBase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPropVarIDs">
+<span class="sig-name descname"><span class="pre">getPropVarIDs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.getPropVarIDs" title="Permalink to this definition"></a></dt>
+<dd><p>Returns dictionary with ID var/prop name assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>assingedDict (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.measurements">
+<span class="sig-name descname"><span class="pre">measurements</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#pythermo.thermoml.core.measurement.Measurement" title="pythermo.thermoml.core.measurement.Measurement"><span class="pre">pythermo.thermoml.core.measurement.Measurement</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.measurements" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pythermo.thermoml.props.html#pythermo.thermoml.props.propertyBase.PropertyBase" title="pythermo.thermoml.props.propertyBase.PropertyBase"><span class="pre">pythermo.thermoml.props.propertyBase.PropertyBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.properties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.to_string" title="Permalink to this definition"></a></dt>
+<dd><p>returns nice printed string representation of pureOrMixtureData object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string representation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.variables">
+<span class="sig-name descname"><span class="pre">variables</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pythermo.thermoml.vars.html#pythermo.thermoml.vars.variableBase.VariableBase" title="pythermo.thermoml.vars.variableBase.VariableBase"><span class="pre">pythermo.thermoml.vars.variableBase.VariableBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pythermo.thermoml.core.pureOrMixtureData.PureOrMixtureData.variables" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core.utils">
+<span id="pythermo-thermoml-core-utils-module"></span><h2>pythermo.thermoml.core.utils module<a class="headerlink" href="#module-pythermo.thermoml.core.utils" title="Permalink to this headline"></a></h2>
+<p>File: utils.py
+Project: core
+Author: Jan Range
+License: BSD-2 clause
+—–
+Last Modified: Thursday November 25th 2021
+Modified By: Jan Range (&lt;<a class="reference external" href="mailto:jan&#46;range&#37;&#52;&#48;simtech&#46;uni-stuttgart&#46;de">jan<span>&#46;</span>range<span>&#64;</span>simtech<span>&#46;</span>uni-stuttgart<span>&#46;</span>de</a>&gt;)
+—–
+Copyright (c) 2021 Institute of Biochemistry and Technical Biochemistry Stuttgart</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pythermo.thermoml.core.utils.type_checking">
+<span class="sig-prename descclassname"><span class="pre">pythermo.thermoml.core.utils.</span></span><span class="sig-name descname"><span class="pre">type_checking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythermo.thermoml.core.utils.type_checking" title="Permalink to this definition"></a></dt>
+<dd><p>Used to enable pyDantic type checking, since it is not supported yet by Pylance</p>
+</dd></dl>
+
+</section>
+<section id="module-pythermo.thermoml.core">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pythermo.thermoml.core" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Matthias Gueltig.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
