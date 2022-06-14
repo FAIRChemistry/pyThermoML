@@ -1,0 +1,69 @@
+core package
+==============================
+
+Submodules
+----------
+
+compound module
+--------------------------------------
+
+.. automodule:: pythermo.thermoml.core.compound
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+datapoint module
+---------------------------------------
+
+.. automodule:: pythermo.thermoml.core.datapoint
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+datareport module
+----------------------------------------
+
+.. automodule:: pythermo.thermoml.core.datareport
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+exceptions module
+----------------------------------------
+
+.. automodule:: pythermo.thermoml.core.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+measurement module
+-----------------------------------------
+
+.. automodule:: pythermo.thermoml.core.measurement
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pureOrMixtureData module
+-----------------------------------------------
+
+.. automodule:: pythermo.thermoml.core.pureOrMixtureData
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+utils module
+-----------------------------------
+
+.. automodule:: pythermo.thermoml.core.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pythermo.thermoml.core
+   :members:
+   :undoc-members:
+   :show-inheritance:

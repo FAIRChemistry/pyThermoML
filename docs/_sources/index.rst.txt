@@ -8,12 +8,10 @@ Welcome to pyThermoML's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: API - Reference:
 
    modules
-   summary
    
-Indices and tables
+Module overview
 ==================
-
-* :ref:`modindex`
+With this link the module overview of pyThermoML can be inspected :ref:`modindex`.
