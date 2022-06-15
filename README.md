@@ -5,7 +5,7 @@
 This project provides means to interact with the ThermoML format. The library is written in Python. Please type the following commands to make pyThermoML run.
 
 ```
-git https://github.com/FAIRChemistry/pyThermoML.git
+git clone https://github.com/FAIRChemistry/pyThermoML.git
 cd pyThermoML
 python setup.py develop
 ```
