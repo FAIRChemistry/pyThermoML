@@ -2,7 +2,7 @@
 
 **Authors:** Matthias Gueltig, Jan Range
 
-This project provides the first means to interact with the ThermoML format. The library is written in python. Please type the following commands to make pyThermoML run
+This project provides means to interact with the ThermoML format. The library is written in Python. Please type the following commands to make pyThermoML run.
 
 ```
 git https://github.com/FAIRChemistry/pyThermoML.git
@@ -10,7 +10,7 @@ cd pyThermoML
 python setup.py develop
 ```
 
-This library depends on the following libraries:
+Make sure you have installed the following libraries:
 
 * pydantic
 * lxml
