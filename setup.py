@@ -9,14 +9,14 @@ import setuptools
 from setuptools import setup
 
 setup(
-    name='PyThermoML',
-    version='1.1.1',
-    description='Handling of ThermoML files',
-    url = 'https://github.com/ThermoPyML/pyThermoML',
-    author='Gueltig, Matthias',
+    name="PyThermoML",
+    version="1.1.2",
+    description="Handling of ThermoML files",
+    url="https://github.com/ThermoPyML/pyThermoML",
+    author="Gueltig, Matthias",
     packages=setuptools.find_packages(),
-    install_requires=['lxml', 'pydantic'],
+    install_requires=["lxml", "pydantic"],
     extras_requires={
-        'dataverse': ['pyDaRUS'],
+        "dataverse": ["pyDaRUS"],
     },
 )
