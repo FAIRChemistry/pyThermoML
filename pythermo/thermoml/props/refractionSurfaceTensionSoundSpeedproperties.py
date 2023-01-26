@@ -5,6 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
+from typing import Optional
 from pythermo.thermoml.props.propertyBase import PropertyBase
 
 
@@ -13,16 +14,18 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
     Class representing refraction surface tension and speed of sound properties. The following properties are taken over from ThermoML - schema definition:
     Surface tension, speed of sound.
     Inherited from PropertyBase.
-    
+
     Args:
         propGroup (str): surface tension and speed of sound property group
-    
+
     """
 
     propGroup: str = "RefractionSurfaceTensionSoundSpeed"
 
     @classmethod
-    def surfaceTension(cls, ID: str, method: str, compoundID: str = None) -> 'RefractionSurfaceTensionSoundSpeedproperty':
+    def surfaceTension(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "RefractionSurfaceTensionSoundSpeedproperty":
         """creates surfaceTension object. For more information vist documentation of PropertyBase.
         Unit: N/m
 
@@ -39,11 +42,13 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
             ID=ID,
             unit="N/m",
             method=method,
-            compoundID = compoundID
+            compoundID=compoundID,
         )
 
     @classmethod
-    def speedOfSound(cls, ID: str, method: str, compoundID: str = None) -> 'RefractionSurfaceTensionSoundSpeedproperty':
+    def speedOfSound(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "RefractionSurfaceTensionSoundSpeedproperty":
         """creates speed of sound object. For more information vist documentation of PropertyBase.
         Unit: m/s
 
@@ -60,5 +65,5 @@ class RefractionSurfaceTensionSoundSpeedproperty(PropertyBase):
             ID=ID,
             unit="m/s",
             method=method,
-            compoundID = compoundID
+            compoundID=compoundID,
         )

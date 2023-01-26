@@ -5,6 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
+from typing import Optional
 from pythermo.thermoml.vars.variableBase import VariableBase
 
 
@@ -13,17 +14,20 @@ class TemperatureBase(VariableBase):
     Class representing temperature variables. The following variables are taken over from ThermoML - schema definition:
     Temperature, upper temperature and lower temperature.
     Inherited from VariableBase.
-    
+
     Args:
         varType (str): extracted from schema definition: eTemperature
-    
+
     """
+
     varType: str = "eTemperature"
 
     @classmethod
-    def temperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
+    def temperature(
+        cls, ID: int, compoundID: Optional[int] = None
+    ) -> "TemperatureBase":
         """creates temperature object. For more information visit documentation of VariableBase.
-    
+
         Note:
             Unit: "K"
 
@@ -34,17 +38,14 @@ class TemperatureBase(VariableBase):
         Returns:
             TemperatureBase: object of type TemperatureBase.
         """
-        return cls (
-            varName = "Temperature",
-            ID=ID,
-            unit="K",
-            compoundID=compoundID
-        )
+        return cls(varName="Temperature", ID=ID, unit="K", compoundID=compoundID)
 
     @classmethod
-    def upperTemperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
+    def upperTemperature(
+        cls, ID: int, compoundID: Optional[int] = None
+    ) -> "TemperatureBase":
         """creates upper temperature object. For more information visit documentation of VariableBase.
-        
+
         Note:
             Unit: "K"
 
@@ -55,15 +56,12 @@ class TemperatureBase(VariableBase):
         Returns:
             TemperatureBase: object of type TemperatureBase.
         """
-        return cls(
-            varName = "Upper temperature",
-            ID = ID,
-            unit = "K",
-            compoundID = compoundID
-        )
+        return cls(varName="Upper temperature", ID=ID, unit="K", compoundID=compoundID)
 
     @classmethod
-    def lowerTemperature(cls, ID: str, compoundID: str = None) -> 'TemperatureBase':
+    def lowerTemperature(
+        cls, ID: int, compoundID: Optional[int] = None
+    ) -> "TemperatureBase":
         """creates lower temperature object. For more information visit documentation of VariableBase.
 
         Note:
@@ -76,9 +74,4 @@ class TemperatureBase(VariableBase):
         Returns:
             TemperatureBase: object of type TemperatureBase.
         """
-        return cls(
-            varName = "Lower temperature",
-            ID = ID,
-            unit = "K",
-            compoundID = compoundID
-        )
+        return cls(varName="Lower temperature", ID=ID, unit="K", compoundID=compoundID)

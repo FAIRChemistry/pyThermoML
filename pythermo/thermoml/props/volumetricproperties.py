@@ -4,22 +4,28 @@
 # @Version       :   1.0
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
+
+from typing import Optional
 from pythermo.thermoml.props.propertyBase import PropertyBase
+
 
 class VolumetricProperty(PropertyBase):
     """
     Class representing heat volumetric properties. The following properties are taken over from ThermoML - schema definition:
     Mass density.
     Inherited from PropertyBase.
-    
+
     Args:
         propGroup (str): Volumetric property group
-    
+
     """
+
     propGroup: str = "VolumetricProp"
 
     @classmethod
-    def massDensity(cls, ID: str, method: str, compoundID: str = None) -> 'VolumetricProperty':
+    def massDensity(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "VolumetricProperty":
         """creates massDensity object. For more information visit documentation of PropertyBase.
 
         Note:
@@ -38,5 +44,5 @@ class VolumetricProperty(PropertyBase):
             ID=ID,
             unit="kg/m3",
             method=method,
-            compoundID=compoundID
+            compoundID=compoundID,
         )

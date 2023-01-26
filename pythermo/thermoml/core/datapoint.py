@@ -12,7 +12,7 @@ from pydantic import BaseModel, PrivateAttr, validator
 class DataPoint(BaseModel):
     """
     Class that represents the value of one single variable/property.
-    
+
     Args:
         measurementID (str): The ID of the measurement to which the value of the variable/property belongs.
         value (Union[float, int]): determined, averaged value
@@ -24,14 +24,14 @@ class DataPoint(BaseModel):
         elementID (Optional[str]): Contains in both cases (Variable and Property) the respective ID.
     """
 
-    measurementID: str
+    measurementID: int
     value: Union[float, int]
-    propID: Optional[str] = None
-    varID: Optional[str] = None
+    propID: Optional[int] = None
+    varID: Optional[int] = None
     uncertainty: Optional[float]
     numberOfDigits: Optional[int]
     data_point_type: Optional[str] = None
-    elementID: Optional[str] = None
+    elementID: Optional[int] = None
 
     @validator("elementID", always=True)
     @classmethod
@@ -58,6 +58,4 @@ class DataPoint(BaseModel):
             values["data_point_type"] = "Variable"
             return varID
         else:
-            raise TypeError(
-                "Neither propertyID or variableID has been specified."
-            )
+            raise TypeError("Neither propertyID or variableID has been specified.")

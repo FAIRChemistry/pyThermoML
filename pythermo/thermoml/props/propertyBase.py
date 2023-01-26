@@ -22,12 +22,13 @@ class PropertyBase(BaseModel):
         method (str): Method used to obtain experimental/simulation data. Please enter "experiment" for experimental data and "simulation" for simulation data.
         compoundID (str, optional): ID of referred compound
     """
+
     propName: str
     propGroup: str
-    ID: str
+    ID: int
     unit: str
     method: str
-    compoundID: Optional[str] = None
+    compoundID: Optional[int] = None
     _type: str = PrivateAttr(default="Property")
 
     @validator("method", always=True)
@@ -46,18 +47,18 @@ class PropertyBase(BaseModel):
         """
         if method == "simulation":
             return method
-        
+
         elif method == "experiment":
             return method
-        
+
         elif method == "other":
             return method
-        
+
         else:
             raise TypeError(
                 "Please define whether data was obtained by 'experiment', 'simulation' or 'other'"
-        )
-    
+            )
+
     def to_string(self) -> str:
         """returns nice printed string representation of propertyBase object.
 

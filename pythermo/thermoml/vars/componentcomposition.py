@@ -7,23 +7,24 @@
 
 from pythermo.thermoml.vars.variableBase import VariableBase
 
+
 class ComponentCompositionBase(VariableBase):
     """
     Class representing component composition variables. The following variables are taken over from ThermoML - schema definition:
     Mole fraction.
     Inherited from VariableBase.
-    
+
     Args:
         varType (str): extracted from schema definition: eComponentComposition
-    
+
     """
 
     varType: str = "eComponentComposition"
 
     @classmethod
-    def moleFraction(cls, ID: str, compoundID: str) -> 'ComponentCompositionBase':
+    def moleFraction(cls, ID: int, compoundID: int) -> "ComponentCompositionBase":
         """creates mole fraction object. For more information visit documentation of VariableBase.
-        
+
         Note:
             Unit: ""
 
@@ -34,8 +35,4 @@ class ComponentCompositionBase(VariableBase):
         Returns:
             ComponentCompositionBase: object of type ComponentComposition.
         """
-        return cls(varName="Mole fraction",
-        ID=ID,
-        unit="",
-        compoundID=compoundID
-    )
+        return cls(varName="Mole fraction", ID=ID, unit="", compoundID=compoundID)

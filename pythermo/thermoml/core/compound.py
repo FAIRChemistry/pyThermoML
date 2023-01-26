@@ -8,6 +8,7 @@
 from typing import Optional
 from pydantic import BaseModel, PrivateAttr
 
+
 class Compound(BaseModel):
     """
     Class representing a compound used in ThermoML.
@@ -19,9 +20,10 @@ class Compound(BaseModel):
         smiles (Optional[str]): smiles code of used compound (Optional)
         commonName (Optional[str]): common name of used compound (Optional)
     """
-    ID: str
+
+    ID: int
     standardInchI: Optional[str] = None
     standardInchIKey: Optional[str] = None
     smiles: Optional[str] = None
     commonName: Optional[str] = None
-    _type: str = PrivateAttr(default="comp")    
+    _type: str = PrivateAttr(default="comp")

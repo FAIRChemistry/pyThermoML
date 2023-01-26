@@ -5,6 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
+from typing import Optional
 from pythermo.thermoml.props.propertyBase import PropertyBase
 
 
@@ -19,10 +20,13 @@ class HeatCapacityProperty(PropertyBase):
         propGroup (str): Heat capacity and derived properies
 
     """
+
     propGroup: str = "HeatCapacityAndDerivedProp"
 
     @classmethod
-    def molarHCconstPressure(cls, ID: str, method: str, compoundID: str = None) -> 'HeatCapacityProperty':
+    def molarHCconstPressure(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "HeatCapacityProperty":
         """creates molarHCconstPressure object. For more information vist documentation of PropertyBase.
 
         Note:
@@ -41,11 +45,13 @@ class HeatCapacityProperty(PropertyBase):
             ID=ID,
             unit="J/K/mol",
             method=method,
-            compoundID=compoundID
+            compoundID=compoundID,
         )
 
     @classmethod
-    def molarHCconstVolume(cls, ID: str, method: str, compoundID: str = None)  -> 'HeatCapacityProperty':
+    def molarHCconstVolume(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "HeatCapacityProperty":
         """creates molarHCconstVolume object. For more information vist documentation of PropertyBase.
 
         Note:
@@ -64,5 +70,5 @@ class HeatCapacityProperty(PropertyBase):
             ID=ID,
             unit="J/K/mol",
             method=method,
-            compoundID=compoundID
+            compoundID=compoundID,
         )

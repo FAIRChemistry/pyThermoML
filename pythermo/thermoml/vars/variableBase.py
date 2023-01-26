@@ -22,13 +22,14 @@ class VariableBase(BaseModel):
         compoundID (str, optional): ID of reffered compound
 
     """
+
     varType: str
     varName: str
-    ID: str
+    ID: int
     unit: str
-    compoundID: Optional[str] = None
+    compoundID: Optional[int] = None
     _type: str = PrivateAttr(default="Variable")
-        
+
     def to_string(self) -> str:
         """returns nice printed string representation of variableBase object.
 

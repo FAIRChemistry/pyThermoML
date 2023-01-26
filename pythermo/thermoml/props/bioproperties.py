@@ -5,6 +5,7 @@
 # @License       :   BSD-2-Clause License
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
+from typing import Optional
 from pythermo.thermoml.props.propertyBase import PropertyBase
 
 
@@ -13,15 +14,18 @@ class Bioproperty(PropertyBase):
     Class representing bioproperties. The following properties are taken over from ThermoML - schema definition:
     Peak temperature.
     Inherited from PropertyBase.
-    
+
     Args:
         propGroup (str): Bioproperty
-    
+
     """
+
     propGroup: str = "Bioproperty"
 
     @classmethod
-    def peakTemperature(cls, ID: str, method: str, compoundID: str = None) -> 'Bioproperty':
+    def peakTemperature(
+        cls, ID: int, method: str, compoundID: Optional[int] = None
+    ) -> "Bioproperty":
         """creates bioproperty object. For more information vist documentation of PropertyBase.
 
         Note:
@@ -40,5 +44,5 @@ class Bioproperty(PropertyBase):
             ID=ID,
             unit="K",
             method=method,
-            compoundID = compoundID
+            compoundID=compoundID,
         )

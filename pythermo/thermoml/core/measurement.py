@@ -12,7 +12,7 @@ from pythermo.thermoml.core.datapoint import DataPoint
 
 class Measurement(BaseModel):
     """
-    Class representing a measurement in a DataReport. 
+    Class representing a measurement in a DataReport.
     Each measurement is a list of property/variable datapoints that have the same measurement ID.
 
     Args:
@@ -22,9 +22,9 @@ class Measurement(BaseModel):
 
     """
 
-    ID: str
-    properties: dict[str, DataPoint] = {}
-    variables: dict[str, DataPoint] = {}
+    ID: int
+    properties: dict[int, DataPoint] = {}
+    variables: dict[int, DataPoint] = {}
 
     def addDataPoint(self, dataPoint: DataPoint, pureMixtureData) -> None:
         """Adds a datapoint to measurement.
@@ -39,15 +39,24 @@ class Measurement(BaseModel):
         elementID = dataPoint.elementID
         data_point_type = dataPoint.data_point_type
 
-        if elementID in pureMixtureData.properties.keys() and data_point_type == "Property":
+        assert elementID is not None, "No ElementID given"
+
+        if (
+            elementID in pureMixtureData.properties.keys()
+            and data_point_type == "Property"
+        ):
             self._addDataPointToMeasurement(elementID, self.properties, dataPoint)
-        elif elementID in pureMixtureData.variables.keys() and data_point_type == "Variable":
+        elif (
+            elementID in pureMixtureData.variables.keys()
+            and data_point_type == "Variable"
+        ):
             self._addDataPointToMeasurement(elementID, self.variables, dataPoint)
         else:
             raise AttributeError(
-                f"The property/variable with ID {elementID} is not defined yet.")
+                f"The property/variable with ID {elementID} is not defined yet."
+            )
 
-    def getProperty(self, propertyID:str) -> DataPoint:
+    def getProperty(self, propertyID: int) -> DataPoint:
         """Returns datapoint representation of property in measurement.
 
         Args:
@@ -56,13 +65,9 @@ class Measurement(BaseModel):
         Returns:
             DataPoint: Datapoint representation of respective property.
         """
-        return self._getElement(
-            propertyID,
-            self.properties,
-            "Property"
-        )
+        return self._getElement(propertyID, self.properties, "Property")
 
-    def getVariable(self, variableID:str) -> DataPoint:
+    def getVariable(self, variableID: int) -> DataPoint:
         """Returns datapoint representation of variable in measurement.
 
         Args:
@@ -71,11 +76,7 @@ class Measurement(BaseModel):
         Returns:
             DataPoint: Datapoint representation of respective variable
         """
-        return self._getElement(
-            variableID,
-            self.variables,
-            "Variable"
-        )
+        return self._getElement(variableID, self.variables, "Variable")
 
     def getDataPointList(self) -> list[DataPoint]:
         """Returns list representation of datapoints used in measurement
@@ -89,13 +90,15 @@ class Measurement(BaseModel):
             dplist.append(propDp)
         for varDp in self.variables.values():
             dplist.append(varDp)
-        
+
         return dplist
 
     @staticmethod
-    def _addDataPointToMeasurement(elementID:str, dictionary:dict[str, DataPoint], dataPoint:DataPoint):
+    def _addDataPointToMeasurement(
+        elementID: int, dictionary: dict[int, DataPoint], dataPoint: DataPoint
+    ):
         """Refactored method for adding dataPoint to variable/property dictionary.
-        
+
         Args:
             elementID (str): ID of prop/var
             dictionary (dict[str, DataPoint]): variable/property dictionary
@@ -104,7 +107,9 @@ class Measurement(BaseModel):
         dictionary[elementID] = dataPoint
 
     @staticmethod
-    def _getElement(elementID:str, dictionary:dict[str, DataPoint], data_point_type:str) -> DataPoint:
+    def _getElement(
+        elementID: int, dictionary: dict[int, DataPoint], data_point_type: str
+    ) -> DataPoint:
         """Refactored method to get prop/var.
 
         Args:
@@ -121,9 +126,7 @@ class Measurement(BaseModel):
         try:
             return dictionary[elementID]
         except KeyError:
-            raise KeyError(
-                f"{data_point_type} {elementID} is not defined yet."
-            )
+            raise KeyError(f"{data_point_type} {elementID} is not defined yet.")
 
     def to_string(self) -> str:
         """returns nice printed string representation of measurement object.
