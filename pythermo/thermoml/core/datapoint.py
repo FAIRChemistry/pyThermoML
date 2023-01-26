@@ -28,8 +28,8 @@ class DataPoint(BaseModel):
     value: Union[float, int]
     propID: Optional[int] = None
     varID: Optional[int] = None
-    uncertainty: Optional[float]
-    numberOfDigits: Optional[int]
+    uncertainty: Optional[float] = None
+    numberOfDigits: Optional[int] = None
     data_point_type: Optional[str] = None
     elementID: Optional[int] = None
 
