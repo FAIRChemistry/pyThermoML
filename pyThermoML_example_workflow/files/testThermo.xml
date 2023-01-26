@@ -30,7 +30,7 @@
     <sSmiles>smiles2</sSmiles>
   </Compound>
   <PureOrMixtureData>
-    <nPureOrMixtureDataNumber>pom1</nPureOrMixtureDataNumber>
+    <nPureOrMixtureDataNumber>1</nPureOrMixtureDataNumber>
     <sCompiler>Matthias Gueltig</sCompiler>
     <Component>
       <RegNum>
@@ -43,7 +43,7 @@
       </RegNum>
     </Component>
     <Property>
-      <nPropNumber>p1</nPropNumber>
+      <nPropNumber>1</nPropNumber>
       <Property-MethodID>
         <PropertyGroup>
           <VolumetricProp>
@@ -57,7 +57,7 @@
       </PropUncertainty>
     </Property>
     <Property>
-      <nPropNumber>p2</nPropNumber>
+      <nPropNumber>2</nPropNumber>
       <Property-MethodID>
         <PropertyGroup>
           <TransportProp>
@@ -74,7 +74,7 @@
       </PropUncertainty>
     </Property>
     <Property>
-      <nPropNumber>p3</nPropNumber>
+      <nPropNumber>3</nPropNumber>
       <Property-MethodID>
         <PropertyGroup>
           <TransportProp>
@@ -91,7 +91,7 @@
       </PropUncertainty>
     </Property>
     <Variable>
-      <nVarNumber>v1</nVarNumber>
+      <nVarNumber>1</nVarNumber>
       <VariableID>
         <VariableType>
           <eTemperature>Temperature, K</eTemperature>
@@ -102,7 +102,7 @@
       </VarUncertainty>
     </Variable>
     <Variable>
-      <nVarNumber>v2</nVarNumber>
+      <nVarNumber>2</nVarNumber>
       <VariableID>
         <VariableType>
           <eComponentComposition>Mole fraction</eComponentComposition>
@@ -116,7 +116,7 @@
       </VarUncertainty>
     </Variable>
     <Variable>
-      <nVarNumber>v3</nVarNumber>
+      <nVarNumber>3</nVarNumber>
       <VariableID>
         <VariableType>
           <eComponentComposition>Mole fraction</eComponentComposition>
@@ -129,35 +129,35 @@
         <nUncertAssessNum>1</nUncertAssessNum>
       </VarUncertainty>
     </Variable>
-    <NumValues ID="meas1">
+    <NumValues ID="1">
       <VariableValue>
-        <nVarNumber>v1</nVarNumber>
+        <nVarNumber>1</nVarNumber>
         <nVarValue>300.0</nVarValue>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>v2</nVarNumber>
+        <nVarNumber>2</nVarNumber>
         <nVarValue>0.2</nVarValue>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>v3</nVarNumber>
+        <nVarNumber>3</nVarNumber>
         <nVarValue>0.8</nVarValue>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>p1</nPropNumber>
+        <nPropNumber>1</nPropNumber>
         <nPropValue>10.0</nPropValue>
       </PropertyValue>
       <PropertyValue>
-        <nPropNumber>p2</nPropNumber>
+        <nPropNumber>2</nPropNumber>
         <nPropValue>10334.0</nPropValue>
       </PropertyValue>
       <PropertyValue>
-        <nPropNumber>p3</nPropNumber>
+        <nPropNumber>3</nPropNumber>
         <nPropValue>123123.0</nPropValue>
       </PropertyValue>
     </NumValues>
-    <NumValues ID="meas2">
+    <NumValues ID="2">
       <VariableValue>
-        <nVarNumber>v1</nVarNumber>
+        <nVarNumber>1</nVarNumber>
         <nVarValue>1000.0</nVarValue>
         <VarUncertainty>
           <nUncertAssessNum>1</nUncertAssessNum>
@@ -165,7 +165,7 @@
         </VarUncertainty>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>v2</nVarNumber>
+        <nVarNumber>2</nVarNumber>
         <nVarValue>1000.0</nVarValue>
         <VarUncertainty>
           <nUncertAssessNum>1</nUncertAssessNum>
@@ -173,7 +173,7 @@
         </VarUncertainty>
       </VariableValue>
       <VariableValue>
-        <nVarNumber>v3</nVarNumber>
+        <nVarNumber>3</nVarNumber>
         <nVarValue>1000.0</nVarValue>
         <VarUncertainty>
           <nUncertAssessNum>1</nUncertAssessNum>
@@ -181,7 +181,7 @@
         </VarUncertainty>
       </VariableValue>
       <PropertyValue>
-        <nPropNumber>p1</nPropNumber>
+        <nPropNumber>1</nPropNumber>
         <nPropValue>1000.0</nPropValue>
         <PropUncertainty>
           <nUncertAssessNum>1</nUncertAssessNum>
@@ -189,11 +189,11 @@
         </PropUncertainty>
       </PropertyValue>
       <PropertyValue>
-        <nPropNumber>p2</nPropNumber>
+        <nPropNumber>2</nPropNumber>
         <nPropValue>10334.0</nPropValue>
       </PropertyValue>
       <PropertyValue>
-        <nPropNumber>p3</nPropNumber>
+        <nPropNumber>3</nPropNumber>
         <nPropValue>123123.0</nPropValue>
       </PropertyValue>
     </NumValues>
