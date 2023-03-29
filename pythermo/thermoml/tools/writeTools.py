@@ -67,9 +67,9 @@ class ThermoMLWriter(BaseModel):
         convertedString = etree.tostring(
             dataRepXml, pretty_print=True, xml_declaration=True, encoding="utf-8"
         )
-        file = open(f"{self.folder_thermoML_files}{filename}", "wb")
-        file.write(convertedString)
-        file.close()
+        
+        with open(f"{filename}.xml", "wb") as file:
+            file.write(convertedString)
 
     def __createVersion(self, dataRepXml: etree._Element) -> etree._Element:
 

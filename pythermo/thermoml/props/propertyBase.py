@@ -9,6 +9,8 @@ from pydantic import BaseModel, validator
 from pydantic.fields import PrivateAttr
 from typing import Optional
 
+from pythermo.thermoml.core.combineduncertainty import CombinedUncertainty
+
 
 class PropertyBase(BaseModel):
     """
@@ -28,6 +30,7 @@ class PropertyBase(BaseModel):
     ID: int
     unit: str
     method: str
+    combined_uncertainty: Optional[CombinedUncertainty] = None
     compoundID: Optional[int] = None
     _type: str = PrivateAttr(default="Property")
 
@@ -45,13 +48,14 @@ class PropertyBase(BaseModel):
         Returns:
             str: method
         """
+
         if method == "simulation":
             return method
 
         elif method == "experiment":
             return method
 
-        elif method == "other":
+        elif method == "other" or method == "n/a":
             return method
 
         else:

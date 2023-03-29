@@ -9,6 +9,16 @@ from typing import Optional
 from pydantic import BaseModel, PrivateAttr
 
 
+class Sample(BaseModel):
+    """Class representing a Sample used in ThermoML.
+
+    Args:
+        BaseModel (_type_): _description_
+    """
+
+    sample_number: int
+
+
 class Compound(BaseModel):
     """
     Class representing a compound used in ThermoML.
@@ -22,8 +32,13 @@ class Compound(BaseModel):
     """
 
     ID: int
+    commonName: Optional[str] = None
+    cas_name: Optional[str] = None
+    molecular_formula: Optional[str] = None
+    iupac_name: Optional[str] = None
     standardInchI: Optional[str] = None
     standardInchIKey: Optional[str] = None
     smiles: Optional[str] = None
-    commonName: Optional[str] = None
+    sample: Optional[Sample] = None
+
     _type: str = PrivateAttr(default="comp")

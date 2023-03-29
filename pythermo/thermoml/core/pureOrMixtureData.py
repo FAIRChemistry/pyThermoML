@@ -15,6 +15,7 @@ from pythermo.thermoml.core.measurement import Measurement
 from pythermo.thermoml.core.datapoint import DataPoint
 from pythermo.thermoml.core.exceptions import ThermoMLTypeError
 from pythermo.thermoml.core.utils import type_checking
+from pythermo.thermoml.core.constraints import Constraints
 
 
 class PureOrMixtureData(BaseModel):
@@ -36,6 +37,7 @@ class PureOrMixtureData(BaseModel):
     properties: dict[int, PropertyBase] = {}
     variables: dict[int, VariableBase] = {}
     measurements: dict[int, Measurement] = {}
+    constraint: Optional[Contraint] = None
 
     def addProperty(self, prop: PropertyBase) -> int:
         """adds a property to pureOrMixture data

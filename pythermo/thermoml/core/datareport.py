@@ -6,7 +6,9 @@
 # @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from datetime import date as Date
+from typing import List
 
 from pythermo.thermoml.core.exceptions import ThermoMLTypeError
 from pythermo.thermoml.core.pureOrMixtureData import PureOrMixtureData
@@ -34,6 +36,16 @@ class DataReport(BaseModel):
 
     title: Optional[str] = None
     DOI: Optional[str] = None
+    date: Optional[Date] = None
+    source_type: Optional[str] = None
+    e_type: Optional[str] = None
+    keywords: List[str] = Field(default_factory=list)
+    abstract: Optional[str] = None
+    page: Optional[str] = None
+    journal: Optional[str] = None
+    volume: Optional[int] = None
+    year: Optional[int] = None
+
     authors: Optional[dict[str, str]] = {}
     compounds: dict[int, Compound] = {}
     pureOrMixtureData: dict[int, PureOrMixtureData] = {}
