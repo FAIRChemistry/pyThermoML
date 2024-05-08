@@ -1,0 +1,14 @@
+from enum import Enum
+
+
+class eEqName(Enum):
+    THERMOMLANTOINEVAPORPRESSURE = "ThermoML.Antoine.VaporPressure"
+    THERMOMLCUSTOMEXPANSION = "ThermoML.CustomExpansion"
+    THERMOMLHELMHOLTZ3GENERALEOS = "ThermoML.Helmholtz3General.EOS"
+    THERMOMLHELMHOLTZ4GENERALEOS = "ThermoML.Helmholtz4General.EOS"
+    THERMOMLWAGNERLINEARVAPORPRESSURE = "ThermoML.WagnerLinear.VaporPressure"
+    THERMOMLWAGNER25LINEARVAPORPRESSURE = "ThermoML.Wagner25Linear.VaporPressure"
+    THERMOMLWAGNER36LINEARVAPORPRESSURE = "ThermoML.Wagner36Linear.VaporPressure"
+    THERMOMLPOLYNOMIALEXPANSION = "ThermoML.PolynomialExpansion"
+    THERMOMLSPANWAGNER12NONPOLAREOS = "ThermoML.SpanWagner12Nonpolar.EOS"
+    THERMOMLSPANWAGNER12POLAREOS = "ThermoML.SpanWagner12Polar.EOS"

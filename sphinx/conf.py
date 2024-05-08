@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('../'))
 # -- Project information -----------------------------------------------------
 
 project = 'pyThermoML'
-copyright = '2022, Matthias Gueltig'
-author = 'Matthias Gueltig'
+copyright = '2024, Jan Range, Samir Darouich'
+author = 'Jan Range, Samir Darouich'
 
 
 # -- General configuration ---------------------------------------------------

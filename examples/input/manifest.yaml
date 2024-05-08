@@ -1,0 +1,31 @@
+### Manifest file to map simulation data to sdRDM ThermoML model
+
+## Define pure/mixture data points
+pomd:
+  # System C0
+  - components: 
+      - water
+    phase: Liquid
+    constraint:
+      mole_fraction: 
+        water: 1.0
+      pressure: 100 #kPa
+    variable: 
+      temperature: [ 313.15, 323.15, 333.15, 343.15, 353.15 ] #K
+    # Present per variable a list of paths 
+    paths: 
+      - [ files/results_313.json,
+          files/results_323.json,
+          files/results_333.json,
+          files/results_343.json,
+          files/results_353.json ]
+    # Per property a property name to map to Thermo ML and a list of keys to extract from the specified file
+    properties:
+      - name: Mass density
+        keys: [03_npt_production,data,average,Density]
+        component_identifier: ""
+      - name: Molar enthalpy
+        keys: [03_npt_production,data,average,Enthalpy]
+        component_identifier: ""
+    
+

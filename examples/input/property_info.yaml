@@ -1,0 +1,40 @@
+## Define general information for each extracted property
+Mass density: 
+  prediction_type: Molecular dynamics
+  method_name: ""
+  method_ref_doi: ""
+  method_description: Simulations in NPT ensemble. TIP4P/2005 model (https://doi.org/10.1063/1.2121687).
+  confidence_interval: 95
+  uncertanty_method: Standard deviation over 3 copies of the same system with different initial velocities.
+
+Molar enthalpy:
+  prediction_type: Molecular dynamics
+  method_name: ""
+  method_ref_doi: ""
+  method_description: Simulations in NPT ensemble. TIP4P/2005 model (https://doi.org/10.1063/1.2121687).
+  confidence_interval: 95
+  uncertanty_method: Standard deviation over 3 copies of the same system with different initial velocities.
+
+Self diffusion: 
+  prediction_type: Molecular dynamics
+  method_name: Einstein method
+  method_ref_doi: https://doi.org/10.1021/jp0477147
+  method_description: Simulations in NVT ensemble. TIP4P/2005 model (https://doi.org/10.1063/1.2121687). Extrapolation to infinite box size
+  confidence_interval: 95
+  uncertanty_method: Least-squares fit of the (x=1/L, y=Dself) data to a straight line y = ax + b, where L ist the simulation box length. Reported error is the standard error of the intercept b
+
+Excess molar volume: 
+  prediction_type: Molecular dynamics
+  method_name: ""
+  method_ref_doi: ""
+  method_description: Simulations in NPT ensemble for pure and mixture systems. V^E = MW_{mix}/mass_density_{mix} - molar_fraction_1 * MW_1 / mass_density_1 - molar_fraction_2 * MW_2 / mass_density_2. 
+  confidence_interval: 95
+  uncertanty_method: Error propagation of density uncertanty.
+
+Excess molar enthalpy: 
+  prediction_type: Molecular dynamics
+  method_name: ""
+  method_ref_doi: ""
+  method_description: Simulations in NPT ensemble for pure and mixture systems. H^E = H/N - molar_fraction_1 * H_1 / N_1 - molar_fraction_2 * H_2 / N_2. 
+  confidence_interval: 95
+  uncertanty_method: Error propagation of enthalpy uncertanty.

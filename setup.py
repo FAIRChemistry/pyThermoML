@@ -1,22 +1,24 @@
-# @File          :   setup.py
-# @Last modified :   2022/04/09 19:29:41
-# @Author        :   Matthias Gueltig, Jan Range
-# @Version       :   1.0
-# @License       :   BSD-2-Clause License
-# @Copyright (C) :   2022 Institute of Biochemistry and Technical Biochemistry Stuttgart
 
-import setuptools
-from setuptools import setup
+from setuptools import setup, find_packages
 
+VERSION = '0.0.1'
+DESCRIPTION = 'This repository enables users to read and write ThermoML files using sdRDM and python.'
+
+# Setting up
 setup(
-    name="PyThermoML",
-    version="1.1.2",
-    description="Handling of ThermoML files",
-    url="https://github.com/ThermoPyML/pyThermoML",
-    author="Gueltig, Matthias",
-    packages=setuptools.find_packages(),
-    install_requires=["lxml", "pydantic"],
-    extras_requires={
-        "dataverse": ["pyDaRUS"],
-    },
+    name="pyThermoML",
+    version=VERSION,
+    description=DESCRIPTION,
+    url='https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications',
+    author="Jan Range, Samir Darouich",
+    author_email="jan.range@simtech.uni-stuttgart.de",
+    license_files = ('LICENSE'),
+    packages=find_packages(),
+    install_requires=['numpy',
+                      'pandas',
+                      'sdrdm',
+                      'pubchempy',
+                      'pyYaml',
+                      'seaborn'
+                      ],
 )

@@ -1,0 +1,17 @@
+name: Generate API
+
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate sdRDM library
+        uses: JR-1991/generate-sdrdm-api@main
+        with:
+          library_name: "pyThermoML"
+          schema_path: "./specifications/ThermoML.md"
+          schema: "true"
+          branch: "main"

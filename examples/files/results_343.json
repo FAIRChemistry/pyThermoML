@@ -1,0 +1,178 @@
+{
+  "temperature": 343.15,
+  "pressure": 343.15,
+  "03_npt_production": {
+    "data": {
+      "copy_0": {
+        "Volume": {
+          "mean": 92.29739262995555,
+          "std": 0.4866637322319984,
+          "unit": "nm^3"
+        },
+        "Density": {
+          "mean": 972.4143394746666,
+          "std": 5.122519262832457,
+          "unit": "kg/m^3"
+        },
+        "Enthalpy": {
+          "mean": -105405.34151388952,
+          "std": 507.35111678520786,
+          "unit": "kJ/mol"
+        }
+      },
+      "copy_1": {
+        "Volume": {
+          "mean": 92.33221881457777,
+          "std": 0.4782670576925345,
+          "unit": "nm^3"
+        },
+        "Density": {
+          "mean": 972.0466367572443,
+          "std": 5.033950063694019,
+          "unit": "kg/m^3"
+        },
+        "Enthalpy": {
+          "mean": -105392.06257638961,
+          "std": 499.859451091153,
+          "unit": "kJ/mol"
+        }
+      },
+      "copy_2": {
+        "Volume": {
+          "mean": 92.31679278924445,
+          "std": 0.45913451861828924,
+          "unit": "nm^3"
+        },
+        "Density": {
+          "mean": 972.2070290038222,
+          "std": 4.834320833888606,
+          "unit": "kg/m^3"
+        },
+        "Enthalpy": {
+          "mean": -105370.22574514232,
+          "std": 494.7119671371609,
+          "unit": "kJ/mol"
+        }
+      },
+      "average": {
+        "Volume": {
+          "mean": 92.31546807792593,
+          "std": 0.017450843214387862,
+          "unit": "nm^3"
+        },
+        "Density": {
+          "mean": 972.2226684119111,
+          "std": 0.18434957394572324,
+          "unit": "kg/m^3"
+        },
+        "Enthalpy": {
+          "mean": -105389.20994514048,
+          "std": 17.730832819110955,
+          "unit": "kJ/mol"
+        }
+      }
+    },
+    "paths": [
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_0/03_npt_production/npt_production.edr",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_1/03_npt_production/npt_production.edr",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_2/03_npt_production/npt_production.edr"
+    ],
+    "fraction_discarded": 0.25
+  },
+  "04_nvt": {
+    "data": {
+      "copy_0": {
+        "MSD[SOL]": {
+          "mean": 151.90647173333332,
+          "std": 52.79373702569021,
+          "unit": "nm^2"
+        },
+        "D[SOL]": {
+          "mean": 6.0645,
+          "std": 0.08080538720539318,
+          "unit": "1e-5cm^2/s"
+        }
+      },
+      "copy_1": {
+        "MSD[SOL]": {
+          "mean": 149.64840016,
+          "std": 49.94077927305265,
+          "unit": "nm^2"
+        },
+        "D[SOL]": {
+          "mean": 5.828400000000001,
+          "std": 0.31222081541489793,
+          "unit": "1e-5cm^2/s"
+        }
+      },
+      "copy_2": {
+        "MSD[SOL]": {
+          "mean": 151.4098725066667,
+          "std": 52.695186476956366,
+          "unit": "nm^2"
+        },
+        "D[SOL]": {
+          "mean": 6.15,
+          "std": 0.06960464046405156,
+          "unit": "1e-5cm^2/s"
+        }
+      },
+      "average": {
+        "MSD[SOL]": {
+          "mean": 150.98824813333331,
+          "std": 1.186611622105381,
+          "unit": "nm^2"
+        },
+        "D[SOL]": {
+          "mean": 6.014300000000001,
+          "std": 0.16657331719095897,
+          "unit": "1e-5cm^2/s"
+        }
+      }
+    },
+    "paths": [
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_0/04_nvt/msd_y.xvg",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_1/04_nvt/msd_y.xvg",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_2/04_nvt/msd_y.xvg"
+    ],
+    "fraction_discarded": 0.25
+  },
+  "05_nemd": {
+    "data": {
+      "copy_0": {
+        "1/Viscosity": {
+          "mean": 2792.8226527138663,
+          "std": 270.7101591269982,
+          "unit": "m.s/kg"
+        }
+      },
+      "copy_1": {
+        "1/Viscosity": {
+          "mean": 2784.6441285492,
+          "std": 269.8942273269865,
+          "unit": "m.s/kg"
+        }
+      },
+      "copy_2": {
+        "1/Viscosity": {
+          "mean": 2790.0755564146666,
+          "std": 267.22519607782044,
+          "unit": "m.s/kg"
+        }
+      },
+      "average": {
+        "1/Viscosity": {
+          "mean": 2789.180779225911,
+          "std": 4.162034843816922,
+          "unit": "m.s/kg"
+        }
+      }
+    },
+    "paths": [
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_0/05_nemd/properties.xvg",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_1/05_nemd/properties.xvg",
+      "/home/st/st_st/st_ac137577/workspace/DES_simulations/C0/md_thermo/temp_343_pres_1/copy_2/05_nemd/properties.xvg"
+    ],
+    "fraction_discarded": 0.25
+  }
+}
