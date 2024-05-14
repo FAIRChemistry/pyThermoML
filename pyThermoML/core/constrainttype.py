@@ -1,19 +1,19 @@
 import sdRDM
 
-from typing import Dict, Union
+from typing import Dict, Optional, Union
 from pydantic import PrivateAttr, model_validator
 from pydantic_xml import element
 from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
+from .epressure import ePressure
+from .ecomponentcomposition import eComponentComposition
 from .ebiovariables import eBioVariables
+from .etemperature import eTemperature
 from .eparticipantamount import eParticipantAmount
 from .esolventcomposition import eSolventComposition
 from .emiscellaneous import eMiscellaneous
-from .epressure import ePressure
-from .etemperature import eTemperature
-from .ecomponentcomposition import eComponentComposition
 
 
 @forge_signature
@@ -53,6 +53,12 @@ class ConstraintType(
     )
     e_temperature: Union[eTemperature, str, None] = element(
         default=None, tag="eTemperature", json_schema_extra=dict(xml="eTemperature")
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

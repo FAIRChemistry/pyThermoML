@@ -7,16 +7,16 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .asymcombstduncert import AsymCombStdUncert
-from .proprepeatability import PropRepeatability
-from .proplimit import PropLimit
-from .asymcombexpanduncert import AsymCombExpandUncert
-from .curvedev import CurveDev
-from .ecombuncertevalmethod import eCombUncertEvalMethod
-from .combineduncertainty import CombinedUncertainty
 from .asymexpanduncert import AsymExpandUncert
 from .asymstduncert import AsymStdUncert
+from .proprepeatability import PropRepeatability
+from .ecombuncertevalmethod import eCombUncertEvalMethod
+from .combineduncertainty import CombinedUncertainty
 from .propuncertainty import PropUncertainty
+from .proplimit import PropLimit
+from .asymcombstduncert import AsymCombStdUncert
+from .curvedev import CurveDev
+from .asymcombexpanduncert import AsymCombExpandUncert
 
 
 @forge_signature
@@ -68,6 +68,12 @@ class PropertyValue(
         default_factory=ListPlus,
         tag="PropUncertainty",
         json_schema_extra=dict(multiple=True, xml="PropUncertainty"),
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

@@ -50,6 +50,12 @@ class EqVariable(
     s_other_var_unit: Optional[str] = element(
         default=None, tag="sOtherVarUnit", json_schema_extra=dict(xml="sOtherVarUnit")
     )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
+    )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
     @model_validator(mode="after")
