@@ -8,51 +8,51 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .varuncertainty import VarUncertainty
-from .covariance import Covariance
-from .constraint import Constraint
-from .variablevalue import VariableValue
-from .propphaseid import PropPhaseID
-from .phaseid import PhaseID
-from .efunction import eFunction
-from .refphaseid import RefPhaseID
-from .eqvariable import EqVariable
-from .eqproperty import EqProperty
-from .vardevicespec import VarDeviceSpec
-from .eexppurpose import eExpPurpose
-from .ephase import ePhase
-from .regnum import RegNum
-from .epresentation import ePresentation
-from .combineduncertainty import CombinedUncertainty
-from .numvalues import NumValues
-from .property import Property
-from .propertymethodid import PropertyMethodID
-from .constraintid import ConstraintID
-from .propdevicespec import PropDeviceSpec
-from .auxiliarysubstance import AuxiliarySubstance
-from .eqconstraint import EqConstraint
-from .equation import Equation
-from .solvent import Solvent
-from .varrepeatability import VarRepeatability
-from .eeqname import eEqName
-from .variable import Variable
-from .ecrystallatticetype import eCrystalLatticeType
-from .constraintphaseid import ConstraintPhaseID
-from .component import Component
-from .eqconstant import EqConstant
-from .eqparameter import EqParameter
-from .catalyst import Catalyst
-from .construncertainty import ConstrUncertainty
-from .varphaseid import VarPhaseID
-from .propertyvalue import PropertyValue
-from .proprepeatability import PropRepeatability
-from .propuncertainty import PropUncertainty
-from .constrdevicespec import ConstrDeviceSpec
 from .constrrepeatability import ConstrRepeatability
-from .curvedev import CurveDev
-from .variableid import VariableID
+from .regnum import RegNum
+from .phaseid import PhaseID
+from .eqparameter import EqParameter
+from .variable import Variable
+from .propdevicespec import PropDeviceSpec
+from .construncertainty import ConstrUncertainty
+from .ecrystallatticetype import eCrystalLatticeType
+from .auxiliarysubstance import AuxiliarySubstance
+from .propertymethodid import PropertyMethodID
+from .catalyst import Catalyst
+from .efunction import eFunction
+from .solvent import Solvent
+from .eexppurpose import eExpPurpose
+from .varphaseid import VarPhaseID
+from .propphaseid import PropPhaseID
+from .covariance import Covariance
+from .propuncertainty import PropUncertainty
+from .eqvariable import EqVariable
+from .epresentation import ePresentation
 from .erefstatetype import eRefStateType
+from .varuncertainty import VarUncertainty
+from .component import Component
+from .constraintphaseid import ConstraintPhaseID
+from .eqconstant import EqConstant
+from .constrdevicespec import ConstrDeviceSpec
+from .combineduncertainty import CombinedUncertainty
+from .constraint import Constraint
+from .property import Property
+from .numvalues import NumValues
+from .ephase import ePhase
+from .propertyvalue import PropertyValue
+from .eqconstraint import EqConstraint
+from .constraintid import ConstraintID
+from .vardevicespec import VarDeviceSpec
+from .variableid import VariableID
+from .curvedev import CurveDev
 from .estandardstate import eStandardState
+from .varrepeatability import VarRepeatability
+from .equation import Equation
+from .refphaseid import RefPhaseID
+from .variablevalue import VariableValue
+from .eqproperty import EqProperty
+from .eeqname import eEqName
+from .proprepeatability import PropRepeatability
 
 
 @forge_signature
@@ -128,6 +128,12 @@ class PureOrMixtureData(
         default_factory=ListPlus,
         tag="Variable",
         json_schema_extra=dict(multiple=True, xml="Variable"),
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -1001,12 +1007,15 @@ class PureOrMixtureData(
         composition_flag = False
         constraint_ids = []
         composition = None
-            
+
         for constraint in constraint_dict:
             # Check if there is a composition constraint available
-            if "Mole fraction" in constraint["type"] or "Mass fraction" in constraint["type"]:
+            if (
+                "Mole fraction" in constraint["type"]
+                or "Mass fraction" in constraint["type"]
+            ):
                 composition_flag = True
-                constraint_ids.append( constraint["component_identifier"].n_org_num)
+                constraint_ids.append(constraint["component_identifier"].n_org_num)
                 if constraint["component_identifier"] == identifier:
                     composition = constraint["value"]
                     break

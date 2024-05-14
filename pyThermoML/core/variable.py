@@ -7,12 +7,12 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .solvent import Solvent
+from .varphaseid import VarPhaseID
 from .varrepeatability import VarRepeatability
 from .varuncertainty import VarUncertainty
-from .variableid import VariableID
 from .vardevicespec import VarDeviceSpec
-from .varphaseid import VarPhaseID
+from .variableid import VariableID
+from .solvent import Solvent
 
 
 @forge_signature
@@ -60,6 +60,12 @@ class Variable(
         default_factory=ListPlus,
         tag="VarUncertainty",
         json_schema_extra=dict(multiple=True, xml="VarUncertainty"),
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

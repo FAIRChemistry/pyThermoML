@@ -10,35 +10,35 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .especiationstate import eSpeciationState
-from .constraint import Constraint
-from .propphaseid import PropPhaseID
-from .ereactiontype import eReactionType
-from .phaseid import PhaseID
-from .reactiondata import ReactionData
-from .eexppurpose import eExpPurpose
-from .pureormixturedata import PureOrMixtureData
 from .regnum import RegNum
-from .combineduncertainty import CombinedUncertainty
-from .numvalues import NumValues
-from .property import Property
-from .propertymethodid import PropertyMethodID
-from .auxiliarysubstance import AuxiliarySubstance
-from .equation import Equation
-from .solvent import Solvent
+from .phaseid import PhaseID
 from .variable import Variable
-from .polymer import Polymer
-from .component import Component
-from .version import Version
-from .multicomponentsubstance import MulticomponentSubstance
-from .compound import Compound
-from .biomaterial import Biomaterial
-from .citation import Citation
-from .sorgid import SOrgID
-from .ereactionformalism import eReactionFormalism
+from .auxiliarysubstance import AuxiliarySubstance
 from .participant import Participant
+from .propertymethodid import PropertyMethodID
+from .solvent import Solvent
+from .eexppurpose import eExpPurpose
+from .propphaseid import PropPhaseID
 from .ion import Ion
+from .citation import Citation
+from .component import Component
+from .combineduncertainty import CombinedUncertainty
+from .constraint import Constraint
+from .property import Property
+from .numvalues import NumValues
 from .sample import Sample
+from .especiationstate import eSpeciationState
+from .ereactiontype import eReactionType
+from .biomaterial import Biomaterial
+from .compound import Compound
+from .ereactionformalism import eReactionFormalism
+from .pureormixturedata import PureOrMixtureData
+from .version import Version
+from .equation import Equation
+from .reactiondata import ReactionData
+from .sorgid import SOrgID
+from .multicomponentsubstance import MulticomponentSubstance
+from .polymer import Polymer
 from ..tools.mapping import (
     CONTSTRAINT_IDS,
     VARIABLES_IDS,
@@ -82,6 +82,12 @@ class DataReport(
         default_factory=ListPlus,
         tag="ReactionData",
         json_schema_extra=dict(multiple=True, xml="ReactionData"),
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -511,7 +517,7 @@ class DataReport(
         for pomd in self.pure_or_mixture_data:
             # Check if property exists in pure of mixture data
             if pomd.property_exists(prop_name, property_identifier):
-                
+
                 # Get composition
                 composition = pomd.get_composition(identifier, id_dict)
 

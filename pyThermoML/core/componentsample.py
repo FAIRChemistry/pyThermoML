@@ -30,6 +30,12 @@ class ComponentSample(
     reg_num: Optional[RegNum] = element(
         default_factory=RegNum, tag="RegNum", json_schema_extra=dict(xml="RegNum")
     )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
+    )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
     @model_validator(mode="after")

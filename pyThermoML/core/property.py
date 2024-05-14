@@ -7,29 +7,29 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .solvent import Solvent
-from .epropphase import ePropPhase
-from .ephase import ePhase
-from .proprepeatability import PropRepeatability
-from .regnum import RegNum
-from .asymcombexpanduncert import AsymCombExpandUncert
-from .epresentation import ePresentation
-from .combineduncertainty import CombinedUncertainty
-from .asymexpanduncert import AsymExpandUncert
-from .asymstduncert import AsymStdUncert
-from .propuncertainty import PropUncertainty
-from .ecrystallatticetype import eCrystalLatticeType
 from .propphaseid import PropPhaseID
-from .propertymethodid import PropertyMethodID
+from .regnum import RegNum
 from .ebiostate import eBioState
-from .asymcombstduncert import AsymCombStdUncert
-from .catalyst import Catalyst
-from .refphaseid import RefPhaseID
-from .curvedev import CurveDev
-from .propdevicespec import PropDeviceSpec
-from .erefstatetype import eRefStateType
-from .ecombuncertevalmethod import eCombUncertEvalMethod
+from .ephase import ePhase
+from .propuncertainty import PropUncertainty
 from .estandardstate import eStandardState
+from .epresentation import ePresentation
+from .erefstatetype import eRefStateType
+from .refphaseid import RefPhaseID
+from .propdevicespec import PropDeviceSpec
+from .asymstduncert import AsymStdUncert
+from .curvedev import CurveDev
+from .ecrystallatticetype import eCrystalLatticeType
+from .epropphase import ePropPhase
+from .asymcombstduncert import AsymCombStdUncert
+from .propertymethodid import PropertyMethodID
+from .proprepeatability import PropRepeatability
+from .asymexpanduncert import AsymExpandUncert
+from .catalyst import Catalyst
+from .ecombuncertevalmethod import eCombUncertEvalMethod
+from .solvent import Solvent
+from .combineduncertainty import CombinedUncertainty
+from .asymcombexpanduncert import AsymCombExpandUncert
 
 
 @forge_signature
@@ -138,6 +138,12 @@ class Property(
     )
     solvent: Optional[Solvent] = element(
         default_factory=Solvent, tag="Solvent", json_schema_extra=dict(xml="Solvent")
+    )
+    _repo: Optional[str] = PrivateAttr(
+        default="https://github.com/FAIRChemistry/pyThermoML"
+    )
+    _commit: Optional[str] = PrivateAttr(
+        default="7847845987ccfa50e8c08ada56669b59d1b97819"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
