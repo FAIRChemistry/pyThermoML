@@ -7,53 +7,53 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .ecompositionrepresentation import eCompositionRepresentation
-from .refphaseid import RefPhaseID
-from .propphaseid import PropPhaseID
-from .variable import Variable
-from .covariance import Covariance
-from .eqparameter import EqParameter
-from .eeqname import eEqName
-from .constrrepeatability import ConstrRepeatability
-from .eqconstant import EqConstant
-from .solvent import Solvent
-from .propertyvalue import PropertyValue
-from .ereactiontype import eReactionType
-from .varrepeatability import VarRepeatability
-from .vardevicespec import VarDeviceSpec
-from .eqvariable import EqVariable
-from .regnum import RegNum
-from .erefstatetype import eRefStateType
-from .participant import Participant
-from .catalyst import Catalyst
-from .constraint import Constraint
-from .curvedev import CurveDev
-from .estandardstate import eStandardState
-from .auxiliarysubstance import AuxiliarySubstance
-from .efunction import eFunction
-from .numvalues import NumValues
-from .constrdevicespec import ConstrDeviceSpec
-from .variableid import VariableID
-from .propuncertainty import PropUncertainty
-from .propertymethodid import PropertyMethodID
-from .equation import Equation
-from .property import Property
-from .varphaseid import VarPhaseID
-from .ereactionformalism import eReactionFormalism
 from .varuncertainty import VarUncertainty
+from .covariance import Covariance
+from .constraint import Constraint
+from .variablevalue import VariableValue
+from .propphaseid import PropPhaseID
+from .ereactiontype import eReactionType
+from .efunction import eFunction
+from .refphaseid import RefPhaseID
+from .eqvariable import EqVariable
+from .eqproperty import EqProperty
+from .vardevicespec import VarDeviceSpec
+from .eexppurpose import eExpPurpose
+from .ephase import ePhase
+from .regnum import RegNum
+from .epresentation import ePresentation
+from .combineduncertainty import CombinedUncertainty
+from .numvalues import NumValues
+from .property import Property
+from .propertymethodid import PropertyMethodID
 from .constraintid import ConstraintID
 from .propdevicespec import PropDeviceSpec
-from .eqproperty import EqProperty
-from .ecrystallatticetype import eCrystalLatticeType
+from .auxiliarysubstance import AuxiliarySubstance
 from .eqconstraint import EqConstraint
-from .variablevalue import VariableValue
-from .construncertainty import ConstrUncertainty
-from .epresentation import ePresentation
-from .ephase import ePhase
+from .equation import Equation
+from .solvent import Solvent
+from .varrepeatability import VarRepeatability
+from .eeqname import eEqName
+from .variable import Variable
+from .ecrystallatticetype import eCrystalLatticeType
+from .ecompositionrepresentation import eCompositionRepresentation
 from .constraintphaseid import ConstraintPhaseID
+from .eqconstant import EqConstant
+from .eqparameter import EqParameter
+from .catalyst import Catalyst
+from .construncertainty import ConstrUncertainty
+from .varphaseid import VarPhaseID
+from .propertyvalue import PropertyValue
 from .proprepeatability import PropRepeatability
-from .combineduncertainty import CombinedUncertainty
-from .eexppurpose import eExpPurpose
+from .propuncertainty import PropUncertainty
+from .constrdevicespec import ConstrDeviceSpec
+from .constrrepeatability import ConstrRepeatability
+from .ereactionformalism import eReactionFormalism
+from .participant import Participant
+from .curvedev import CurveDev
+from .variableid import VariableID
+from .erefstatetype import eRefStateType
+from .estandardstate import eStandardState
 
 
 @forge_signature
@@ -140,12 +140,6 @@ class ReactionData(
         default_factory=ListPlus,
         tag="Variable",
         json_schema_extra=dict(multiple=True, xml="Variable"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

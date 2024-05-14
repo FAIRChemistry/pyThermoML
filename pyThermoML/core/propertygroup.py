@@ -7,19 +7,19 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .reactionequilibriumprop import ReactionEquilibriumProp
-from .excesspartialapparentenergyprop import ExcessPartialApparentEnergyProp
-from .volumetricprop import VolumetricProp
-from .criticals import Criticals
-from .vaporpboilingtazeotroptandp import VaporPBoilingTAzeotropTandP
 from .phasetransition import PhaseTransition
-from .bioproperties import BioProperties
-from .transportprop import TransportProp
-from .activityfugacityosmoticprop import ActivityFugacityOsmoticProp
+from .criticals import Criticals
 from .heatcapacityandderivedprop import HeatCapacityAndDerivedProp
+from .volumetricprop import VolumetricProp
+from .transportprop import TransportProp
 from .compositionatphaseequilibrium import CompositionAtPhaseEquilibrium
-from .refractionsurfacetensionsoundspeed import RefractionSurfaceTensionSoundSpeed
 from .reactionstatechangeprop import ReactionStateChangeProp
+from .reactionequilibriumprop import ReactionEquilibriumProp
+from .bioproperties import BioProperties
+from .refractionsurfacetensionsoundspeed import RefractionSurfaceTensionSoundSpeed
+from .excesspartialapparentenergyprop import ExcessPartialApparentEnergyProp
+from .vaporpboilingtazeotroptandp import VaporPBoilingTAzeotropTandP
+from .activityfugacityosmoticprop import ActivityFugacityOsmoticProp
 
 
 @forge_signature
@@ -101,12 +101,6 @@ class PropertyGroup(
         default_factory=VolumetricProp,
         tag="VolumetricProp",
         json_schema_extra=dict(xml="VolumetricProp"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

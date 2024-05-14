@@ -7,8 +7,8 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .epropname import ePropName
 from .emethodname import eMethodName
+from .epropname import ePropName
 from .prediction import Prediction
 from .criticalevaluation import CriticalEvaluation
 
@@ -44,12 +44,6 @@ class ReactionStateChangeProp(
         default_factory=ListPlus,
         tag="sMethodName",
         json_schema_extra=dict(multiple=True, xml="sMethodName"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

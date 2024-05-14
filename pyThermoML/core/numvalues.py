@@ -7,15 +7,15 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .variablevalue import VariableValue
-from .propuncertainty import PropUncertainty
-from .proplimit import PropLimit
-from .varrepeatability import VarRepeatability
-from .curvedev import CurveDev
 from .proprepeatability import PropRepeatability
-from .varuncertainty import VarUncertainty
-from .propertyvalue import PropertyValue
+from .varrepeatability import VarRepeatability
+from .variablevalue import VariableValue
+from .proplimit import PropLimit
+from .curvedev import CurveDev
 from .combineduncertainty import CombinedUncertainty
+from .propertyvalue import PropertyValue
+from .varuncertainty import VarUncertainty
+from .propuncertainty import PropUncertainty
 
 
 @forge_signature
@@ -38,12 +38,6 @@ class NumValues(
         default_factory=ListPlus,
         tag="VariableValue",
         json_schema_extra=dict(multiple=True, xml="VariableValue"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

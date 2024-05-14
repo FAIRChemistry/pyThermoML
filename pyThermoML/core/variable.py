@@ -7,12 +7,12 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .varphaseid import VarPhaseID
 from .solvent import Solvent
 from .varrepeatability import VarRepeatability
+from .varuncertainty import VarUncertainty
 from .variableid import VariableID
 from .vardevicespec import VarDeviceSpec
-from .varuncertainty import VarUncertainty
+from .varphaseid import VarPhaseID
 
 
 @forge_signature
@@ -60,12 +60,6 @@ class Variable(
         default_factory=ListPlus,
         tag="VarUncertainty",
         json_schema_extra=dict(multiple=True, xml="VarUncertainty"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

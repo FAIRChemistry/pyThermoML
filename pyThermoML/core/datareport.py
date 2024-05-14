@@ -10,35 +10,35 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .propphaseid import PropPhaseID
-from .variable import Variable
-from .component import Component
-from .biomaterial import Biomaterial
-from .solvent import Solvent
-from .ereactiontype import eReactionType
-from .regnum import RegNum
-from .reactiondata import ReactionData
-from .participant import Participant
-from .constraint import Constraint
-from .auxiliarysubstance import AuxiliarySubstance
-from .numvalues import NumValues
-from .propertymethodid import PropertyMethodID
-from .equation import Equation
 from .especiationstate import eSpeciationState
-from .multicomponentsubstance import MulticomponentSubstance
-from .property import Property
-from .sample import Sample
-from .pureormixturedata import PureOrMixtureData
-from .compound import Compound
-from .ereactionformalism import eReactionFormalism
+from .constraint import Constraint
+from .propphaseid import PropPhaseID
+from .ereactiontype import eReactionType
 from .phaseid import PhaseID
-from .version import Version
-from .sorgid import SOrgID
-from .citation import Citation
-from .polymer import Polymer
-from .combineduncertainty import CombinedUncertainty
+from .reactiondata import ReactionData
 from .eexppurpose import eExpPurpose
+from .pureormixturedata import PureOrMixtureData
+from .regnum import RegNum
+from .combineduncertainty import CombinedUncertainty
+from .numvalues import NumValues
+from .property import Property
+from .propertymethodid import PropertyMethodID
+from .auxiliarysubstance import AuxiliarySubstance
+from .equation import Equation
+from .solvent import Solvent
+from .variable import Variable
+from .polymer import Polymer
+from .component import Component
+from .version import Version
+from .multicomponentsubstance import MulticomponentSubstance
+from .compound import Compound
+from .biomaterial import Biomaterial
+from .citation import Citation
+from .sorgid import SOrgID
+from .ereactionformalism import eReactionFormalism
+from .participant import Participant
 from .ion import Ion
+from .sample import Sample
 from ..tools.mapping import (
     CONTSTRAINT_IDS,
     VARIABLES_IDS,
@@ -82,12 +82,6 @@ class DataReport(
         default_factory=ListPlus,
         tag="ReactionData",
         json_schema_extra=dict(multiple=True, xml="ReactionData"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -484,7 +478,6 @@ class DataReport(
         self,
         component: str | int,
         prop_name: str,
-        var_name: str,
         prop_identifier: str = "",
     ):
         """
@@ -493,7 +486,6 @@ class DataReport(
         Parameters:
             component (str|int): The (common) name of the component, or the reg num identifier of it.
             prop_name (str): The name of the property to analyze. This can also be a substring of the property.
-            var_name (str): The name of the variable associated with the property. This can also be a substring of the variable.
             prop_identifier (RegNum, optional): Component identifier for the property. Defaults to "".
 
         Returns:
@@ -519,13 +511,17 @@ class DataReport(
         for pomd in self.pure_or_mixture_data:
             # Check if property exists in pure of mixture data
             if pomd.property_exists(prop_name, property_identifier):
-
+                
                 # Get composition
                 composition = pomd.get_composition(identifier, id_dict)
 
                 # Get properties
                 prop_df = pomd.get_property()
-                prop_df[var_name] = pomd.get_variable(var_name)
+                variables = pomd.get_variables()
+
+                for variable in variables:
+                    prop_df[variable["type"]] = variable["values"]
+
                 prop_df["composition"] = [composition] * prop_df.shape[0]
 
                 final.append(prop_df)

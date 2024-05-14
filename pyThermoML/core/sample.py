@@ -8,12 +8,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
 from .esource import eSource
+from .eanalmeth import eAnalMeth
+from .purity import Purity
 from .regnum import RegNum
 from .estatus import eStatus
 from .epurifmethod import ePurifMethod
 from .componentsample import ComponentSample
-from .purity import Purity
-from .eanalmeth import eAnalMeth
 
 
 @forge_signature
@@ -47,12 +47,6 @@ class Sample(
         default_factory=ListPlus,
         tag="purity",
         json_schema_extra=dict(multiple=True, xml="purity"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

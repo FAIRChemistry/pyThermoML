@@ -7,8 +7,8 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .equationofstate import EquationOfState
 from .singleprop import SingleProp
+from .equationofstate import EquationOfState
 from .multiprop import MultiProp
 
 
@@ -37,12 +37,6 @@ class CriticalEvaluation(
         default_factory=SingleProp,
         tag="SingleProp",
         json_schema_extra=dict(xml="SingleProp"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

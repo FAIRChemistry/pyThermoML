@@ -46,12 +46,6 @@ class VariableValue(
         tag="VarUncertainty",
         json_schema_extra=dict(multiple=True, xml="VarUncertainty"),
     )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
-    )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
     @model_validator(mode="after")

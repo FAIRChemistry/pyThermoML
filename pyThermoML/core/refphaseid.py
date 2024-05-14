@@ -8,8 +8,8 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
 from .erefphase import eRefPhase
-from .regnum import RegNum
 from .ecrystallatticetype import eCrystalLatticeType
+from .regnum import RegNum
 
 
 @forge_signature
@@ -41,12 +41,6 @@ class RefPhaseID(
         default=None,
         tag="sPhaseDescription",
         json_schema_extra=dict(xml="sPhaseDescription"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

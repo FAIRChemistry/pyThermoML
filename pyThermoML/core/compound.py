@@ -8,17 +8,17 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
 from .esource import eSource
-from .regnum import RegNum
-from .sample import Sample
+from .purity import Purity
 from .ion import Ion
+from .sample import Sample
+from .regnum import RegNum
 from .estatus import eStatus
 from .polymer import Polymer
 from .biomaterial import Biomaterial
+from .multicomponentsubstance import MulticomponentSubstance
+from .componentsample import ComponentSample
 from .especiationstate import eSpeciationState
 from .sorgid import SOrgID
-from .componentsample import ComponentSample
-from .multicomponentsubstance import MulticomponentSubstance
-from .purity import Purity
 
 
 @forge_signature
@@ -123,12 +123,6 @@ class Compound(
         default_factory=ListPlus,
         tag="Sample",
         json_schema_extra=dict(multiple=True, xml="Sample"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

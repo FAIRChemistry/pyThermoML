@@ -7,29 +7,29 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
+from .solvent import Solvent
+from .epropphase import ePropPhase
+from .ephase import ePhase
+from .proprepeatability import PropRepeatability
+from .regnum import RegNum
+from .asymcombexpanduncert import AsymCombExpandUncert
+from .epresentation import ePresentation
+from .combineduncertainty import CombinedUncertainty
+from .asymexpanduncert import AsymExpandUncert
+from .asymstduncert import AsymStdUncert
+from .propuncertainty import PropUncertainty
+from .ecrystallatticetype import eCrystalLatticeType
 from .propphaseid import PropPhaseID
+from .propertymethodid import PropertyMethodID
+from .ebiostate import eBioState
+from .asymcombstduncert import AsymCombStdUncert
 from .catalyst import Catalyst
 from .refphaseid import RefPhaseID
-from .epresentation import ePresentation
-from .asymstduncert import AsymStdUncert
-from .epropphase import ePropPhase
-from .asymcombstduncert import AsymCombStdUncert
-from .ephase import ePhase
 from .curvedev import CurveDev
-from .proprepeatability import PropRepeatability
+from .propdevicespec import PropDeviceSpec
+from .erefstatetype import eRefStateType
 from .ecombuncertevalmethod import eCombUncertEvalMethod
 from .estandardstate import eStandardState
-from .combineduncertainty import CombinedUncertainty
-from .asymcombexpanduncert import AsymCombExpandUncert
-from .solvent import Solvent
-from .asymexpanduncert import AsymExpandUncert
-from .regnum import RegNum
-from .propdevicespec import PropDeviceSpec
-from .ebiostate import eBioState
-from .erefstatetype import eRefStateType
-from .propuncertainty import PropUncertainty
-from .propertymethodid import PropertyMethodID
-from .ecrystallatticetype import eCrystalLatticeType
 
 
 @forge_signature
@@ -138,12 +138,6 @@ class Property(
     )
     solvent: Optional[Solvent] = element(
         default_factory=Solvent, tag="Solvent", json_schema_extra=dict(xml="Solvent")
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

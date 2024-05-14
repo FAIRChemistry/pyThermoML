@@ -7,14 +7,14 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .book import Book
-from .thesis import Thesis
-from .trcrefid import TRCRefID
-from .journal import Journal
+from .elanguage import eLanguage
 from .evalsinglepropref import EvalSinglePropRef
 from .etype import eType
+from .trcrefid import TRCRefID
 from .esourcetype import eSourceType
-from .elanguage import eLanguage
+from .journal import Journal
+from .book import Book
+from .thesis import Thesis
 
 
 @forge_signature
@@ -37,12 +37,6 @@ class SingleProp(
         default=None,
         tag="sEvalSinglePropDescription",
         json_schema_extra=dict(xml="sEvalSinglePropDescription"),
-    )
-    _repo: Optional[str] = PrivateAttr(
-        default="https://github.com/SimTech-Research-Data-Management/ThermoML-Specifications"
-    )
-    _commit: Optional[str] = PrivateAttr(
-        default="374af92aef0e91313c5c390226161b9876735345"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
