@@ -7,18 +7,18 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .multicomponentsubstance import MulticomponentSubstance
-from .especiationstate import eSpeciationState
-from .sorgid import SOrgID
 from .sample import Sample
-from .componentsample import ComponentSample
-from .esource import eSource
-from .ion import Ion
-from .estatus import eStatus
-from .biomaterial import Biomaterial
 from .regnum import RegNum
-from .purity import Purity
+from .especiationstate import eSpeciationState
+from .ion import Ion
+from .esource import eSource
+from .componentsample import ComponentSample
+from .multicomponentsubstance import MulticomponentSubstance
+from .biomaterial import Biomaterial
 from .polymer import Polymer
+from .sorgid import SOrgID
+from .purity import Purity
+from .estatus import eStatus
 
 
 @forge_signature
@@ -128,7 +128,7 @@ class Compound(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="7847845987ccfa50e8c08ada56669b59d1b97819"
+        default="4014e57ac2f3b9b09cdefb1c3e2f2cfca298f660"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
