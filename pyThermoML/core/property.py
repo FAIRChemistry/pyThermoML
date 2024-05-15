@@ -7,29 +7,29 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .propertymethodid import PropertyMethodID
-from .regnum import RegNum
-from .asymcombexpanduncert import AsymCombExpandUncert
-from .asymexpanduncert import AsymExpandUncert
-from .solvent import Solvent
+from .ebiostate import eBioState
 from .catalyst import Catalyst
-from .epresentation import ePresentation
-from .propdevicespec import PropDeviceSpec
+from .regnum import RegNum
+from .epropphase import ePropPhase
 from .proprepeatability import PropRepeatability
-from .asymcombstduncert import AsymCombStdUncert
+from .ecombuncertevalmethod import eCombUncertEvalMethod
+from .propuncertainty import PropUncertainty
+from .asymstduncert import AsymStdUncert
+from .solvent import Solvent
+from .propphaseid import PropPhaseID
+from .refphaseid import RefPhaseID
+from .asymexpanduncert import AsymExpandUncert
+from .combineduncertainty import CombinedUncertainty
+from .propertymethodid import PropertyMethodID
+from .estandardstate import eStandardState
+from .epresentation import ePresentation
+from .asymcombexpanduncert import AsymCombExpandUncert
+from .curvedev import CurveDev
 from .ephase import ePhase
 from .ecrystallatticetype import eCrystalLatticeType
-from .propphaseid import PropPhaseID
-from .epropphase import ePropPhase
-from .refphaseid import RefPhaseID
-from .estandardstate import eStandardState
-from .propuncertainty import PropUncertainty
+from .asymcombstduncert import AsymCombStdUncert
+from .propdevicespec import PropDeviceSpec
 from .erefstatetype import eRefStateType
-from .ebiostate import eBioState
-from .ecombuncertevalmethod import eCombUncertEvalMethod
-from .combineduncertainty import CombinedUncertainty
-from .curvedev import CurveDev
-from .asymstduncert import AsymStdUncert
 
 
 @forge_signature
@@ -143,7 +143,7 @@ class Property(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4014e57ac2f3b9b09cdefb1c3e2f2cfca298f660"
+        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

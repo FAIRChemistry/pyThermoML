@@ -10,35 +10,35 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .regnum import RegNum
 from .sorgid import SOrgID
-from .phaseid import PhaseID
-from .compound import Compound
-from .ion import Ion
-from .biomaterial import Biomaterial
-from .multicomponentsubstance import MulticomponentSubstance
-from .propertymethodid import PropertyMethodID
-from .participant import Participant
-from .combineduncertainty import CombinedUncertainty
-from .component import Component
+from .property import Property
+from .propphaseid import PropPhaseID
+from .reactiondata import ReactionData
 from .pureormixturedata import PureOrMixtureData
+from .compound import Compound
+from .variable import Variable
+from .ion import Ion
+from .equation import Equation
+from .auxiliarysubstance import AuxiliarySubstance
+from .multicomponentsubstance import MulticomponentSubstance
+from .participant import Participant
+from .propertymethodid import PropertyMethodID
+from .eexppurpose import eExpPurpose
+from .component import Component
+from .ereactiontype import eReactionType
+from .solvent import Solvent
+from .citation import Citation
 from .numvalues import NumValues
 from .especiationstate import eSpeciationState
-from .propphaseid import PropPhaseID
-from .auxiliarysubstance import AuxiliarySubstance
-from .version import Version
-from .property import Property
-from .polymer import Polymer
-from .reactiondata import ReactionData
-from .equation import Equation
-from .eexppurpose import eExpPurpose
-from .constraint import Constraint
-from .citation import Citation
-from .sample import Sample
-from .variable import Variable
-from .solvent import Solvent
 from .ereactionformalism import eReactionFormalism
-from .ereactiontype import eReactionType
+from .sample import Sample
+from .version import Version
+from .combineduncertainty import CombinedUncertainty
+from .biomaterial import Biomaterial
+from .constraint import Constraint
+from .polymer import Polymer
+from .regnum import RegNum
+from .phaseid import PhaseID
 from ..tools.mapping import (
     CONTSTRAINT_IDS,
     VARIABLES_IDS,
@@ -87,7 +87,7 @@ class DataReport(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4014e57ac2f3b9b09cdefb1c3e2f2cfca298f660"
+        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -514,7 +514,6 @@ class DataReport(
             # Check if property exists in pure of mixture data
             if pomd.property_exists(prop_name, property_identifier):
 
-
                 # Get properties
                 prop_df = pomd.get_property()
 
@@ -523,13 +522,15 @@ class DataReport(
 
                 for variable in variables:
                     prop_df[variable["type"]] = variable["values"]
-                
+
                 # Get constraints
                 constraints = pomd.get_constraints()
 
                 for const in constraints:
                     txt = f'{const["type"]} of'
-                    txt += f' {id_dict[const["component_identifier"].n_org_num][0] if const["component_identifier"].n_org_num else "system"}'
+                    txt += (
+                        f' {id_dict[const["component_identifier"].n_org_num][0] if const["component_identifier"].n_org_num else "system"}'
+                    )
                     prop_df[txt] = [const["value"]] * prop_df.shape[0]
 
                 final.append(prop_df)

@@ -7,11 +7,11 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .regnum import RegNum
-from .ephase import ePhase
 from .ecrystallatticetype import eCrystalLatticeType
-from .estandardstate import eStandardState
+from .ephase import ePhase
 from .ecompositionrepresentation import eCompositionRepresentation
+from .regnum import RegNum
+from .estandardstate import eStandardState
 
 
 @forge_signature
@@ -71,7 +71,7 @@ class Participant(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4014e57ac2f3b9b09cdefb1c3e2f2cfca298f660"
+        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

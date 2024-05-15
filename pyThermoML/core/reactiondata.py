@@ -8,52 +8,52 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
 from .regnum import RegNum
-from .catalyst import Catalyst
-from .ecompositionrepresentation import eCompositionRepresentation
-from .propdevicespec import PropDeviceSpec
-from .proprepeatability import PropRepeatability
-from .constrrepeatability import ConstrRepeatability
 from .varphaseid import VarPhaseID
-from .propertyvalue import PropertyValue
+from .covariance import Covariance
+from .eqconstant import EqConstant
+from .property import Property
+from .propphaseid import PropPhaseID
+from .refphaseid import RefPhaseID
+from .eqparameter import EqParameter
+from .vardevicespec import VarDeviceSpec
+from .varuncertainty import VarUncertainty
+from .construncertainty import ConstrUncertainty
+from .eeqname import eEqName
+from .variable import Variable
+from .propuncertainty import PropUncertainty
+from .equation import Equation
+from .auxiliarysubstance import AuxiliarySubstance
+from .participant import Participant
+from .propertymethodid import PropertyMethodID
 from .estandardstate import eStandardState
+from .eexppurpose import eExpPurpose
+from .ecrystallatticetype import eCrystalLatticeType
+from .eqvariable import EqVariable
+from .ereactiontype import eReactionType
+from .proprepeatability import PropRepeatability
+from .constraintid import ConstraintID
+from .solvent import Solvent
+from .constrrepeatability import ConstrRepeatability
+from .constraintphaseid import ConstraintPhaseID
+from .eqproperty import EqProperty
+from .propertyvalue import PropertyValue
+from .numvalues import NumValues
+from .variablevalue import VariableValue
+from .ephase import ePhase
+from .erefstatetype import eRefStateType
+from .constrdevicespec import ConstrDeviceSpec
+from .catalyst import Catalyst
+from .ereactionformalism import eReactionFormalism
+from .ecompositionrepresentation import eCompositionRepresentation
 from .eqconstraint import EqConstraint
 from .efunction import eFunction
-from .propertymethodid import PropertyMethodID
-from .varuncertainty import VarUncertainty
-from .ephase import ePhase
-from .participant import Participant
-from .combineduncertainty import CombinedUncertainty
-from .variablevalue import VariableValue
-from .eqconstant import EqConstant
-from .numvalues import NumValues
-from .constraintphaseid import ConstraintPhaseID
-from .covariance import Covariance
-from .constrdevicespec import ConstrDeviceSpec
-from .ecrystallatticetype import eCrystalLatticeType
-from .propphaseid import PropPhaseID
-from .auxiliarysubstance import AuxiliarySubstance
-from .eqparameter import EqParameter
-from .eqproperty import EqProperty
-from .propuncertainty import PropUncertainty
-from .curvedev import CurveDev
-from .property import Property
-from .equation import Equation
-from .eexppurpose import eExpPurpose
-from .constraint import Constraint
-from .variable import Variable
-from .solvent import Solvent
-from .construncertainty import ConstrUncertainty
 from .varrepeatability import VarRepeatability
-from .ereactionformalism import eReactionFormalism
+from .combineduncertainty import CombinedUncertainty
 from .variableid import VariableID
-from .constraintid import ConstraintID
 from .epresentation import ePresentation
-from .ereactiontype import eReactionType
-from .vardevicespec import VarDeviceSpec
-from .refphaseid import RefPhaseID
-from .eqvariable import EqVariable
-from .erefstatetype import eRefStateType
-from .eeqname import eEqName
+from .curvedev import CurveDev
+from .constraint import Constraint
+from .propdevicespec import PropDeviceSpec
 
 
 @forge_signature
@@ -145,7 +145,7 @@ class ReactionData(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4014e57ac2f3b9b09cdefb1c3e2f2cfca298f660"
+        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
