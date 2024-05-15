@@ -480,25 +480,21 @@ class DataReport(
 
         return final
 
-    def analysis_property_over_composition(
+    def analysis_property(
         self,
-        component: str | int,
         prop_name: str,
         prop_identifier: str = "",
     ):
         """
-        Analyzes a specific property over the composition of a component in a DataReport.
+        Analyzes a specific property in a DataReport.
 
         Parameters:
-            component (str|int): The (common) name of the component, or the reg num identifier of it.
             prop_name (str): The name of the property to analyze. This can also be a substring of the property.
             prop_identifier (RegNum, optional): Component identifier for the property. Defaults to "".
 
         Returns:
             pd.DataFrame: A DataFrame containing the analyzed property values over the composition of the component.
         """
-        # Get reg_num identifier for component
-        identifier = self.get_reg_num(component)
 
         # Get reg_num for property identifier
         property_identifier = self.get_reg_num(prop_identifier)
@@ -518,17 +514,23 @@ class DataReport(
             # Check if property exists in pure of mixture data
             if pomd.property_exists(prop_name, property_identifier):
 
-                # Get composition
-                composition = pomd.get_composition(identifier, id_dict)
 
                 # Get properties
                 prop_df = pomd.get_property()
+
+                # Get variables
                 variables = pomd.get_variables()
 
                 for variable in variables:
                     prop_df[variable["type"]] = variable["values"]
+                
+                # Get constraints
+                constraints = pomd.get_constraints()
 
-                prop_df["composition"] = [composition] * prop_df.shape[0]
+                for const in constraints:
+                    txt = f'{const["type"]} of'
+                    txt += f' {id_dict[const["component_identifier"].n_org_num][0] if const["component_identifier"].n_org_num else "system"}'
+                    prop_df[txt] = [const["value"]] * prop_df.shape[0]
 
                 final.append(prop_df)
 
