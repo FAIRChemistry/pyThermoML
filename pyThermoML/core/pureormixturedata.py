@@ -987,60 +987,6 @@ class PureOrMixtureData(
 
         return self.variable[-1]
 
-    def get_composition(self, identifier: RegNum, id_dict: Dict[int, str]):
-        """
-        This function retrieves the composition value from a PureOrMixtureData object based on a specified RegNum identifier.
-
-        Parameters:
-            identifier (RegNum): The RegNum identifier for the desired composition.
-            id_dict (Dict[int,str]): Dict matching n_org_number and the name of the compounds.
-
-        Returns:
-            float: The composition value.
-
-        Raises:
-            KeyError: If the PureOrMixtureData object does not contain a composition constraint for the specified species.
-
-        """
-
-        constraint_dict = self.get_constraints()
-        composition_flag = False
-        constraint_ids = []
-        composition = None
-
-        for constraint in constraint_dict:
-            # Check if there is a composition constraint available
-            if (
-                "Mole fraction" in constraint["type"]
-                or "Mass fraction" in constraint["type"]
-            ):
-                composition_flag = True
-                constraint_ids.append(constraint["component_identifier"].n_org_num)
-                if constraint["component_identifier"] == identifier:
-                    composition = constraint["value"]
-                    break
-
-        # If pure entry without a constraint explicitly specifing it, composition is 1.0
-        if not composition_flag and len(self.component) == 1:
-            if self.component[0].reg_num == identifier:
-                composition = 1.0
-
-        if composition == None:
-            if composition_flag:
-                err_msg = (
-                    "Pure or mixture data do not contain a composition constraint for"
-                    f" the specified species: {id_dict[identifier.n_org_num]}."
-                )
-                err_msg += (
-                    " Valid species are:"
-                    f" '{', '.join( [ id_dict[c_id] for c_id in constraint_ids ] )}'."
-                )
-                raise KeyError(err_msg)
-            else:
-                raise KeyError("No composition constraint presented at all!")
-
-        return composition
-
     def get_property(self):
         """
         This function takes a PureOrMixtureData object as input and extracts the property values and their corresponding uncertainties from the num_values attribute.
@@ -1103,7 +1049,9 @@ class PureOrMixtureData(
         return flag_property
 
     def get_constraints(self):
+
         constraints = []
+        composition_flag = False
         for const in self.constraint:
             constraint = {
                 "type": list(
@@ -1113,7 +1061,25 @@ class PureOrMixtureData(
                 "phase": const.constraint_phase_id.e_constraint_phase,
                 "value": const.n_constraint_value,
             }
+
+            # Check if there is a composition constraint available
+            if (
+                "Mole fraction" in constraint["type"]
+                or "Mass fraction" in constraint["type"]
+            ):
+                composition_flag = True
+
             constraints.append(constraint)
+
+        # If pure entry without a constraint explicitly specifing it, composition is 1.0
+        if not composition_flag and len(self.component) == 1:
+            constraint = {
+                "type": "Mole fraction",
+                "component_identifier": self.component[0].reg_num,
+                "phase": self.phase_id[0].e_phase,
+                "value": 1.0
+            }
+        constraints.append(constraint)
 
         return constraints
 

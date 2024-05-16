@@ -414,9 +414,11 @@ class DataReport(
         id_dict = self.list_compounds(verbose=False)
 
         property_list = sorted({
-            f'"{pomd.property_name()["type"]}" of'
-            f' {id_dict[pomd.property_name()["component_identifier"].n_org_num][0] if pomd.property_name()["component_identifier"].n_org_num else "system"}'
-            for pomd in self.pure_or_mixture_data
+            (
+                pomd.property_name()["type"] +
+                (f'  of {id_dict[pomd.property_name()["component_identifier"].n_org_num][0]}' if pomd.property_name()["component_identifier"].n_org_num else "")
+            )
+        for pomd in self.pure_or_mixture_data
         })
 
         if verbose:
@@ -451,20 +453,29 @@ class DataReport(
                 [
                     (
                         (
-                            f'"{property_dict["type"]}" of'
-                            f' {id_dict[property_dict["component_identifier"].n_org_num][0] if property_dict["component_identifier"].n_org_num else "system"}'
+                            property_dict["type"] +
+                            (f' of {id_dict[property_dict["component_identifier"].n_org_num][0]}' if property_dict["component_identifier"].n_org_num else "")
                         ),
                         "mean",
                     ),
                     ("", "95_confidence"),
                 ]
-                + [("variable", var["type"]) for var in variables]
+                + [
+                    (
+                        "variable", 
+                        (
+                            var["type"] +
+                            (f'  of {id_dict[var["component_identifier"].n_org_num][0]}' if var["component_identifier"].n_org_num else "")
+                        ),
+                    ) 
+                        for var in variables
+                ]
                 + [
                     (
                         "constraint",
                         (
-                            f'"{const["type"]}" of'
-                            f' {id_dict[const["component_identifier"].n_org_num][0] if const["component_identifier"].n_org_num else "system"}'
+                            const["type"] +
+                            (f'  of {id_dict[const["component_identifier"].n_org_num][0]}' if const["component_identifier"].n_org_num else "")
                         ),
                     )
                     for const in constraints
@@ -521,16 +532,22 @@ class DataReport(
                 variables = pomd.get_variables()
 
                 for variable in variables:
-                    prop_df[variable["type"]] = variable["values"]
+                    txt = variable["type"]
+                    if variable["component_identifier"].n_org_num:
+                        txt += (
+                            f' of {id_dict[variable["component_identifier"].n_org_num][0]}'
+                        )
+                    prop_df[txt] = variable["values"]
 
                 # Get constraints
                 constraints = pomd.get_constraints()
 
                 for const in constraints:
-                    txt = f'{const["type"]} of'
-                    txt += (
-                        f' {id_dict[const["component_identifier"].n_org_num][0] if const["component_identifier"].n_org_num else "system"}'
-                    )
+                    txt = f'{const["type"]}'
+                    if const["component_identifier"].n_org_num:
+                        txt += (
+                            f' of {id_dict[const["component_identifier"].n_org_num][0]}'
+                        )
                     prop_df[txt] = [const["value"]] * prop_df.shape[0]
 
                 final.append(prop_df)
