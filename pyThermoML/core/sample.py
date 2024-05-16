@@ -7,13 +7,13 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .purity import Purity
 from .eanalmeth import eAnalMeth
-from .epurifmethod import ePurifMethod
 from .esource import eSource
+from .purity import Purity
 from .estatus import eStatus
 from .regnum import RegNum
 from .componentsample import ComponentSample
+from .epurifmethod import ePurifMethod
 
 
 @forge_signature
@@ -52,7 +52,7 @@ class Sample(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
+        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

@@ -7,8 +7,8 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .asymcombexpanduncert import AsymCombExpandUncert
 from .asymcombstduncert import AsymCombStdUncert
+from .asymcombexpanduncert import AsymCombExpandUncert
 from .ecombuncertevalmethod import eCombUncertEvalMethod
 
 
@@ -77,7 +77,7 @@ class CombinedUncertainty(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
+        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

@@ -1,3 +1,3 @@
 
 __URL__ = "https://github.com/FAIRChemistry/pyThermoML"
-__COMMIT__ = "4d2d23abb157f43b563c9d44de5b83e37a50b96b"
+__COMMIT__ = "decc3d7428f0517c8bc0428fd9785112138a62f6"

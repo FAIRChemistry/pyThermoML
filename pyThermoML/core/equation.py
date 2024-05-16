@@ -8,12 +8,12 @@ from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
 from .eqparameter import EqParameter
-from .eqconstant import EqConstant
-from .eqconstraint import EqConstraint
-from .eqproperty import EqProperty
-from .eeqname import eEqName
-from .covariance import Covariance
 from .eqvariable import EqVariable
+from .eqconstant import EqConstant
+from .eqproperty import EqProperty
+from .eqconstraint import EqConstraint
+from .covariance import Covariance
+from .eeqname import eEqName
 
 
 @forge_signature
@@ -75,7 +75,7 @@ class Equation(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
+        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

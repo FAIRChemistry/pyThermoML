@@ -7,13 +7,13 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .ecomponentcomposition import eComponentComposition
 from .etemperature import eTemperature
-from .ebiovariables import eBioVariables
+from .esolventcomposition import eSolventComposition
 from .eparticipantamount import eParticipantAmount
 from .emiscellaneous import eMiscellaneous
+from .ecomponentcomposition import eComponentComposition
+from .ebiovariables import eBioVariables
 from .epressure import ePressure
-from .esolventcomposition import eSolventComposition
 
 
 @forge_signature
@@ -58,7 +58,7 @@ class ConstraintType(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="4d2d23abb157f43b563c9d44de5b83e37a50b96b"
+        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
