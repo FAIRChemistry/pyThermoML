@@ -7,14 +7,14 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .etype import eType
-from .elanguage import eLanguage
-from .thesis import Thesis
-from .esourcetype import eSourceType
 from .trcrefid import TRCRefID
-from .evalsinglepropref import EvalSinglePropRef
+from .thesis import Thesis
 from .book import Book
 from .journal import Journal
+from .elanguage import eLanguage
+from .evalsinglepropref import EvalSinglePropRef
+from .etype import eType
+from .esourcetype import eSourceType
 
 
 @forge_signature
@@ -42,7 +42,7 @@ class SingleProp(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
+        default="09a845c92b96665129bf0265d21674b8b92bf834"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

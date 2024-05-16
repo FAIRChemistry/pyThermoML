@@ -8,51 +8,51 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .refphaseid import RefPhaseID
-from .constraintphaseid import ConstraintPhaseID
-from .property import Property
-from .propdevicespec import PropDeviceSpec
-from .variableid import VariableID
-from .eqconstraint import EqConstraint
-from .regnum import RegNum
-from .eeqname import eEqName
-from .constraintid import ConstraintID
-from .eqproperty import EqProperty
-from .epresentation import ePresentation
-from .efunction import eFunction
-from .combineduncertainty import CombinedUncertainty
-from .estandardstate import eStandardState
-from .proprepeatability import PropRepeatability
-from .numvalues import NumValues
-from .construncertainty import ConstrUncertainty
-from .eqvariable import EqVariable
+from .component import Component
 from .solvent import Solvent
+from .epresentation import ePresentation
+from .proprepeatability import PropRepeatability
+from .eqconstraint import EqConstraint
+from .propdevicespec import PropDeviceSpec
+from .curvedev import CurveDev
+from .variableid import VariableID
+from .numvalues import NumValues
+from .constraint import Constraint
 from .eexppurpose import eExpPurpose
+from .regnum import RegNum
+from .erefstatetype import eRefStateType
+from .ephase import ePhase
+from .constrdevicespec import ConstrDeviceSpec
+from .eqconstant import EqConstant
+from .propuncertainty import PropUncertainty
+from .combineduncertainty import CombinedUncertainty
+from .eeqname import eEqName
+from .covariance import Covariance
+from .propertyvalue import PropertyValue
+from .auxiliarysubstance import AuxiliarySubstance
+from .eqparameter import EqParameter
+from .ecrystallatticetype import eCrystalLatticeType
+from .variable import Variable
+from .estandardstate import eStandardState
+from .eqproperty import EqProperty
+from .propertymethodid import PropertyMethodID
+from .property import Property
+from .phaseid import PhaseID
+from .varphaseid import VarPhaseID
+from .vardevicespec import VarDeviceSpec
+from .constraintid import ConstraintID
+from .varuncertainty import VarUncertainty
+from .eqvariable import EqVariable
+from .varrepeatability import VarRepeatability
+from .variablevalue import VariableValue
+from .constraintphaseid import ConstraintPhaseID
+from .catalyst import Catalyst
+from .propphaseid import PropPhaseID
+from .refphaseid import RefPhaseID
+from .efunction import eFunction
+from .construncertainty import ConstrUncertainty
 from .equation import Equation
 from .constrrepeatability import ConstrRepeatability
-from .constraint import Constraint
-from .ecrystallatticetype import eCrystalLatticeType
-from .propertyvalue import PropertyValue
-from .propuncertainty import PropUncertainty
-from .erefstatetype import eRefStateType
-from .catalyst import Catalyst
-from .phaseid import PhaseID
-from .variable import Variable
-from .auxiliarysubstance import AuxiliarySubstance
-from .varrepeatability import VarRepeatability
-from .vardevicespec import VarDeviceSpec
-from .constrdevicespec import ConstrDeviceSpec
-from .eqparameter import EqParameter
-from .varuncertainty import VarUncertainty
-from .covariance import Covariance
-from .propertymethodid import PropertyMethodID
-from .curvedev import CurveDev
-from .component import Component
-from .ephase import ePhase
-from .propphaseid import PropPhaseID
-from .variablevalue import VariableValue
-from .eqconstant import EqConstant
-from .varphaseid import VarPhaseID
 
 
 @forge_signature
@@ -133,7 +133,7 @@ class PureOrMixtureData(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
+        default="09a845c92b96665129bf0265d21674b8b92bf834"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -1077,7 +1077,7 @@ class PureOrMixtureData(
                 "type": "Mole fraction",
                 "component_identifier": self.component[0].reg_num,
                 "phase": self.phase_id[0].e_phase,
-                "value": 1.0
+                "value": 1.0,
             }
         constraints.append(constraint)
 

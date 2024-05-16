@@ -7,12 +7,12 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .constrrepeatability import ConstrRepeatability
-from .constraintid import ConstraintID
-from .constraintphaseid import ConstraintPhaseID
-from .construncertainty import ConstrUncertainty
 from .constrdevicespec import ConstrDeviceSpec
 from .solvent import Solvent
+from .constraintphaseid import ConstraintPhaseID
+from .construncertainty import ConstrUncertainty
+from .constraintid import ConstraintID
+from .constrrepeatability import ConstrRepeatability
 
 
 @forge_signature
@@ -74,7 +74,7 @@ class Constraint(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
+        default="09a845c92b96665129bf0265d21674b8b92bf834"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 

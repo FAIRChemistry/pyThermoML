@@ -10,35 +10,35 @@ from lxml.etree import _Element
 from sdRDM.base.listplus import ListPlus
 from sdRDM.base.utils import forge_signature
 from sdRDM.tools.utils import elem2dict
-from .polymer import Polymer
-from .participant import Participant
-from .sorgid import SOrgID
-from .reactiondata import ReactionData
-from .property import Property
-from .regnum import RegNum
-from .combineduncertainty import CombinedUncertainty
-from .ereactionformalism import eReactionFormalism
-from .version import Version
-from .multicomponentsubstance import MulticomponentSubstance
-from .numvalues import NumValues
-from .sample import Sample
-from .especiationstate import eSpeciationState
-from .solvent import Solvent
-from .eexppurpose import eExpPurpose
-from .equation import Equation
-from .constraint import Constraint
-from .biomaterial import Biomaterial
-from .citation import Citation
-from .phaseid import PhaseID
-from .variable import Variable
-from .auxiliarysubstance import AuxiliarySubstance
-from .pureormixturedata import PureOrMixtureData
-from .compound import Compound
-from .propertymethodid import PropertyMethodID
 from .component import Component
-from .propphaseid import PropPhaseID
-from .ion import Ion
+from .solvent import Solvent
+from .sample import Sample
+from .citation import Citation
+from .version import Version
+from .sorgid import SOrgID
+from .numvalues import NumValues
+from .multicomponentsubstance import MulticomponentSubstance
+from .constraint import Constraint
+from .eexppurpose import eExpPurpose
+from .regnum import RegNum
+from .polymer import Polymer
+from .reactiondata import ReactionData
+from .especiationstate import eSpeciationState
+from .compound import Compound
+from .biomaterial import Biomaterial
+from .combineduncertainty import CombinedUncertainty
+from .pureormixturedata import PureOrMixtureData
+from .auxiliarysubstance import AuxiliarySubstance
+from .variable import Variable
+from .participant import Participant
+from .propertymethodid import PropertyMethodID
+from .property import Property
+from .phaseid import PhaseID
 from .ereactiontype import eReactionType
+from .propphaseid import PropPhaseID
+from .equation import Equation
+from .ereactionformalism import eReactionFormalism
+from .ion import Ion
 from ..tools.mapping import (
     CONTSTRAINT_IDS,
     VARIABLES_IDS,
@@ -87,7 +87,7 @@ class DataReport(
         default="https://github.com/FAIRChemistry/pyThermoML"
     )
     _commit: Optional[str] = PrivateAttr(
-        default="decc3d7428f0517c8bc0428fd9785112138a62f6"
+        default="09a845c92b96665129bf0265d21674b8b92bf834"
     )
     _raw_xml_data: Dict = PrivateAttr(default_factory=dict)
 
@@ -415,10 +415,15 @@ class DataReport(
 
         property_list = sorted({
             (
-                pomd.property_name()["type"] +
-                (f'  of {id_dict[pomd.property_name()["component_identifier"].n_org_num][0]}' if pomd.property_name()["component_identifier"].n_org_num else "")
+                pomd.property_name()["type"]
+                + (
+                    "  of"
+                    f" {id_dict[pomd.property_name()['component_identifier'].n_org_num][0]}"
+                    if pomd.property_name()["component_identifier"].n_org_num
+                    else ""
+                )
             )
-        for pomd in self.pure_or_mixture_data
+            for pomd in self.pure_or_mixture_data
         })
 
         if verbose:
@@ -453,8 +458,12 @@ class DataReport(
                 [
                     (
                         (
-                            property_dict["type"] +
-                            (f' of {id_dict[property_dict["component_identifier"].n_org_num][0]}' if property_dict["component_identifier"].n_org_num else "")
+                            property_dict["type"]
+                            + (
+                                f' of {id_dict[property_dict["component_identifier"].n_org_num][0]}'
+                                if property_dict["component_identifier"].n_org_num
+                                else ""
+                            )
                         ),
                         "mean",
                     ),
@@ -462,20 +471,30 @@ class DataReport(
                 ]
                 + [
                     (
-                        "variable", 
+                        "variable",
                         (
-                            var["type"] +
-                            (f'  of {id_dict[var["component_identifier"].n_org_num][0]}' if var["component_identifier"].n_org_num else "")
+                            var["type"]
+                            + (
+                                "  of"
+                                f" {id_dict[var['component_identifier'].n_org_num][0]}"
+                                if var["component_identifier"].n_org_num
+                                else ""
+                            )
                         ),
-                    ) 
-                        for var in variables
+                    )
+                    for var in variables
                 ]
                 + [
                     (
                         "constraint",
                         (
-                            const["type"] +
-                            (f'  of {id_dict[const["component_identifier"].n_org_num][0]}' if const["component_identifier"].n_org_num else "")
+                            const["type"]
+                            + (
+                                "  of"
+                                f" {id_dict[const['component_identifier'].n_org_num][0]}"
+                                if const["component_identifier"].n_org_num
+                                else ""
+                            )
                         ),
                     )
                     for const in constraints
